@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Particule Énergie — Simulateur DPE gratuit Grenoble</title>
+<meta name="description" content="Estimez gratuitement votre DPE et vos aides MaPrimeRénov', CEE et Éco-PTZ. Particule Énergie, expert en rénovation énergétique à Grenoble et en Isère.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+input,select{border:0.5px solid #ccc;border-radius:8px;padding:9px 12px;font-size:14px;width:100%;outline:none;background:#fff;color:#1a1a1a}
+input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,165,0.15)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#D4880A}
+
+/* HERO */
+.hero{background:#0D1F15;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.05}
+.hero-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5DCAA5;margin-bottom:1.5rem;opacity:.7}
+.hero-logo{margin:0 auto 2rem;display:block}
+.hero-title{font-size:38px;font-weight:400;line-height:1.18;color:#fff;margin-bottom:1rem;font-family:Georgia,serif;font-style:italic;max-width:580px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#5DCAA5;font-style:normal}
+.hero-slogan{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.75;max-width:420px;margin:0 auto 2.5rem}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:1.5rem}
+.btn-primary{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:13px 28px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:#D4880A}
+.btn-ghost{font-size:13px;color:#5DCAA5;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none}
+.hero-note{margin-top:1.5rem;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:.04em}
+
+/* NUMBERS */
+.numbers{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:0.5px solid #e0ddd6;background:#FAFAF7}
+.number-item{padding:2.5rem 2rem;border-right:0.5px solid #e0ddd6}
+.number-item:last-child{border-right:none}
+.number-val{font-size:34px;font-weight:400;color:#1a1a1a;font-family:Georgia,serif;line-height:1}
+.number-unit{font-size:16px;color:#1D6F42}
+.number-label{font-size:12px;color:#999;margin-top:.5rem;line-height:1.5}
+
+/* SECTIONS */
+.section{padding:4rem 2rem;max-width:700px;margin:0 auto}
+.section-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem}
+.section-title{font-size:26px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:1rem;line-height:1.2;font-family:Georgia,serif}
+.section-title span{color:#1D6F42;font-style:normal}
+.section-body{font-size:14px;color:#666;line-height:1.75;max-width:520px}
+
+/* STEPS */
+.steps{margin-top:2.5rem;display:flex;flex-direction:column}
+.step-item{display:flex;gap:2rem;padding:1.5rem 0;border-top:0.5px solid #e0ddd6}
+.step-num{font-size:11px;color:#ccc;letter-spacing:.08em;padding-top:3px;flex-shrink:0;width:24px}
+.step-title{font-size:15px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:.375rem;font-family:Georgia,serif}
+.step-desc{font-size:13px;color:#999;line-height:1.6}
+
+/* AIDES */
+.aides-band{background:#F2EFE6;padding:4rem 2rem;border-top:0.5px solid #e0ddd6;border-bottom:0.5px solid #e0ddd6}
+.aides-inner{max-width:700px;margin:0 auto}
+.aides-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#ddd9ce;margin-top:2rem;border-radius:8px;overflow:hidden}
+.aide-item{background:#F2EFE6;padding:1.5rem}
+.aide-name{font-size:13px;font-style:italic;color:#1a1a1a;margin-bottom:.25rem;font-family:Georgia,serif}
+.aide-amount{font-size:22px;font-weight:400;color:#1D6F42;font-family:Georgia,serif}
+.aide-desc{font-size:12px;color:#999;margin-top:.25rem;line-height:1.5}
+.aide-alerte{font-size:11px;color:#854F0B;background:#FAEEDA;border-radius:4px;padding:3px 7px;margin-top:.5rem;display:inline-block}
+
+/* SIMULATEUR SECTION */
+.sim-band{padding:4rem 2rem;max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.sim-preview{background:#fff;border:0.5px solid #e0ddd6;border-radius:12px;padding:1.25rem}
+.sim-preview-title{font-size:12px;color:#bbb;margin-bottom:1rem;letter-spacing:.04em}
+.dpe-row{display:flex;align-items:center;gap:8px;margin-bottom:.5rem}
+.dpe-letter{width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;flex-shrink:0}
+
+/* CTA BAND */
+.cta-band{background:#0D1F15;padding:3.5rem 2rem;position:relative;overflow:hidden}
+.cta-inner{max-width:700px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;z-index:1}
+.cta-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:.05;pointer-events:none}
+
+/* FOOTER */
+.footer{background:#0A0A0A;padding:2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06)}
+.footer-left{display:flex;align-items:center;gap:10px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.footer-links{display:flex;gap:1.5rem;font-size:12px;color:rgba(255,255,255,0.25)}
+
+/* SIMULATEUR FORM */
+.sim-wrap{max-width:640px;margin:0 auto;padding:2rem 1rem}
+.sim-card{background:#fff;border:0.5px solid #e0ddd6;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
+.dots{display:flex;gap:6px;margin-bottom:2rem;align-items:center}
+.dot{width:26px;height:26px;border-radius:50%;border:0.5px solid #ccc;display:flex;align-items:center;justify-content:center;font-size:11px;color:#888;background:#fff;flex-shrink:0}
+.dot.done{background:#1D6F42;border-color:#1D6F42;color:#fff}
+.dot.active{border:2px solid #1D6F42;color:#1D6F42;font-weight:500}
+.dline{flex:1;height:0.5px;background:#e0e0e0}
+.stitle{font-size:18px;font-weight:500;margin:0 0 4px;color:#1a1a1a}
+.ssub{font-size:13px;color:#666;margin:0 0 1.25rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:12px;color:#888;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:7px}
+.rc{border:0.5px solid #e0e0e0;border-radius:8px;padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;color:#1a1a1a;background:#fff}
+.rc:hover{border-color:#aaa}
+.rc.sel{border:2px solid #1D6F42;color:#085041;background:#f0faf6}
+.rc i{font-size:18px;flex-shrink:0}
+.brow{display:flex;gap:8px;margin-top:1.25rem}
+.bnext{flex:1;background:#1D6F42;color:#fff;border:none;border-radius:8px;padding:11px 18px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.bnext:hover{background:#0F6E56}
+.bback{flex:0 0 42px;background:#f5f5f0;color:#1a1a1a;border:0.5px solid #ccc;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.875rem}
+.mc{background:#f5f5f0;border-radius:8px;padding:.875rem 1rem}
+.mc .ml{font-size:11px;color:#888;margin-bottom:3px}
+.mc .mv{font-size:20px;font-weight:500;color:#1a1a1a}
+.mc .mu{font-size:11px;color:#888}
+.dpe-scale{display:flex;flex-direction:column;gap:3px;margin:.875rem 0}
+.drow2{display:flex;align-items:center;gap:8px}
+.dbar{height:20px;border-radius:3px;display:flex;align-items:center;padding:0 7px;font-weight:500;color:#fff;font-size:12px;min-width:28px}
+.drow2.cur .dbar{outline:2.5px solid #1a1a1a;outline-offset:1px}
+.cur-lbl{font-size:11px;color:#1D6F42;font-weight:500}
+.aide-card-res{background:#fff;border:0.5px solid #e0ddd6;border-radius:12px;padding:1rem 1.25rem;margin-bottom:.75rem}
+.aide-header{display:flex;align-items:center;gap:10px;margin-bottom:.5rem}
+.aide-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.aide-montant{font-size:20px;font-weight:500;color:#1D6F42;margin-left:auto;white-space:nowrap}
+.aide-detail{font-size:12px;color:#888;margin:.25rem 0 0;padding-left:46px;line-height:1.5}
+.aide-alerte-sm{font-size:11px;color:#854F0B;background:#FAEEDA;border-radius:4px;padding:3px 7px;margin-top:5px;margin-left:46px;display:inline-block}
+.total-bar{background:#E1F5EE;border-radius:8px;padding:.875rem 1rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem}
+.warn-badge{background:#FAEEDA;border-radius:8px;padding:.625rem .875rem;font-size:12px;color:#633806;display:flex;gap:8px;align-items:flex-start;margin-bottom:.875rem}
+.info-badge{background:#E1F5EE;border-radius:8px;padding:.625rem .875rem;font-size:12px;color:#085041;display:flex;gap:8px;align-items:flex-start;margin-bottom:.875rem}
+.lead-box{background:#f5f5f0;border-radius:12px;padding:1.1rem 1.25rem;margin-top:.875rem}
+.lfield{margin-bottom:.625rem}
+.lfield label{font-size:11px;color:#888;display:block;margin-bottom:4px}
+.blead{width:100%;background:#E8700A;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:.5rem}
+.blead:hover{background:#C85E00}
+.blead:disabled{background:#f0b070;cursor:not-allowed}
+.privacy{font-size:11px;color:#888;text-align:center;margin-top:.5rem;display:flex;align-items:center;justify-content:center;gap:4px}
+.success-box{background:#E1F5EE;border-radius:12px;padding:1.5rem;text-align:center;margin-top:.875rem}
+.success-box i{font-size:40px;color:#1D6F42;display:block;margin-bottom:.75rem}
+.error-box{background:#FCEBEB;border-radius:8px;padding:.875rem;font-size:13px;color:#791F1F;display:none;margin-top:.5rem;align-items:center;gap:8px}
+.badge-wrap{display:flex;align-items:center;gap:12px;margin-bottom:.875rem}
+.dpe-badge{width:52px;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:500;color:#fff;flex-shrink:0}
+.maj-note{font-size:11px;color:#bbb;text-align:center;margin-top:1rem;padding-top:.875rem;border-top:0.5px solid #e0ddd6}
+.step-form{display:none}.step-form.active{display:block}
+.tooltip-wrap{position:relative;display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+.tooltip-icon{width:16px;height:16px;border-radius:50%;background:#e0e0e0;color:#666;font-size:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.tooltip-box{display:none;position:absolute;left:0;top:22px;z-index:100;background:#1a1a1a;color:#fff;border-radius:8px;padding:12px 14px;font-size:11px;line-height:1.6;min-width:280px;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+.tooltip-box table{border-collapse:collapse;width:100%;margin-top:6px}
+.tooltip-box td{padding:3px 8px 3px 0;border-bottom:0.5px solid rgba(255,255,255,0.1)}
+.tooltip-box td:last-child{text-align:right;color:#5DCAA5;padding-right:0}
+.tooltip-wrap:hover .tooltip-box,.tooltip-wrap:focus .tooltip-box{display:block}
+.page{display:none}.page.active{display:block}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27.4" ry="10.9" stroke="#5DCAA5" stroke-width="0.35" fill="none" opacity="0.22"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="39.8" cy="39.8" r="1.2" fill="#0D1F15" opacity="0.5"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+      <line x1="41" y1="17.2" x2="41" y2="37.2" stroke="#5DCAA5" stroke-width="0.4" opacity="0.2" stroke-dasharray="1 3"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#simulateur" onclick="showPage('home')">Simulateur</a>
+    <a href="#aides">Aides</a>
+    <a href="#contact">À propos</a>
+  </div>
+  <a href="#simulateur" class="nav-cta" onclick="showSim()">Estimer mon DPE</a>
+</nav>
+
+<!-- PAGE ACCUEIL -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-bg" width="600" height="600" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27"/>
+    </svg>
+    <div class="hero-eyebrow">Audit énergétique — Grenoble · Isère · Rhône-Alpes</div>
+    <svg class="hero-logo" width="100" height="100" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27.4" ry="10.9" stroke="#5DCAA5" stroke-width="0.35" fill="none" opacity="0.22"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.76" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27.4" ry="10.9" stroke="#5DCAA5" stroke-width="0.35" fill="none" opacity="0.18" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.72" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="5" fill="#5DCAA5" opacity="0.12"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="39.8" cy="39.8" r="1.2" fill="#0D1F15" opacity="0.5"/>
+      <circle cx="41" cy="14" r="5" fill="#EF9F27" opacity="0.12"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+      <circle cx="40" cy="13" r="1.2" fill="#FAC775" opacity="0.55"/>
+      <line x1="41" y1="17.2" x2="41" y2="37.2" stroke="#5DCAA5" stroke-width="0.4" opacity="0.2" stroke-dasharray="1 3"/>
+    </svg>
+    <h1 class="hero-title">Votre logement mérite<br>une <span>énergie</span> qui lui ressemble.</h1>
+    <div class="hero-slogan">Votre énergie, notre expertise</div>
+    <p class="hero-sub">Estimez gratuitement votre classe DPE et les aides disponibles pour votre rénovation. En 2 minutes, sans engagement.</p>
+    <div class="hero-actions">
+      <a href="#simulateur" class="btn-primary" onclick="showSim()">Lancer le simulateur</a>
+      <button class="btn-ghost" onclick="document.getElementById('comment').scrollIntoView({behavior:'smooth'})">En savoir plus</button>
+    </div>
+    <div class="hero-note">Sans inscription · Sans engagement · 100% gratuit</div>
+  </section>
+
+  <!-- CHIFFRES -->
+  <div class="numbers">
+    <div class="number-item">
+      <div class="number-val">70<span class="number-unit">%</span></div>
+      <div class="number-label">des travaux couverts<br>pour les ménages modestes</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val">50k<span class="number-unit" style="font-size:14px"> €</span></div>
+      <div class="number-label">d'aides cumulables<br>MaPrimeRénov' + CEE + Éco-PTZ</div>
+    </div>
+    <div class="number-item">
+      <div class="number-val">2<span class="number-unit" style="font-size:18px"> min</span></div>
+      <div class="number-label">pour estimer votre DPE<br>et vos aides en ligne</div>
+    </div>
+  </div>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <div id="comment">
+    <div class="section">
+      <div class="section-tag">Comment ça marche</div>
+      <h2 class="section-title">De l'estimation<br>à la <span>rénovation</span></h2>
+      <p class="section-body">Un accompagnement simple et transparent, de la première estimation jusqu'à la mise en relation avec des installateurs certifiés RGE.</p>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">Estimez votre classe DPE</div>
+            <div class="step-desc">Renseignez les caractéristiques de votre logement — surface, isolation, chauffage. Le simulateur calcule votre consommation selon la méthode 3CL.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">Découvrez vos aides</div>
+            <div class="step-desc">MaPrimeRénov', CEE, Éco-PTZ, TVA réduite — votre profil de revenus détermine le montant exact auquel vous avez droit.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">Recevez des devis d'installateurs RGE</div>
+            <div class="step-desc">Des professionnels certifiés de la région Grenoble vous contactent sous 48h. Gratuit, sans engagement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AIDES -->
+  <div id="aides" class="aides-band">
+    <div class="aides-inner">
+      <div class="section-tag">Les aides en vigueur</div>
+      <h2 class="section-title">Ce que vous pouvez <span>obtenir</span></h2>
+      <div class="aides-grid">
+        <div class="aide-item">
+          <div class="aide-name">MaPrimeRénov'</div>
+          <div class="aide-amount">jusqu'à 70 000 €</div>
+          <div class="aide-desc">Subvention ANAH — jusqu'à 70% des travaux pour les ménages modestes</div>
+          <div class="aide-alerte">⏱ Délai instruction : 3 à 6 mois en 2026</div>
+        </div>
+        <div class="aide-item">
+          <div class="aide-name">Certificats d'économie d'énergie</div>
+          <div class="aide-amount">jusqu'à 6 750 €</div>
+          <div class="aide-desc">Prime énergie versée par les fournisseurs — non suspendue en 2026, cumulable avec MaPrimeRénov'</div>
+        </div>
+        <div class="aide-item">
+          <div class="aide-name">Éco-PTZ</div>
+          <div class="aide-amount">jusqu'à 50 000 €</div>
+          <div class="aide-desc">Prêt à taux zéro — prolongé jusqu'au 31/12/2027, sans conditions de ressources</div>
+        </div>
+        <div class="aide-item">
+          <div class="aide-name">TVA à taux réduit</div>
+          <div class="aide-amount">5,5 %</div>
+          <div class="aide-desc">Au lieu de 20% — sur l'ensemble des travaux réalisés par un artisan RGE</div>
+        </div>
+      </div>
+      <div style="margin-top:1rem;font-size:11px;color:#bbb">Aides vérifiées — juin 2026 · Source : <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
+    </div>
+  </div>
+
+  <!-- SIMULATEUR APERÇU -->
+  <div id="simulateur">
+    <div class="sim-band">
+      <div>
+        <div class="section-tag">Le simulateur</div>
+        <h2 class="section-title">Votre DPE<br>en <span>2 minutes</span></h2>
+        <p class="section-body" style="margin-top:.875rem;margin-bottom:1.5rem">Basé sur la méthode 3CL — la même que celle utilisée par les diagnostiqueurs officiels. Résultat indicatif, audit certifié recommandé.</p>
+        <a href="#" class="btn-primary" onclick="showSim();return false">Lancer le simulateur</a>
+      </div>
+      <div class="sim-preview">
+        <div class="sim-preview-title">Exemple — maison 90m², zone H1</div>
+        <div>
+          <div class="dpe-row"><div class="dpe-letter" style="background:#319834;width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff">A</div><div style="flex:1;height:5px;background:#e0e0e0;border-radius:3px"><div style="width:30%;height:100%;background:#319834;border-radius:3px"></div></div><span style="font-size:11px;color:#bbb">< 70</span></div>
+          <div class="dpe-row" style="margin-top:5px"><div class="dpe-letter" style="background:#33cc33;width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff">B</div><div style="flex:1;height:5px;background:#e0e0e0;border-radius:3px"><div style="width:40%;height:100%;background:#33cc33;border-radius:3px"></div></div><span style="font-size:11px;color:#bbb">70–110</span></div>
+          <div class="dpe-row" style="margin-top:5px"><div class="dpe-letter" style="background:#b0d600;width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff">C</div><div style="flex:1;height:5px;background:#e0e0e0;border-radius:3px"><div style="width:52%;height:100%;background:#b0d600;border-radius:3px"></div></div><span style="font-size:11px;color:#bbb">111–180</span></div>
+          <div class="dpe-row" style="margin-top:5px"><div class="dpe-letter" style="background:#ffcc00;width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#333">D</div><div style="flex:1;height:5px;background:#e0e0e0;border-radius:3px"><div style="width:64%;height:100%;background:#ffcc00;border-radius:3px"></div></div><span style="font-size:11px;color:#bbb">181–250</span></div>
+          <div class="dpe-row" style="margin-top:5px;outline:1.5px solid #1a1a1a;outline-offset:2px;border-radius:3px"><div class="dpe-letter" style="background:#ff9900;width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff">E</div><div style="flex:1;height:5px;background:#e0e0e0;border-radius:3px"><div style="width:76%;height:100%;background:#ff9900;border-radius:3px"></div></div><span style="font-size:11px;color:#1a1a1a;font-weight:500">← vous</span></div>
+          <div class="dpe-row" style="margin-top:5px"><div class="dpe-letter" style="background:#ff6600;width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff">F</div><div style="flex:1;height:5px;background:#e0e0e0;border-radius:3px"><div style="width:88%;height:100%;background:#ff6600;border-radius:3px"></div></div><span style="font-size:11px;color:#bbb">331–420</span></div>
+          <div class="dpe-row" style="margin-top:5px"><div class="dpe-letter" style="background:#cc0000;width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff">G</div><div style="flex:1;height:5px;background:#e0e0e0;border-radius:3px"><div style="width:100%;height:100%;background:#cc0000;border-radius:3px"></div></div><span style="font-size:11px;color:#bbb">> 420</span></div>
+        </div>
+        <div style="border-top:0.5px solid #e0e0e0;padding-top:.875rem;margin-top:.875rem;display:flex;justify-content:space-between">
+          <div><div style="font-size:11px;color:#bbb">Coût annuel</div><div style="font-size:16px;color:#1a1a1a;font-family:Georgia,serif">2 400 €</div></div>
+          <div style="text-align:right"><div style="font-size:11px;color:#bbb">Aides estimées</div><div style="font-size:16px;color:#1D6F42;font-family:Georgia,serif">18 500 €</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-band">
+    <svg class="cta-bg" width="300" height="300" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27"/>
+    </svg>
+    <div class="cta-inner">
+      <div>
+        <h2 style="font-size:22px;font-weight:400;font-style:italic;color:#fff;margin-bottom:.5rem;font-family:Georgia,serif">Prêt à passer à l'action ?</h2>
+        <p style="font-size:13px;color:rgba(255,255,255,0.38)">Estimez votre DPE gratuitement. Sans inscription, sans engagement.</p>
+      </div>
+      <a href="#" class="btn-primary" onclick="showSim();return false" style="white-space:nowrap">Lancer le simulateur</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="footer-left">
+      <svg width="24" height="24" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+        <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.2" fill="none" opacity="0.7"/>
+        <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.55" transform="rotate(60 41 41)"/>
+        <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.5" transform="rotate(120 41 41)"/>
+        <circle cx="41" cy="41" r="3.5" fill="#5DCAA5" opacity="0.75"/>
+        <circle cx="41" cy="14" r="3" fill="#EF9F27" opacity="0.85"/>
+      </svg>
+      <span class="footer-copy">© 2026 Particule Énergie — Grenoble · Isère</span>
+    </div>
+    <div class="footer-links">
+      <span>Mentions légales</span>
+      <span>RGPD</span>
+      <span>particule-energie.fr</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- PAGE SIMULATEUR -->
+<div id="page-sim" class="page">
+  <div class="sim-wrap">
+    <div style="margin-bottom:1.5rem;display:flex;align-items:center;gap:12px">
+      <button onclick="showPage('home')" style="background:none;border:none;cursor:pointer;color:#1D6F42;font-size:13px;display:flex;align-items:center;gap:6px"><i class="ti ti-arrow-left"></i> Retour</button>
+    </div>
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="font-size:16px;font-weight:400;color:#1D6F42;font-family:Georgia,serif;font-style:italic">Particule <span style="color:#E8700A;font-style:normal;font-weight:500">Énergie</span></div>
+      <div style="font-size:11px;color:#bbb;margin-top:2px">Simulateur DPE — méthode 3CL</div>
+    </div>
+    <div class="dots">
+      <div class="dot active" id="d1">1</div><div class="dline"></div>
+      <div class="dot" id="d2">2</div><div class="dline"></div>
+      <div class="dot" id="d3">3</div><div class="dline"></div>
+      <div class="dot" id="d4">4</div><div class="dline"></div>
+      <div class="dot" id="d5"><i class="ti ti-check" style="font-size:12px"></i></div>
+    </div>
+
+    <div class="step-form active sim-card" id="s0">
+      <p class="stitle">Connaissez-vous vos consommations ?</p>
+      <p class="ssub">Si vous avez vos factures d'énergie, le résultat sera plus précis.</p>
+      <div class="field">
+        <div class="rgrid">
+          <div class="rc" onclick="startQuick()"><i class="ti ti-file-invoice"></i>Oui, j'ai mes factures</div>
+          <div class="rc" onclick="startFull()"><i class="ti ti-pencil"></i>Non, je vais estimer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-form sim-card" id="s0q">
+      <p class="stitle">Vos consommations réelles</p>
+      <p class="ssub">Renseignez vos consommations annuelles depuis vos factures.</p>
+      <div class="field"><label>Type d'énergie principale</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'energie_facture','Électricité')"><i class="ti ti-bolt"></i>Électricité</div>
+          <div class="rc" onclick="sel(this,'energie_facture','Gaz naturel')"><i class="ti ti-flame"></i>Gaz naturel</div>
+          <div class="rc" onclick="sel(this,'energie_facture','Fioul')"><i class="ti ti-droplet"></i>Fioul</div>
+          <div class="rc" onclick="sel(this,'energie_facture','Bois / granulés')"><i class="ti ti-tree"></i>Bois / granulés</div>
+        </div>
+      </div>
+      <div class="field"><label>Consommation annuelle (kWh)</label><input type="number" id="kwh_facture" placeholder="ex : 15000" min="500" max="100000"/></div>
+      <div class="field"><label>Surface habitable (m²)</label><input type="number" id="surface_q" placeholder="ex : 90" min="10" max="600"/></div>
+      <div class="field"><label><span class="tooltip-wrap">Revenus du foyer <span class="tooltip-icon">?</span><span class="tooltip-box"><strong>Plafonds ANAH 2026 — hors Île-de-France</strong><table><tr><td>Très modestes</td><td>1 pers : 17 009 €</td></tr><tr><td></td><td>2 pers : 24 875 €</td></tr><tr><td>Modestes</td><td>1 pers : 21 805 €</td></tr><tr><td></td><td>2 pers : 31 889 €</td></tr><tr><td>Intermédiaires</td><td>1 pers : 26 831 €</td></tr><tr><td></td><td>2 pers : 39 241 €</td></tr><tr><td>Supérieurs</td><td>Au-dessus</td></tr></table></span></span></label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'revenu','Très modestes')"><i class="ti ti-star"></i>Très modestes</div>
+          <div class="rc" onclick="sel(this,'revenu','Modestes')"><i class="ti ti-star-half"></i>Modestes</div>
+          <div class="rc" onclick="sel(this,'revenu','Intermédiaires')"><i class="ti ti-circle-half"></i>Intermédiaires</div>
+          <div class="rc" onclick="sel(this,'revenu','Supérieurs')"><i class="ti ti-circle"></i>Supérieurs</div>
+        </div>
+      </div>
+      <div class="field"><label>Statut propriétaire</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'proprio','Propriétaire +2 ans')"><i class="ti ti-calendar-check"></i>Propriétaire +2 ans</div>
+          <div class="rc" onclick="sel(this,'proprio','Propriétaire -2 ans')"><i class="ti ti-calendar"></i>Propriétaire -2 ans</div>
+          <div class="rc" onclick="sel(this,'proprio','Bailleur')"><i class="ti ti-building-community"></i>Bailleur</div>
+          <div class="rc" onclick="sel(this,'proprio','Locataire')"><i class="ti ti-key"></i>Locataire</div>
+        </div>
+      </div>
+      <div class="brow">
+        <button class="bback" onclick="goStep('s0')"><i class="ti ti-arrow-left"></i></button>
+        <button class="bnext" onclick="calcQuick()">Voir mon résultat <i class="ti ti-chart-bar"></i></button>
+      </div>
+    </div>
+
+    <div class="step-form sim-card" id="s1">
+      <p class="stitle">Votre logement</p>
+      <p class="ssub">Informations de base sur votre bien immobilier.</p>
+      <div class="field"><label>Type de bien</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'type','Maison individuelle')"><i class="ti ti-home"></i>Maison individuelle</div>
+          <div class="rc" onclick="sel(this,'type','Appartement')"><i class="ti ti-building"></i>Appartement</div>
+          <div class="rc" onclick="sel(this,'type','Maison mitoyenne')"><i class="ti ti-layout-sidebar"></i>Maison mitoyenne</div>
+        </div>
+      </div>
+      <div class="field"><label>Surface habitable (m²)</label><input type="number" id="surface" placeholder="ex : 90" min="10" max="600"/></div>
+      <div class="field"><label>Nombre d'occupants</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'occup','1')"><i class="ti ti-user"></i>1 personne</div>
+          <div class="rc" onclick="sel(this,'occup','2')"><i class="ti ti-users"></i>2 personnes</div>
+          <div class="rc" onclick="sel(this,'occup','3-4')"><i class="ti ti-users"></i>3–4 personnes</div>
+          <div class="rc" onclick="sel(this,'occup','5+')"><i class="ti ti-users"></i>5+ personnes</div>
+        </div>
+      </div>
+      <div class="field"><label>Année de construction</label>
+        <select id="annee">
+          <option value="">— Sélectionner —</option>
+          <option value="av1948">Avant 1948</option>
+          <option value="48-74">1948 – 1974</option>
+          <option value="75-88">1975 – 1988</option>
+          <option value="89-2000">1989 – 2000</option>
+          <option value="2001-12">2001 – 2012</option>
+          <option value="ap2012">Après 2012</option>
+        </select>
+      </div>
+      <div class="brow"><button class="bnext" onclick="go(2)">Continuer <i class="ti ti-arrow-right"></i></button></div>
+    </div>
+
+    <div class="step-form sim-card" id="s2">
+      <p class="stitle">Enveloppe thermique</p>
+      <p class="ssub">Isolation, parois et menuiseries.</p>
+      <div class="field"><label>Isolation des murs extérieurs</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'murs','ITE / ITI récente')"><i class="ti ti-layers-union"></i>ITE / ITI récente</div>
+          <div class="rc" onclick="sel(this,'murs','Isolation partielle')"><i class="ti ti-layers-subtract"></i>Isolation partielle</div>
+          <div class="rc" onclick="sel(this,'murs','Non isolé')"><i class="ti ti-layers-off"></i>Non isolé</div>
+        </div>
+      </div>
+      <div class="field"><label>Isolation toiture / combles</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'toit','Bonne ≥20cm')"><i class="ti ti-home-check"></i>Bonne (≥ 20 cm)</div>
+          <div class="rc" onclick="sel(this,'toit','Moyenne 10-20cm')"><i class="ti ti-home"></i>Moyenne (10–20 cm)</div>
+          <div class="rc" onclick="sel(this,'toit','Non isolée')"><i class="ti ti-home-off"></i>Non isolée</div>
+        </div>
+      </div>
+      <div class="field"><label>Type de vitrage</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'vitrage','Triple vitrage')"><i class="ti ti-square-check"></i>Triple vitrage</div>
+          <div class="rc" onclick="sel(this,'vitrage','Double vitrage')"><i class="ti ti-square"></i>Double vitrage</div>
+          <div class="rc" onclick="sel(this,'vitrage','Simple vitrage')"><i class="ti ti-square-dot"></i>Simple vitrage</div>
+        </div>
+      </div>
+      <div class="field"><label>Plancher bas</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'plansol','Isolé')"><i class="ti ti-check"></i>Isolé</div>
+          <div class="rc" onclick="sel(this,'plansol','Non isolé')"><i class="ti ti-x"></i>Non isolé</div>
+        </div>
+      </div>
+      <div class="brow">
+        <button class="bback" onclick="go(1)"><i class="ti ti-arrow-left"></i></button>
+        <button class="bnext" onclick="go(3)">Continuer <i class="ti ti-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="step-form sim-card" id="s3">
+      <p class="stitle">Chauffage & eau chaude</p>
+      <p class="ssub">Le système énergétique est le principal levier d'amélioration.</p>
+      <div class="field"><label>Système de chauffage</label>
+        <div class="rgrid">
+          <div class="rc" onclick="selChauf(this,'PAC air/eau')"><i class="ti ti-snowflake"></i>PAC air/eau</div>
+          <div class="rc" onclick="selChauf(this,'PAC air/air')"><i class="ti ti-wind"></i>PAC air/air</div>
+          <div class="rc" onclick="selChauf(this,'PAC géothermique')"><i class="ti ti-git-branch"></i>PAC géothermique</div>
+          <div class="rc" onclick="selChauf(this,'Gaz condensation')"><i class="ti ti-flame"></i>Gaz condensation</div>
+          <div class="rc" onclick="selChauf(this,'Gaz standard')"><i class="ti ti-flame"></i>Gaz standard</div>
+          <div class="rc" onclick="selChauf(this,'Radiateurs électriques')"><i class="ti ti-bolt"></i>Radiateurs élec.</div>
+          <div class="rc" onclick="selChauf(this,'Fioul')"><i class="ti ti-droplet"></i>Fioul</div>
+          <div class="rc" onclick="selChauf(this,'Bois / biomasse')"><i class="ti ti-tree"></i>Bois / biomasse</div>
+        </div>
+      </div>
+      <div id="ecs-field" class="field"><label>Eau chaude sanitaire</label>
+        <div class="rgrid">
+          <div id="ecs-pac-option" class="rc" style="display:none" onclick="sel(this,'ecs','PAC intégrée')"><i class="ti ti-snowflake"></i>Intégrée à la PAC</div>
+          <div class="rc" onclick="sel(this,'ecs','Chauffe-eau thermodynamique')"><i class="ti ti-wind"></i>Chauffe-eau thermo.</div>
+          <div class="rc" onclick="sel(this,'ecs','Solaire thermique')"><i class="ti ti-sun"></i>Solaire thermique</div>
+          <div class="rc" onclick="sel(this,'ecs','Chaudière')"><i class="ti ti-flame"></i>Chaudière</div>
+          <div class="rc" onclick="sel(this,'ecs','Électrique direct')"><i class="ti ti-bolt"></i>Électrique direct</div>
+        </div>
+      </div>
+      <div class="field"><label>Énergie d'appoint</label>
+        <div class="rgrid">
+          <div class="rc sel" onclick="sel(this,'appoint','Aucun')"><i class="ti ti-x"></i>Aucun</div>
+          <div class="rc" onclick="sel(this,'appoint','Poêle bois')"><i class="ti ti-flame"></i>Poêle bois</div>
+          <div class="rc" onclick="sel(this,'appoint','Électrique')"><i class="ti ti-bolt"></i>Électrique</div>
+          <div class="rc" onclick="sel(this,'appoint','Climatisation réversible')"><i class="ti ti-snowflake"></i>Clim réversible</div>
+        </div>
+      </div>
+      <div class="field"><label>Ventilation</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'vent','VMC double flux')"><i class="ti ti-air-conditioning"></i>VMC double flux</div>
+          <div class="rc" onclick="sel(this,'vent','VMC simple flux')"><i class="ti ti-wind"></i>VMC simple flux</div>
+          <div class="rc" onclick="sel(this,'vent','Naturelle')"><i class="ti ti-minus"></i>Naturelle / aucune</div>
+        </div>
+      </div>
+      <div class="brow">
+        <button class="bback" onclick="go(2)"><i class="ti ti-arrow-left"></i></button>
+        <button class="bnext" onclick="go(4)">Continuer <i class="ti ti-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="step-form sim-card" id="s4">
+      <p class="stitle">Profil & localisation</p>
+      <p class="ssub">Détermine le niveau des aides auxquelles vous êtes éligible.</p>
+      <div class="field"><label><span class="tooltip-wrap">Revenus du foyer <span class="tooltip-icon">?</span><span class="tooltip-box"><strong>Plafonds ANAH 2026 — hors Île-de-France</strong><table><tr><td>Très modestes</td><td>1 pers : 17 009 €</td></tr><tr><td></td><td>2 pers : 24 875 €</td></tr><tr><td>Modestes</td><td>1 pers : 21 805 €</td></tr><tr><td></td><td>2 pers : 31 889 €</td></tr><tr><td>Intermédiaires</td><td>1 pers : 26 831 €</td></tr><tr><td></td><td>2 pers : 39 241 €</td></tr><tr><td>Supérieurs</td><td>Au-dessus</td></tr></table></span></span></label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'revenu','Très modestes')"><i class="ti ti-star"></i>Très modestes</div>
+          <div class="rc" onclick="sel(this,'revenu','Modestes')"><i class="ti ti-star-half"></i>Modestes</div>
+          <div class="rc" onclick="sel(this,'revenu','Intermédiaires')"><i class="ti ti-circle-half"></i>Intermédiaires</div>
+          <div class="rc" onclick="sel(this,'revenu','Supérieurs')"><i class="ti ti-circle"></i>Supérieurs</div>
+        </div>
+      </div>
+      <div class="field"><label>Zone climatique</label>
+        <select id="zone">
+          <option value="">— Sélectionner —</option>
+          <option value="H1">Zone H1 — Rhône-Alpes, Grand-Est, Bourgogne…</option>
+          <option value="H2">Zone H2 — Bretagne, Normandie, Centre…</option>
+          <option value="H3">Zone H3 — PACA, Languedoc, Corse</option>
+        </select>
+      </div>
+      <div class="field"><label>Statut propriétaire</label>
+        <div class="rgrid">
+          <div class="rc" onclick="sel(this,'proprio','Propriétaire +2 ans')"><i class="ti ti-calendar-check"></i>Propriétaire +2 ans</div>
+          <div class="rc" onclick="sel(this,'proprio','Propriétaire -2 ans')"><i class="ti ti-calendar"></i>Propriétaire -2 ans</div>
+          <div class="rc" onclick="sel(this,'proprio','Bailleur')"><i class="ti ti-building-community"></i>Bailleur</div>
+          <div class="rc" onclick="sel(this,'proprio','Locataire')"><i class="ti ti-key"></i>Locataire</div>
+        </div>
+      </div>
+      <div class="brow">
+        <button class="bback" onclick="go(3)"><i class="ti ti-arrow-left"></i></button>
+        <button class="bnext" onclick="calcResult()">Voir mon résultat <i class="ti ti-chart-bar"></i></button>
+      </div>
+    </div>
+
+    <div class="step-form" id="s5">
+      <div class="sim-card">
+        <p class="stitle">Votre estimation DPE</p>
+        <p class="ssub">Basé sur la méthode 3CL — résultat indicatif.</p>
+        <div class="badge-wrap">
+          <div class="dpe-badge" id="badge">—</div>
+          <div>
+            <div style="font-size:12px;color:#888">Classe énergétique estimée</div>
+            <div style="font-size:19px;font-weight:500;color:#1a1a1a" id="classlabel">—</div>
+            <div style="font-size:12px;color:#888" id="classcomment">—</div>
+          </div>
+        </div>
+        <div class="mgrid">
+          <div class="mc"><div class="ml">Consommation</div><div class="mv"><span id="rconso">—</span></div><div class="mu">kWh EP/m²/an</div></div>
+          <div class="mc"><div class="ml">Émissions CO₂</div><div class="mv"><span id="rco2">—</span></div><div class="mu">kg CO₂/m²/an</div></div>
+          <div class="mc"><div class="ml">Coût annuel estimé</div><div class="mv"><span id="rcout">—</span> €</div><div class="mu">charges énergie</div></div>
+          <div class="mc"><div class="ml">Économies potentielles</div><div class="mv"><span id="rgain">—</span> €</div><div class="mu">vers classe A/B</div></div>
+        </div>
+        <div class="dpe-scale" id="scale"></div>
+      </div>
+
+      <p style="font-size:11px;font-weight:500;color:#888;text-transform:uppercase;letter-spacing:.06em;margin:.875rem 0 .5rem"><i class="ti ti-coin" style="vertical-align:-2px;margin-right:4px"></i>Aides en vigueur</p>
+
+      <div id="warn-inelig" class="warn-badge" style="display:none">
+        <i class="ti ti-alert-triangle" style="font-size:16px;flex-shrink:0"></i>
+        <span id="warn-txt">Attention : certaines conditions limitent l'accès aux aides.</span>
+      </div>
+      <div id="warn-locataire" class="info-badge" style="display:none">
+        <i class="ti ti-info-circle" style="font-size:16px;flex-shrink:0"></i>
+        <span>En tant que locataire, vous ne pouvez pas bénéficier directement des aides — elles sont réservées aux propriétaires. Mais parlez-en à votre propriétaire ! C'est votre niveau de revenus qui détermine son taux d'aide. Un locataire aux revenus modestes peut permettre à son bailleur d'obtenir jusqu'à 70% des travaux financés. Résultat : un logement mieux isolé, moins cher à chauffer pour vous — et un bien valorisé pour lui.</span>
+      </div>
+      <div id="warn-bailleur" class="warn-badge" style="display:none">
+        <i class="ti ti-alert-triangle" style="font-size:16px;flex-shrink:0"></i>
+        <span>En tant que bailleur, vos aides sont calculées selon les revenus de votre locataire occupant — pas les vôtres. Le taux MaPrimeRénov' bailleur est plafonné à 40% des travaux. Les revenus sélectionnés ci-dessus correspondent à ceux de votre locataire.</span>
+      </div>
+      <div id="warn-passoire" class="info-badge" style="display:none">
+        <i class="ti ti-info-circle" style="font-size:16px;flex-shrink:0"></i>
+        <span>Logement F ou G : geste unique encore possible jusqu'au 31/12/2026. Dès 2027, rénovation d'ampleur obligatoire.</span>
+      </div>
+
+      <div class="aide-card-res">
+        <div class="aide-header">
+          <div class="aide-icon" style="background:#E1F5EE;color:#0F6E56"><i class="ti ti-home-heart"></i></div>
+          <div><div style="font-size:14px;font-weight:500;color:#1a1a1a">MaPrimeRénov'</div><div style="font-size:12px;color:#888">ANAH — sous condition de ressources</div></div>
+          <div class="aide-montant" id="mpr-val">—</div>
+        </div>
+        <div class="aide-detail" id="mpr-detail">—</div>
+        <div class="aide-alerte-sm">⏱ Délai instruction : 3 à 6 mois en 2026</div>
+      </div>
+      <div class="aide-card-res">
+        <div class="aide-header">
+          <div class="aide-icon" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-bolt"></i></div>
+          <div><div style="font-size:14px;font-weight:500;color:#1a1a1a">CEE</div><div style="font-size:12px;color:#888">Non suspendu — cumulable avec MaPrimeRénov'</div></div>
+          <div class="aide-montant" id="cee-val">—</div>
+        </div>
+        <div class="aide-detail" id="cee-detail">—</div>
+      </div>
+      <div class="aide-card-res">
+        <div class="aide-header">
+          <div class="aide-icon" style="background:#FAEEDA;color:#854F0B"><i class="ti ti-percentage"></i></div>
+          <div><div style="font-size:14px;font-weight:500;color:#1a1a1a">Éco-PTZ</div><div style="font-size:12px;color:#888">Prolongé jusqu'au 31/12/2027 — sans conditions de revenus</div></div>
+          <div class="aide-montant" id="ptz-val">—</div>
+        </div>
+        <div class="aide-detail" id="ptz-detail">—</div>
+      </div>
+      <div class="aide-card-res">
+        <div class="aide-header">
+          <div class="aide-icon" style="background:#EEEDFE;color:#534AB7"><i class="ti ti-receipt-tax"></i></div>
+          <div><div style="font-size:14px;font-weight:500;color:#1a1a1a">TVA à taux réduit</div><div style="font-size:12px;color:#888">Sur travaux par professionnel RGE</div></div>
+          <div class="aide-montant">5,5 %</div>
+        </div>
+        <div class="aide-detail">Au lieu de 20% — à demander dès le devis auprès d'un artisan RGE.</div>
+      </div>
+
+      <div class="total-bar">
+        <div>
+          <div style="font-size:13px;color:#085041;font-weight:500">Total aides estimées</div>
+          <div style="font-size:11px;color:#085041">hors TVA réduite et Éco-PTZ</div>
+        </div>
+        <div style="font-size:22px;font-weight:500;color:#0F6E56" id="total-aides">—</div>
+      </div>
+
+      <div class="warn-badge">
+        <i class="ti ti-info-circle" style="font-size:16px;flex-shrink:0;color:#854F0B"></i>
+        <span>Estimations indicatives. Ne pas commencer les travaux avant l'accord de l'ANAH. Un audit énergétique réglementaire reste nécessaire.</span>
+      </div>
+
+      <div class="lead-box" id="lead-form-box">
+        <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin:0 0 4px"><i class="ti ti-tool" style="color:#E8700A;margin-right:5px"></i>Obtenez des devis d'installateurs RGE</p>
+        <p style="font-size:12px;color:#666;margin:0 0 .875rem">Des professionnels certifiés de votre région vous accompagnent pour améliorer votre classe DPE et monter vos dossiers d'aides.</p>
+        <div class="lfield"><label>Nom *</label><input type="text" id="lp" placeholder="ex : Dupont"/></div>
+        <div class="lfield"><label>Email *</label><input type="email" id="le" placeholder="ex : marie@email.com"/></div>
+        <div class="lfield"><label>Téléphone</label><input type="tel" id="lt2" placeholder="ex : 06 12 34 56 78"/></div>
+        <div class="error-box" id="err-box"><i class="ti ti-alert-circle"></i><span id="err-txt">Erreur</span></div>
+        <button class="blead" id="btn-lead" onclick="submitLead()"><i class="ti ti-send"></i>Recevoir des devis gratuits</button>
+        <p class="privacy"><i class="ti ti-lock" style="font-size:12px"></i>Vos coordonnées sont transmises à des professionnels RGE de votre région uniquement.</p>
+      </div>
+
+      <div class="success-box" id="success-box" style="display:none">
+        <i class="ti ti-circle-check"></i>
+        <div style="font-size:17px;font-weight:500;color:#085041;margin-bottom:6px">Votre demande a bien été envoyée !</div>
+        <div style="font-size:13px;color:#0F6E56">Un installateur RGE de votre région vous contactera sous 24–48h.</div>
+      </div>
+
+      <div class="maj-note">Aides vérifiées — juin 2026 · <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
+
+      <div style="display:flex;gap:10px;margin-top:1.25rem">
+        <button onclick="modifierReponses()" style="flex:1;background:#f5f5f0;color:#1a1a1a;border:0.5px solid #ccc;border-radius:8px;padding:11px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><i class="ti ti-pencil"></i>Modifier mes réponses</button>
+        <button onclick="nouveauDPE()" style="flex:1;background:#fff;color:#1D6F42;border:1.5px solid #1D6F42;border-radius:8px;padding:11px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><i class="ti ti-refresh"></i>Nouveau DPE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const WEBHOOK='https://hook.eu1.make.com/2eh9uxtcor85fbvmv1vgoun4ibs9ot24';
+const D={};
+const DPE_COLORS={A:'#319834',B:'#33cc33',C:'#b0d600',D:'#ffcc00',E:'#ff9900',F:'#ff6600',G:'#cc0000'};
+const DPE_RANGES=[{cl:'A',max:70},{cl:'B',max:110},{cl:'C',max:180},{cl:'D',max:250},{cl:'E',max:330},{cl:'F',max:420},{cl:'G',max:9999}];
+const CHAUF_EP={'PAC air/eau':0.6,'PAC air/air':0.6,'PAC géothermique':0.4,'Gaz condensation':1.0,'Gaz standard':1.0,'Radiateurs électriques':1.9,'Fioul':1.0,'Bois / biomasse':0.6,'Poêle appoint':0.6};
+const CHAUF_CO2={'PAC air/eau':56,'PAC air/air':56,'PAC géothermique':56,'Gaz condensation':205,'Gaz standard':230,'Radiateurs électriques':56,'Fioul':324,'Bois / biomasse':30,'Poêle appoint':30};
+const CHAUF_PRIX={'PAC air/eau':0.18,'PAC air/air':0.18,'PAC géothermique':0.18,'Gaz condensation':0.13,'Gaz standard':0.13,'Radiateurs électriques':0.25,'Fioul':0.12,'Bois / biomasse':0.07,'Poêle appoint':0.07};
+const ANNEE_BASE={'av1948':260,'48-74':220,'75-88':180,'89-2000':140,'2001-12':100,'ap2012':60};
+const ZONE_COEF={'H1':1.15,'H2':1.0,'H3':0.85,'':1.0};
+let resultData={};
+
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function showSim(){showPage('sim');goStep('s0');}
+function sel(el,key,val){D[key]=val;el.parentElement.querySelectorAll('.rc').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
+
+function selChauf(el,val){
+  sel(el,'chauf',val);
+  const isPAC=['PAC air/eau','PAC air/air','PAC géothermique'].includes(val);
+  const ecsPacOption=document.getElementById('ecs-pac-option');
+  if(ecsPacOption) ecsPacOption.style.display=isPAC?'flex':'none';
+  // reset ECS selection si on change de chauffage
+  if(!isPAC && D.ecs==='PAC intégrée') delete D.ecs;
+}
+
+function goStep(id){
+  document.querySelectorAll('.step-form').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // update dots for numbered steps
+  const numMatch = id.match(/^s(\d+)$/);
+  if(numMatch){
+    const n=parseInt(numMatch[1]);
+    for(let i=1;i<=5;i++){const d=document.getElementById('d'+i);if(!d)continue;d.classList.remove('active','done');if(i<n)d.classList.add('done');else if(i===n)d.classList.add('active');}
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function go(n){goStep('s'+n);}
+
+function startQuick(){goStep('s0q');}
+function startFull(){
+  // reset dots
+  for(let i=1;i<=5;i++){const d=document.getElementById('d'+i);if(!d)continue;d.classList.remove('active','done');if(i===1)d.classList.add('active');}
+  goStep('s1');
+}
+
+function nouveauDPE(){
+  // reset all data
+  Object.keys(D).forEach(k=>delete D[k]);
+  document.querySelectorAll('.rc').forEach(c=>c.classList.remove('sel'));
+  // reset appoint default
+  const appointDefault = document.querySelector('#s3 .rc[onclick*="appoint"][onclick*="Aucun"]');
+  if(appointDefault) appointDefault.classList.add('sel');
+  D.appoint='Aucun';
+  document.getElementById('lead-form-box').style.display='block';
+  document.getElementById('success-box').style.display='none';
+  goStep('s0');
+}
+
+function modifierReponses(){
+  goStep('s1');
+}
+
+function getClasse(ep){for(const r of DPE_RANGES)if(ep<=r.max)return r.cl;return 'G';}
+
+function calcQuick(){
+  const kwh=parseInt(document.getElementById('kwh_facture').value)||0;
+  const surf=parseInt(document.getElementById('surface_q').value)||80;
+  if(!kwh||!surf){alert('Merci de renseigner vos consommations et la surface.');return;}
+  // Coefficient électricité 2026 = 1.9 (arrêté 2024)
+  const energie=D.energie_facture||'Gaz naturel';
+  const epCoefs={'Électricité':1.9,'Gaz naturel':1.0,'Fioul':1.0,'Bois / granulés':0.6};
+  const co2Coefs={'Électricité':56,'Gaz naturel':205,'Fioul':324,'Bois / granulés':30};
+  const prixCoefs={'Électricité':0.25,'Gaz naturel':0.13,'Fioul':0.12,'Bois / granulés':0.07};
+  const coefEP=epCoefs[energie]||1.0;
+  const epFinal=Math.max(25,Math.round(kwh/surf*coefEP));
+  const co2=Math.round(epFinal*(co2Coefs[energie]||200)/1000*10)/10;
+  const coutAn=Math.round(kwh*(prixCoefs[energie]||0.13)/100)*100;
+  const gain=Math.max(0,coutAn-Math.round(80*surf*0.18/100)*100);
+  const classe=getClasse(epFinal);
+  // store for lead
+  D.chauf=energie; D.ecs=''; D.type=''; D.zone='';
+  document.getElementById('surface') && (document.getElementById('surface').value=surf);
+  afficherResultat(classe,epFinal,co2,coutAn,gain,surf);
+}
+
+function calcResult(){
+  const surf=parseInt(document.getElementById('surface').value)||80;
+  const annee=document.getElementById('annee').value||'89-2000';
+  const zone=document.getElementById('zone').value||'H2';
+  let epBase=(ANNEE_BASE[annee]||150)*ZONE_COEF[zone];
+  if(D.type==='Appartement')epBase*=0.85;
+  if(D.type==='Maison mitoyenne')epBase*=0.92;
+  if(D.murs==='ITE / ITI récente')epBase-=40;
+  else if(D.murs==='Isolation partielle')epBase-=15;
+  else if(D.murs==='Non isolé')epBase+=30;
+  if(D.toit==='Bonne ≥20cm')epBase-=35;
+  else if(D.toit==='Moyenne 10-20cm')epBase-=15;
+  else if(D.toit==='Non isolée')epBase+=25;
+  if(D.vitrage==='Triple vitrage')epBase-=20;
+  else if(D.vitrage==='Simple vitrage')epBase+=30;
+  if(D.plansol==='Non isolé')epBase+=15;
+  if(D.vent==='VMC double flux')epBase-=15;
+  else if(D.vent==='Naturelle')epBase+=10;
+  const chauf=D.chauf||'Gaz standard';
+  const coefEP=CHAUF_EP[chauf]||1.0;
+  const prixkWh=CHAUF_PRIX[chauf]||0.13;
+  let epFinal=Math.max(25,Math.round(epBase*coefEP));
+  const ecs=D.ecs||'Électrique direct';
+  if(ecs==='Chauffe-eau thermodynamique')epFinal-=Math.round(surf*0.04);
+  else if(ecs==='Solaire thermique')epFinal-=Math.round(surf*0.08);
+  else if(ecs==='Électrique direct')epFinal+=Math.round(surf*0.06);
+  else if(ecs==='PAC intégrée')epFinal-=Math.round(surf*0.03); // ECS PAC = légère économie vs électrique direct
+  const appoint=D.appoint||'Aucun';
+  if(appoint==='Poêle bois')epFinal=Math.max(25,epFinal-Math.round(surf*0.03));
+  else if(appoint==='Climatisation réversible')epFinal=Math.max(25,epFinal-Math.round(surf*0.02));
+  epFinal=Math.max(25,epFinal);
+  const coefCO2=CHAUF_CO2[chauf]||200;
+  const co2=Math.round(epFinal*coefCO2/1000*10)/10;
+  const coutAn=Math.round(epFinal*surf*prixkWh/100)*100;
+  const gain=Math.max(0,coutAn-Math.round(80*surf*0.18/100)*100);
+  D.zone=zone;
+  afficherResultat(getClasse(epFinal),epFinal,co2,coutAn,gain,surf);
+}
+
+function afficherResultat(classe,epFinal,co2,coutAn,gain,surf){
+  document.getElementById('rconso').textContent=epFinal;
+  document.getElementById('rco2').textContent=co2;
+  document.getElementById('rcout').textContent=coutAn.toLocaleString('fr-FR');
+  document.getElementById('rgain').textContent=gain.toLocaleString('fr-FR');
+  const badge=document.getElementById('badge');badge.textContent=classe;badge.style.background=DPE_COLORS[classe];
+  const comments={A:'Très performant — objectif BBC',B:'Performant — faibles charges',C:'Assez performant',D:'Peu performant — à améliorer',E:'Passoire thermique — classe E',F:'Passoire thermique — classe F',G:'Passoire thermique — obligation de travaux'};
+  const descs={A:'Conforme aux meilleurs standards',B:'En dessous de 110 kWh',C:'Entre 111 et 180 kWh',D:'Entre 181 et 250 kWh',E:'Entre 251 et 330 kWh',F:'Entre 331 et 420 kWh',G:'Au-dessus de 420 kWh'};
+  document.getElementById('classlabel').textContent=comments[classe]||classe;
+  document.getElementById('classcomment').textContent=descs[classe]||'';
+  const scaleEl=document.getElementById('scale');scaleEl.innerHTML='';
+  const widths={A:'38%',B:'46%',C:'56%',D:'66%',E:'76%',F:'88%',G:'100%'};
+  const ranges={A:'< 70',B:'70–110',C:'111–180',D:'181–250',E:'251–330',F:'331–420',G:'> 420'};
+  DPE_RANGES.forEach(r=>{const row=document.createElement('div');row.className='drow2'+(r.cl===classe?' cur':'');row.innerHTML=`<div class="dbar" style="width:${widths[r.cl]};background:${DPE_COLORS[r.cl]}">${r.cl}</div><span style="font-size:11px;color:#888">${ranges[r.cl]} kWh/m²/an</span>${r.cl===classe?'<span class="cur-lbl">← vous</span>':''}`;scaleEl.appendChild(row);});
+  document.getElementById('warn-passoire').style.display=['F','G'].includes(classe)?'flex':'none';
+  const rev=D.revenu||'Intermédiaires';
+  const proprio=D.proprio||'Propriétaire +2 ans';
+  const isLocataire=proprio==='Locataire';
+  const isBailleur=proprio==='Bailleur';
+  const inelig=proprio==='Propriétaire -2 ans';
+  document.getElementById('warn-inelig').style.display=inelig?'flex':'none';
+  document.getElementById('warn-locataire').style.display=isLocataire?'flex':'none';
+  document.getElementById('warn-bailleur').style.display=isBailleur?'flex':'none';
+  const mprTaux={'Très modestes':0.7,'Modestes':0.5,'Intermédiaires':0.35,'Supérieurs':0.15};
+  let taux=0;
+  if(isLocataire){taux=0;}
+  else if(isBailleur){taux=0.4;}
+  else if(inelig){taux=0;}
+  else{taux=mprTaux[rev]||0.35;}
+  const travaux_ref=Math.round(surf*380/100)*100;
+  let mpr=0;
+  if(isLocataire){
+    document.getElementById('mpr-val').textContent='Non applicable';
+    document.getElementById('mpr-detail').textContent="Les aides sont réservées aux propriétaires. Parlez-en à votre propriétaire — vos revenus déterminent son taux d'aide !";
+  } else if(['G','F','E'].includes(classe)&&taux>0){
+    mpr=Math.round(travaux_ref*taux/500)*500;
+    const caps=isBailleur?{'Très modestes':20000,'Modestes':20000,'Intermédiaires':20000,'Supérieurs':20000}:{'Très modestes':70000,'Modestes':50000,'Intermédiaires':35000,'Supérieurs':15000};
+    mpr=Math.min(mpr,caps[rev]||20000);
+    document.getElementById('mpr-val').textContent=mpr.toLocaleString('fr-FR')+' €';
+    document.getElementById('mpr-detail').textContent=isBailleur?`Taux bailleur de 40% — plafonné à 20 000 €. Calculé sur les revenus de votre locataire. Travaux estimés à ${travaux_ref.toLocaleString('fr-FR')} €.`:`Taux de ${Math.round(taux*100)}% — travaux estimés à ${travaux_ref.toLocaleString('fr-FR')} €. Déposer le dossier AVANT les travaux.`;
+  } else {
+    document.getElementById('mpr-val').textContent='Non éligible';
+    let explication='';
+    if(inelig){
+      explication="Vous êtes propriétaire depuis moins de 2 ans. MaPrimeRénov' exige 2 ans de propriété au minimum avant de pouvoir déposer un dossier. Vous pourrez en bénéficier dès que ce délai sera atteint.";
+    } else if(!['G','F','E'].includes(classe)){
+      explication=`Votre logement est classé ${classe} — MaPrimeRénov' rénovation d'ampleur cible les passoires thermiques (classes E, F, G). Pour les classes A à D, des gestes unitaires restent finançables (remplacement PAC, isolation ponctuelle) selon votre niveau de revenus. Un audit énergétique permet de vérifier précisément votre éligibilité.`;
+    } else if(rev==='Supérieurs'){
+      explication="Avec des revenus supérieurs, le taux MaPrimeRénov' est de 15% — ce qui peut paraître faible, mais reste cumulable avec les CEE et l'éco-PTZ. Pour une rénovation d'ampleur, le total des aides peut rester significatif.";
+    } else {
+      explication="Votre situation ne permet pas d'accéder à MaPrimeRénov' pour ce type de travaux. Un geste unitaire (PAC, isolation) peut rester éligible selon votre profil.";
+    }
+    document.getElementById('mpr-detail').textContent=explication;
+  }
+  const base_cee={G:4500,F:3500,E:2500,D:1500};
+  let cee=isLocataire?0:(['G','F','E','D'].includes(classe)?(base_cee[classe]||0):0);
+  if((rev==='Très modestes'||rev==='Modestes')&&cee>0&&!isLocataire)cee=Math.round(cee*1.5);
+  document.getElementById('cee-val').textContent=isLocataire?'Non applicable':cee>0?'~ '+cee.toLocaleString('fr-FR')+' €':'< 500 €';
+  document.getElementById('cee-detail').textContent=isLocataire?"Les CEE sont versées au propriétaire qui réalise les travaux.":"Prime versée par les fournisseurs d'énergie (EDF, Engie…). Cumulable avec MaPrimeRénov'. Montant à négocier avec l'artisan RGE.";
+  document.getElementById('ptz-val').textContent=isLocataire?'Non applicable':"Jusqu'à 50 000 €";
+  document.getElementById('ptz-detail').textContent=isLocataire?"L'Éco-PTZ est réservé aux propriétaires occupants ou bailleurs.":"Prêt sans intérêts sur 20 ans — prolongé jusqu'au 31/12/2027, sans conditions de ressources. Via banques partenaires agréées.";
+  const total=mpr+cee;
+  document.getElementById('total-aides').textContent=isLocataire?'Non applicable':total>0?total.toLocaleString('fr-FR')+' €':'< 1 000 €';
+  const chauf=D.chauf||'Gaz standard';
+  const ecs=D.ecs||'Électrique direct';
+  resultData={classe,epFinal,co2,coutAn,gain,mpr,cee,surf,zone:D.zone||'Non renseignée',chauf,ecs,type:D.type||'',revenu:rev,proprio};
+  goStep('s5');
+}
+
+async function submitLead(){
+  const prenom=document.getElementById('lp').value.trim();
+  const email=document.getElementById('le').value.trim();
+  const tel=document.getElementById('lt2').value.trim();
+  const errBox=document.getElementById('err-box');
+  const errTxt=document.getElementById('err-txt');
+  errBox.style.display='none';
+  if(!prenom||!email){errTxt.textContent='Merci de renseigner votre nom et email.';errBox.style.display='flex';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){errTxt.textContent='Adresse email invalide.';errBox.style.display='flex';return;}
+  const btn=document.getElementById('btn-lead');
+  btn.disabled=true;btn.innerHTML='<i class="ti ti-loader"></i> Envoi en cours…';
+  const now=new Date();
+  const dateStr=now.toLocaleDateString('fr-FR')+' '+now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  const payload={date:dateStr,prenom,email,telephone:tel||'Non renseigné',classe_dpe:resultData.classe||'—',consommation_kwh:resultData.epFinal||'—',cout_annuel_eur:resultData.coutAn||'—',economies_potentielles_eur:resultData.gain||'—',co2_kg:resultData.co2||'—',surface_m2:resultData.surf||'—',type_logement:resultData.type||'Non renseigné',chauffage:resultData.chauf||'Non renseigné',ecs:resultData.ecs||'Non renseigné',zone_climatique:resultData.zone||'Non renseignée',revenus:resultData.revenu||'Non renseigné',statut_proprio:resultData.proprio||'Non renseigné',aide_mpr_eur:resultData.mpr||0,aide_cee_eur:resultData.cee||0};
+  try{
+    await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    document.getElementById('lead-form-box').style.display='none';
+    document.getElementById('success-box').style.display='block';
+  }catch(e){
+    btn.disabled=false;btn.innerHTML='<i class="ti ti-send"></i>Recevoir des devis gratuits';
+    errTxt.textContent="Erreur de connexion. Vérifiez votre connexion et réessayez.";
+    errBox.style.display='flex';
+  }
+}
+</script>
+</body>
+</html>
+<!-- INJECTION PAGE A PROPOS -->
+<script>
+(function(){
+  var style = document.createElement('style');
+  style.textContent = `
+    .hero-ap{background:#0D1F15;padding:3.5rem 2rem;position:relative;overflow:hidden}
+    .hero-ap-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
+    .ap-eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5DCAA5;margin-bottom:1rem;opacity:.7}
+    .ap-section{padding:3.5rem 2rem;max-width:680px;margin:0 auto}
+    .ap-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem}
+    .ap-title{font-size:24px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:1rem;line-height:1.2;font-family:Georgia,serif}
+    .ap-title span{color:#1D6F42;font-style:normal}
+    .valeurs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e0ddd6;border-radius:8px;overflow:hidden;margin-top:2rem}
+    .valeur{background:#FAFAF7;padding:1.5rem 1.25rem}
+    .valeur-icon{width:36px;height:36px;border-radius:8px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;margin-bottom:.875rem;color:#0F6E56;font-size:18px}
+    .valeur-title{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:.375rem;font-family:Georgia,serif;font-style:italic}
+    .valeur-desc{font-size:12px;color:#888;line-height:1.6}
+    .ap-quote{background:#F2EFE6;padding:2rem;border-left:3px solid #1D6F42;margin-top:2rem}
+    .ap-quote-txt{font-size:17px;font-weight:400;font-style:italic;color:#1a1a1a;line-height:1.6;font-family:Georgia,serif;margin-bottom:1rem}
+    .ap-quote-txt span{color:#1D6F42;font-style:normal}
+    .ap-quote-src{font-size:12px;color:#888;letter-spacing:.04em}
+    .zone-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:1.5rem}
+    .zone-item{background:#fff;border:0.5px solid #e0ddd6;border-radius:8px;padding:1rem 1.25rem;display:flex;align-items:center;gap:10px}
+    .zone-dot{width:8px;height:8px;border-radius:50%;background:#1D6F42;flex-shrink:0}
+    .contact-band-ap{background:#0D1F15;padding:3rem 2rem}
+    .contact-inner-ap{max-width:680px;margin:0 auto}
+    .contact-grid-ap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.07);margin-top:2rem;border-radius:8px;overflow:hidden}
+    .contact-item-ap{background:#0D1F15;padding:1.5rem;display:flex;flex-direction:column;gap:.5rem}
+    .contact-icon-ap{font-size:20px;color:#5DCAA5}
+    .contact-label-ap{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:.06em;text-transform:uppercase}
+    .contact-val-ap{font-size:14px;color:#fff}
+    .contact-val-ap a{color:#5DCAA5;text-decoration:none}
+  `;
+  document.head.appendChild(style);
+
+  var apDiv = document.createElement('div');
+  apDiv.id = 'page-apropos';
+  apDiv.className = 'page';
+  apDiv.innerHTML = `
+    <div class="hero-ap">
+      <svg style="position:absolute;right:-60px;top:50%;transform:translateY(-50%);opacity:.04;pointer-events:none" width="400" height="400" viewBox="0 0 82 82" fill="none" aria-hidden="true"><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(60 41 41)"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(120 41 41)"/><circle cx="41" cy="41" r="3.8" fill="#5DCAA5"/><circle cx="41" cy="14" r="3.2" fill="#EF9F27"/></svg>
+      <div class="hero-ap-inner">
+        <div class="ap-eyebrow">À propos</div>
+        <h1 style="font-size:30px;font-weight:400;color:#fff;font-family:Georgia,serif;font-style:italic;line-height:1.2;margin-bottom:.75rem">Décrypter la rénovation<br>énergétique, c'est notre <span style="color:#5DCAA5;font-style:normal">métier</span>.</h1>
+        <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:480px">Particule Énergie accompagne les propriétaires de la région grenobloise dans leurs projets de rénovation énergétique — de l'estimation DPE jusqu'à la mise en relation avec des installateurs certifiés RGE.</p>
+      </div>
+    </div>
+
+    <div style="height:0.5px;background:#e0ddd6"></div>
+
+    <div class="ap-section">
+      <div class="ap-tag">Qui sommes-nous</div>
+      <h2 class="ap-title">Une expertise au service<br>des <span>propriétaires</span></h2>
+      <p style="font-size:14px;color:#666;line-height:1.75;max-width:560px">Particule Énergie est née d'un constat simple : la rénovation énergétique est un levier puissant pour réduire les factures et améliorer le confort des logements — mais elle reste trop souvent opaque pour les propriétaires.</p>
+      <p style="font-size:14px;color:#666;line-height:1.75;max-width:560px;margin-top:1rem">Notre mission est de rendre ce monde accessible : comprendre son DPE, identifier les travaux prioritaires, connaître les aides disponibles, et être mis en relation avec les bons professionnels.</p>
+      <div class="valeurs">
+        <div class="valeur">
+          <div class="valeur-icon"><i class="ti ti-eye" aria-hidden="true"></i></div>
+          <div class="valeur-title">Transparence</div>
+          <div class="valeur-desc">Des informations claires, vérifiées, sans jargon. Vous comprenez ce que vous signez.</div>
+        </div>
+        <div class="valeur">
+          <div class="valeur-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+          <div class="valeur-title">Indépendance</div>
+          <div class="valeur-desc">Nous ne vendons pas de travaux. Nos conseils sont objectifs, dans votre seul intérêt.</div>
+        </div>
+        <div class="valeur">
+          <div class="valeur-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+          <div class="valeur-title">Proximité</div>
+          <div class="valeur-desc">Basés à Grenoble, nous connaissons le tissu local des artisans et les spécificités de la zone H1.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:0.5px;background:#e0ddd6"></div>
+
+    <div class="ap-section">
+      <div class="ap-tag">Notre philosophie</div>
+      <div class="ap-quote">
+        <div class="ap-quote-txt">"La rénovation énergétique ne devrait pas être un parcours du combattant. Notre rôle est d'être à vos côtés pour <span>décrypter, orienter et simplifier</span> — de la première question jusqu'au chantier terminé."</div>
+        <div class="ap-quote-src">Particule Énergie — Grenoble, 2026</div>
+      </div>
+      <p style="font-size:14px;color:#666;line-height:1.75;margin-top:1.5rem;max-width:560px">Nous croyons que chaque propriétaire mérite d'avoir accès aux mêmes informations que les professionnels : comprendre son étiquette DPE, savoir quels travaux sont prioritaires, et connaître les aides auxquelles il a réellement droit — sans démarchage inutile.</p>
+    </div>
+
+    <div style="height:0.5px;background:#e0ddd6"></div>
+
+    <div class="ap-section">
+      <div class="ap-tag">Zone d'intervention</div>
+      <h2 class="ap-title">Grenoble et sa <span>région</span></h2>
+      <p style="font-size:14px;color:#666;line-height:1.75;max-width:480px">Nous intervenons principalement en zone climatique H1 — la plus exigeante — où la performance énergétique des logements est un enjeu particulièrement fort.</p>
+      <div class="zone-grid">
+        <div class="zone-item"><div class="zone-dot"></div><div><div style="font-size:13px;color:#1a1a1a">Grenoble et agglomération</div><div style="font-size:11px;color:#888;margin-top:2px">38000 — 38100 — 38130</div></div></div>
+        <div class="zone-item"><div class="zone-dot"></div><div><div style="font-size:13px;color:#1a1a1a">Isère (38)</div><div style="font-size:11px;color:#888;margin-top:2px">Ensemble du département</div></div></div>
+        <div class="zone-item"><div class="zone-dot"></div><div><div style="font-size:13px;color:#1a1a1a">Savoie & Haute-Savoie</div><div style="font-size:11px;color:#888;margin-top:2px">73 — 74</div></div></div>
+        <div class="zone-item"><div class="zone-dot"></div><div><div style="font-size:13px;color:#1a1a1a">Drôme & Ardèche</div><div style="font-size:11px;color:#888;margin-top:2px">26 — 07</div></div></div>
+      </div>
+    </div>
+
+    <div class="contact-band-ap">
+      <div class="contact-inner-ap">
+        <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5DCAA5;margin-bottom:.75rem;opacity:.7">Nous contacter</div>
+        <h2 style="font-size:22px;font-weight:400;font-style:italic;color:#fff;font-family:Georgia,serif;margin-bottom:.5rem">Une question sur votre <span style="color:#5DCAA5;font-style:normal">projet</span> ?</h2>
+        <p style="font-size:13px;color:rgba(255,255,255,0.35);max-width:400px">Nous répondons à toutes vos questions sur le DPE, les aides et les travaux de rénovation.</p>
+        <div class="contact-grid-ap">
+          <div class="contact-item-ap">
+            <i class="ti ti-mail contact-icon-ap" aria-hidden="true"></i>
+            <div class="contact-label-ap">Email</div>
+            <div class="contact-val-ap"><a href="mailto:contact@particule-energie.fr">contact@particule-energie.fr</a></div>
+          </div>
+          <div class="contact-item-ap">
+            <i class="ti ti-map-pin contact-icon-ap" aria-hidden="true"></i>
+            <div class="contact-label-ap">Localisation</div>
+            <div class="contact-val-ap">Grenoble — Isère<br><span style="font-size:12px;color:rgba(255,255,255,0.3)">Zone H1 — Rhône-Alpes</span></div>
+          </div>
+          <div class="contact-item-ap">
+            <i class="ti ti-clock contact-icon-ap" aria-hidden="true"></i>
+            <div class="contact-label-ap">Disponibilité</div>
+            <div class="contact-val-ap">Lun – Ven<br><span style="font-size:12px;color:rgba(255,255,255,0.3)">Réponse sous 24h</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer style="background:#0A0A0A;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06)">
+      <div style="display:flex;align-items:center;gap:8px">
+        <svg width="20" height="20" viewBox="0 0 82 82" fill="none" aria-hidden="true"><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.2" fill="none" opacity="0.7"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.55" transform="rotate(60 41 41)"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.5" transform="rotate(120 41 41)"/><circle cx="41" cy="41" r="3.5" fill="#5DCAA5" opacity="0.75"/><circle cx="41" cy="14" r="3" fill="#EF9F27" opacity="0.85"/></svg>
+        <span style="font-size:12px;color:rgba(255,255,255,0.2)">© 2026 Particule Énergie — Grenoble</span>
+      </div>
+      <div style="display:flex;gap:1.5rem;font-size:12px;color:rgba(255,255,255,0.2)"><span>Mentions légales</span><span>RGPD</span></div>
+    </footer>
+  `;
+  document.body.appendChild(apDiv);
+
+  var origShowPage = window.showPage;
+  window.showPage = function(p) {
+    document.querySelectorAll('.page').forEach(function(x){ x.classList.remove('active'); });
+    var target = document.getElementById('page-' + p);
+    if(target){ target.classList.add('active'); }
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  document.querySelectorAll('a[href="#aides"]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); showPage('home'); setTimeout(function(){ var el=document.getElementById('aides'); if(el) el.scrollIntoView({behavior:'smooth'}); },300); }); }); document.querySelectorAll('a[href="#simulateur"]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); showSim(); }); }); document.querySelectorAll('a[href="#contact"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      window.showPage('apropos');
+    });
+  });
+
+  var navLinks = document.querySelectorAll('.nav-links a');
+  navLinks.forEach(function(a){
+    if(a.textContent.trim() === 'À propos'){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        window.showPage('apropos');
+      });
+    }
+  });
+})();
+</script>
