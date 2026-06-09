@@ -155,9 +155,20 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .tooltip-wrap:hover .tooltip-box,.tooltip-wrap:focus .tooltip-box{display:block}
 .page{display:none}.page.active{display:block}
 </style>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-
+  <script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 <!-- NAVIGATION -->
 <nav class="nav">
   <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
