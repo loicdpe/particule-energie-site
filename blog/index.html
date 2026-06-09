@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Actualités & Veille énergie — Particule Énergie Grenoble</title>
+<meta name="description" content="Actualités réglementaires, conseils rénovation énergétique et veille sur les aides MaPrimeRénov', CEE et Éco-PTZ. Particule Énergie, expert à Grenoble.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+
+.hero{background:#0D1F15;padding:4rem 2rem 3rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;right:-60px;top:50%;transform:translateY(-50%);opacity:.04;pointer-events:none}
+.hero-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5DCAA5;margin-bottom:1rem;opacity:.7}
+.hero-title{font-size:32px;font-weight:400;font-style:italic;color:#fff;font-family:Georgia,serif;line-height:1.2;margin-bottom:.75rem}
+.hero-title span{color:#5DCAA5;font-style:normal}
+.hero-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:480px}
+.accent-bar{height:3px;background:linear-gradient(90deg,#1D6F42,#5DCAA5,#E8700A)}
+
+.blog-wrap{max-width:700px;margin:0 auto;padding:3rem 2rem}
+.blog-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:2rem}
+
+.article-card{display:block;text-decoration:none;border-bottom:0.5px solid #e0ddd6;padding:2rem 0;transition:opacity .15s}
+.article-card:hover{opacity:.75}
+.article-card:first-of-type{border-top:0.5px solid #e0ddd6}
+.article-meta{display:flex;align-items:center;gap:1rem;margin-bottom:.75rem}
+.article-date{font-size:12px;color:#aaa}
+.article-tag-pill{font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px}
+.article-title{font-size:20px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.3;margin-bottom:.5rem}
+.article-excerpt{font-size:13px;color:#888;line-height:1.65;max-width:560px}
+.article-read{font-size:12px;color:#1D6F42;margin-top:.75rem;display:flex;align-items:center;gap:4px}
+
+.footer{background:#0A0A0A;padding:2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06);margin-top:4rem}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.footer-links{display:flex;gap:1.5rem;font-size:12px;color:rgba(255,255,255,0.25)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/">Simulateur</a>
+    <a href="/#aides">Aides</a>
+    <a href="/blog/">Actualités</a>
+  </div>
+  <a href="/" class="nav-cta">Estimer mon DPE</a>
+</nav>
+
+<div class="hero">
+  <svg class="hero-bg" width="400" height="400" viewBox="0 0 82 82" fill="none">
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none"/>
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(60 41 41)"/>
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(120 41 41)"/>
+    <circle cx="41" cy="41" r="3.8" fill="#5DCAA5"/>
+    <circle cx="41" cy="14" r="3.2" fill="#EF9F27"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Actualités réglementaires</div>
+    <h1 class="hero-title">Veille <span>énergie</span></h1>
+    <p class="hero-sub">Réglementation, aides financières, actualités du secteur — mis à jour régulièrement pour vous aider à y voir clair.</p>
+  </div>
+</div>
+<div class="accent-bar"></div>
+
+<div class="blog-wrap">
+  <div class="blog-tag">Tous les articles</div>
+
+  <a href="/blog/audit-energetique-2026.html" class="article-card">
+    <div class="article-meta">
+      <span class="article-date">9 juin 2026</span>
+      <span class="article-tag-pill">Réglementation</span>
+    </div>
+    <div class="article-title">Audit énergétique obligatoire 2026 : ce qui change en Isère</div>
+    <p class="article-excerpt">Depuis 2025, l'audit énergétique est obligatoire pour vendre un logement F ou G et pour obtenir un éco-PTZ rénovation globale. En 2026, les obligations se renforcent. Ce que vous devez savoir si vous êtes propriétaire en Isère.</p>
+    <div class="article-read">Lire l'article <i class="ti ti-arrow-right"></i></div>
+  </a>
+
+  <a href="/blog/cee-2026.html" class="article-card">
+    <div class="article-meta">
+      <span class="article-date">6 juin 2026</span>
+      <span class="article-tag-pill">CEE</span>
+    </div>
+    <div class="article-title">CEE 2026 : deux changements importants au 1er septembre</div>
+    <p class="article-excerpt">Le dispositif Coup de Pouce Chauffage évolue en profondeur au 1er septembre 2026. Agrément ADEME obligatoire, liste des équipements éligibles — ce que ça change pour les propriétaires et les installateurs.</p>
+    <div class="article-read">Lire l'article <i class="ti ti-arrow-right"></i></div>
+  </a>
+
+</div>
+
+<footer class="footer">
+  <div style="display:flex;align-items:center;gap:10px">
+    <svg width="20" height="20" viewBox="0 0 82 82" fill="none">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.2" fill="none" opacity="0.7"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.55" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.5" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.5" fill="#5DCAA5" opacity="0.75"/>
+      <circle cx="41" cy="14" r="3" fill="#EF9F27" opacity="0.85"/>
+    </svg>
+    <span class="footer-copy">© 2026 Particule Énergie — Grenoble · Isère</span>
+  </div>
+  <div class="footer-links">
+    <span>Mentions légales</span>
+    <span>RGPD</span>
+    <a href="/" style="color:rgba(255,255,255,0.25);text-decoration:none">particule-energie.fr</a>
+  </div>
+</footer>
+
+</body>
+</html>
