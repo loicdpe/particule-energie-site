@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Particule Énergie — Simulateur DPE gratuit Grenoble</title>
-<meta name="description" content="Estimez votre DPE gratuitement et découvrez vos aides MaPrimeRénov', CEE et Éco-PTZ en 2026. Conseil indépendant en rénovation énergétique à Grenoble, Isère, Savoie et Drôme.">
+<meta name="description" content="Estimez votre DPE gratuitement et découvrez vos aides MaPrimeRénov', CEE et Éco-PTZ en 2026. Cabinet indépendant d'audit énergétique à Grenoble, Isère, Savoie et Drôme.">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://particule-energie.fr/">
 <meta property="og:site_name" content="Particule Énergie">
 <meta property="og:title" content="Particule Énergie — Simulateur DPE & Rénovation Grenoble">
-<meta property="og:description" content="Estimez votre DPE gratuitement et découvrez vos aides 2026. Etude énergétique et conseil en rénovation à Grenoble et en Rhône-Alpes.">
+<meta property="og:description" content="Estimez votre DPE gratuitement et découvrez vos aides 2026. Audit énergétique indépendant à Grenoble et en Rhône-Alpes.">
 <meta property="og:image" content="https://particule-energie.fr/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -29,8 +29,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a;overflow-x:hidden}
 input,select{border:0.5px solid #ccc;border-radius:8px;padding:9px 12px;font-size:14px;width:100%;outline:none;background:#fff;color:#1a1a1a}
 input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,165,0.15)}
 
@@ -44,8 +44,13 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
 .nav-links a{color:inherit;text-decoration:none}
 .nav-links a:hover{color:rgba(255,255,255,0.7)}
-.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap}
 .nav-cta:hover{background:#D4880A}
+@media(max-width:640px){
+  .nav{padding:.75rem 1rem}
+  .nav-links a:not([href="/blog/"]){display:none}
+  .nav-links{gap:0}
+}
 
 /* HERO */
 .hero{background:#0D1F15;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
@@ -408,6 +413,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <a href="/blog/audit-energetique-2026.html" style="background:#FAFAF7;padding:1.75rem;text-decoration:none;display:block;transition:background .2s" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#FAFAF7'">
           <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
             <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">Réglementation</span>
+            <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">DPE</span>
           </div>
           <div style="font-size:16px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.3;margin-bottom:.75rem">Audit énergétique obligatoire 2026 : ce qui change en Isère</div>
           <div style="font-size:13px;color:#888;line-height:1.6;margin-bottom:1rem">Vente de passoire thermique, éco-PTZ, MaPrimeRénov'… ce que tout propriétaire en Rhône-Alpes doit savoir.</div>
@@ -418,21 +424,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         </a>
 
         <!-- Article 2 -->
-        <a href="/blog/pac-air-eau-zone-h1.html" style="background:#FAFAF7;padding:1.75rem;text-decoration:none;display:block;transition:background .2s" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#FAFAF7'">
-          <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
-            <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">PAC · Chauffage</span>
-            <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">Zone H1</span>
-          </div>
-          <div style="font-size:16px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.3;margin-bottom:.75rem">PAC air/eau en zone H1 : ce que le froid change vraiment</div>
-          <div style="font-size:13px;color:#888;line-height:1.6;margin-bottom:1rem">En Isère, Savoie ou Haute-Savoie, une PAC air/eau est-ce vraiment adapté ? Performances réelles, aides 2026 bonifiées et points de vigilance.</div>
-          <div style="font-size:12px;color:#aaa;display:flex;justify-content:space-between;align-items:center">
-            <span>10 juin 2026</span>
-            <span style="color:#1D6F42;font-size:13px">Lire →</span>
-          </div>
-        </a>
-
-        <!-- Article 3 -->
-        <a href="/blog/cee-2026.html" style="background:#FAFAF7;padding:1.75rem;text-decoration:none;display:block;transition:background .2s" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#FAFAF7'">
+        <a href="/blog/maprimerenov-2026.html" style="background:#FAFAF7;padding:1.75rem;text-decoration:none;display:block;transition:background .2s" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#FAFAF7'">
           <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
             <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">CEE</span>
           </div>
@@ -443,6 +435,11 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
             <span style="color:#1D6F42;font-size:13px">Lire →</span>
           </div>
         </a>
+
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer" id="contact">
     <div class="footer-left">
