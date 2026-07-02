@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,15 +6,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Particule Énergie — Simulateur DPE gratuit Grenoble</title>
-<meta name="description" content="Estimez gratuitement votre DPE et vos aides MaPrimeRénov', CEE et Éco-PTZ. Particule Énergie, expert en rénovation énergétique à Grenoble et en Isère.">
+<meta name="description" content="Estimez votre DPE gratuitement et découvrez vos aides MaPrimeRénov', CEE et Éco-PTZ en 2026. Cabinet indépendant d'audit énergétique à Grenoble, Isère, Savoie et Drôme.">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://particule-energie.fr/">
+<meta property="og:site_name" content="Particule Énergie">
+<meta property="og:title" content="Particule Énergie — Simulateur DPE & Rénovation Grenoble">
+<meta property="og:description" content="Estimez votre DPE gratuitement et découvrez vos aides 2026. Audit énergétique indépendant à Grenoble et en Rhône-Alpes.">
+<meta property="og:image" content="https://particule-energie.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://particule-energie.fr/og-image.png">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BLPJQZVBR8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BLPJQZVBR8');
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a;overflow-x:hidden}
 input,select{border:0.5px solid #ccc;border-radius:8px;padding:9px 12px;font-size:14px;width:100%;outline:none;background:#fff;color:#1a1a1a}
 input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,165,0.15)}
-
 /* NAV */
 .nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
 .nav-logo{display:flex;align-items:center;gap:10px}
@@ -24,9 +44,13 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
 .nav-links a{color:inherit;text-decoration:none}
 .nav-links a:hover{color:rgba(255,255,255,0.7)}
-.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap}
 .nav-cta:hover{background:#D4880A}
-
+@media(max-width:640px){
+  .nav{padding:.75rem 1rem}
+  .nav-links a:not([href="/blog/"]){display:none}
+  .nav-links{gap:0}
+}
 /* HERO */
 .hero{background:#0D1F15;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
 .hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.05}
@@ -41,7 +65,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .btn-primary:hover{background:#D4880A}
 .btn-ghost{font-size:13px;color:#5DCAA5;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none}
 .hero-note{margin-top:1.5rem;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:.04em}
-
 /* NUMBERS */
 .numbers{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:0.5px solid #e0ddd6;background:#FAFAF7}
 .number-item{padding:2.5rem 2rem;border-right:0.5px solid #e0ddd6}
@@ -49,21 +72,18 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .number-val{font-size:34px;font-weight:400;color:#1a1a1a;font-family:Georgia,serif;line-height:1}
 .number-unit{font-size:16px;color:#1D6F42}
 .number-label{font-size:12px;color:#999;margin-top:.5rem;line-height:1.5}
-
 /* SECTIONS */
 .section{padding:4rem 2rem;max-width:700px;margin:0 auto}
 .section-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem}
 .section-title{font-size:26px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:1rem;line-height:1.2;font-family:Georgia,serif}
 .section-title span{color:#1D6F42;font-style:normal}
 .section-body{font-size:14px;color:#666;line-height:1.75;max-width:520px}
-
 /* STEPS */
 .steps{margin-top:2.5rem;display:flex;flex-direction:column}
 .step-item{display:flex;gap:2rem;padding:1.5rem 0;border-top:0.5px solid #e0ddd6}
 .step-num{font-size:11px;color:#ccc;letter-spacing:.08em;padding-top:3px;flex-shrink:0;width:24px}
 .step-title{font-size:15px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:.375rem;font-family:Georgia,serif}
 .step-desc{font-size:13px;color:#999;line-height:1.6}
-
 /* AIDES */
 .aides-band{background:#F2EFE6;padding:4rem 2rem;border-top:0.5px solid #e0ddd6;border-bottom:0.5px solid #e0ddd6}
 .aides-inner{max-width:700px;margin:0 auto}
@@ -73,25 +93,21 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .aide-amount{font-size:22px;font-weight:400;color:#1D6F42;font-family:Georgia,serif}
 .aide-desc{font-size:12px;color:#999;margin-top:.25rem;line-height:1.5}
 .aide-alerte{font-size:11px;color:#854F0B;background:#FAEEDA;border-radius:4px;padding:3px 7px;margin-top:.5rem;display:inline-block}
-
 /* SIMULATEUR SECTION */
 .sim-band{padding:4rem 2rem;max-width:700px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 .sim-preview{background:#fff;border:0.5px solid #e0ddd6;border-radius:12px;padding:1.25rem}
 .sim-preview-title{font-size:12px;color:#bbb;margin-bottom:1rem;letter-spacing:.04em}
 .dpe-row{display:flex;align-items:center;gap:8px;margin-bottom:.5rem}
 .dpe-letter{width:26px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:#fff;flex-shrink:0}
-
 /* CTA BAND */
 .cta-band{background:#0D1F15;padding:3.5rem 2rem;position:relative;overflow:hidden}
 .cta-inner{max-width:700px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;z-index:1}
 .cta-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:.05;pointer-events:none}
-
 /* FOOTER */
 .footer{background:#0A0A0A;padding:2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06)}
 .footer-left{display:flex;align-items:center;gap:10px}
 .footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
 .footer-links{display:flex;gap:1.5rem;font-size:12px;color:rgba(255,255,255,0.25)}
-
 /* SIMULATEUR FORM */
 .sim-wrap{max-width:640px;margin:0 auto;padding:2rem 1rem}
 .sim-card{background:#fff;border:0.5px solid #e0ddd6;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
@@ -154,10 +170,32 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .tooltip-box td:last-child{text-align:right;color:#5DCAA5;padding-right:0}
 .tooltip-wrap:hover .tooltip-box,.tooltip-wrap:focus .tooltip-box{display:block}
 .page{display:none}.page.active{display:block}
+/* COOKIE BANNER */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#0D1F15;border-top:0.5px solid rgba(255,255,255,0.1);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;z-index:9999;flex-wrap:wrap}
+#cookie-banner p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.5;max-width:680px}
+#cookie-banner a{color:#5DCAA5;text-decoration:underline}
+.cookie-actions{display:flex;gap:.75rem;flex-shrink:0}
+.btn-cookie-accept{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:9px 20px;font-size:13px;cursor:pointer}
+.btn-cookie-accept:hover{background:#D4880A}
+.btn-cookie-refuse{background:transparent;color:rgba(255,255,255,0.4);border:0.5px solid rgba(255,255,255,0.15);border-radius:6px;padding:9px 20px;font-size:13px;cursor:pointer}
+.btn-cookie-refuse:hover{color:rgba(255,255,255,0.7)}
+/* FOOTER LEGAL */
+.footer-legal{background:#0A0A0A;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06)}
+.footer-legal-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.footer-legal-links{display:flex;gap:1.5rem;font-size:12px}
+.footer-legal-links a{color:rgba(255,255,255,0.25);text-decoration:none}
+.footer-legal-links a:hover{color:rgba(255,255,255,0.5)}
 </style>
 </head>
 <body>
-
+<!-- Bandeau consentement cookies -->
+<div id="cookie-banner">
+  <p>Nous utilisons Google Analytics pour mesurer l'audience de ce site. Données anonymisées. <a href="/politique-confidentialite.html">En savoir plus</a></p>
+  <div class="cookie-actions">
+    <button class="btn-cookie-refuse" onclick="refuseCookies()">Refuser</button>
+    <button class="btn-cookie-accept" onclick="acceptCookies()">Accepter</button>
+  </div>
+</div>
 <!-- NAVIGATION -->
 <nav class="nav">
   <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
@@ -178,15 +216,15 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
   </div>
   <div class="nav-links">
     <a href="#simulateur" onclick="showPage('home')">Simulateur</a>
+    <a href="/installateurs-rge.html">Installateurs RGE</a>
     <a href="#aides">Aides</a>
     <a href="#contact">À propos</a>
+    <a href="/blog/">Actualités & Réglementation</a>
   </div>
   <a href="#simulateur" class="nav-cta" onclick="showSim()">Estimer mon DPE</a>
 </nav>
-
 <!-- PAGE ACCUEIL -->
 <div id="page-home" class="page active">
-
   <!-- HERO -->
   <section class="hero">
     <svg class="hero-bg" width="600" height="600" viewBox="0 0 82 82" fill="none" aria-hidden="true">
@@ -196,7 +234,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <circle cx="41" cy="41" r="3.8" fill="#5DCAA5"/>
       <circle cx="41" cy="14" r="3.2" fill="#EF9F27"/>
     </svg>
-    <div class="hero-eyebrow">Audit énergétique — Grenoble · Isère · Rhône-Alpes</div>
+    <div class="hero-eyebrow">Étude énergétique — Grenoble · Isère · Rhône-Alpes</div>
     <svg class="hero-logo" width="100" height="100" viewBox="0 0 82 82" fill="none" aria-hidden="true">
       <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
       <ellipse cx="41" cy="41" rx="27.4" ry="10.9" stroke="#5DCAA5" stroke-width="0.35" fill="none" opacity="0.22"/>
@@ -220,23 +258,21 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
     </div>
     <div class="hero-note">Sans inscription · Sans engagement · 100% gratuit</div>
   </section>
-
   <!-- CHIFFRES -->
   <div class="numbers">
     <div class="number-item">
-      <div class="number-val">70<span class="number-unit">%</span></div>
-      <div class="number-label">des travaux couverts<br>pour les ménages modestes</div>
+      <div class="number-val">2 400<span class="number-unit" style="font-size:16px"> €</span></div>
+      <div class="number-label">de chauffage par an pour une maison<br>mal isolée en zone H1 — reconnaissez-vous votre facture ?</div>
     </div>
     <div class="number-item">
-      <div class="number-val">50k<span class="number-unit" style="font-size:14px"> €</span></div>
-      <div class="number-label">d'aides cumulables<br>MaPrimeRénov' + CEE + Éco-PTZ</div>
+      <div class="number-val">3<span class="number-unit">×</span></div>
+      <div class="number-label">plus cher à chauffer qu'un logement<br>bien isolé, à surface égale (ADEME)</div>
     </div>
     <div class="number-item">
       <div class="number-val">2<span class="number-unit" style="font-size:18px"> min</span></div>
-      <div class="number-label">pour estimer votre DPE<br>et vos aides en ligne</div>
+      <div class="number-label">pour connaître votre classe DPE<br>gratuitement, sans engagement</div>
     </div>
   </div>
-
   <!-- ORIENTATION B2B / B2C -->
   <div style="background:#fff;padding:2.5rem 2rem;border-bottom:0.5px solid #e0ddd6">
     <div style="max-width:700px;margin:0 auto">
@@ -251,13 +287,12 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <a href="/installateurs-rge.html" style="display:block;border:0.5px solid #e0ddd6;border-radius:10px;padding:1.25rem 1.5rem;text-decoration:none;transition:border-color .2s;background:#FAFAF7" onmouseover="this.style.borderColor='#1D6F42'" onmouseout="this.style.borderColor='#e0ddd6'">
           <div style="font-size:20px;margin-bottom:.5rem">🔧</div>
           <div style="font-size:15px;font-weight:500;color:#1a1a1a;margin-bottom:.3rem;font-family:Georgia,serif;font-style:italic">Installateur RGE</div>
-          <div style="font-size:12px;color:#888;line-height:1.5">Vous posez les équipements et cherchez un partenaire pour l'audit et les dossiers d'aides.</div>
+          <div style="font-size:12px;color:#888;line-height:1.5">Vous posez les équipements et cherchez un partenaire pour l'étude énergétique et les dossiers d'aides.</div>
           <div style="font-size:12px;color:#1D6F42;margin-top:.75rem">Devenir partenaire →</div>
         </a>
       </div>
     </div>
   </div>
-
   <!-- COMMENT ÇA MARCHE -->
   <div id="comment">
     <div class="section">
@@ -283,13 +318,12 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
           <div class="step-num">03</div>
           <div>
             <div class="step-title">Recevez des devis d'installateurs RGE</div>
-            <div class="step-desc">Des professionnels certifiés de la région Grenoble vous contactent sous 48h. Gratuit, sans engagement.</div>
+            <div class="step-desc">Des professionnels certifiés de la région grenobloise vous contactent sous 48h. Gratuit, sans engagement.</div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <!-- AIDES -->
   <div id="aides" class="aides-band">
     <div class="aides-inner">
@@ -321,7 +355,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <div style="margin-top:1rem;font-size:11px;color:#bbb">Aides vérifiées — juin 2026 · Source : <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
     </div>
   </div>
-
   <!-- SIMULATEUR APERÇU -->
   <div id="simulateur">
     <div class="sim-band">
@@ -349,7 +382,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       </div>
     </div>
   </div>
-
   <!-- CTA FINAL -->
   <div class="cta-band">
     <svg class="cta-bg" width="300" height="300" viewBox="0 0 82 82" fill="none" aria-hidden="true">
@@ -367,7 +399,43 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <a href="#" class="btn-primary" onclick="showSim();return false" style="white-space:nowrap">Lancer le simulateur</a>
     </div>
   </div>
-
+  <!-- SECTION ACTUALITES -->
+  <div style="background:#F2EFE6;padding:4rem 2rem;border-top:0.5px solid #e0ddd6">
+    <div style="max-width:700px;margin:0 auto">
+      <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.75rem">Actualités & Réglementation</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+        <h2 style="font-size:24px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.2">Nos derniers <span style="color:#1D6F42;font-style:normal">articles</span></h2>
+        <a href="/blog/" style="font-size:13px;color:#1D6F42;text-decoration:none;display:inline-flex;align-items:center;gap:5px">Voir tous les articles <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#e0ddd6;border-radius:10px;overflow:hidden">
+        <!-- Article 1 -->
+        <a href="/blog/audit-energetique-2026.html" style="background:#FAFAF7;padding:1.75rem;text-decoration:none;display:block;transition:background .2s" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#FAFAF7'">
+          <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
+            <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">Réglementation</span>
+            <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">DPE</span>
+          </div>
+          <div style="font-size:16px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.3;margin-bottom:.75rem">Audit énergétique obligatoire 2026 : ce qui change en Isère</div>
+          <div style="font-size:13px;color:#888;line-height:1.6;margin-bottom:1rem">Vente de passoire thermique, éco-PTZ, MaPrimeRénov'… ce que tout propriétaire en Rhône-Alpes doit savoir.</div>
+          <div style="font-size:12px;color:#aaa;display:flex;justify-content:space-between;align-items:center">
+            <span>9 juin 2026</span>
+            <span style="color:#1D6F42;font-size:13px">Lire →</span>
+          </div>
+        </a>
+        <!-- Article 2 -->
+        <a href="/blog/cee-2026.html" style="background:#FAFAF7;padding:1.75rem;text-decoration:none;display:block;transition:background .2s" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#FAFAF7'">
+          <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
+            <span style="font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px">CEE</span>
+          </div>
+          <div style="font-size:16px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.3;margin-bottom:.75rem">CEE 2026 : deux changements importants au 1er septembre</div>
+          <div style="font-size:13px;color:#888;line-height:1.6;margin-bottom:1rem">Coup de Pouce Chauffage et agrément ADEME : ce qui change pour les installateurs et leurs clients dès septembre 2026.</div>
+          <div style="font-size:12px;color:#aaa;display:flex;justify-content:space-between;align-items:center">
+            <span>6 juin 2026</span>
+            <span style="color:#1D6F42;font-size:13px">Lire →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
   <!-- FOOTER -->
   <footer class="footer" id="contact">
     <div class="footer-left">
@@ -381,14 +449,12 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <span class="footer-copy">© 2026 Particule Énergie — Grenoble · Isère</span>
     </div>
     <div class="footer-links">
-      <span>Mentions légales</span>
-      <span>RGPD</span>
+      <a href="/mentions-legales.html" style="color:rgba(255,255,255,0.25);text-decoration:none">Mentions légales</a>
+      <a href="/politique-confidentialite.html" style="color:rgba(255,255,255,0.25);text-decoration:none">Confidentialité</a>
       <span>particule-energie.fr</span>
     </div>
   </footer>
-
 </div>
-
 <!-- PAGE SIMULATEUR -->
 <div id="page-sim" class="page">
   <div class="sim-wrap">
@@ -406,7 +472,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <div class="dot" id="d4">4</div><div class="dline"></div>
       <div class="dot" id="d5"><i class="ti ti-check" style="font-size:12px"></i></div>
     </div>
-
     <div class="step-form active sim-card" id="s0">
       <p class="stitle">Connaissez-vous vos consommations ?</p>
       <p class="ssub">Si vous avez vos factures d'énergie, le résultat sera plus précis.</p>
@@ -417,7 +482,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         </div>
       </div>
     </div>
-
     <div class="step-form sim-card" id="s0q">
       <p class="stitle">Vos consommations réelles</p>
       <p class="ssub">Renseignez vos consommations annuelles depuis vos factures.</p>
@@ -452,7 +516,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <button class="bnext" onclick="calcQuick()">Voir mon résultat <i class="ti ti-chart-bar"></i></button>
       </div>
     </div>
-
     <div class="step-form sim-card" id="s1">
       <p class="stitle">Votre logement</p>
       <p class="ssub">Informations de base sur votre bien immobilier.</p>
@@ -485,7 +548,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       </div>
       <div class="brow"><button class="bnext" onclick="go(2)">Continuer <i class="ti ti-arrow-right"></i></button></div>
     </div>
-
     <div class="step-form sim-card" id="s2">
       <p class="stitle">Enveloppe thermique</p>
       <p class="ssub">Isolation, parois et menuiseries.</p>
@@ -521,7 +583,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <button class="bnext" onclick="go(3)">Continuer <i class="ti ti-arrow-right"></i></button>
       </div>
     </div>
-
     <div class="step-form sim-card" id="s3">
       <p class="stitle">Chauffage & eau chaude</p>
       <p class="ssub">Le système énergétique est le principal levier d'amélioration.</p>
@@ -566,7 +627,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <button class="bnext" onclick="go(4)">Continuer <i class="ti ti-arrow-right"></i></button>
       </div>
     </div>
-
     <div class="step-form sim-card" id="s4">
       <p class="stitle">Profil & localisation</p>
       <p class="ssub">Détermine le niveau des aides auxquelles vous êtes éligible.</p>
@@ -599,7 +659,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <button class="bnext" onclick="calcResult()">Voir mon résultat <i class="ti ti-chart-bar"></i></button>
       </div>
     </div>
-
     <div class="step-form" id="s5">
       <div class="sim-card">
         <p class="stitle">Votre estimation DPE</p>
@@ -620,9 +679,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         </div>
         <div class="dpe-scale" id="scale"></div>
       </div>
-
       <p style="font-size:11px;font-weight:500;color:#888;text-transform:uppercase;letter-spacing:.06em;margin:.875rem 0 .5rem"><i class="ti ti-coin" style="vertical-align:-2px;margin-right:4px"></i>Aides en vigueur</p>
-
       <div id="warn-inelig" class="warn-badge" style="display:none">
         <i class="ti ti-alert-triangle" style="font-size:16px;flex-shrink:0"></i>
         <span id="warn-txt">Attention : certaines conditions limitent l'accès aux aides.</span>
@@ -639,7 +696,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <i class="ti ti-info-circle" style="font-size:16px;flex-shrink:0"></i>
         <span>Logement F ou G : geste unique encore possible jusqu'au 31/12/2026. Dès 2027, rénovation d'ampleur obligatoire.</span>
       </div>
-
       <div class="aide-card-res">
         <div class="aide-header">
           <div class="aide-icon" style="background:#E1F5EE;color:#0F6E56"><i class="ti ti-home-heart"></i></div>
@@ -673,7 +729,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         </div>
         <div class="aide-detail">Au lieu de 20% — à demander dès le devis auprès d'un artisan RGE.</div>
       </div>
-
       <div class="total-bar">
         <div>
           <div style="font-size:13px;color:#085041;font-weight:500">Total aides estimées</div>
@@ -681,12 +736,10 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         </div>
         <div style="font-size:22px;font-weight:500;color:#0F6E56" id="total-aides">—</div>
       </div>
-
       <div class="warn-badge">
         <i class="ti ti-info-circle" style="font-size:16px;flex-shrink:0;color:#854F0B"></i>
         <span>Estimations indicatives. Ne pas commencer les travaux avant l'accord de l'ANAH. Un audit énergétique réglementaire reste nécessaire.</span>
       </div>
-
       <div class="lead-box" id="lead-form-box">
         <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin:0 0 4px"><i class="ti ti-tool" style="color:#E8700A;margin-right:5px"></i>Obtenez des devis d'installateurs RGE</p>
         <p style="font-size:12px;color:#666;margin:0 0 .875rem">Des professionnels certifiés de votre région vous accompagnent pour améliorer votre classe DPE et monter vos dossiers d'aides.</p>
@@ -697,15 +750,12 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <button class="blead" id="btn-lead" onclick="submitLead()"><i class="ti ti-send"></i>Recevoir des devis gratuits</button>
         <p class="privacy"><i class="ti ti-lock" style="font-size:12px"></i>Vos coordonnées sont transmises à des professionnels RGE de votre région uniquement.</p>
       </div>
-
       <div class="success-box" id="success-box" style="display:none">
         <i class="ti ti-circle-check"></i>
         <div style="font-size:17px;font-weight:500;color:#085041;margin-bottom:6px">Votre demande a bien été envoyée !</div>
         <div style="font-size:13px;color:#0F6E56">Un installateur RGE de votre région vous contactera sous 24–48h.</div>
       </div>
-
       <div class="maj-note">Aides vérifiées — juin 2026 · <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
-
       <div style="display:flex;gap:10px;margin-top:1.25rem">
         <button onclick="modifierReponses()" style="flex:1;background:#f5f5f0;color:#1a1a1a;border:0.5px solid #ccc;border-radius:8px;padding:11px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><i class="ti ti-pencil"></i>Modifier mes réponses</button>
         <button onclick="nouveauDPE()" style="flex:1;background:#fff;color:#1D6F42;border:1.5px solid #1D6F42;border-radius:8px;padding:11px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><i class="ti ti-refresh"></i>Nouveau DPE</button>
@@ -713,7 +763,6 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
     </div>
   </div>
 </div>
-
 <script>
 const WEBHOOK='https://hook.eu1.make.com/2eh9uxtcor85fbvmv1vgoun4ibs9ot24';
 const D={};
@@ -725,11 +774,9 @@ const CHAUF_PRIX={'PAC air/eau':0.18,'PAC air/air':0.18,'PAC géothermique':0.18
 const ANNEE_BASE={'av1948':260,'48-74':220,'75-88':180,'89-2000':140,'2001-12':100,'ap2012':60};
 const ZONE_COEF={'H1':1.15,'H2':1.0,'H3':0.85,'':1.0};
 let resultData={};
-
 function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function showSim(){showPage('sim');goStep('s0');}
 function sel(el,key,val){D[key]=val;el.parentElement.querySelectorAll('.rc').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
-
 function selChauf(el,val){
   sel(el,'chauf',val);
   const isPAC=['PAC air/eau','PAC air/air','PAC géothermique'].includes(val);
@@ -738,7 +785,6 @@ function selChauf(el,val){
   // reset ECS selection si on change de chauffage
   if(!isPAC && D.ecs==='PAC intégrée') delete D.ecs;
 }
-
 function goStep(id){
   document.querySelectorAll('.step-form').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -750,16 +796,13 @@ function goStep(id){
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
 function go(n){goStep('s'+n);}
-
 function startQuick(){goStep('s0q');}
 function startFull(){
   // reset dots
   for(let i=1;i<=5;i++){const d=document.getElementById('d'+i);if(!d)continue;d.classList.remove('active','done');if(i===1)d.classList.add('active');}
   goStep('s1');
 }
-
 function nouveauDPE(){
   // reset all data
   Object.keys(D).forEach(k=>delete D[k]);
@@ -772,13 +815,10 @@ function nouveauDPE(){
   document.getElementById('success-box').style.display='none';
   goStep('s0');
 }
-
 function modifierReponses(){
   goStep('s1');
 }
-
 function getClasse(ep){for(const r of DPE_RANGES)if(ep<=r.max)return r.cl;return 'G';}
-
 function calcQuick(){
   const kwh=parseInt(document.getElementById('kwh_facture').value)||0;
   const surf=parseInt(document.getElementById('surface_q').value)||80;
@@ -799,7 +839,6 @@ function calcQuick(){
   document.getElementById('surface') && (document.getElementById('surface').value=surf);
   afficherResultat(classe,epFinal,co2,coutAn,gain,surf);
 }
-
 function calcResult(){
   const surf=parseInt(document.getElementById('surface').value)||80;
   const annee=document.getElementById('annee').value||'89-2000';
@@ -838,7 +877,6 @@ function calcResult(){
   D.zone=zone;
   afficherResultat(getClasse(epFinal),epFinal,co2,coutAn,gain,surf);
 }
-
 function afficherResultat(classe,epFinal,co2,coutAn,gain,surf){
   document.getElementById('rconso').textContent=epFinal;
   document.getElementById('rco2').textContent=co2;
@@ -897,7 +935,6 @@ function afficherResultat(classe,epFinal,co2,coutAn,gain,surf){
   resultData={classe,epFinal,co2,coutAn,gain,mpr,cee,surf,zone:D.zone||'Non renseignée',chauf,ecs,type:D.type||'',revenu:rev,proprio};
   goStep('s5');
 }
-
 async function submitLead(){
   const prenom=document.getElementById('lp').value.trim();
   const email=document.getElementById('le').value.trim();
@@ -921,6 +958,26 @@ async function submitLead(){
     errTxt.textContent="Erreur de connexion. Vérifiez votre connexion et réessayez.";
     errBox.style.display='flex';
   }
+}
+</script>
+<script>
+// Gestion consentement cookies
+(function(){
+  var banner = document.getElementById('cookie-banner');
+  var consent = localStorage.getItem('pe_cookie_consent');
+  if(consent === 'accepted' || consent === 'refused'){
+    banner.style.display = 'none';
+    if(consent === 'refused') window['ga-disable-G-BLPJQZVBR8'] = true;
+  }
+})();
+function acceptCookies(){
+  localStorage.setItem('pe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function refuseCookies(){
+  localStorage.setItem('pe_cookie_consent','refused');
+  document.getElementById('cookie-banner').style.display='none';
+  window['ga-disable-G-BLPJQZVBR8'] = true;
 }
 </script>
 </body>
@@ -959,7 +1016,6 @@ async function submitLead(){
     .contact-val-ap a{color:#5DCAA5;text-decoration:none}
   `;
   document.head.appendChild(style);
-
   var apDiv = document.createElement('div');
   apDiv.id = 'page-apropos';
   apDiv.className = 'page';
@@ -972,9 +1028,7 @@ async function submitLead(){
         <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:480px">Particule Énergie accompagne les propriétaires de la région grenobloise dans leurs projets de rénovation énergétique — de l'estimation DPE jusqu'à la mise en relation avec des installateurs certifiés RGE.</p>
       </div>
     </div>
-
     <div style="height:0.5px;background:#e0ddd6"></div>
-
     <div class="ap-section">
       <div class="ap-tag">Qui sommes-nous</div>
       <h2 class="ap-title">Une expertise au service<br>des <span>propriétaires</span></h2>
@@ -998,9 +1052,7 @@ async function submitLead(){
         </div>
       </div>
     </div>
-
     <div style="height:0.5px;background:#e0ddd6"></div>
-
     <div class="ap-section">
       <div class="ap-tag">Notre philosophie</div>
       <div class="ap-quote">
@@ -1009,9 +1061,7 @@ async function submitLead(){
       </div>
       <p style="font-size:14px;color:#666;line-height:1.75;margin-top:1.5rem;max-width:560px">Nous croyons que chaque propriétaire mérite d'avoir accès aux mêmes informations que les professionnels : comprendre son étiquette DPE, savoir quels travaux sont prioritaires, et connaître les aides auxquelles il a réellement droit — sans démarchage inutile.</p>
     </div>
-
     <div style="height:0.5px;background:#e0ddd6"></div>
-
     <div class="ap-section">
       <div class="ap-tag">Zone d'intervention</div>
       <h2 class="ap-title">Grenoble et sa <span>région</span></h2>
@@ -1023,7 +1073,6 @@ async function submitLead(){
         <div class="zone-item"><div class="zone-dot"></div><div><div style="font-size:13px;color:#1a1a1a">Drôme & Ardèche</div><div style="font-size:11px;color:#888;margin-top:2px">26 — 07</div></div></div>
       </div>
     </div>
-
     <div class="contact-band-ap">
       <div class="contact-inner-ap">
         <div style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5DCAA5;margin-bottom:.75rem;opacity:.7">Nous contacter</div>
@@ -1048,17 +1097,15 @@ async function submitLead(){
         </div>
       </div>
     </div>
-
     <footer style="background:#0A0A0A;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06)">
       <div style="display:flex;align-items:center;gap:8px">
         <svg width="20" height="20" viewBox="0 0 82 82" fill="none" aria-hidden="true"><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.2" fill="none" opacity="0.7"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.55" transform="rotate(60 41 41)"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.5" transform="rotate(120 41 41)"/><circle cx="41" cy="41" r="3.5" fill="#5DCAA5" opacity="0.75"/><circle cx="41" cy="14" r="3" fill="#EF9F27" opacity="0.85"/></svg>
         <span style="font-size:12px;color:rgba(255,255,255,0.2)">© 2026 Particule Énergie — Grenoble</span>
       </div>
-      <div style="display:flex;gap:1.5rem;font-size:12px;color:rgba(255,255,255,0.2)"><span>Mentions légales</span><span>RGPD</span></div>
+      <div style="display:flex;gap:1.5rem;font-size:12px;"><a href="/mentions-legales.html" style="color:rgba(255,255,255,0.2);text-decoration:none">Mentions légales</a><a href="/politique-confidentialite.html" style="color:rgba(255,255,255,0.2);text-decoration:none">Confidentialité</a></div>
     </footer>
   `;
   document.body.appendChild(apDiv);
-
   var origShowPage = window.showPage;
   window.showPage = function(p) {
     document.querySelectorAll('.page').forEach(function(x){ x.classList.remove('active'); });
@@ -1066,14 +1113,12 @@ async function submitLead(){
     if(target){ target.classList.add('active'); }
     window.scrollTo({top:0,behavior:'smooth'});
   };
-
   document.querySelectorAll('a[href="#aides"]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); showPage('home'); setTimeout(function(){ var el=document.getElementById('aides'); if(el) el.scrollIntoView({behavior:'smooth'}); },300); }); }); document.querySelectorAll('a[href="#simulateur"]').forEach(function(a){ a.addEventListener('click', function(e){ e.preventDefault(); showSim(); }); }); document.querySelectorAll('a[href="#contact"]').forEach(function(a){
     a.addEventListener('click', function(e){
       e.preventDefault();
       window.showPage('apropos');
     });
   });
-
   var navLinks = document.querySelectorAll('.nav-links a');
   navLinks.forEach(function(a){
     if(a.textContent.trim() === 'À propos'){
