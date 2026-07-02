@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Particule Énergie — Étude énergétique pour propriétaires Grenoble Isère</title>
+<meta name="description" content="Avant de rénover, auditez. Particule Énergie réalise votre étude énergétique à Grenoble et en Isère : rapport complet, dossier MaPrimeRénov', CEE, éco-PTZ. Réponse sous 24h.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-links a.active{color:#5DCAA5}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.nav-cta:hover{background:#D4880A}
+
+/* HERO */
+.hero{background:#0D1F15;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.05}
+.hero-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5DCAA5;margin-bottom:1.5rem;opacity:.7}
+.hero-title{font-size:36px;font-weight:400;line-height:1.22;color:#fff;margin-bottom:1rem;font-family:Georgia,serif;font-style:italic;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#5DCAA5;font-style:normal}
+.hero-title em{color:#EF9F27}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.75;max-width:440px;margin:0 auto 2.5rem}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.btn-primary{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:13px 28px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block;transition:background .2s}
+.btn-primary:hover{background:#D4880A}
+.btn-ghost{font-size:13px;color:#5DCAA5;text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none}
+.hero-note{margin-top:1.5rem;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:.04em}
+
+/* PROBLÈME / ACCROCHE */
+.pb-band{background:#F2EFE6;padding:3.5rem 2rem;border-bottom:0.5px solid #e0ddd6}
+.pb-inner{max-width:700px;margin:0 auto}
+.pb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#ddd9ce;margin-top:2rem;border-radius:8px;overflow:hidden}
+.pb-item{background:#F2EFE6;padding:1.5rem}
+.pb-icon{font-size:20px;margin-bottom:.6rem}
+.pb-title{font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:.3rem}
+.pb-desc{font-size:12px;color:#888;line-height:1.55}
+
+/* SECTION */
+.section{padding:4rem 2rem;max-width:700px;margin:0 auto}
+.section-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:1rem}
+.section-title{font-size:26px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:1rem;line-height:1.2;font-family:Georgia,serif}
+.section-title span{color:#1D6F42;font-style:normal}
+.section-body{font-size:14px;color:#666;line-height:1.75;max-width:520px}
+
+/* OFFRES */
+.offres-band{background:#fff;padding:4rem 2rem;border-top:0.5px solid #e0ddd6;border-bottom:0.5px solid #e0ddd6}
+.offres-inner{max-width:700px;margin:0 auto}
+.offres-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2.5rem}
+.offre-card{background:#FAFAF7;border:0.5px solid #e0ddd6;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.offre-card.featured{border:1.5px solid #1D6F42;position:relative}
+.offre-badge{position:absolute;top:-1px;right:1.5rem;background:#1D6F42;color:#fff;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:0 0 6px 6px}
+.offre-head{padding:1.5rem 1.5rem 1rem;border-bottom:0.5px solid #e8e5de}
+.offre-num{font-size:10px;color:#bbb;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.offre-name{font-size:20px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;margin-bottom:.5rem}
+.offre-price{font-size:22px;font-weight:500;color:#1D6F42;font-family:Georgia,serif}
+.offre-price-note{font-size:11px;color:#999;margin-top:2px}
+.offre-body{padding:1.25rem 1.5rem;flex:1}
+.offre-item{display:flex;align-items:flex-start;gap:.6rem;font-size:13px;color:#555;line-height:1.5;margin-bottom:.6rem}
+.offre-dot{width:5px;height:5px;border-radius:50%;background:#5DCAA5;flex-shrink:0;margin-top:6px}
+.offre-foot{padding:1rem 1.5rem;border-top:0.5px solid #e8e5de}
+.offre-cta{display:block;text-align:center;background:#0D1F15;color:#fff;border-radius:6px;padding:9px;font-size:13px;text-decoration:none;transition:background .2s}
+.offre-cta:hover{background:#1D6F42}
+.offre-card.featured .offre-cta{background:#1D6F42}
+.offre-card.featured .offre-cta:hover{background:#0F5E3A}
+
+/* AIDES */
+.aides-band{background:#F2EFE6;padding:4rem 2rem;border-top:0.5px solid #e0ddd6;border-bottom:0.5px solid #e0ddd6}
+.aides-inner{max-width:700px;margin:0 auto}
+.aides-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#ddd9ce;margin-top:2rem;border-radius:8px;overflow:hidden}
+.aide-item{background:#F2EFE6;padding:1.5rem}
+.aide-name{font-size:13px;font-style:italic;color:#1a1a1a;margin-bottom:.25rem;font-family:Georgia,serif}
+.aide-amount{font-size:22px;font-weight:400;color:#1D6F42;font-family:Georgia,serif}
+.aide-desc{font-size:12px;color:#999;margin-top:.25rem;line-height:1.5}
+.aide-alerte{font-size:11px;color:#854F0B;background:#FAEEDA;border-radius:4px;padding:3px 7px;margin-top:.5rem;display:inline-block}
+
+/* PROCESSUS */
+.steps{margin-top:2.5rem;display:flex;flex-direction:column}
+.step-item{display:flex;gap:2rem;padding:1.5rem 0;border-top:0.5px solid #e0ddd6}
+.step-num{font-size:11px;color:#ccc;letter-spacing:.08em;padding-top:3px;flex-shrink:0;width:24px}
+.step-title{font-size:15px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:.375rem;font-family:Georgia,serif}
+.step-desc{font-size:13px;color:#999;line-height:1.6}
+
+/* POURQUOI */
+.avantages-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+.avantage-item{background:#fff;border:0.5px solid #e0ddd6;border-radius:10px;padding:1.5rem}
+.avantage-icon{font-size:22px;margin-bottom:.75rem}
+.avantage-title{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:.375rem}
+.avantage-desc{font-size:13px;color:#888;line-height:1.6}
+
+/* CTA BAND */
+.cta-band{background:#0D1F15;padding:3.5rem 2rem;position:relative;overflow:hidden}
+.cta-inner{max-width:700px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;position:relative;z-index:1;flex-wrap:wrap}
+.cta-bg{position:absolute;right:-40px;top:50%;transform:translateY(-50%);opacity:.05;pointer-events:none}
+.cta-title{font-size:24px;font-weight:400;font-style:italic;color:#fff;line-height:1.3;font-family:Georgia,serif}
+.cta-title span{color:#5DCAA5;font-style:normal}
+.cta-sub{font-size:13px;color:rgba(255,255,255,0.35);margin-top:.5rem}
+
+/* FOOTER */
+.footer{background:#0A0A0A;padding:2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06);flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.footer-links{display:flex;gap:1.5rem;font-size:12px;color:rgba(255,255,255,0.25)}
+.footer-links a{color:inherit;text-decoration:none}
+.footer-links a:hover{color:rgba(255,255,255,0.5)}
+
+/* SIMULATEUR LINK */
+.sim-link-band{background:#E1F5EE;padding:1.5rem 2rem;border-bottom:0.5px solid #c5e8d8}
+.sim-link-inner{max-width:700px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.sim-link-txt{font-size:13px;color:#085041}
+.sim-link-txt strong{font-weight:500}
+.sim-link-cta{font-size:13px;color:#1D6F42;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+
+@media(max-width:768px){
+  .offres-grid{grid-template-columns:1fr}
+  .pb-grid{grid-template-columns:1fr}
+  .aides-grid{grid-template-columns:1fr}
+  .avantages-grid{grid-template-columns:1fr}
+  .cta-inner{flex-direction:column;text-align:center}
+  .hero-title{font-size:28px}
+  .nav-links{display:none}
+  .sim-link-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27.4" ry="10.9" stroke="#5DCAA5" stroke-width="0.35" fill="none" opacity="0.22"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="39.8" cy="39.8" r="1.2" fill="#0D1F15" opacity="0.5"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+      <line x1="41" y1="17.2" x2="41" y2="37.2" stroke="#5DCAA5" stroke-width="0.4" opacity="0.2" stroke-dasharray="1 3"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/">Simulateur DPE</a>
+    <a href="/installateurs-rge.html">Installateurs RGE</a>
+    <a href="/proprietaires.html" class="active">Propriétaires</a>
+    <a href="/blog">Blog</a>
+  </div>
+  <a href="mailto:contact@particule-energie.fr" class="nav-cta">Demander un devis</a>
+</nav>
+
+<!-- LIEN SIMULATEUR -->
+<div class="sim-link-band">
+  <div class="sim-link-inner">
+    <p class="sim-link-txt"><strong>Vous ne connaissez pas encore votre classe DPE ?</strong> Estimez-la gratuitement en 2 minutes avant de nous contacter.</p>
+    <a href="/" class="sim-link-cta">Lancer le simulateur →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-bg" width="600" height="600" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none"/>
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(60 41 41)"/>
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(120 41 41)"/>
+    <circle cx="41" cy="41" r="3.8" fill="#5DCAA5"/>
+    <circle cx="41" cy="14" r="3.2" fill="#EF9F27"/>
+  </svg>
+  <div class="hero-eyebrow">Propriétaires · Grenoble · Isère · Savoie · Drôme</div>
+  <h1 class="hero-title">Avant de rénover,<br><span>comprendre.</span><br>Avant de dépenser, <em>auditer.</em></h1>
+  <p class="hero-sub">Une étude thermique sérieuse, c'est la différence entre un chantier qui tient ses promesses et 20 000 € investis sans résultat visible sur vos factures.</p>
+  <div class="hero-actions">
+    <a href="mailto:contact@particule-energie.fr?subject=Demande%20d%27etude%20energetique" class="btn-primary">Demander un devis</a>
+    <a href="#offres" class="btn-ghost">Voir les offres</a>
+  </div>
+  <p class="hero-note">Réponse sous 24h · Sans engagement</p>
+</section>
+
+<!-- POURQUOI AUDITER D'ABORD -->
+<div class="pb-band">
+  <div class="pb-inner">
+    <div class="section-tag">Pourquoi commencer par une étude</div>
+    <h2 style="font-size:22px;font-weight:400;font-style:italic;color:#1a1a1a;margin-bottom:.5rem;font-family:Georgia,serif">Ce que révèle une étude <span style="color:#1D6F42;font-style:normal">que les devis ne montrent pas.</span></h2>
+    <p style="font-size:13px;color:#888;max-width:500px;margin-bottom:0">Avant d'engager un artisan, vous méritez de savoir où part vraiment l'énergie chez vous.</p>
+    <div class="pb-grid">
+      <div class="pb-item">
+        <div class="pb-icon">🔍</div>
+        <div class="pb-title">Les vraies déperditions</div>
+        <div class="pb-desc">Toiture, murs, plancher, fenêtres — l'étude thermique identifie les postes qui coûtent réellement, pas ceux qui se vendent le mieux.</div>
+      </div>
+      <div class="pb-item">
+        <div class="pb-icon">📐</div>
+        <div class="pb-title">Un dimensionnement juste</div>
+        <div class="pb-desc">Une PAC surdimensionnée consomme plus et dure moins longtemps. Le calcul de déperditions évite les erreurs de puissance.</div>
+      </div>
+      <div class="pb-item">
+        <div class="pb-icon">💶</div>
+        <div class="pb-title">Les aides réellement accessibles</div>
+        <div class="pb-desc">MaPrimeRénov', CEE, éco-PTZ — chaque dispositif a ses conditions. L'étude détermine ce à quoi vous avez droit avant de signer quoi que ce soit.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OFFRES -->
+<div class="offres-band" id="offres">
+  <div class="offres-inner">
+    <div class="section-tag">Nos offres</div>
+    <h2 class="section-title">Deux formules, <span>un seul objectif.</span></h2>
+    <p style="font-size:13px;color:#888;max-width:480px">Facturation directe au propriétaire. Sans installateur partenaire, les préconisations restent techniques — sans chiffrage matériel ni désignation de marque.</p>
+
+    <div class="offres-grid">
+
+      <!-- AUDIT CONSEIL -->
+      <div class="offre-card">
+        <div class="offre-head">
+          <div class="offre-num">Offre 01</div>
+          <div class="offre-name">Audit Conseil</div>
+          <div class="offre-price">500 – 650 € HT</div>
+          <div class="offre-price-note">par logement · déplacement inclus zone Grenoble</div>
+        </div>
+        <div class="offre-body">
+          <div class="offre-item"><div class="offre-dot"></div>Étude thermique complète du logement — méthode 3CL</div>
+          <div class="offre-item"><div class="offre-dot"></div>Calcul des déperditions par zone et par poste</div>
+          <div class="offre-item"><div class="offre-dot"></div>Rapport détaillé remis en 5 jours ouvrés</div>
+          <div class="offre-item"><div class="offre-dot"></div>Scénarios de travaux priorisés avec estimation des économies réalisables</div>
+          <div class="offre-item"><div class="offre-dot"></div>Projection des aides mobilisables selon votre profil</div>
+        </div>
+        <div class="offre-foot">
+          <a href="mailto:contact@particule-energie.fr?subject=Demande%20Audit%20Conseil" class="offre-cta">Demander un devis</a>
+        </div>
+      </div>
+
+      <!-- ACCOMPAGNEMENT -->
+      <div class="offre-card featured">
+        <div class="offre-badge">Clé en main</div>
+        <div class="offre-head">
+          <div class="offre-num">Offre 02</div>
+          <div class="offre-name">Accompagnement</div>
+          <div class="offre-price">750 – 950 € HT</div>
+          <div class="offre-price-note">par logement · déplacement inclus zone Grenoble</div>
+        </div>
+        <div class="offre-body">
+          <div class="offre-item"><div class="offre-dot"></div>Tout l'Audit Conseil inclus</div>
+          <div class="offre-item"><div class="offre-dot"></div>Montage complet dossier MaPrimeRénov'</div>
+          <div class="offre-item"><div class="offre-dot"></div>Dossier CEE Coup de Pouce</div>
+          <div class="offre-item"><div class="offre-dot"></div>Accompagnement éco-PTZ rénovation globale</div>
+          <div class="offre-item"><div class="offre-dot"></div>Coordination avec l'ANAH et les organismes financeurs</div>
+          <div class="offre-item"><div class="offre-dot"></div>Suivi jusqu'à validation des dossiers</div>
+        </div>
+        <div class="offre-foot">
+          <a href="mailto:contact@particule-energie.fr?subject=Demande%20Accompagnement" class="offre-cta">Demander un devis</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="background:#FAEEDA;border-radius:8px;padding:.875rem 1rem;font-size:12px;color:#633806;display:flex;gap:8px;align-items:flex-start;margin-top:1.5rem">
+      <i class="ti ti-info-circle" style="font-size:16px;flex-shrink:0;margin-top:1px"></i>
+      <span>Ces prestations constituent des <strong>études énergétiques conseil</strong>, distinctes de l'audit réglementaire au sens de la loi Climat et Résilience. Pour un audit réglementaire (vente de passoire thermique, MPR parcours accompagné), la signature d'un professionnel RGE Études est requise — nous consulter.</span>
+    </div>
+  </div>
+</div>
+
+<!-- AIDES -->
+<div class="aides-band">
+  <div class="aides-inner">
+    <div class="section-tag">Aides financières</div>
+    <h2 class="section-title">Ce que votre rénovation <span>peut décrocher.</span></h2>
+    <p style="font-size:14px;color:#666;line-height:1.75;max-width:520px">Un dossier bien constitué fait toute la différence. Depuis juillet 2025, l'audit est obligatoire pour obtenir l'éco-PTZ rénovation globale jusqu'à 50 000 €.</p>
+    <div class="aides-grid">
+      <div class="aide-item">
+        <div class="aide-name">MaPrimeRénov'</div>
+        <div class="aide-amount">jusqu'à 80 %</div>
+        <div class="aide-desc">des travaux pris en charge selon vos revenus (barème ANAH 2026). Accessible pour PAC, isolation, fenêtres.</div>
+        <span class="aide-alerte">Barème ANAH 2026 en vigueur</span>
+      </div>
+      <div class="aide-item">
+        <div class="aide-name">CEE Coup de Pouce</div>
+        <div class="aide-amount">variable</div>
+        <div class="aide-desc">Prime énergie cumulable avec MaPrimeRénov'. Montants bonifiés pour les ménages modestes. Nouveau décret préférence européenne en vigueur.</div>
+        <span class="aide-alerte">Décret mai 2026 — liste PAC agréées</span>
+      </div>
+      <div class="aide-item">
+        <div class="aide-name">Éco-PTZ</div>
+        <div class="aide-amount">jusqu'à 50 000 €</div>
+        <div class="aide-desc">Prêt à taux zéro pour la rénovation globale. Audit énergétique obligatoire depuis juillet 2025 pour les montants les plus élevés.</div>
+      </div>
+      <div class="aide-item">
+        <div class="aide-name">TVA réduite</div>
+        <div class="aide-amount">5,5 %</div>
+        <div class="aide-desc">Sur les travaux de rénovation énergétique en résidence principale. S'applique sur la main-d'œuvre et les matériaux.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESSUS -->
+<div class="section">
+  <div class="section-tag">Comment ça se passe</div>
+  <h2 class="section-title">Simple, <span>transparent,</span> sans mauvaise surprise.</h2>
+  <p class="section-body">Quatre étapes de votre premier contact à la remise du dossier complet.</p>
+
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-title">Premier contact</div>
+        <div class="step-desc">Vous nous décrivez votre logement et votre projet par email. Nous revenons vers vous sous 24h avec une proposition adaptée et un devis clair, sans engagement.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-title">Visite technique du logement</div>
+        <div class="step-desc">Analyse complète de l'enveloppe thermique, relevé des équipements existants, mesures sur site. Durée : 2 à 4h selon la surface et la complexité du logement.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-title">Rapport d'étude</div>
+        <div class="step-desc">Remis en 5 jours ouvrés. Vous recevez les résultats complets : déperditions par poste, scénarios de travaux priorisés, estimation des économies et des aides mobilisables. Tout est expliqué, rien n'est assumé.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">04</div>
+      <div>
+        <div class="step-title">Montage des dossiers d'aides</div>
+        <div class="step-desc">Constitution et dépôt des dossiers MaPrimeRénov', CEE et éco-PTZ, coordination avec l'ANAH. Vous signez, nous gérons. (Offre Accompagnement)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POURQUOI PARTICULE ÉNERGIE -->
+<div style="background:#F2EFE6;padding:4rem 2rem;border-top:0.5px solid #e0ddd6;border-bottom:0.5px solid #e0ddd6">
+  <div style="max-width:700px;margin:0 auto">
+    <div class="section-tag">Pourquoi Particule Énergie</div>
+    <h2 class="section-title">L'expérience du terrain,<br><span>au service de votre logement.</span></h2>
+    <div class="avantages-grid">
+      <div class="avantage-item">
+        <div class="avantage-icon">🏭</div>
+        <div class="avantage-title">22 ans dans le secteur</div>
+        <div class="avantage-desc">Chauffage, CVC, équipements thermiques — une expérience terrain qui change la lecture d'un logement. Le rapport que vous recevez est dimensionné pour être mis en œuvre, pas juste pour être lu.</div>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">📍</div>
+        <div class="avantage-title">Ancrage local Rhône-Alpes</div>
+        <div class="avantage-desc">Basé à Grenoble, interventions sur Isère, Savoie, Haute-Savoie, Drôme. Connaissance du marché local, des artisans, des spécificités climatiques zone H1.</div>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">⚡</div>
+        <div class="avantage-title">Rapport en 5 jours garantis</div>
+        <div class="avantage-desc">Délai tenu à compter de la visite technique. Pas de liste d'attente, pas de délai flou. Vous avez votre rapport avant de relancer votre artisan.</div>
+      </div>
+      <div class="avantage-item">
+        <div class="avantage-icon">🔒</div>
+        <div class="avantage-title">Indépendant de toute marque</div>
+        <div class="avantage-desc">Cabinet indépendant sans affiliation fabricant. Les préconisations sont fondées sur les caractéristiques de votre logement, pas sur un catalogue commercial.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <svg class="cta-bg" width="400" height="400" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none"/>
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(60 41 41)"/>
+    <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="0.5" fill="none" transform="rotate(120 41 41)"/>
+  </svg>
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">Votre projet mérite une <span>base solide.</span></h2>
+      <p class="cta-sub">Décrivez-nous votre logement — réponse sous 24h, devis sans engagement.</p>
+    </div>
+    <a href="mailto:contact@particule-energie.fr?subject=Demande%20d%27etude%20energetique" class="btn-primary" style="white-space:nowrap">
+      contact@particule-energie.fr
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div style="display:flex;align-items:center;gap:8px">
+    <svg width="20" height="20" viewBox="0 0 82 82" fill="none" aria-hidden="true"><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.2" fill="none" opacity="0.7"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.55" transform="rotate(60 41 41)"/><ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.5" transform="rotate(120 41 41)"/><circle cx="41" cy="41" r="3.5" fill="#5DCAA5" opacity="0.75"/><circle cx="41" cy="14" r="3" fill="#EF9F27" opacity="0.85"/></svg>
+    <span class="footer-copy">© 2026 Particule Énergie — Grenoble</span>
+  </div>
+  <div class="footer-links">
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/politique-confidentialite.html">RGPD</a>
+  </div>
+</footer>
+
+</body>
+</html>
