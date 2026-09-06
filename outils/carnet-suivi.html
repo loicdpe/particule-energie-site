@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Carnet d'Information du Logement — Signaler une mise à jour | Particule Énergie</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Signalez une mise à jour de votre Carnet d'Information du Logement : document fourni, intervention réalisée, changement d'équipement ou question.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a;min-height:100vh;display:flex;flex-direction:column}
+input,select,textarea{border:0.5px solid #ccc;border-radius:8px;padding:10px 12px;font-size:14px;width:100%;outline:none;background:#fff;color:#1a1a1a;font-family:inherit}
+input:focus,select:focus,textarea:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,165,0.15)}
+textarea{resize:vertical;min-height:90px}
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+@media(max-width:640px){.nav{padding:.75rem 1rem}.nav-links{display:none}}
+/* HERO */
+.hero{background:#0D1F15;padding:3rem 2rem 2.5rem;text-align:center}
+.hero-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#5DCAA5;margin-bottom:1rem;opacity:.7}
+.hero-title{font-size:30px;font-weight:400;line-height:1.2;color:#fff;margin-bottom:.75rem;font-family:Georgia,serif;font-style:italic;max-width:520px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#5DCAA5;font-style:normal}
+.hero-sub{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:440px;margin:0 auto}
+/* FORM */
+.wrap{max-width:560px;margin:0 auto;padding:2.5rem 1.25rem;flex:1;width:100%}
+.card{background:#fff;border:0.5px solid #e0ddd6;border-radius:12px;padding:1.75rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:12.5px;color:#666;margin-bottom:.4rem;font-weight:500}
+.field-hint{font-size:11.5px;color:#999;margin-top:.35rem;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.btn-primary{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:13px 24px;font-size:14px;cursor:pointer;width:100%;font-weight:500}
+.btn-primary:hover{background:#D4880A}
+.btn-primary:disabled{opacity:.6;cursor:default}
+.note-box{background:#F2EFE6;border-radius:8px;padding:1rem 1.1rem;font-size:12.5px;color:#666;line-height:1.6;margin-bottom:1.5rem}
+.note-box b{color:#1a1a1a}
+.success-box{text-align:center;padding:2rem 1rem}
+.success-box h2{font-family:Georgia,serif;font-style:italic;font-weight:400;font-size:22px;margin-bottom:.75rem;color:#1D6F42}
+.success-box p{font-size:14px;color:#666;line-height:1.7}
+.error-msg{font-size:12.5px;color:#B23A2E;margin-top:.75rem;display:none}
+/* FOOTER */
+.footer{background:#0A0A0A;padding:2rem;display:flex;justify-content:space-between;align-items:center;border-top:0.5px solid rgba(255,255,255,0.06);flex-wrap:wrap;gap:1rem}
+.footer-left{display:flex;align-items:center;gap:10px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
+.footer-links{display:flex;gap:1.5rem;font-size:12px;color:rgba(255,255,255,0.25)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo" style="text-decoration:none">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27.4" ry="10.9" stroke="#5DCAA5" stroke-width="0.35" fill="none" opacity="0.22"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="39.8" cy="39.8" r="1.2" fill="#0D1F15" opacity="0.5"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+      <line x1="41" y1="17.2" x2="41" y2="37.2" stroke="#5DCAA5" stroke-width="0.4" opacity="0.2" stroke-dasharray="1 3"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">Carnet d'Information du Logement</div>
+  <h1 class="hero-title">Signaler une <span>mise à jour</span></h1>
+  <p class="hero-sub">Un document fourni, une intervention réalisée, un équipement changé, ou simplement une question — tenez votre carnet à jour au fil du temps.</p>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <div id="form-view">
+      <div class="note-box">
+        Votre référence dossier et votre nom sont pré-remplis si vous arrivez depuis le lien reçu par email. <b>Particule Énergie</b> reporte ensuite ce signalement dans le journal de suivi de votre carnet.
+      </div>
+
+      <form id="carnet-form" name="carnet-suivi" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="carnet-suivi">
+        <p style="display:none">
+          <label>Ne pas remplir : <input name="bot-field"></label>
+        </p>
+
+        <div class="row2">
+          <div class="field">
+            <label for="ref">Référence dossier</label>
+            <input type="text" id="ref" name="reference" placeholder="PE-XXXXXXXX" required>
+          </div>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email (facultatif, pour réponse)</label>
+          <input type="email" id="email" name="email" placeholder="vous@exemple.fr">
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="nature">Nature de la mise à jour</label>
+            <select id="nature" name="nature" required>
+              <option value="">Choisir…</option>
+              <option>Document fourni</option>
+              <option>Intervention réalisée</option>
+              <option>Changement d'équipement</option>
+              <option>Question</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date-evenement">Date</label>
+            <input type="date" id="date-evenement" name="date_evenement">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="observations">Observations</label>
+          <textarea id="observations" name="observations" placeholder="Décrivez le document fourni, l'intervention, le nouvel équipement, ou votre question" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="echeance">Prochaine échéance (facultatif)</label>
+          <input type="text" id="echeance" name="prochaine_echeance" placeholder="Ex. : entretien chaudière prévu en mars 2027">
+        </div>
+
+        <button class="btn-primary" type="submit" id="submit-btn">Envoyer le signalement</button>
+        <div class="error-msg" id="error-msg">Une erreur est survenue. Vous pouvez réessayer, ou contacter directement Particule Énergie.</div>
+      </form>
+    </div>
+
+    <div id="success-view" class="success-box" style="display:none">
+      <h2>Signalement envoyé</h2>
+      <p>Merci — votre mise à jour a bien été transmise. Particule Énergie la reportera dans le journal de suivi de votre carnet.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-left">
+    <svg width="24" height="24" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.2" fill="none" opacity="0.7"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.55" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1" fill="none" opacity="0.5" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.5" fill="#5DCAA5" opacity="0.75"/>
+      <circle cx="41" cy="14" r="3" fill="#EF9F27" opacity="0.85"/>
+    </svg>
+    <span class="footer-copy">© 2026 Particule Énergie — Grenoble · Isère</span>
+  </div>
+  <div class="footer-links">
+    <a href="/mentions-legales.html" style="color:rgba(255,255,255,0.25);text-decoration:none">Mentions légales</a>
+    <a href="/politique-confidentialite.html" style="color:rgba(255,255,255,0.25);text-decoration:none">Confidentialité</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var ref = params.get('ref');
+  var nom = params.get('nom');
+  if(ref) document.getElementById('ref').value = ref;
+  if(nom) document.getElementById('nom').value = decodeURIComponent(nom.replace(/\+/g,' '));
+
+  var form = document.getElementById('carnet-form');
+  var btn = document.getElementById('submit-btn');
+  var errorMsg = document.getElementById('error-msg');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    errorMsg.style.display = 'none';
+
+    var data = new FormData(form);
+    fetch('/outils/carnet-suivi.html', {
+      method: 'POST',
+      body: data
+    }).then(function(res){
+      if(res.ok){
+        document.getElementById('form-view').style.display = 'none';
+        document.getElementById('success-view').style.display = 'block';
+      } else {
+        throw new Error('submit failed');
+      }
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Envoyer le signalement';
+      errorMsg.style.display = 'block';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
