@@ -5,14 +5,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Particule Énergie — Simulateur DPE gratuit Grenoble</title>
-<meta name="description" content="Estimez votre DPE gratuitement et découvrez vos aides MaPrimeRénov', CEE et Éco-PTZ en 2026. Cabinet indépendant d'audit énergétique à Grenoble, Isère, Savoie et Drôme.">
+<title>Particule Énergie — Étude énergétique & Audit conseil à Grenoble</title>
+<meta name="description" content="Cabinet indépendant d'étude énergétique à Grenoble. Audit conseil dès 500€ HT, accompagnement complet des dossiers MaPrimeRénov', CEE et Éco-PTZ. Simulateur DPE gratuit pour démarrer.">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://particule-energie.fr/">
 <meta property="og:site_name" content="Particule Énergie">
-<meta property="og:title" content="Particule Énergie — Simulateur DPE & Rénovation Grenoble">
-<meta property="og:description" content="Estimez votre DPE gratuitement et découvrez vos aides 2026. Audit énergétique indépendant à Grenoble et en Rhône-Alpes.">
+<meta property="og:title" content="Particule Énergie — Étude énergétique & Audit conseil à Grenoble">
+<meta property="og:description" content="Cabinet indépendant d'étude énergétique à Grenoble. Audit conseil dès 500€ HT, accompagnement complet des dossiers d'aides. Simulateur DPE gratuit pour démarrer.">
 <meta property="og:image" content="https://particule-energie.fr/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -214,6 +214,46 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
   "knowsLanguage": "fr"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce qu'une étude énergétique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une étude énergétique est une analyse complète du logement (isolation, chauffage, eau chaude, ventilation) qui identifie les travaux prioritaires, estime les économies attendues et détermine les aides financières mobilisables — contrairement au DPE qui donne seulement une note de A à G."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien coûte une étude énergétique à Grenoble avec Particule Énergie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'Audit Conseil démarre à 500€ HT et inclut un rapport détaillé remis en 5 jours ouvrés. La formule Accompagnement, à partir de 750€ HT, ajoute le montage complet des dossiers d'aides MaPrimeRénov', CEE et Éco-PTZ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le simulateur DPE de Particule Énergie est-il gratuit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, le simulateur DPE en ligne est gratuit, sans inscription ni engagement, et donne un résultat indicatif en 2 minutes. Pour un DPE ou un audit réglementaire officiel, une visite sur place par un professionnel reste nécessaire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle est la différence entre un DPE et un audit énergétique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le DPE indique la classe énergétique actuelle du logement (de A à G). L'audit énergétique va plus loin : il précise quels travaux réaliser, dans quel ordre, pour quelles économies, et quelles aides financières sont mobilisables pour les financer."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- Bandeau consentement cookies -->
@@ -278,14 +318,14 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <circle cx="40" cy="13" r="1.2" fill="#FAC775" opacity="0.55"/>
       <line x1="41" y1="17.2" x2="41" y2="37.2" stroke="#5DCAA5" stroke-width="0.4" opacity="0.2" stroke-dasharray="1 3"/>
     </svg>
-    <h1 class="hero-title">Votre logement mérite<br>une <span>énergie</span> qui lui ressemble.</h1>
+    <h1 class="hero-title">Votre étude énergétique,<br>réalisée par un <span>expert indépendant</span> à Grenoble.</h1>
     <div class="hero-slogan">Votre énergie, notre expertise</div>
-    <p class="hero-sub">Estimez gratuitement votre classe DPE et les aides disponibles pour votre rénovation. En 2 minutes, sans engagement.</p>
+    <p class="hero-sub">Audit conseil dès 500€ HT — rapport détaillé en 5 jours, dossiers d'aides pris en charge. Pas d'affiliation fabricant, pas de vente de travaux.</p>
     <div class="hero-actions">
-      <a href="#simulateur" class="btn-primary" onclick="showSim()">Lancer le simulateur</a>
-      <button class="btn-ghost" onclick="document.getElementById('comment').scrollIntoView({behavior:'smooth'})">En savoir plus</button>
+      <a href="/proprietaires.html" class="btn-primary">Réserver mon étude énergétique</a>
+      <button class="btn-ghost" onclick="document.getElementById('simulateur').scrollIntoView({behavior:'smooth'})">Ou estimer mon DPE gratuitement</button>
     </div>
-    <div class="hero-note">Sans inscription · Sans engagement · 100% gratuit</div>
+    <div class="hero-note">Indépendant · Sans affiliation fabricant · Zone H1 — Isère, Savoie, Drôme</div>
   </section>
   <!-- CHIFFRES -->
   <div class="numbers">
@@ -300,6 +340,39 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
     <div class="number-item">
       <div class="number-val">2<span class="number-unit" style="font-size:18px"> min</span></div>
       <div class="number-label">pour connaître votre classe DPE<br>gratuitement, sans engagement</div>
+    </div>
+  </div>
+  <!-- NOS PRESTATIONS -->
+  <div id="prestations" style="background:#F2EFE6;padding:4rem 2rem;border-top:0.5px solid #e0ddd6;border-bottom:0.5px solid #e0ddd6">
+    <div style="max-width:700px;margin:0 auto">
+      <div class="section-tag">Nos prestations</div>
+      <h2 class="section-title">Une étude <span>sur mesure</span>,<br>pas un rapport générique</h2>
+      <p class="section-body" style="margin-bottom:2rem">Un expert indépendant de 22 ans d'expérience secteur, aucune affiliation fabricant. Nos conseils sont dans votre seul intérêt.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#ddd9ce;border-radius:10px;overflow:hidden">
+        <div style="background:#fff;padding:1.75rem">
+          <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#1D6F42;margin-bottom:.5rem">Offre 01</div>
+          <div style="font-size:18px;font-style:italic;font-family:Georgia,serif;color:#1a1a1a;margin-bottom:.5rem">Audit Conseil</div>
+          <div style="font-size:26px;font-family:Georgia,serif;color:#1D6F42;margin-bottom:.75rem">500 – 650 € <span style="font-size:14px;color:#999">HT</span></div>
+          <ul style="font-size:13px;color:#666;line-height:1.8;margin:0 0 1.25rem;padding-left:1.1rem">
+            <li>Étude thermique complète — méthode 3CL</li>
+            <li>Rapport détaillé remis en 5 jours ouvrés</li>
+            <li>Scénarios de travaux priorisés</li>
+          </ul>
+          <a href="/proprietaires.html" style="font-size:13px;color:#1D6F42;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px">En savoir plus <i class="ti ti-arrow-right"></i></a>
+        </div>
+        <div style="background:#fff;padding:1.75rem">
+          <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E8700A;margin-bottom:.5rem">Offre 02 — la plus complète</div>
+          <div style="font-size:18px;font-style:italic;font-family:Georgia,serif;color:#1a1a1a;margin-bottom:.5rem">Accompagnement</div>
+          <div style="font-size:26px;font-family:Georgia,serif;color:#1D6F42;margin-bottom:.75rem">750 – 950 € <span style="font-size:14px;color:#999">HT</span></div>
+          <ul style="font-size:13px;color:#666;line-height:1.8;margin:0 0 1.25rem;padding-left:1.1rem">
+            <li>Tout le contenu de l'Audit Conseil</li>
+            <li>Montage des dossiers MaPrimeRénov', CEE, Éco-PTZ</li>
+            <li>Suivi administratif complet</li>
+          </ul>
+          <a href="/proprietaires.html" style="font-size:13px;color:#1D6F42;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px">En savoir plus <i class="ti ti-arrow-right"></i></a>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;font-size:12px;color:#999">Déplacement inclus en zone Grenoble. Vous êtes un installateur RGE ? <a href="/installateurs-rge.html" style="color:#1D6F42">Découvrez nos offres partenaires →</a></div>
     </div>
   </div>
   <!-- ORIENTATION B2B / B2C -->
