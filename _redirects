@@ -1,0 +1,12 @@
+# Consolide le SEO : force la version .html (canonique) plutôt que l'URL "propre" servie par défaut par Netlify
+/proprietaires                       /proprietaires.html                   301
+/installateurs-rge                   /installateurs-rge.html               301
+/carnet-information-logement         /carnet-information-logement.html     301
+/mentions-legales                    /mentions-legales.html                301
+/politique-confidentialite           /politique-confidentialite.html       301
+/blog/maprimerenov-septembre-2026    /blog/maprimerenov-septembre-2026.html    301
+/blog/pac-agreees-septembre-2026     /blog/pac-agreees-septembre-2026.html     301
+/blog/canicule-logement-2026         /blog/canicule-logement-2026.html         301
+/blog/pac-air-eau-zone-h1            /blog/pac-air-eau-zone-h1.html             301
+/blog/audit-energetique-2026         /blog/audit-energetique-2026.html         301
+/blog/cee-2026                       /blog/cee-2026.html                       301
