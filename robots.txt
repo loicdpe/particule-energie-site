@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://particule-energie.fr/sitemap.xml
