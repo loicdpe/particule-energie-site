@@ -75,7 +75,7 @@ Chez Particule Énergie, un audit se déroule en trois temps :
 2. **Rapport détaillé** remis en 5 jours ouvrés — scénarios de travaux priorisés, estimation des économies, projection des aides mobilisables
 3. **Accompagnement dossiers** — montage des dossiers MaPrimeRénov', CEE et éco-PTZ selon l'offre choisie
 
-Nos tarifs démarrent à 400 € HT pour un audit complet. Un investissement rapidement amorti dès la première aide débloquée.
+Nos tarifs démarrent à 500 € TTC pour un audit complet. Un investissement rapidement amorti dès la première aide débloquée.
 
 ---
 
