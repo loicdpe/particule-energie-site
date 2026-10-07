@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Ortiz;Loïc;;;
+FN:Loïc Ortiz
+ORG:Particule Énergie
+TITLE:Étude énergétique & conseil rénovation
+TEL;TYPE=CELL,VOICE:+33632870522
+EMAIL;TYPE=WORK:contact@particule-energie.fr
+URL:https://particule-energie.fr
+ADR;TYPE=WORK:;;;Grenoble;Isère;;France
+END:VCARD

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D1F15">
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="Carte de visite numérique de Loïc Ortiz, Particule Énergie, Grenoble.">
+<title>Carte Particule Énergie</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,400;1,500&family=Montserrat:wght@600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: one phone-width column, dark brand ground matching the printed card. Name first, actions second, details third, QR last. */
+:root {
+  --bg: #0D1F15;
+  --panel: #153123;
+  --line: rgba(255,255,255,0.14);
+  --fg: #FFFFFF;
+  --muted: rgba(255,255,255,0.72);
+  --mint: #5DCAA5;
+  --amber: #EF9F27;
+  --orange: #E8700A;
+  --paper: #FAFAF7;
+  --ink: #0D1F15;
+  --display: 'Lora', Georgia, serif;
+  --label: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.4;
+  padding-inline: 20px;
+  padding-block: 28px 40px;
+  min-height: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+.atom-bg { position: absolute; right: -90px; top: -60px; width: 320px; height: 320px; opacity: 0.4; pointer-events: none; }
+.card { position: relative; max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.wordmark { font-family: var(--display); font-size: 21px; line-height: 1; letter-spacing: -0.2px; color: var(--mint); white-space: nowrap; }
+.wordmark i { font-style: italic; }
+.wordmark b { font-weight: 500; color: var(--amber); }
+h1 { margin: 0; font-family: var(--display); font-style: italic; font-weight: 500; font-size: 40px; line-height: 1.08; text-wrap: balance; }
+.role { margin: 8px 0 0; font-weight: 600; font-size: 17px; color: var(--mint); text-wrap: balance; }
+.tagline { margin: 12px 0 0; font-family: var(--label); font-weight: 600; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); }
+.actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.act {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  min-height: 72px; padding: 10px 6px; border-radius: 14px; background: var(--panel);
+  border: 1px solid var(--line); color: var(--fg); text-decoration: none; font-weight: 600; font-size: 15px;
+}
+.act svg, .row svg { width: 22px; height: 22px; stroke: var(--amber); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.save {
+  display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 14px;
+  background: var(--amber); color: var(--ink); text-decoration: none; font-weight: 600; font-size: 18px;
+}
+.save svg { width: 22px; height: 22px; stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.row { display: flex; align-items: center; gap: 14px; padding: 14px 2px; border-bottom: 1px solid var(--line); min-width: 0; }
+.row div { min-width: 0; }
+.k { font-family: var(--label); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); }
+.v { margin-top: 2px; font-size: 18px; overflow-wrap: anywhere; user-select: all; }
+.qr { display: flex; align-items: center; gap: 18px; padding: 18px; border-radius: 16px; background: var(--paper); color: var(--ink); }
+.qr svg { width: 124px; height: 124px; flex: none; }
+.qr p { margin: 0; font-size: 16px; line-height: 1.35; }
+.qr strong { display: block; font-family: var(--display); font-style: italic; font-weight: 500; font-size: 20px; margin-bottom: 4px; }
+.share {
+  appearance: none; font: inherit; font-weight: 600; font-size: 16px; min-height: 48px; border-radius: 14px;
+  background: transparent; color: var(--fg); border: 1px solid var(--line); cursor: pointer; width: 100%;
+}
+.status { min-height: 1.4em; margin: -14px 0 0; text-align: center; font-size: 15px; color: var(--mint); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; }
+@media (max-width: 360px) { h1 { font-size: 34px; } .qr { flex-direction: column; text-align: center; } }
+</style>
+</head>
+<body>
+<svg class="atom-bg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+<ellipse cx="24" cy="24" rx="20" ry="7.5" stroke="#1D6F42" stroke-width="0.8"/>
+<ellipse cx="24" cy="24" rx="20" ry="7.5" stroke="#1D6F42" stroke-width="0.8" transform="rotate(60 24 24)"/>
+<ellipse cx="24" cy="24" rx="20" ry="7.5" stroke="#1D6F42" stroke-width="0.8" transform="rotate(-60 24 24)"/>
+<circle cx="24" cy="24" r="4.5" fill="#1D6F42" opacity="0.85"/>
+<circle cx="24" cy="4.5" r="2.8" fill="#E8700A"/>
+</svg>
+<main class="card">
+<div class="brand">
+<svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+<ellipse cx="24" cy="24" rx="20" ry="7.5" stroke="#5DCAA5" stroke-width="1.5"/>
+<ellipse cx="24" cy="24" rx="20" ry="7.5" stroke="#5DCAA5" stroke-width="1.5" transform="rotate(60 24 24)"/>
+<ellipse cx="24" cy="24" rx="20" ry="7.5" stroke="#5DCAA5" stroke-width="1.5" transform="rotate(-60 24 24)"/>
+<circle cx="24" cy="24" r="4.5" fill="#5DCAA5"/>
+<circle cx="24" cy="4.5" r="2.8" fill="#E8700A"/>
+</svg>
+<div class="wordmark"><i>Particule</i> <b>Énergie</b></div>
+</div>
+<header>
+<h1>Loïc Ortiz</h1>
+<p class="role">Étude énergétique &amp; conseil rénovation</p>
+<p class="tagline">Votre énergie, notre expertise</p>
+</header>
+<nav class="actions" aria-label="Contacter">
+<a class="act" href="tel:+33632870522"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Appeler</a>
+<a class="act" href="mailto:contact@particule-energie.fr"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>Écrire</a>
+<a class="act" href="https://particule-energie.fr"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Site</a>
+</nav>
+<a class="save" href="loic-ortiz.vcf" download="Loic-Ortiz-Particule-Energie.vcf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>Ajouter à mes contacts</a>
+<div class="list">
+<div class="row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><div class="k">Téléphone</div><div class="v">06 32 87 05 22</div></div></div>
+<div class="row"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><div class="k">E-mail</div><div class="v">contact@particule-energie.fr</div></div></div>
+<div class="row"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><div><div class="k">Site</div><div class="v">particule-energie.fr</div></div></div>
+<div class="row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="k">Zone d'intervention</div><div class="v">Grenoble, Isère</div></div></div>
+</div>
+<section class="qr" aria-label="QR code de la carte">
+<svg role="img" aria-label="QR code vers particule-energie.fr/carte" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path d="M0,0h1v1h-1zM1,0h1v1h-1zM2,0h1v1h-1zM3,0h1v1h-1zM4,0h1v1h-1zM5,0h1v1h-1zM6,0h1v1h-1zM8,0h1v1h-1zM9,0h1v1h-1zM11,0h1v1h-1zM12,0h1v1h-1zM18,0h1v1h-1zM22,0h1v1h-1zM23,0h1v1h-1zM24,0h1v1h-1zM25,0h1v1h-1zM26,0h1v1h-1zM27,0h1v1h-1zM28,0h1v1h-1zM0,1h1v1h-1zM6,1h1v1h-1zM10,1h1v1h-1zM11,1h1v1h-1zM12,1h1v1h-1zM16,1h1v1h-1zM17,1h1v1h-1zM19,1h1v1h-1zM20,1h1v1h-1zM22,1h1v1h-1zM28,1h1v1h-1zM0,2h1v1h-1zM2,2h1v1h-1zM3,2h1v1h-1zM4,2h1v1h-1zM6,2h1v1h-1zM10,2h1v1h-1zM12,2h1v1h-1zM13,2h1v1h-1zM15,2h1v1h-1zM16,2h1v1h-1zM17,2h1v1h-1zM18,2h1v1h-1zM19,2h1v1h-1zM22,2h1v1h-1zM24,2h1v1h-1zM25,2h1v1h-1zM26,2h1v1h-1zM28,2h1v1h-1zM0,3h1v1h-1zM2,3h1v1h-1zM3,3h1v1h-1zM4,3h1v1h-1zM6,3h1v1h-1zM8,3h1v1h-1zM9,3h1v1h-1zM11,3h1v1h-1zM14,3h1v1h-1zM15,3h1v1h-1zM16,3h1v1h-1zM18,3h1v1h-1zM20,3h1v1h-1zM22,3h1v1h-1zM24,3h1v1h-1zM25,3h1v1h-1zM26,3h1v1h-1zM28,3h1v1h-1zM0,4h1v1h-1zM2,4h1v1h-1zM3,4h1v1h-1zM4,4h1v1h-1zM6,4h1v1h-1zM8,4h1v1h-1zM9,4h1v1h-1zM10,4h1v1h-1zM11,4h1v1h-1zM13,4h1v1h-1zM14,4h1v1h-1zM16,4h1v1h-1zM17,4h1v1h-1zM18,4h1v1h-1zM22,4h1v1h-1zM24,4h1v1h-1zM25,4h1v1h-1zM26,4h1v1h-1zM28,4h1v1h-1zM0,5h1v1h-1zM6,5h1v1h-1zM8,5h1v1h-1zM9,5h1v1h-1zM10,5h1v1h-1zM13,5h1v1h-1zM14,5h1v1h-1zM15,5h1v1h-1zM18,5h1v1h-1zM19,5h1v1h-1zM22,5h1v1h-1zM28,5h1v1h-1zM0,6h1v1h-1zM1,6h1v1h-1zM2,6h1v1h-1zM3,6h1v1h-1zM4,6h1v1h-1zM5,6h1v1h-1zM6,6h1v1h-1zM8,6h1v1h-1zM10,6h1v1h-1zM12,6h1v1h-1zM14,6h1v1h-1zM16,6h1v1h-1zM18,6h1v1h-1zM20,6h1v1h-1zM22,6h1v1h-1zM23,6h1v1h-1zM24,6h1v1h-1zM25,6h1v1h-1zM26,6h1v1h-1zM27,6h1v1h-1zM28,6h1v1h-1zM8,7h1v1h-1zM10,7h1v1h-1zM11,7h1v1h-1zM14,7h1v1h-1zM17,7h1v1h-1zM18,7h1v1h-1zM20,7h1v1h-1zM0,8h1v1h-1zM4,8h1v1h-1zM6,8h1v1h-1zM7,8h1v1h-1zM8,8h1v1h-1zM12,8h1v1h-1zM13,8h1v1h-1zM14,8h1v1h-1zM15,8h1v1h-1zM17,8h1v1h-1zM19,8h1v1h-1zM20,8h1v1h-1zM21,8h1v1h-1zM22,8h1v1h-1zM23,8h1v1h-1zM24,8h1v1h-1zM25,8h1v1h-1zM28,8h1v1h-1zM1,9h1v1h-1zM2,9h1v1h-1zM5,9h1v1h-1zM9,9h1v1h-1zM12,9h1v1h-1zM18,9h1v1h-1zM22,9h1v1h-1zM23,9h1v1h-1zM24,9h1v1h-1zM25,9h1v1h-1zM26,9h1v1h-1zM27,9h1v1h-1zM28,9h1v1h-1zM4,10h1v1h-1zM6,10h1v1h-1zM12,10h1v1h-1zM13,10h1v1h-1zM14,10h1v1h-1zM15,10h1v1h-1zM17,10h1v1h-1zM18,10h1v1h-1zM21,10h1v1h-1zM23,10h1v1h-1zM28,10h1v1h-1zM0,11h1v1h-1zM1,11h1v1h-1zM5,11h1v1h-1zM7,11h1v1h-1zM8,11h1v1h-1zM9,11h1v1h-1zM10,11h1v1h-1zM12,11h1v1h-1zM13,11h1v1h-1zM15,11h1v1h-1zM17,11h1v1h-1zM18,11h1v1h-1zM19,11h1v1h-1zM20,11h1v1h-1zM22,11h1v1h-1zM25,11h1v1h-1zM27,11h1v1h-1zM28,11h1v1h-1zM2,12h1v1h-1zM3,12h1v1h-1zM5,12h1v1h-1zM6,12h1v1h-1zM7,12h1v1h-1zM13,12h1v1h-1zM17,12h1v1h-1zM18,12h1v1h-1zM20,12h1v1h-1zM21,12h1v1h-1zM23,12h1v1h-1zM27,12h1v1h-1zM0,13h1v1h-1zM2,13h1v1h-1zM4,13h1v1h-1zM8,13h1v1h-1zM9,13h1v1h-1zM10,13h1v1h-1zM11,13h1v1h-1zM12,13h1v1h-1zM13,13h1v1h-1zM14,13h1v1h-1zM15,13h1v1h-1zM16,13h1v1h-1zM17,13h1v1h-1zM18,13h1v1h-1zM22,13h1v1h-1zM23,13h1v1h-1zM24,13h1v1h-1zM25,13h1v1h-1zM26,13h1v1h-1zM27,13h1v1h-1zM28,13h1v1h-1zM0,14h1v1h-1zM2,14h1v1h-1zM3,14h1v1h-1zM4,14h1v1h-1zM5,14h1v1h-1zM6,14h1v1h-1zM7,14h1v1h-1zM8,14h1v1h-1zM10,14h1v1h-1zM12,14h1v1h-1zM15,14h1v1h-1zM16,14h1v1h-1zM18,14h1v1h-1zM20,14h1v1h-1zM21,14h1v1h-1zM22,14h1v1h-1zM23,14h1v1h-1zM24,14h1v1h-1zM25,14h1v1h-1zM26,14h1v1h-1zM28,14h1v1h-1zM3,15h1v1h-1zM7,15h1v1h-1zM14,15h1v1h-1zM15,15h1v1h-1zM17,15h1v1h-1zM20,15h1v1h-1zM23,15h1v1h-1zM27,15h1v1h-1zM28,15h1v1h-1zM2,16h1v1h-1zM4,16h1v1h-1zM5,16h1v1h-1zM6,16h1v1h-1zM8,16h1v1h-1zM9,16h1v1h-1zM11,16h1v1h-1zM12,16h1v1h-1zM13,16h1v1h-1zM14,16h1v1h-1zM16,16h1v1h-1zM17,16h1v1h-1zM19,16h1v1h-1zM20,16h1v1h-1zM21,16h1v1h-1zM23,16h1v1h-1zM27,16h1v1h-1zM0,17h1v1h-1zM1,17h1v1h-1zM2,17h1v1h-1zM3,17h1v1h-1zM4,17h1v1h-1zM7,17h1v1h-1zM8,17h1v1h-1zM12,17h1v1h-1zM15,17h1v1h-1zM16,17h1v1h-1zM18,17h1v1h-1zM21,17h1v1h-1zM22,17h1v1h-1zM23,17h1v1h-1zM24,17h1v1h-1zM25,17h1v1h-1zM27,17h1v1h-1zM28,17h1v1h-1zM4,18h1v1h-1zM6,18h1v1h-1zM7,18h1v1h-1zM8,18h1v1h-1zM9,18h1v1h-1zM12,18h1v1h-1zM13,18h1v1h-1zM14,18h1v1h-1zM15,18h1v1h-1zM16,18h1v1h-1zM18,18h1v1h-1zM20,18h1v1h-1zM22,18h1v1h-1zM26,18h1v1h-1zM28,18h1v1h-1zM2,19h1v1h-1zM5,19h1v1h-1zM8,19h1v1h-1zM10,19h1v1h-1zM13,19h1v1h-1zM16,19h1v1h-1zM17,19h1v1h-1zM20,19h1v1h-1zM22,19h1v1h-1zM23,19h1v1h-1zM27,19h1v1h-1zM28,19h1v1h-1zM0,20h1v1h-1zM1,20h1v1h-1zM2,20h1v1h-1zM3,20h1v1h-1zM4,20h1v1h-1zM6,20h1v1h-1zM9,20h1v1h-1zM11,20h1v1h-1zM12,20h1v1h-1zM13,20h1v1h-1zM16,20h1v1h-1zM17,20h1v1h-1zM20,20h1v1h-1zM21,20h1v1h-1zM22,20h1v1h-1zM23,20h1v1h-1zM24,20h1v1h-1zM25,20h1v1h-1zM28,20h1v1h-1zM8,21h1v1h-1zM13,21h1v1h-1zM14,21h1v1h-1zM15,21h1v1h-1zM16,21h1v1h-1zM19,21h1v1h-1zM20,21h1v1h-1zM24,21h1v1h-1zM28,21h1v1h-1zM0,22h1v1h-1zM1,22h1v1h-1zM2,22h1v1h-1zM3,22h1v1h-1zM4,22h1v1h-1zM5,22h1v1h-1zM6,22h1v1h-1zM8,22h1v1h-1zM12,22h1v1h-1zM15,22h1v1h-1zM19,22h1v1h-1zM20,22h1v1h-1zM22,22h1v1h-1zM24,22h1v1h-1zM25,22h1v1h-1zM26,22h1v1h-1zM28,22h1v1h-1zM0,23h1v1h-1zM6,23h1v1h-1zM9,23h1v1h-1zM10,23h1v1h-1zM11,23h1v1h-1zM14,23h1v1h-1zM15,23h1v1h-1zM16,23h1v1h-1zM17,23h1v1h-1zM20,23h1v1h-1zM24,23h1v1h-1zM27,23h1v1h-1zM0,24h1v1h-1zM2,24h1v1h-1zM3,24h1v1h-1zM4,24h1v1h-1zM6,24h1v1h-1zM8,24h1v1h-1zM9,24h1v1h-1zM10,24h1v1h-1zM13,24h1v1h-1zM14,24h1v1h-1zM17,24h1v1h-1zM18,24h1v1h-1zM19,24h1v1h-1zM20,24h1v1h-1zM21,24h1v1h-1zM22,24h1v1h-1zM23,24h1v1h-1zM24,24h1v1h-1zM25,24h1v1h-1zM0,25h1v1h-1zM2,25h1v1h-1zM3,25h1v1h-1zM4,25h1v1h-1zM6,25h1v1h-1zM9,25h1v1h-1zM11,25h1v1h-1zM13,25h1v1h-1zM15,25h1v1h-1zM16,25h1v1h-1zM17,25h1v1h-1zM18,25h1v1h-1zM20,25h1v1h-1zM21,25h1v1h-1zM28,25h1v1h-1zM0,26h1v1h-1zM2,26h1v1h-1zM3,26h1v1h-1zM4,26h1v1h-1zM6,26h1v1h-1zM10,26h1v1h-1zM15,26h1v1h-1zM18,26h1v1h-1zM19,26h1v1h-1zM21,26h1v1h-1zM25,26h1v1h-1zM26,26h1v1h-1zM27,26h1v1h-1zM28,26h1v1h-1zM0,27h1v1h-1zM6,27h1v1h-1zM12,27h1v1h-1zM14,27h1v1h-1zM16,27h1v1h-1zM17,27h1v1h-1zM18,27h1v1h-1zM20,27h1v1h-1zM23,27h1v1h-1zM25,27h1v1h-1zM27,27h1v1h-1zM28,27h1v1h-1zM0,28h1v1h-1zM1,28h1v1h-1zM2,28h1v1h-1zM3,28h1v1h-1zM4,28h1v1h-1zM5,28h1v1h-1zM6,28h1v1h-1zM8,28h1v1h-1zM10,28h1v1h-1zM11,28h1v1h-1zM13,28h1v1h-1zM14,28h1v1h-1zM17,28h1v1h-1zM20,28h1v1h-1zM24,28h1v1h-1zM27,28h1v1h-1z" fill="#0D1F15"/></svg>
+<p><strong>Scannez ma carte</strong>Ouvrez l'appareil photo de votre téléphone et pointez-le sur ce code pour retrouver mes coordonnées.</p>
+</section>
+<button class="share" id="share" type="button">Partager ma carte</button>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+</main>
+<script>
+(function () {
+  var btn = document.getElementById('share');
+  var status = document.getElementById('status');
+  var url = 'https://particule-energie.fr/carte';
+  function say(t) { status.textContent = t; }
+  btn.addEventListener('click', function () {
+    if (navigator.share) {
+      navigator.share({ title: 'Loïc Ortiz, Particule Énergie', url: url }).catch(function () {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { say('Lien copié : ' + url); }, function () { say('Lien de la carte : ' + url); });
+    } else {
+      say('Lien de la carte : ' + url);
+    }
+  });
+})();
+</script>
+</body>
+</html>
