@@ -402,7 +402,7 @@
               </div>
               <div class="checkbox-line">
                 <input type="checkbox" id="simCoupDePouce">
-                <label for="simCoupDePouce">PAC sur liste ADEME agréée (bonus x5, obligatoire à partir du 01/09/2026)</label>
+                <label for="simCoupDePouce">PAC sur liste ADEME agréée (Coup de Pouce ×5, inclus dans la prime CEE — obligatoire à partir du 01/09/2026)</label>
               </div>
             </div>
 
@@ -494,8 +494,8 @@
     <!-- BAREME -->
     <section class="panel" id="panel-bareme">
       <h2>Barèmes & paramètres</h2>
-      <p class="subtitle">Seuils et montants MaPrimeRénov' mis à jour (source Anah, janvier 2026) — CEE et Coup de Pouce restent indicatifs</p>
-      <div class="banner">✅ Plafonds de revenus et forfaits MaPrimeRénov' à jour au 28/07/2026 (Anah).<br>⚠️ Montants CEE fixés librement par chaque fournisseur d'énergie : ordres de grandeur à recaler sur devis réel. Le bonus Coup de Pouce Chauffage est désormais calculé au cas par cas (ETAS, surface, zone) depuis le 01/10/2025 — la valeur ci-dessous est une moyenne indicative, pas un forfait officiel.</div>
+      <p class="subtitle">Seuils et montants MaPrimeRénov' mis à jour (source Anah, janvier 2026) — CEE et Coup de Pouce recalés le 09/10/2026, restent indicatifs</p>
+      <div class="banner">✅ Plafonds de revenus et forfaits MaPrimeRénov' à jour au 09/10/2026 (Anah, réforme du 01/09/2026 intégrée).<br>⚠️ Montants CEE fixés librement par chaque fournisseur d'énergie : ordres de grandeur à recaler sur devis réel. Le Coup de Pouce Chauffage est un coefficient ×5 appliqué à la prime CEE (il remplace la prime de base, il ne s'y ajoute pas) et se calcule au cas par cas (ETAS, surface, zone) depuis le 01/10/2025 — les valeurs PAC air/eau ci-dessous sont des estimations indicatives.</div>
 
       <div class="section-label">Plafonds de revenu fiscal de référence — hors Île-de-France, par nombre de personnes du foyer (€)</div>
       <table>
@@ -505,7 +505,7 @@
       <p class="subtitle" style="margin-top:6px;">Au-delà de la catégorie Violet (intermédiaire) : profil Rose, non éligible au parcours par geste MaPrimeRénov' (seule la rénovation d'ampleur, hors périmètre de cet outil, reste accessible).</p>
 
       <div class="section-label">Montants MaPrimeRénov' — parcours par geste (€, ou €/m² pour l'isolation)</div>
-      <div class="banner" style="margin-bottom:10px;">Depuis le 01/01/2026 : isolation des murs et chaudières biomasse exclues du parcours par geste (ne restent finançables qu'en rénovation d'ampleur). PAC air/air jamais éligible au parcours par geste. Ces gestes sont donc à 0 € ci-dessous par construction — c'est normal, pas une valeur à corriger.</div>
+      <div class="banner" style="margin-bottom:10px;">Depuis le 01/01/2026 : isolation des murs et chaudières biomasse exclues du parcours par geste. Depuis le 01/09/2026 (décret n°2026-822 du 25/08/2026, JORF du 27/08/2026, demandes déposées à compter de cette date) : isolation des combles/toiture, fenêtres, chauffe-eau thermodynamique (ainsi que VMC, solaire thermique hors outre-mer et poêles bois/granulés, non traités ici) sortent aussi du par geste. Ils ne restent finançables qu'en rénovation d'ampleur. PAC air/air jamais éligible. Seule la PAC air/eau (et géothermique) reste aidée en par geste. Ces gestes sont donc à 0 € ci-dessous par construction — c'est normal, pas une valeur à corriger.</div>
       <table>
         <thead><tr><th class="txt">Geste</th><th>Bleu</th><th>Jaune</th><th>Violet</th></tr></thead>
         <tbody id="mprBody"></tbody>
@@ -517,11 +517,16 @@
         <tbody id="ceeBody"></tbody>
       </table>
 
-      <div class="field" style="margin-top:16px;max-width:320px;">
-        <label>Bonus Coup de Pouce Chauffage (€, moyenne indicative — PAC, remplacement chaudière fossile, foyer modeste/très modeste)</label>
-        <input type="number" id="bonusCoupDePouce">
+      <div class="section-label">PAC air/eau — prime CEE par profil de revenus et zone (€, maison ≥ 90 m², ETAS ≥ 140 %)</div>
+      <table>
+        <thead><tr><th class="txt">Profil · cas</th><th>H1</th><th>H2</th><th>H3</th></tr></thead>
+        <tbody id="ceePacBody"></tbody>
+      </table>
+      <div class="field" style="margin-top:12px;max-width:320px;">
+        <label>Fourchette affichée autour de l'estimation PAC (± %)</label>
+        <input type="number" id="fourchettePct">
       </div>
-      <div class="banner" style="max-width:620px;">À partir du 01/09/2026, ce bonus est réservé aux modèles de PAC figurant sur la liste officielle des modèles agréés "qualité et résilience industrielle" (décret n°2026-413). Vérifie la liste ADEME avant de l'appliquer à un dossier client.</div>
+      <div class="banner" style="max-width:620px;">À partir du 01/09/2026, le Coup de Pouce est réservé aux modèles de PAC figurant sur la liste officielle des modèles agréés "qualité et résilience industrielle" (décret n°2026-413). Vérifie la liste ADEME avant de l'appliquer à un dossier client.</div>
 
       <div class="section-label">Rénovation d'ampleur — plafonds de dépenses HT selon le gain de classes DPE (€)</div>
       <div class="banner">⚠️ Les taux de prise en charge ci-dessous sont indicatifs — les sources publiques divergent sur ce point début 2026. À vérifier sur francerenov.gouv.fr avant tout usage client.</div>
@@ -575,35 +580,43 @@ const DEFAULT_CONFIG = {
     Jaune: {1:22259, 2:32553, 3:39148, 4:45735, 5:52348, supp:6598},
     Violet:{1:31185, 2:45842, 3:55196, 4:64550, 5:73907, supp:9357}
   },
-  // Gestes exclus du parcours par geste MaPrimeRénov' (mais restent éligibles au CEE)
+  // Gestes exclus du parcours par geste MaPrimeRénov' (mais restent éligibles au CEE). Seule la PAC air/eau (et géothermique) reste aidée en par geste depuis le 01/09/2026.
   mprEligibleParGeste: {
-    "Isolation combles/toiture": true,
+    "Isolation combles/toiture": false, // exclu depuis 01/09/2026 (décret 2026-822) — reste éligible en rénovation d'ampleur
     "Isolation murs": false,          // exclu depuis 01/01/2026 (reste éligible en rénovation d'ampleur)
     "PAC air/eau": true,
     "PAC air/air": false,             // jamais éligible au parcours par geste
     "Chaudière biomasse": false,      // exclu depuis 01/01/2026
-    "Chauffe-eau thermodynamique": true,
-    "Fenêtres/menuiseries": true
+    "Chauffe-eau thermodynamique": false, // exclu depuis 01/09/2026 (décret 2026-822)
+    "Fenêtres/menuiseries": false         // exclu depuis 01/09/2026 (décret 2026-822)
   },
   mpr: {
-    "Isolation combles/toiture": { Bleu: 25, Jaune: 20, Violet: 15 },
+    "Isolation combles/toiture": { Bleu: 0, Jaune: 0, Violet: 0 },
     "Isolation murs":            { Bleu: 0, Jaune: 0, Violet: 0 },
     "PAC air/eau":               { Bleu: 5000, Jaune: 4000, Violet: 3000 },
     "PAC air/air":               { Bleu: 0, Jaune: 0, Violet: 0 },
     "Chaudière biomasse":        { Bleu: 0, Jaune: 0, Violet: 0 },
-    "Chauffe-eau thermodynamique":{ Bleu: 1200, Jaune: 800, Violet: 400 },
-    "Fenêtres/menuiseries":      { Bleu: 100, Jaune: 80, Violet: 40 }
+    "Chauffe-eau thermodynamique":{ Bleu: 0, Jaune: 0, Violet: 0 },
+    "Fenêtres/menuiseries":      { Bleu: 0, Jaune: 0, Violet: 0 }
   },
   cee: {
     "Isolation combles/toiture": { H1: 8, H2: 6, H3: 4 },
     "Isolation murs":            { H1: 12, H2: 9, H3: 6 },
-    "PAC air/eau":               { H1: 4000, H2: 3200, H3: 2500 },
+    "PAC air/eau":               { H1: 0, H2: 0, H3: 0 },   // géré par ceePacAirEau
     "PAC air/air":               { H1: 1200, H2: 900, H3: 600 },
     "Chaudière biomasse":        { H1: 2500, H2: 2000, H3: 1500 },
     "Chauffe-eau thermodynamique":{ H1: 600, H2: 450, H3: 300 },
     "Fenêtres/menuiseries":      { H1: 40, H2: 30, H3: 20 }
   },
-  bonusCoupDePouce: 4000,
+  // PAC air/eau (BAR-TH-171) : le Coup de Pouce Chauffage est un coefficient x5 appliqué à la prime CEE,
+  // il REMPLACE la prime de base (il ne s'y ajoute pas). Deux profils CEE : précarité (Bleu+Jaune) / autres (Violet+Rose).
+  // Valeurs indicatives (maison >= 90 m², ETAS >= 140 %), recalées sur Selectra (17/06/2026) : H2 = milieu de fourchette, H1/H3 par ratio de zone. À recaler sur devis obligé.
+  ceePacAirEau: {
+    precarite: { seul: {H1:1910, H2:1530, H3:1195}, coupDePouce: {H1:9550, H2:7650, H3:5975} },
+    autres:    { seul: {H1:1050, H2:840,  H3:655},  coupDePouce: {H1:5250, H2:4200, H3:3275} }
+  },
+  fourchettePct: 20,
+  version: 3,
   // Rénovation d'ampleur (parcours accompagné) — plafonds de dépenses HT par gain de classes DPE
   ampleurPlafonds: { "2": 30000, "3": 40000 },
   // Taux de prise en charge (% du montant HT retenu), par catégorie et par gain de classes — À VÉRIFIER, sources divergentes
@@ -654,8 +667,21 @@ async function loadAll(){
 
   try{
     const c = await store.get('bareme-config');
-    config = c ? JSON.parse(c.value) : DEFAULT_CONFIG;
-  }catch(e){ config = DEFAULT_CONFIG; }
+    config = c ? JSON.parse(c.value) : JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+  }catch(e){ config = JSON.parse(JSON.stringify(DEFAULT_CONFIG)); }
+  // Migration : anciens barèmes enregistrés (CEE PAC + bonus additif erroné) -> nouveau modèle
+  if(config.version !== DEFAULT_CONFIG.version || !config.ceePacAirEau){
+    config.ceePacAirEau = JSON.parse(JSON.stringify(DEFAULT_CONFIG.ceePacAirEau));
+    config.cee["PAC air/eau"] = {...DEFAULT_CONFIG.cee["PAC air/eau"]};
+    config.fourchettePct = DEFAULT_CONFIG.fourchettePct;
+    delete config.bonusCoupDePouce;
+  }
+  if(config.version !== DEFAULT_CONFIG.version){
+    // Réforme du 01/09/2026 : gestes sortis du parcours par geste
+    config.mprEligibleParGeste = {...DEFAULT_CONFIG.mprEligibleParGeste};
+    GESTES.forEach(g=>{ if(!config.mprEligibleParGeste[g]) config.mpr[g] = {Bleu:0, Jaune:0, Violet:0}; });
+    config.version = DEFAULT_CONFIG.version;
+  }
 
   try{
     const p = await store.get('produits');
@@ -765,27 +791,40 @@ function calculerGeste(){
     const unite = GESTES_SURFACIQUES.includes(geste) ? '/m²' : '';
     const eligibleMPR = cat !== 'Rose' && config.mprEligibleParGeste[geste];
     const mprUnit = eligibleMPR ? config.mpr[geste][cat] : 0;
-    const ceeUnit = config.cee[geste][zone];
-    const eligibleBonus = geste.startsWith('PAC') && chaudiereFossile && coupDePouce;
-    const bonus = eligibleBonus ? config.bonusCoupDePouce : 0;
-    const sousTotal = mprUnit + ceeUnit + bonus;
+    const isPacEau = geste === 'PAC air/eau';
+    const profilCee = (cat === 'Bleu' || cat === 'Jaune') ? 'precarite' : 'autres';
+    const eligibleCDP = isPacEau && chaudiereFossile && coupDePouce;
+    let ceeUnit;
+    if(isPacEau){
+      ceeUnit = config.ceePacAirEau[profilCee][eligibleCDP ? 'coupDePouce' : 'seul'][zone];
+    } else {
+      ceeUnit = config.cee[geste][zone];
+    }
+    const sousTotal = mprUnit + ceeUnit;
+    const fp = (config.fourchettePct || 0) / 100;
+    const fourchette = isPacEau && fp
+      ? ` (CEE ${(Math.round(ceeUnit*(1-fp)/10)*10).toLocaleString('fr-FR')} à ${(Math.round(ceeUnit*(1+fp)/10)*10).toLocaleString('fr-FR')} € selon obligé, surface, ETAS)`
+      : '';
 
     if(!unite) totalFlat += sousTotal;
 
     lines += `
       <div class="line" style="border-bottom:none;padding-bottom:0;"><span style="font-weight:600;">${geste}</span><span class="val">${sousTotal.toLocaleString('fr-FR')} €${unite}</span></div>
-      <div class="line" style="font-size:11.5px;color:var(--paper-dim);padding-top:2px;"><span>MPR ${mprUnit.toLocaleString('fr-FR')}€ + CEE ${ceeUnit.toLocaleString('fr-FR')}€${bonus ? ' + bonus '+bonus.toLocaleString('fr-FR')+'€' : ''}</span><span></span></div>
+      <div class="line" style="font-size:11.5px;color:var(--paper-dim);padding-top:2px;"><span>MPR ${mprUnit.toLocaleString('fr-FR')}€ + CEE ${ceeUnit.toLocaleString('fr-FR')}€${eligibleCDP ? ' (Coup de Pouce ×5 inclus, non additionnel)' : ''}${fourchette}</span><span></span></div>
     `;
 
     if(cat === 'Rose'){
       notes.push(`${geste} : profil Rose non éligible au parcours par geste.`);
     } else if(!config.mprEligibleParGeste[geste]){
-      notes.push(`${geste} : exclu du parcours par geste MaPrimeRénov' depuis 01/01/2026 (seule la rénovation d'ampleur ouvre droit à une aide MPR).`);
+      notes.push(`${geste} : exclu du parcours par geste MaPrimeRénov' (depuis 01/01/2026 pour murs/biomasse/PAC air-air, depuis 01/09/2026 pour combles, fenêtres et chauffe-eau thermodynamique — décret 2026-822). Seule la rénovation d'ampleur ouvre droit à une aide MPR ; le CEE reste cumulable. Dossiers déposés avant le 01/09/2026 : anciennes règles.`);
     }
-    if(geste.startsWith('PAC') && !chaudiereFossile){
-      notes.push(`${geste} : Coup de Pouce non applicable, réservé au remplacement d'une chaudière fossile.`);
-    } else if(geste.startsWith('PAC') && chaudiereFossile && !coupDePouce){
-      notes.push(`${geste} : coche "PAC sur liste agréée" pour inclure le bonus.`);
+    if(isPacEau && !chaudiereFossile){
+      notes.push(`${geste} : Coup de Pouce non applicable, réservé au remplacement d'une chaudière fossile (CEE seul affiché).`);
+    } else if(isPacEau && chaudiereFossile && !coupDePouce){
+      notes.push(`${geste} : coche "PAC sur liste agréée" pour appliquer le Coup de Pouce (CEE seul affiché).`);
+    }
+    if(geste === 'PAC air/air'){
+      notes.push(`${geste} : pas de Coup de Pouce Chauffage pour la PAC air/air.`);
     }
   });
 
@@ -928,14 +967,21 @@ function renderBareme(){
     </tr>
   `).join('');
 
-  document.getElementById('ceeBody').innerHTML = GESTES.map(g=>`
+  document.getElementById('ceeBody').innerHTML = GESTES.filter(g=>g!=='PAC air/eau').map(g=>`
     <tr>
       <td class="txt">${g}</td>
       ${ZONES.map(z=>`<td><input class="table-input" type="number" data-cee="${g}" data-zone="${z}" value="${config.cee[g][z]}"></td>`).join('')}
     </tr>
   `).join('');
 
-  document.getElementById('bonusCoupDePouce').value = config.bonusCoupDePouce;
+  const LIBS = {precarite:'Précarité (Bleu/Jaune)', autres:'Autres (Violet/Rose)'};
+  const MODES = {seul:'CEE seul (sans Coup de Pouce)', coupDePouce:'CEE + Coup de Pouce (remplace chaudière fossile)'};
+  document.getElementById('ceePacBody').innerHTML = ['precarite','autres'].flatMap(pr=>['seul','coupDePouce'].map(m=>`
+    <tr>
+      <td class="txt">${LIBS[pr]} · ${MODES[m]}</td>
+      ${ZONES.map(z=>`<td><input class="table-input" type="number" data-ceepac="${pr}" data-mode="${m}" data-zone="${z}" value="${config.ceePacAirEau[pr][m][z]}"></td>`).join('')}
+    </tr>`)).join('');
+  document.getElementById('fourchettePct').value = config.fourchettePct;
 
   document.getElementById('ampleurPlafondsBody').innerHTML = Object.keys(config.ampleurPlafonds).map(g=>`
     <tr>
@@ -970,7 +1016,10 @@ async function sauvegarderBareme(){
   document.querySelectorAll('[data-cee]').forEach(inp=>{
     config.cee[inp.dataset.cee][inp.dataset.zone] = parseFloat(inp.value) || 0;
   });
-  config.bonusCoupDePouce = parseFloat(document.getElementById('bonusCoupDePouce').value) || 0;
+  document.querySelectorAll('[data-ceepac]').forEach(inp=>{
+    config.ceePacAirEau[inp.dataset.ceepac][inp.dataset.mode][inp.dataset.zone] = parseFloat(inp.value) || 0;
+  });
+  config.fourchettePct = parseFloat(document.getElementById('fourchettePct').value) || 0;
   document.querySelectorAll('[data-ampplaf]').forEach(inp=>{
     config.ampleurPlafonds[inp.dataset.ampplaf] = parseFloat(inp.value) || 0;
   });
