@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Simulateur CEE pour entreprises : estimez la prime des certificats d'économies d'énergie en tertiaire et en industrie.">
+<title>Simulateur CEE Entreprises</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500;1,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Mise en page : saisie à gauche (site, questions, travaux), panneau de résultat fixe à droite. Charte Particule Énergie. */
+:root {
+--bg: #FAFAF7;
+--surface: #FFFFFF;
+--ink: #0D1F15;
+--text: #3C3F3A;
+--muted: #666A61;
+--green: #1D6F42;
+--green-soft: #E3EEE7;
+--on-green: #FFFFFF;
+--orange: #E8700A;
+--orange-ink: #AE520A;
+--warn-soft: #FBEBD6;
+--rule: #D8D6CC;
+--rule-soft: #ECEAE0;
+--bad: #B03A1A;
+--bad-soft: #F6E1DA;
+--serif: 'Lora', Georgia, 'Times New Roman', serif;
+--sans: 'Source Sans 3', 'Segoe UI', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+:root:not([data-theme="light"]) {
+--bg: #0E1712; --surface: #15221A; --ink: #EEF3EE; --text: #C9D1C9; --muted: #9AA69B;
+--green: #5FBF8A; --green-soft: #1B3326; --on-green: #0B1A12;
+--orange: #F0933F; --orange-ink: #F2A25C; --warn-soft: #3A2A14;
+--rule: #2B3A30; --rule-soft: #1E2C23; --bad: #E58A6D; --bad-soft: #3A2019;
+color-scheme: dark;
+}
+}
+:root[data-theme="dark"] {
+--bg: #0E1712; --surface: #15221A; --ink: #EEF3EE; --text: #C9D1C9; --muted: #9AA69B;
+--green: #5FBF8A; --green-soft: #1B3326; --on-green: #0B1A12;
+--orange: #F0933F; --orange-ink: #F2A25C; --warn-soft: #3A2A14;
+--rule: #2B3A30; --rule-soft: #1E2C23; --bad: #E58A6D; --bad-soft: #3A2019;
+color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.5;
+padding-block: 20px 40px;
+padding-left: max(16px, env(safe-area-inset-left, 0px));
+padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1180px; margin: 0 auto; }
+h1, h2, h3, p { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.masthead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid var(--green); }
+.logo-word { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+.logo-word i { color: var(--green); }
+.tag { font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: var(--orange-ink); border: 1px solid var(--orange); padding: 4px 9px; }
+.hero { padding: 24px 0 16px; }
+.hero h1 { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(30px, 5vw, 46px); line-height: 1.12; color: var(--ink); text-wrap: balance; }
+.hero h1 span { color: var(--green); }
+.tabs { display: inline-flex; border: 1px solid var(--green); margin-top: 18px; }
+.tabs button { background: transparent; border: 0; padding: 10px 18px; font-weight: 600; cursor: pointer; color: var(--green); }
+.tabs button[aria-selected="true"] { background: var(--green); color: var(--on-green); }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 400px); gap: 32px; align-items: start; margin-top: 8px; }
+.col-main { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; }
+.sec-head h2 { font-family: var(--serif); font-weight: 600; font-size: 22px; color: var(--ink); }
+.sec-head .line { flex: 1; height: 1px; background: var(--rule); }
+.chip { font-size: 12px; color: var(--orange-ink); background: var(--warn-soft); padding: 3px 9px; white-space: nowrap; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+.fld { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.fld > span.lab { font-size: 13px; font-weight: 600; color: var(--ink); }
+.fld small { font-size: 12px; color: var(--muted); }
+.inp { display: flex; align-items: stretch; border: 1px solid var(--rule); background: var(--surface); min-width: 0; }
+.inp input, select.solo, input.solo { border: 0; background: transparent; padding: 9px 10px; min-width: 0; width: 100%; height: 42px; }
+select.solo, input.solo { border: 1px solid var(--rule); background: var(--surface); }
+.inp .unit { display: flex; align-items: center; padding: 0 10px; color: var(--muted); font-size: 14px; border-left: 1px solid var(--rule-soft); white-space: nowrap; }
+.inp:focus-within { border-color: var(--green); }
+.qbox { border: 1px solid var(--rule); background: var(--surface); }
+.qbox summary { cursor: pointer; padding: 12px 14px; font-weight: 700; color: var(--ink); }
+.qlist { list-style: none; margin: 0; padding: 0 14px 12px; display: flex; flex-direction: column; }
+.qlist li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px; padding: 9px 0; border-top: 1px solid var(--rule-soft); font-size: 15px; }
+.qbtn { background: transparent; border: 1px solid var(--green); color: var(--green); padding: 5px 12px; font-weight: 600; font-size: 13.5px; cursor: pointer; white-space: nowrap; }
+.qbtn[aria-pressed="true"] { background: var(--green); color: var(--on-green); }
+.tools { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+.tools .solo { max-width: 360px; }
+.group-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
+.works { display: flex; flex-direction: column; gap: 8px; }
+.wk { border: 1px solid var(--rule); background: var(--surface); }
+.wk.on { border-color: var(--green); }
+.wk-head { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; cursor: pointer; }
+.wk-head input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.box { flex: none; width: 22px; height: 22px; border: 2px solid var(--muted); display: grid; place-items: center; margin-top: 2px; }
+.box::after { content: ""; width: 10px; height: 6px; border-left: 2px solid var(--on-green); border-bottom: 2px solid var(--on-green); transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
+.wk-head input:checked + .box { background: var(--green); border-color: var(--green); }
+.wk-head input:checked + .box::after { opacity: 1; }
+.wk-head input:focus-visible + .box { outline: 2px solid var(--green); outline-offset: 2px; }
+.wk-txt { min-width: 0; flex: 1; }
+.wk-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font-weight: 700; color: var(--ink); }
+.code { font-size: 11.5px; font-weight: 700; letter-spacing: .8px; color: var(--green); border: 1px solid var(--green); padding: 1px 6px; font-variant-numeric: tabular-nums; }
+.cof { font-size: 11px; font-weight: 700; color: var(--orange-ink); background: var(--warn-soft); padding: 1px 6px; }
+.wk-desc { display: block; font-size: 14px; margin-top: 2px; color: var(--text); }
+.wk-body { padding: 4px 14px 16px 50px; display: flex; flex-direction: column; gap: 14px; }
+.wk-body .fields { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.chk { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; grid-column: 1 / -1; }
+.chk input { margin-top: 4px; accent-color: var(--green); width: 16px; height: 16px; flex: none; }
+.etude { font-size: 13.5px; color: var(--orange-ink); }
+.fiche { font-size: 13px; color: var(--muted); }
+.fiche a { color: var(--green); font-weight: 600; }
+.conds { background: var(--rule-soft); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.conds-t { font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); }
+.conds .chk { font-size: 13.5px; }
+.result { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow: auto; border: 1px solid var(--green); background: var(--surface); }
+.res-top { padding: 20px 20px 16px; background: var(--green-soft); border-bottom: 1px solid var(--rule); }
+.res-lab { font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; color: var(--green); }
+.res-big { font-family: var(--serif); font-weight: 600; font-size: 44px; line-height: 1.1; color: var(--ink); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.res-sub { font-size: 14px; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.res-ok { font-size: 13.5px; margin-top: 8px; color: var(--ink); }
+.res-body { padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 18px; }
+.alerts { display: flex; flex-direction: column; gap: 8px; }
+.alert { padding: 9px 12px; font-size: 13.5px; background: var(--bad-soft); color: var(--text); }
+.alert b { color: var(--bad); }
+.alert.warn { background: var(--warn-soft); }
+.alert.warn b { color: var(--orange-ink); }
+.lines { display: flex; flex-direction: column; gap: 13px; }
+.ln-top { display: flex; justify-content: space-between; gap: 12px; font-size: 14.5px; }
+.ln-top b { color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar { height: 6px; background: var(--rule-soft); margin-top: 5px; }
+.bar i { display: block; height: 100%; background: var(--green); }
+.ln-note { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+.st { font-size: 12px; font-weight: 700; margin-right: 6px; }
+.st.ok { color: var(--green); }
+.st.warn { color: var(--orange-ink); }
+.st.bad { color: var(--bad); }
+.ln-etude { font-size: 14px; color: var(--orange-ink); }
+.empty { font-size: 14.5px; color: var(--muted); }
+.sugs { border-top: 1px solid var(--rule); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.sugs h3 { font-size: 11px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: var(--green); }
+.sug { font-size: 13.5px; }
+.sug .qbtn { margin: 6px 6px 0 0; }
+.price label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; color: var(--ink); }
+.price input[type=range] { width: 100%; accent-color: var(--green); margin-top: 6px; }
+.price small, .small { font-size: 12.5px; color: var(--muted); }
+.cover { font-size: 14.5px; background: var(--rule-soft); padding: 10px 12px; }
+.btn { background: var(--green); color: var(--on-green); border: 0; padding: 12px 16px; font-weight: 700; cursor: pointer; width: 100%; }
+#recapBox { width: 100%; min-height: 150px; font-size: 13px; border: 1px solid var(--rule); background: var(--bg); padding: 8px; margin-top: 8px; }
+.info { margin-top: 36px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: 15px; }
+.steps li::before { content: counter(s); font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--green); line-height: 1.1; }
+.steps b { color: var(--ink); }
+.nope { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.nope li { padding: 10px 12px; background: var(--bad-soft); font-size: 14.5px; }
+.nope b { color: var(--bad); }
+.foot { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); max-width: 900px; }
+.foot b { color: var(--ink); }
+.mbar { display: none; }
+@media (max-width: 900px) {
+.layout { grid-template-columns: minmax(0, 1fr); }
+.result { position: static; max-height: none; }
+.wk-body { padding-left: 14px; }
+.res-big { font-size: 38px; }
+.mbar {
+display: flex; align-items: center; justify-content: space-between; gap: 12px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+background: var(--ink); color: var(--bg);
+padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.mbar b { font-family: var(--serif); font-size: 20px; font-variant-numeric: tabular-nums; }
+.mbar button { background: var(--green); color: var(--on-green); border: 0; padding: 9px 14px; font-weight: 700; cursor: pointer; }
+body { padding-bottom: 90px; }
+}
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width .25s ease; } }
+</style>
+</head><body>
+<div class="wrap">
+<header class="masthead">
+<div class="logo-word">Particule <i>Énergie</i></div>
+<div class="tag">Simulateur CEE entreprises</div>
+</header>
+<section class="hero">
+<h1>Calcul des <span>CEE</span></h1>
+<div class="tabs" role="tablist" aria-label="Type de site">
+<button role="tab" id="tabT" aria-selected="true" data-mode="T">Bâtiment tertiaire</button>
+<button role="tab" id="tabI" aria-selected="false" data-mode="I">Site industriel</button>
+</div>
+</section>
+<div class="layout">
+<div class="col-main">
+<section>
+<div class="sec-head"><h2>Votre site</h2><span class="line"></span></div>
+<div class="fields" id="siteFields"></div>
+</section>
+<section>
+<details class="qbox" open>
+<summary>Questions à poser au client pour ne rien oublier</summary>
+<ul class="qlist" id="qlist"></ul>
+</details>
+</section>
+<section>
+<div class="sec-head"><h2>Vos projets de travaux</h2><span class="line"></span><span class="chip">Exemple pré-rempli, à adapter</span></div>
+<div class="tools"><input class="solo" id="q" type="search" placeholder="Chercher un travail ou une fiche (ex. variateur, BAT-TH-125)" aria-label="Chercher un travail ou une fiche"></div>
+<div id="works"></div>
+</section>
+</div>
+<aside class="result" id="resultat" aria-live="polite">
+<div class="res-top">
+<div class="res-lab">Prime CEE estimée</div>
+<div class="res-big" id="resBig">0 €</div>
+<div class="res-sub" id="resSub"></div>
+<div class="res-ok" id="resOk"></div>
+</div>
+<div class="res-body">
+<div class="alerts" id="alerts"></div>
+<div class="lines" id="lines"></div>
+<div class="sugs" id="sugs" hidden></div>
+<div class="price">
+<label for="price"><span>Valeur du MWh cumac</span><span id="priceOut">7,5 €</span></label>
+<input type="range" id="price" min="4" max="10" step="0.1" value="7.5">
+<small>Cours du marché : environ 8,6 € le MWh cumac en mai 2026. Le délégataire verse en général un peu moins.</small>
+</div>
+<div class="fld">
+<label class="lab" for="budget" style="font-size:13px;font-weight:600;color:var(--ink)">Budget travaux estimé (facultatif)</label>
+<div class="inp"><input id="budget" type="number" inputmode="decimal" min="0" step="100" placeholder="ex. 60000"><span class="unit">€ HT</span></div>
+</div>
+<div class="cover" id="cover" hidden></div>
+<div>
+<button class="btn" id="copyBtn" type="button">Copier le récapitulatif</button>
+<textarea id="recapBox" hidden readonly aria-label="Récapitulatif à copier"></textarea>
+</div>
+<p class="small">Fourchette établie de 80 % à 115 % de la valeur retenue, selon l'offre du délégataire.</p>
+</div>
+</aside>
+</div>
+<div class="info">
+<section>
+<div class="sec-head"><h2>Comment la prime est versée</h2></div>
+<ol class="steps">
+<li><span><b>Vous choisissez les travaux</b> et un professionnel, qualifié RGE quand la fiche l'exige.</span></li>
+<li><span><b>Vous acceptez l'offre d'un délégataire CEE avant de signer le devis.</b> Après la signature, la prime n'est plus garantie.</span></li>
+<li><span><b>Les travaux sont réalisés</b> et le dossier (facture, preuve de réalisation, note de dimensionnement si exigée) est transmis.</span></li>
+<li><span><b>La prime est versée</b> par virement, ou déduite de la facture selon l'offre.</span></li>
+</ol>
+</section>
+<section>
+<div class="sec-head"><h2>Ce qui n'est plus financé</h2></div>
+<ul class="nope">
+<li><b>Éclairage LED.</b> Fiches luminaires supprimées pour les devis signés depuis le 25 février 2026 (tertiaire, industrie, logement collectif).</li>
+<li><b>Chaudière gaz à condensation en tertiaire.</b> BAT-TH-102 supprimée depuis le 1er janvier 2025. La PAC reste financée (BAT-TH-163 et 164).</li>
+<li><b>Plusieurs fiches absentes du catalogue consulté.</b> Robinets thermostatiques (BAT-TH-104), calorifuge de réseaux de chauffage tertiaire (BAT-TH-146 et 155), pommeaux hydro-économes (BAT-EQ-133), points singuliers industriels (IND-UT-121), récupération de chaleur sur groupe froid industriel (IND-UT-117). À ne pas promettre.</li>
+</ul>
+</section>
+</div>
+<p class="foot"><b>Estimation indicative.</b> Barèmes des fiches d'opérations standardisées consultés en octobre 2026, à reconfirmer au catalogue officiel avant tout engagement. Le volume définitif dépend de la fiche en vigueur à la date d'engagement, de la zone climatique de la commune et du délégataire choisi. Les travaux marqués « Contrôle COFRAC » peuvent faire l'objet d'une inspection sur site. Particule Énergie identifie les travaux éligibles et prépare le dossier technique. La prime est versée par un délégataire CEE. Contact : 06 32 87 05 22.</p>
+</div>
+<div class="mbar" id="mbar"><div><span style="font-size:12px;opacity:.8">Prime estimée</span><br><b id="mbarVal">0 €</b></div><button type="button" id="mbarBtn">Voir le détail</button></div>
+<script>
+/*CALC-START*/
+var SECTEURS = [["bureaux","Bureaux"],["commerces","Commerces"],["enseignement","Enseignement"],["sante","Santé"],["hotel","Hôtellerie, restauration"],["sport","Sport, loisirs, culture"],["autres","Autres activités tertiaires"]];
+var ZONES = [["H1","H1, la plus froide (Grenoble, Isère)"],["H2","H2, tempérée"],["H3","H3, la plus chaude (Méditerranée)"]];
+var ZC = {H1:1.1, H2:.9, H3:.6};
+var FACT = {
+en101: {bureaux:.6,commerces:.6,enseignement:.6,sante:1.2,hotel:.7,sport:.6,autres:.6},
+en102: {bureaux:.6,commerces:.6,enseignement:.6,sante:1.3,hotel:.7,sport:.6,autres:.6},
+en103: {bureaux:.6,commerces:.6,enseignement:.6,sante:1.2,hotel:.7,sport:.6,autres:.6},
+en107: {bureaux:.6,commerces:.6,enseignement:.6,sante:1.3,hotel:.7,sport:.6,autres:.6},
+pac:   {bureaux:1.2,commerces:.9,enseignement:.8,sante:1.1,hotel:.7,sport:.7,autres:.7},
+froid: {bureaux:13800,commerces:26200,enseignement:34000,sante:21800,hotel:21800,sport:17100,autres:13800},
+relance:{bureaux:69,commerces:55,enseignement:43,sante:53,hotel:82,sport:43,autres:43},
+cond:  {chauf:{bureaux:1.2,commerces:.9,enseignement:.8,sante:1.0,hotel:1.4,sport:.8,autres:.8}, ecs:{bureaux:1.1,commerces:.8,enseignement:.7,sante:1.1,hotel:1.6,sport:.7,autres:.7}},
+res400:{bureaux:[500,520],commerces:[390,440],enseignement:[320,370],sante:[400,530],hotel:[550,690],sport:[240,260],autres:[240,260]},
+resgt: {bureaux:[380,400],commerces:[300,340],enseignement:[250,290],sante:[310,410],hotel:[420,530],sport:[250,270],autres:[250,270]}
+};
+var PAC_M2 = {a:{H1:1100,H2:900,H3:600}, b:{H1:1200,H2:1000,H3:700}, c:{H1:1300,H2:1000,H3:700}};
+var AIR_M2 = {le12:{H1:860,H2:760,H3:620}, gt12:{H1:870,H2:770,H3:630}};
+var EN101 = {H1:2600,H2:2100,H3:1400};
+var EN102 = {elec:{H1:3000,H2:2500,H3:1600}, comb:{H1:4800,H2:3900,H3:2600}};
+var EN103 = {H1:5200,H2:4200,H3:2800};
+var EN107 = {elec:{H1:1800,H2:1500,H3:1000}, comb:{H1:2800,H2:2300,H3:1500}};
+var GTB = {zone:{H1:1.1,H2:.9,H3:.6}, chauf:{A:360,B:240}, ecs:{A:15,B:7}};
+var FROID_ZONE = {H1:.63,H2:.59,H3:.5};
+var EQUIL = {H1:120,H2:100,H3:67};
+var CONDENS_M2 = {chauf:{H1:150,H2:130,H3:80}, ecs:{H1:190,H2:160,H3:120}};
+var VEV_T = {chauf:9600, vent:11400, refr:3900, clim:990, autres:990};
+var MOTOVAR_T = {chauf:13700, vent:16300, refr:8000, clim:2000, autres:2000};
+var VMC_SF = {
+prop:{z:{H1:770,H2:630,H3:420}, f:{bureaux:.48,enseignement:1,resto:.59,autres:.54}},
+presence:{z:{H1:690,H2:560,H3:380}, f:{bureaux:.4,enseignement:1,resto:.45,autres:.51}},
+constant:{z:{H1:400,H2:330,H3:220}, f:{bureaux:.4,enseignement:1,resto:.53,autres:.58}}
+};
+var VMC_DF = {
+z:{prop:{H1:1000,H2:830,H3:560}, presence:{H1:970,H2:800,H3:530}, constant:{H1:850,H2:700,H3:460}},
+f:{bureaux:{prop:.53,constant:.48,presence:.51}, enseignement:{prop:1,constant:1,presence:1}, hotel:{prop:.68,constant:.61,presence:.63}, sport:{prop:.22,constant:.52,presence:.17}, autres:{prop:.71,constant:.71,presence:.71}}
+};
+var BP_T = {conf:310, refr:3600};
+var PORTES_NEG = {simple:6700, double:8200, combi:4600};
+var COND_HE = {8:{conf:500,dc:1900,refr:1300}, 7:{conf:770,dc:3000,refr:2000}, 6:{conf:1100,dc:4100,refr:2700}};
+var FREECOOL_T = {a:{H1:5100,H2:4200,H3:3000}, b:{H1:6400,H2:5900,H3:4700}};
+var PORTES_ML = 25600;
+var DESTRAT_TERT = {conv:{H1:3900,H2:4500,H3:4600}, rad:{H1:1400,H2:1600,H3:1600}};
+var DESTRAT_IND = {conv:{H1:7200,H2:8000,H3:8500}, rad:{H1:2500,H2:2800,H3:3000}};
+var VEV = {pompage:12400, ventilation:12200, aircomp:11900, froid:7100, autres:5500};
+var RECUP_AIR = {
+process: {"1x8":{H1:6400,H2:6000,H3:5000}, "2x8":{H1:15900,H2:15000,H3:12600}, "3x8we":{H1:19700,H2:18600,H3:15600}, "3x8":{H1:26700,H2:25200,H3:21100}},
+locaux: {"1x8":10300, "2x8":25600, "3x8we":31800, "3x8":43100}
+};
+var HP_FLOT = {air:{H1:14300,H2:14300,H3:13500}, eau:{H1:11700,H2:11700,H3:10400}};
+var BP_FLOT = 1500;
+var VEILLE = {"1x8":71,"2x8":57,"3x8":45,"4x8":30};
+var ISOL_UNIT = {froid2:{lin:300,surf:450}, froid1:{lin:180,surf:400}, chaud1:{lin:1050,surf:1300}, chaud2:{lin:1900,surf:2050}, chaud3:{lin:1850,surf:1850}};
+var REG = {"1x8":1, "2x8":2.2, "3x8we":3, "3x8":4.2};
+var COND_I = {eau:{8:680,7:1000,6:1400}, air:{12:790,11:1100,10:1400,9:1700,8:2000,7:2400,6:2800,5:3100,4:3600,3:4000,2:4400,1:4900,0:5400}};
+var ECONO = {"1x8":330,"2x8":720,"3x8we":990,"3x8":1400};
+var BRULEUR = {"1x8":550,"2x8":1200,"3x8we":1600,"3x8":2300};
+var CHDEC = {rad:{H1:650,H2:740,H3:790}, nonmod:{H1:1300,H2:1100,H3:590}, mod:{H1:2100,H2:1700,H3:1000}};
+function num(x){ var n = parseFloat(String(x).replace(",", ".")); return isFinite(n) && n > 0 ? n : 0; }
+function fAct(map, s){ return map[s] !== undefined ? map[s] : map.autres; }
+function calcPac(v, site, kind){
+var m2 = PAC_M2[v.etas][site.zone];
+var part = Math.min(100, num(v.part));
+var R = part >= 40 ? 1 : part / 100;
+var k = m2 * num(v.surf) * fAct(FACT.pac, site.secteur) * R;
+var notes = [];
+if (R < 1) notes.push("Facteur R de " + R.toFixed(2).replace(".", ",") + " : la PAC couvre moins de 40 % de la puissance de chauffage.");
+if (kind === "ae" && v.bonus) { k *= 3; notes.push("Bonification x3 incluse. À confirmer avec le délégataire à la date d'engagement."); }
+return {k:k, notes:notes};
+}
+function calcAir(v, site){ return {k: AIR_M2[v.puiss][site.zone] * fAct(FACT.pac, site.secteur) * num(v.surf), notes:[]}; }
+function calcEn101(v, site){ return {k: EN101[site.zone] * fAct(FACT.en101, site.secteur) * num(v.surf), notes:["R d'au moins 6 m².K/W."]}; }
+function calcEn102(v, site){
+var t = EN102[site.energie === "elec" ? "elec" : "comb"][site.zone];
+return {k: t * fAct(FACT.en102, site.secteur) * num(v.surf), notes:["R d'au moins 3,7 m².K/W. Fiche annoncée comme abrogée au 1er mai 2027 : engager avant."]};
+}
+function calcEn103(v, site){ return {k: EN103[site.zone] * fAct(FACT.en103, site.secteur) * num(v.surf), notes:["R d'au moins 3 m².K/W."]}; }
+function calcEn107(v, site){
+var t = EN107[site.energie === "elec" ? "elec" : "comb"][site.zone];
+return {k: t * fAct(FACT.en107, site.secteur) * num(v.surf), notes:["R d'au moins 4,5 m².K/W, pente de 5 % maximum."]};
+}
+function calcGtb(v, site){
+var z = GTB.zone[site.zone], S = num(v.surf);
+var k = GTB.chauf[v.cls] * z * S;
+if (v.ecs) k += GTB.ecs[v.cls] * z * S;
+var notes = [];
+if (site.secteur !== "bureaux") notes.push("Forfait bureaux utilisé, à affiner selon le secteur.");
+return {k:k, notes:notes};
+}
+function calcRelance(v, site){ return {k: ZC[site.zone] * fAct(FACT.relance, site.secteur) * num(v.surf), notes:["Valable pour les opérations engagées jusqu'au 30 juin 2028."]}; }
+function calcEquil(v, site){ return {k: EQUIL[site.zone] * num(v.surf), notes:[]}; }
+function calcRecupCond(v, site){
+var u = v.usage === "ecs" ? "ecs" : "chauf";
+return {k: CONDENS_M2[u][site.zone] * fAct(FACT.cond[u], site.secteur) * num(v.surf), notes:["Surface chauffée de 10 000 m² maximum. Exclu si la PAC couvre 40 % ou plus de la chaufferie."]};
+}
+function calcReseau(v, site){
+var tab = v.puiss === "gt400" ? FACT.resgt : FACT.res400;
+var idx = v.usage === "ecs" ? 1 : 0;
+return {k: fAct(tab, site.secteur)[idx] * ZC[site.zone] * num(v.surf), notes:["Bâtiment jamais raccordé, réseau en service depuis 1 an au moins. Bonification chauffage tertiaire possible."]};
+}
+function calcBiomasse(v){ return {k: num(v.q) * (v.puiss === "gt500" ? 3.4 : 4.8), notes:["Chaleur nette utile issue de l'étude de dimensionnement. Bonification chauffage tertiaire possible."]}; }
+function calcPortes(v){ return {k: PORTES_ML * num(v.ml), notes:["Ug de 1,8 W/m².K maximum."]}; }
+function calcPortesNeg(v){ return {k: PORTES_NEG[v.arch] * num(v.ml), notes:["Couvercles en verre, Ug de 3,8 W/m².K maximum."]}; }
+function calcFroidRecup(v, site){
+var coef = v.usage === "ecs" ? 1 : FROID_ZONE[site.zone];
+return {k: fAct(FACT.froid, site.secteur) * coef * num(v.kw), notes:["Étude de dimensionnement préalable obligatoire."]};
+}
+function calcCondHe(v){ return {k: COND_HE[v.dt][v.app] * num(v.kw), notes:["Note de calcul de dimensionnement obligatoire."]}; }
+function calcBpT(v){ return {k: BP_T[v.app] * num(v.kw), notes:["Étude préalable par un professionnel."]}; }
+function calcFreecoolT(v, site){ return {k: FREECOOL_T[v.consigne][site.zone] * (v.dc ? 4.5 : 1) * num(v.kw), notes:["Couvre 100 % du besoin quand l'extérieur est à 3 °C sous la consigne."]}; }
+function calcVevT(v){ return {k: VEV_T[v.app] * num(v.kw), notes:["Moteur asynchrone sans variateur. Certains moteurs IE2 sont exclus."]}; }
+function calcMotovar(v){ return {k: MOTOVAR_T[v.app] * num(v.kw), notes:["Moteurs EC et à réluctance variable exclus."]}; }
+function calcVmcSf(v, site){
+var t = VMC_SF[v.type];
+return {k: t.z[site.zone] * t.f[v.usage] * num(v.surf), notes:["Caisson de 0,3 W/(m³/h) maximum."]};
+}
+function calcVmcDf(v, site){
+return {k: VMC_DF.z[v.type][site.zone] * VMC_DF.f[v.usage][v.type] * num(v.surf), notes:["Échangeur d'efficacité 75 % minimum. Colonnes de coefficients déduites de la fiche."]};
+}
+function calcDestrat(v, site, table, label){
+var k = table[v.type][site.zone] * num(v.kw);
+var notes = [label];
+if (v.type === "rad" && site.zone === "H2") notes.push("Valeur radiatif H2 déduite de la grille, à confirmer.");
+return {k:k, notes:notes};
+}
+function calcDestratTert(v, site){ return calcDestrat(v, site, DESTRAT_TERT, "Local fermé de 5 m de hauteur minimum, hors entrepôt et stockage."); }
+function calcDestratInd(v, site){ return calcDestrat(v, site, DESTRAT_IND, "Local de 5 m de hauteur minimum, hors entrepôt et stockage."); }
+function calcVev(v){ return {k: VEV[v.app] * num(v.kw), notes:["Moteur asynchrone sans variateur. Certains moteurs IE2 sont exclus."]}; }
+function calcIe4(v){
+var P = num(v.kw), n = num(v.nb), f = 0;
+if (P >= 0.12 && P <= 0.75) f = 4900 * P + 2600;
+else if (P > 0.75 && P <= 375) f = 700 * P + 12000;
+else if (P > 375 && P <= 1000) f = 1600 * P;
+return {k: f * n, notes: f === 0 && P > 0 ? ["Puissance hors plage de la fiche (0,12 à 1 000 kW)."] : ["Calcul par moteur, puissance lue sur la plaque."]};
+}
+function calcRecupAir(v, site){
+var t = v.usage === "locaux" ? RECUP_AIR.locaux[v.regime] : RECUP_AIR.process[v.regime][site.zone];
+return {k: t * num(v.kw), notes:[]};
+}
+function calcHpFlot(v, site){ return {k: HP_FLOT[v.cond][site.zone] * num(v.kw), notes:[]}; }
+function calcBpFlot(v){ return {k: BP_FLOT * num(v.kw), notes:[]}; }
+function calcVeille(v){ return {k: VEILLE[v.regime] * num(v.debit), notes:["Production discontinue, pression de service de 6 à 6,5 bar."]}; }
+function calcCondI(v){
+var p = String(v.dt).split("-");
+return {k: COND_I[p[0]][p[1]] * REG[v.regime] * num(v.kw), notes:["Note de dimensionnement obligatoire."]};
+}
+function calcEcono(v){ return {k: ECONO[v.regime] * num(v.kw), notes:["Chaudière vapeur au gaz ou GPL, moins de 20 MW."]}; }
+function calcBruleur(v){ return {k: BRULEUR[v.regime] * num(v.kw), notes:["Chaudière industrielle de moins de 20 MW."]}; }
+function calcChDec(v, site){ return {k: CHDEC[v.type][site.zone] * REG[v.regime] * num(v.kw), notes:["Densité de puissance de 400 W/m² maximum. Étude préalable."]}; }
+function calcIsol(v){
+var u = ISOL_UNIT[v.temp][v.geo === "surf" ? "surf" : "lin"];
+return {k: u * REG[v.regime] * num(v.qty), notes:["Vannes et brides exclues (points singuliers). Réseau nu, ou isolant existant très dégradé."]};
+}
+function computeTotals(lines, price){
+var kwhc = 0, kwhcOk = 0;
+lines.forEach(function(l){ if (!l.etude) { kwhc += l.k; if (l.ok) kwhcOk += l.k; } });
+var mwhc = kwhc / 1000;
+return {kwhc:kwhc, mwhc:mwhc, eur: mwhc * price, low: mwhc * price * 0.8, high: mwhc * price * 1.15, eurOk: kwhcOk / 1000 * price};
+}
+/*CALC-END*/
+var OPT_ETAS = [["a","111 à 125 %"],["b","126 à 174 %"],["c","175 % et plus"]];
+var OPT_REGIME = [["1x8","1 x 8 h"],["2x8","2 x 8 h"],["3x8we","3 x 8 h, arrêt le week-end"],["3x8","3 x 8 h, sans arrêt"]];
+var OPT_APP_T = [["chauf","Chauffage, pompage"],["vent","Ventilation, renouvellement d'air"],["refr","Réfrigération"],["clim","Climatisation"],["autres","Autre application"]];
+var OPT_VMC = [["prop","Modulée proportionnelle"],["presence","Modulée à détection de présence"],["constant","Débit d'air constant"]];
+var C_SURF = "Surface et nature des travaux relevées sur site, devis détaillé disponible";
+var C_RGE = "Professionnel qualifié, preuve de réalisation prévue";
+var WORKS = [
+/* ---------- TERTIAIRE ---------- */
+{id:"en101", mode:"T", group:"Enveloppe du bâtiment", code:"BAT-EN-101", cofrac:true, title:"Isolation des combles ou de la toiture", desc:"Isolant en plancher de combles ou en rampants de toiture.", on:true, calc:calcEn101,
+fields:[{id:"surf", lab:"Surface isolée", unit:"m²", def:400}],
+conds:["Bâtiment tertiaire de plus de 2 ans, usage professionnel", "Résistance thermique R d'au moins 6 m².K/W, certifiée", "Pare-vapeur prévu si nécessaire", C_RGE]},
+{id:"en102", mode:"T", group:"Enveloppe du bâtiment", code:"BAT-EN-102", cofrac:true, title:"Isolation des murs", desc:"Doublage isolant par l'intérieur ou isolation par l'extérieur.", calc:calcEn102,
+fields:[{id:"surf", lab:"Surface de murs isolée", unit:"m²", def:300}],
+conds:["Murs séparant un espace chauffé d'un espace non chauffé ou de l'extérieur", "R d'au moins 3,7 m².K/W", C_RGE]},
+{id:"en103", mode:"T", group:"Enveloppe du bâtiment", code:"BAT-EN-103", cofrac:true, title:"Isolation d'un plancher bas", desc:"Isolant sous un plancher sur sous-sol non chauffé, vide sanitaire ou passage ouvert.", calc:calcEn103,
+fields:[{id:"surf", lab:"Surface de plancher isolée", unit:"m²", def:200}],
+conds:["Plancher donnant sur un sous-sol non chauffé, un vide sanitaire ou un passage ouvert", "R d'au moins 3 m².K/W", C_RGE]},
+{id:"en107", mode:"T", group:"Enveloppe du bâtiment", code:"BAT-EN-107", title:"Isolation d'une toiture-terrasse", desc:"Isolation par l'extérieur d'un toit plat, pente de 5 % maximum.", calc:calcEn107,
+fields:[{id:"surf", lab:"Surface de toiture isolée", unit:"m²", def:300}],
+conds:["Toiture plate, pente de 5 % maximum", "Isolation posée sur la terrasse, R d'au moins 4,5 m².K/W", "Bâtiment tertiaire de plus de 2 ans"]},
+{id:"fenetres", mode:"T", group:"Enveloppe du bâtiment", code:"BAT-EN-104", title:"Fenêtres à vitrage isolant", desc:"Remplacement complet de simples vitrages, Uw de 1,5 W/m².K maximum.", etude:"Volume chiffré avec le délégataire sur la surface de menuiseries.",
+conds:["Menuiseries existantes à simple vitrage, remplacement complet", "Uw de 1,5 W/m².K maximum (1,8 pour les doubles fenêtres)"]},
+{id:"pac_ae", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-163", cofrac:true, title:"Pompe à chaleur air/eau", desc:"Chauffage seul, ou chauffage et eau chaude. Note de dimensionnement obligatoire.", on:true, calc:function(v,s){return calcPac(v,s,"ae");},
+fields:[{id:"surf", lab:"Surface chauffée par la PAC", unit:"m²", def:1200},
+{id:"etas", lab:"Efficacité saisonnière (Etas)", type:"select", opts:OPT_ETAS, def:"b"},
+{id:"part", lab:"Part de la puissance de chauffage assurée par la PAC", unit:"%", def:100},
+{id:"bonus", lab:"Remplace une chaudière fioul, gaz ou charbon (bonification x3 du coup de pouce chauffage)", type:"check", def:false}],
+conds:["Étude de dimensionnement datée et signée, remise avant l'engagement", "Etas d'au moins 111 % (126 % en basse température), ou COP d'au moins 3,4 au-delà de 400 kW", "PAC pour le chauffage (pas l'eau chaude seule)", C_RGE]},
+{id:"pac_ee", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-164", cofrac:true, title:"Pompe à chaleur eau/eau ou eau glycolée", desc:"Captage sur nappe ou sondes. Mêmes seuils de performance que l'air/eau.", calc:function(v,s){return calcPac(v,s,"ee");},
+fields:[{id:"surf", lab:"Surface chauffée par la PAC", unit:"m²", def:1200},
+{id:"etas", lab:"Efficacité saisonnière (Etas)", type:"select", opts:OPT_ETAS, def:"b"},
+{id:"part", lab:"Part de la puissance de chauffage assurée par la PAC", unit:"%", def:100}],
+conds:["Note de dimensionnement remise au bénéficiaire à l'achèvement", "Etas d'au moins 111 % (126 % en basse température)", "Pas de cumul avec BAT-TH-162 pour la même PAC", C_RGE]},
+{id:"pac_aa", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-158", title:"Pompe à chaleur air/air réversible", desc:"Climatisation réversible, split, multi-split ou toiture.", calc:calcAir,
+fields:[{id:"surf", lab:"Surface couverte", unit:"m²", def:300},
+{id:"puiss", lab:"Puissance de l'installation", type:"select", opts:[["le12","12 kW ou moins"],["gt12","Plus de 12 kW"]], def:"gt12"}],
+conds:["Appareil réversible, puissance de 1 MW maximum", "Moins de 12 kW : SCOP d'au moins 4,2 et SEER d'au moins 6. Au-delà : 145 % en chauffage et 250 % en froid", "France métropolitaine"]},
+{id:"reseau", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-127", title:"Raccordement à un réseau de chaleur", desc:"Premier raccordement d'un bâtiment à un réseau de chauffage urbain.", calc:calcReseau,
+fields:[{id:"surf", lab:"Surface raccordée", unit:"m²", def:700},
+{id:"puiss", lab:"Puissance souscrite", type:"select", opts:[["le400","400 kW ou moins"],["gt400","Plus de 400 kW"]], def:"le400"},
+{id:"usage", lab:"Usage de la chaleur", type:"select", opts:[["chauf","Chauffage seul"],["ecs","Chauffage et eau chaude"]], def:"chauf"}],
+conds:["Bâtiment jamais raccordé à un réseau de chaleur", "Réseau en service depuis un an au moins", "Contrat de raccordement non encore signé"]},
+{id:"biomasse", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-157", cofrac:true, title:"Chaudière biomasse collective", desc:"Chaudière à bois (bûches, plaquettes, granulés) en chauffage central collectif.", calc:calcBiomasse,
+fields:[{id:"q", lab:"Chaleur nette utile produite par an", unit:"kWh/an", def:300000},
+{id:"puiss", lab:"Puissance de la chaudière", type:"select", opts:[["lt500","Moins de 500 kW"],["gt500","Plus de 500 kW"]], def:"lt500"}],
+conds:["Étude de dimensionnement préalable fournissant la chaleur utile", "Production de chaleur inférieure à 12 GWh par an", "Régulateur de classe IV minimum, silo de 225 litres ou ballon tampon"]},
+{id:"recup_cond", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-110", title:"Récupérateur de chaleur à condensation", desc:"Équipement sur une chaudière collective existante au combustible.", calc:calcRecupCond,
+fields:[{id:"surf", lab:"Surface chauffée", unit:"m²", def:1500},
+{id:"usage", lab:"Usage de la chaudière", type:"select", opts:[["chauf","Chauffage seul"],["ecs","Chauffage et eau chaude"]], def:"chauf"}],
+conds:["Chauffage collectif au combustible existant, surface de 10 000 m² maximum", "Pas de PAC couvrant 40 % ou plus de la nouvelle chaufferie", "Preuve de réalisation mentionnant le récupérateur à condensation"]},
+{id:"destrat_t", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-142", cofrac:true, title:"Déstratification d'air", desc:"Brassage de l'air chaud accumulé sous le plafond d'un grand volume.", calc:calcDestratTert,
+fields:[{id:"kw", lab:"Puissance de chauffage du local", unit:"kW", def:120},
+{id:"type", lab:"Type de chauffage du local", type:"select", opts:[["conv","Convectif (aérothermes, air chaud)"],["rad","Radiatif (tubes, panneaux)"]], def:"conv"}],
+conds:["Hauteur sous plafond d'au moins 5 m, local clos", "Hors entrepôt, réserve et stockage, consigne d'au moins 15 °C", "Note de dimensionnement et calepinage, brasseurs plafonniers exclus"]},
+{id:"geo", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-162", cofrac:true, title:"Système géothermique", desc:"Géothermie avec bonification chauffage tertiaire possible.", etude:"Volume chiffré avec le délégataire après étude de dimensionnement.",
+conds:["Étude de dimensionnement préalable", "Pas de cumul avec BAT-TH-163 ou 164 pour la même PAC"]},
+{id:"relance", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-TH-109", title:"Optimiseur de relance du chauffage collectif", desc:"Régulation auto-adaptative qui optimise l'arrêt et le redémarrage du chauffage.", calc:calcRelance,
+fields:[{id:"surf", lab:"Surface chauffée", unit:"m²", def:1200}],
+conds:["Chauffage collectif, optimiseur auto-adaptatif conforme à la norme NF EN 12098-1", "Pas de GTB (BAT-TH-116) ni de programmateur (BAT-TH-108) sur le même chauffage"]},
+{id:"equilibrage", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-SE-103", title:"Équilibrage hydraulique du chauffage", desc:"Réglage des vannes d'équilibrage d'un chauffage collectif à eau chaude.", calc:calcEquil,
+fields:[{id:"surf", lab:"Surface chauffée", unit:"m²", def:1200}],
+conds:["Chauffage collectif à eau chaude", "Plan hydraulique et fiche d'équilibrage de chaque vanne", "Écart de température de 2 °C maximum entre pièces après réglage"]},
+{id:"gtb", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-TH-116", cofrac:true, title:"Gestion technique du bâtiment (GTB)", desc:"Pilotage centralisé du chauffage, bâtiment de plus de 2 ans.", on:true, calc:calcGtb,
+fields:[{id:"surf", lab:"Surface pilotée", unit:"m²", def:1200},
+{id:"cls", lab:"Classe de régulation visée", type:"select", opts:[["A","Classe A"],["B","Classe B"]], def:"B"},
+{id:"ecs", lab:"Pilote aussi l'eau chaude sanitaire", type:"check", def:true}],
+conds:["Bâtiment tertiaire de plus de 2 ans", "GTB existante au niveau C ou moins, ou absente", "Régulation de classe A ou B (NF EN ISO 52120-1) pour le chauffage", "Travaux engagés avant le 1er janvier 2030"]},
+{id:"intermit", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-TH-108", title:"Thermostat programmable (programmation d'intermittence)", desc:"Programmateur sur un chauffage existant, pour les petites surfaces.", etude:"Volume au m² chiffré avec le délégataire. Non cumulable avec BAT-TH-109 et 116.",
+conds:["Surface chauffée de 10 000 m² maximum", "Équipement conforme à la norme EN 12098-5"]},
+{id:"vev_t", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-112", title:"Variateur de vitesse sur moteur", desc:"Variateur sur un moteur asynchrone de pompe, ventilateur ou groupe froid.", calc:calcVevT,
+fields:[{id:"app", lab:"Application du moteur", type:"select", opts:OPT_APP_T, def:"chauf"},
+{id:"kw", lab:"Puissance nominale (plaque signalétique)", unit:"kW", def:15}],
+conds:["Moteur asynchrone existant sans variateur, de 3 MW maximum", "Moteur IE2 exclu selon l'année d'achat et la puissance", "Preuve de réalisation mentionnant le variateur"]},
+{id:"motovar", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-EQ-123", title:"Moto-variateur synchrone", desc:"Moteur à aimants permanents ou à réluctance avec son variateur.", calc:calcMotovar,
+fields:[{id:"app", lab:"Application", type:"select", opts:OPT_APP_T, def:"vent"},
+{id:"kw", lab:"Puissance électrique nominale", unit:"kW", def:11}],
+conds:["Moteur synchrone à aimants permanents ou à réluctance", "Moteurs EC, pas à pas et à réluctance variable exclus", "Pas de cumul avec BAT-TH-112 sur le même moteur"]},
+{id:"vmc_sf", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-125", title:"Ventilation mécanique simple flux", desc:"Caisson de ventilation à débit constant ou modulé.", calc:calcVmcSf,
+fields:[{id:"surf", lab:"Surface ventilée", unit:"m²", def:600},
+{id:"type", lab:"Type de ventilation", type:"select", opts:OPT_VMC, def:"prop"},
+{id:"usage", lab:"Usage des locaux", type:"select", opts:[["bureaux","Bureaux"],["enseignement","Enseignement"],["resto","Restauration"],["autres","Autres locaux (hôtel, commerce, santé)"]], def:"bureaux"}],
+conds:["Locaux de plus de 2 ans, pose par un professionnel", "Caisson de 0,3 W/(m³/h) maximum", "Avis technique CCFAT valide pour une ventilation modulée"]},
+{id:"vmc_df", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-126", title:"Ventilation double flux avec échangeur", desc:"Ventilation avec récupération de chaleur sur l'air extrait.", calc:calcVmcDf,
+fields:[{id:"surf", lab:"Surface ventilée", unit:"m²", def:600},
+{id:"type", lab:"Type de ventilation", type:"select", opts:OPT_VMC, def:"presence"},
+{id:"usage", lab:"Usage des locaux", type:"select", opts:[["bureaux","Bureaux"],["enseignement","Enseignement"],["hotel","Hôtellerie, restauration"],["sport","Établissements sportifs"],["autres","Autres locaux"]], def:"bureaux"}],
+conds:["Échangeur d'efficacité de 75 % minimum", "Caisson de 0,35 W/(m³/h) maximum", "Pose par un professionnel"]},
+{id:"ventilo", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-143", title:"Ventilo-convecteurs haute performance", desc:"Remplacement par des appareils de classe A Eurovent.", etude:"Volume chiffré avec le délégataire, par surface chauffée et rafraîchie.",
+conds:["Appareils de classe énergétique A Eurovent", "Remplacement d'anciens ventilo-convecteurs justifié"]},
+{id:"freecool_t", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-156", title:"Freecooling par eau de refroidissement", desc:"Refroidissement gratuit en hiver à la place du groupe froid.", calc:calcFreecoolT,
+fields:[{id:"kw", lab:"Puissance de freecooling", unit:"kW", def:100},
+{id:"consigne", lab:"Consigne du réseau d'eau", type:"select", opts:[["a","15 à 18 °C"],["b","18 à 20 °C"]], def:"a"},
+{id:"dc", lab:"Le local est un data center", type:"check", def:false}],
+conds:["Étude de dimensionnement préalable", "Couvre 100 % du besoin quand l'extérieur est à 3 °C sous la consigne"]},
+{id:"portes", mode:"T", group:"Froid commercial et data center", code:"BAT-EQ-124", title:"Portes vitrées sur meubles froids positifs", desc:"Fermeture des meubles frigorifiques verticaux ouverts (produits frais).", calc:calcPortes,
+fields:[{id:"ml", lab:"Longueur de portes posées", unit:"m", def:10}],
+conds:["Meubles verticaux à température positive, bâtiment existant", "Ug du vitrage de 1,8 W/m².K maximum", "Document fabricant attestant l'Ug"]},
+{id:"portes_neg", mode:"T", group:"Froid commercial et data center", code:"BAT-EQ-125", title:"Couvercles sur meubles froids négatifs", desc:"Fermeture des meubles frigorifiques horizontaux (surgelés).", calc:calcPortesNeg,
+fields:[{id:"ml", lab:"Longueur de couvercles posés", unit:"m", def:8},
+{id:"arch", lab:"Architecture du meuble", type:"select", opts:[["simple","Simple"],["double","Double"],["combi","Combiné"]], def:"double"}],
+conds:["Meubles horizontaux à température négative", "Ug du vitrage de 3,8 W/m².K maximum", "Marques, références et longueur dans la preuve de réalisation"]},
+{id:"cond_he", mode:"T", group:"Froid commercial et data center", code:"BAT-EQ-130", title:"Condensation frigorifique à haute efficacité", desc:"Condenseur surdimensionné qui réduit la consommation du groupe froid.", calc:calcCondHe,
+fields:[{id:"kw", lab:"Puissance électrique nominale du groupe", unit:"kW", def:100},
+{id:"app", lab:"Application", type:"select", opts:[["conf","Climatisation de confort"],["dc","Data center"],["refr","Réfrigération hors confort"]], def:"conf"},
+{id:"dt", lab:"Écart de température (ΔT) du condenseur", type:"select", opts:[["8","8 °C"],["7","7 °C"],["6","6 °C"]], def:"8"}],
+conds:["Note de calcul : fluide, températures, configuration du groupe, puissance", "Condensation à l'air, à tour ou à eau seule (ΔT de 8 °C maximum)"]},
+{id:"bp_t", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-145", title:"Basse pression flottante sur groupe froid", desc:"Régulation qui relève la pression d'évaporation quand la charge baisse.", calc:calcBpT,
+fields:[{id:"kw", lab:"Puissance électrique nominale du groupe", unit:"kW", def:40},
+{id:"app", lab:"Application", type:"select", opts:[["conf","Climatisation de confort"],["refr","Réfrigération hors confort"]], def:"refr"}],
+conds:["Étude préalable par un professionnel (conseiller en énergie ou bureau d'études)", "Configuration du groupe et puissance électrique nominale indiquées"]},
+{id:"recup_froid", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-139", cofrac:true, title:"Récupération de chaleur sur groupe froid", desc:"Chaleur du condenseur réutilisée pour le chauffage ou l'eau chaude.", calc:calcFroidRecup,
+fields:[{id:"kw", lab:"Puissance thermique récupérée", unit:"kW", def:20},
+{id:"usage", lab:"Usage de la chaleur", type:"select", opts:[["chauf","Chauffage ou procédé"],["ecs","Eau chaude sanitaire"]], def:"chauf"}],
+conds:["Groupe à compression mécanique, évaporation à 18 °C maximum", "Étude de dimensionnement préalable", "Puissance récupérée en kW thermiques indiquée par le professionnel"]},
+{id:"hp_t", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-134", title:"Haute pression flottante sur groupe froid", desc:"Régulation de la pression de condensation selon la température extérieure.", etude:"Barème en cours de vérification : volume chiffré avec le délégataire.",
+conds:["Étude préalable par un professionnel", "France métropolitaine"]},
+{id:"meuble_perf", mode:"T", group:"Froid commercial et data center", code:"BAT-EQ-134", title:"Meuble frigorifique de vente performant", desc:"Meuble neuf à groupe froid intégré.", etude:"Volume chiffré avec le délégataire selon le meuble.",
+conds:["Meuble de vente avec groupe de production de froid intégré", "Performance justifiée par la fiche technique du fabricant"]},
+{id:"co2", mode:"T", group:"Froid commercial et data center", code:"BAT-EQ-117", title:"Installation frigorifique au CO2", desc:"Centrale frigorifique CO2 subcritique ou transcritique.", etude:"Volume chiffré avec le délégataire après étude.",
+conds:["Installation au CO2 (R744), étude de dimensionnement"]},
+{id:"dc_confine", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-153", title:"Confinement des allées chaudes et froides", desc:"Cloisons de confinement dans un data center.", etude:"Volume chiffré avec le délégataire.",
+conds:["Data center existant", "Confinement complet des allées"]},
+{id:"eaux_grises", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-154", title:"Récupération de chaleur sur eaux grises", desc:"Échangeur sur les eaux de douches d'un hôtel, d'un sport ou d'un salon de coiffure.", etude:"Barème par chambre ou par douche à confirmer : volume chiffré avec le délégataire.",
+conds:["Efficacité nominale de 35 % minimum, mesurée par un organisme accrédité", "Hôtel, établissement sportif, santé, camping, salon de coiffure ou piscine"]},
+/* ---------- INDUSTRIE ---------- */
+{id:"vev", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-102", cofrac:true, title:"Variateur électronique de vitesse sur moteur", desc:"Variateur sur un moteur asynchrone de pompe, ventilateur ou compresseur.", on:true, calc:calcVev,
+fields:[{id:"app", lab:"Application du moteur", type:"select", opts:[["pompage","Pompage"],["ventilation","Ventilation"],["aircomp","Compresseur d'air"],["froid","Compresseur frigorifique"],["autres","Autre application"]], def:"pompage"},
+{id:"kw", lab:"Puissance nominale (plaque signalétique)", unit:"kW", def:45}],
+conds:["Moteur asynchrone existant sans variateur, de 3 MW maximum", "Moteur IE2 exclu selon l'année d'achat et la puissance", "Preuve de réalisation mentionnant le variateur, ou marque et référence avec document fabricant"]},
+{id:"ie4", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-132", title:"Moteur asynchrone de classe IE4", desc:"Moteur très haut rendement (Super Premium) en remplacement ou en neuf.", calc:calcIe4,
+fields:[{id:"nb", lab:"Nombre de moteurs identiques", unit:"u", def:2},
+{id:"kw", lab:"Puissance utile d'un moteur", unit:"kW", def:30}],
+conds:["Moteur IE4 selon la norme CEI 60034-30-1, de 0,12 à 1 000 kW", "Pose par un professionnel, preuve de réalisation"]},
+{id:"veille", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-140", title:"Mise en veille automatique d'une machine à air comprimé", desc:"La pression descend à 3 bar maximum quand la machine ne produit pas.", calc:calcVeille,
+fields:[{id:"debit", lab:"Débit total des machines équipées", unit:"L/min", def:4000},
+{id:"regime", lab:"Régime de fonctionnement, arrêt le week-end", type:"select", opts:[["1x8","1 x 8 h"],["2x8","2 x 8 h"],["3x8","3 x 8 h"],["4x8","4 x 8 h"]], def:"2x8"}],
+conds:["Production discontinue, pression de service de 6 à 6,5 bar", "Débit de 200 à 4 000 L/min par machine", "Débitmètre, régulateur proportionnel et manomètre"]},
+{id:"recup_air", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-103", title:"Récupération de chaleur sur compresseur d'air", desc:"Chaleur du compresseur réutilisée pour un procédé, le chauffage ou l'eau chaude.", on:true, calc:calcRecupAir,
+fields:[{id:"kw", lab:"Puissance de l'échangeur (ou du compresseur si sans échangeur)", unit:"kW", def:30},
+{id:"regime", lab:"Régime de fonctionnement du site", type:"select", opts:OPT_REGIME, def:"2x8"},
+{id:"usage", lab:"Usage de la chaleur", type:"select", opts:[["process","Procédé industriel"],["locaux","Chauffage de locaux ou eau chaude"]], def:"process"}],
+conds:["Chaleur utilisée sur le site", "Échangeur et sa puissance thermique mentionnés dans la preuve", "Système interne de régénération de sécheur exclu"]},
+{id:"sequenceur", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-124", title:"Séquenceur de centrale d'air comprimé", desc:"Pilotage électronique de plusieurs compresseurs.", etude:"Volume chiffré avec le délégataire selon la puissance des compresseurs.",
+conds:["Centrale de plusieurs compresseurs existante"]},
+{id:"autres_moteurs", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-114 / 127 / 133", title:"Moto-variateur synchrone, transmission performante, pilotage à récupération d'énergie", desc:"Trois fiches moteurs : moto-variateur synchrone, transmission performante, système de pilotage avec récupération d'énergie.", etude:"Volume chiffré avec le délégataire selon l'équipement.",
+conds:["Équipement remplacé ou installé par un professionnel, fiche technique fabricant"]},
+{id:"compresseur_bp", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-120 / 122", title:"Compresseur basse pression et sécheur à adsorption", desc:"Compresseur d'air basse pression à vis ou centrifuge, sécheur d'air comprimé à adsorption.", etude:"Volume chiffré avec le délégataire selon la puissance.",
+conds:["Équipement neuf ou en remplacement, fiche technique fabricant"]},
+{id:"hp_flot", mode:"I", group:"Production de froid", code:"IND-UT-116", cofrac:true, title:"Haute pression flottante sur groupe froid", desc:"Régulation qui abaisse la pression de condensation selon la météo.", calc:calcHpFlot,
+fields:[{id:"kw", lab:"Puissance électrique nominale du groupe", unit:"kW", def:60},
+{id:"cond", lab:"Condensation", type:"select", opts:[["air","À l'air"],["eau","À l'eau uniquement"]], def:"air"}],
+conds:["Groupe de production de froid industriel existant", "Puissance électrique nominale totale du groupe relevée"]},
+{id:"bp_flot", mode:"I", group:"Production de froid", code:"IND-UT-115", title:"Basse pression flottante sur groupe froid", desc:"Régulation qui relève la pression d'évaporation quand la charge baisse.", calc:calcBpFlot,
+fields:[{id:"kw", lab:"Puissance électrique nominale du groupe", unit:"kW", def:60}],
+conds:["Groupe de production de froid industriel existant", "Opération identifiée avec l'appui d'un conseiller en énergie"]},
+{id:"cond_i", mode:"I", group:"Production de froid", code:"IND-UT-113", title:"Condensation frigorifique à haute efficacité", desc:"Condenseur à eau seule ou à air sec surdimensionné.", calc:calcCondI,
+fields:[{id:"kw", lab:"Puissance installée", unit:"kW", def:100},
+{id:"dt", lab:"Type de condenseur et écart de température (ΔT)", type:"select", opts:[["eau-8","Eau seule, ΔT 8 °C"],["eau-7","Eau seule, ΔT 7 °C"],["eau-6","Eau seule, ΔT 6 °C"],["air-12","Air sec, ΔT 12 °C"],["air-10","Air sec, ΔT 10 °C"],["air-8","Air sec, ΔT 8 °C"],["air-6","Air sec, ΔT 6 °C"],["air-4","Air sec, ΔT 4 °C"],["air-2","Air sec, ΔT 2 °C"],["air-0","Air sec, ΔT 0 °C"]], def:"air-10"},
+{id:"regime", lab:"Régime de fonctionnement du site", type:"select", opts:OPT_REGIME, def:"2x8"}],
+conds:["Note de dimensionnement avec fluide, températures et puissance", "Eau seule : ΔT de 8 °C maximum. Air sec : ΔT de 12 °C maximum"]},
+{id:"freecool_i", mode:"I", group:"Production de froid", code:"IND-UT-135", title:"Freecooling en substitution d'un groupe froid", desc:"Refroidissement par eau de refroidissement à la place du groupe froid.", etude:"Volume chiffré avec le délégataire selon la puissance et la consigne.",
+conds:["Étude de dimensionnement préalable", "Couvre 100 % du besoin quand l'extérieur est à 3 °C sous la consigne"]},
+{id:"economiseur", mode:"I", group:"Chaleur de process et chaudières", code:"IND-UT-104", title:"Économiseur sur chaudière vapeur", desc:"Récupération de chaleur sur les fumées d'une chaudière vapeur.", calc:calcEcono,
+fields:[{id:"kw", lab:"Puissance de la chaudière", unit:"kW", def:3000},
+{id:"regime", lab:"Régime de fonctionnement du site", type:"select", opts:OPT_REGIME, def:"3x8we"}],
+conds:["Chaudière de production de vapeur au gaz naturel ou GPL", "Puissance de moins de 20 MW"]},
+{id:"bruleur", mode:"I", group:"Chaleur de process et chaudières", code:"IND-UT-105", title:"Brûleur micro-modulant sur chaudière", desc:"Brûleur qui ajuste finement sa puissance à la demande.", calc:calcBruleur,
+fields:[{id:"kw", lab:"Puissance de la chaudière", unit:"kW", def:3000},
+{id:"regime", lab:"Régime de fonctionnement du site", type:"select", opts:OPT_REGIME, def:"3x8we"}],
+conds:["Chaudière industrielle de moins de 20 MW", "Brûleur installé par un professionnel"]},
+{id:"autres_chaud", mode:"I", group:"Chaleur de process et chaudières", code:"IND-UT-118 / 125 / 130", title:"Brûleur sur four à récupération, traitement d'eau, condenseur de fumées", desc:"Trois fiches : brûleur avec récupération de chaleur sur four, traitement d'eau performant, condenseur sur effluents gazeux de chaudière vapeur.", etude:"Volume chiffré avec le délégataire selon la puissance.",
+conds:["Chaudière vapeur ou four industriel existant"]},
+{id:"fatale", mode:"I", group:"Chaleur de process et chaudières", code:"IND-UT-137 / 138 / 139", cofrac:true, title:"Chaleur fatale : relèvement de température, conversion, stockage", desc:"Pompe à chaleur sur chaleur récupérée, conversion en électricité ou air comprimé, stockage.", etude:"Volume chiffré après une étude de dimensionnement du projet.",
+conds:["Source de chaleur fatale identifiée et mesurée", "Étude de dimensionnement préalable"]},
+{id:"chaud_elec", mode:"I", group:"Chaleur de process et chaudières", code:"IND-UT-141", cofrac:true, title:"Chaudière industrielle électrique", desc:"Remplacement total d'une chaudière fossile, moins de 20 MW, fiche en vigueur depuis septembre 2026.", etude:"Volume chiffré après étude de dimensionnement obligatoire.",
+conds:["Remplacement total d'une chaudière fossile, hybridation exclue", "Étude de dimensionnement obligatoire", "Puissance de moins de 20 MW"]},
+{id:"isol", mode:"I", group:"Réseaux et grands volumes", code:"IND-UT-131", cofrac:true, title:"Isolation de tuyauteries, cuves et parois", desc:"Calorifugeage de réseaux vapeur, eau chaude, eau glacée, ou de cuves et échangeurs.", on:true, calc:calcIsol,
+fields:[{id:"temp", lab:"Température du fluide", type:"select", opts:[["chaud1","De 40 à 100 °C"],["chaud2","De 100 à 300 °C"],["chaud3","Plus de 300 °C"],["froid1","De -10 à 10 °C"],["froid2","De -80 à -10 °C"]], def:"chaud2"},
+{id:"geo", lab:"Type de paroi", type:"select", opts:[["lin","Tuyauterie de moins de 508 mm de diamètre (au mètre)"],["surf","Surface plane ou diamètre de 508 mm et plus (au m²)"]], def:"lin"},
+{id:"qty", lab:"Quantité isolée (mètres ou m² selon le type)", unit:"m ou m²", def:150},
+{id:"regime", lab:"Régime de fonctionnement du site", type:"select", opts:OPT_REGIME, def:"2x8"}],
+conds:["Fluide entre -80 et 10 °C, ou au-dessus de 40 °C", "Réseau nu, ou isolant existant dont R' est sous la moitié du seuil", "Pose selon la norme NF DTU 45.2, R' conforme au seuil de la fiche", "Vannes et brides non comptées"]},
+{id:"destrat_i", mode:"I", group:"Réseaux et grands volumes", code:"IND-BA-110", cofrac:true, title:"Déstratification d'air", desc:"Brassage de l'air chaud sous le plafond d'un atelier de grande hauteur.", calc:calcDestratInd,
+fields:[{id:"kw", lab:"Puissance de chauffage du local", unit:"kW", def:200},
+{id:"type", lab:"Type de chauffage du local", type:"select", opts:[["conv","Convectif (aérothermes, air chaud)"],["rad","Radiatif (tubes, panneaux)"]], def:"conv"}],
+conds:["Hauteur sous plafond d'au moins 5 m, local clos et chauffé", "Hors entrepôt et stockage, consigne d'au moins 15 °C", "Note de dimensionnement d'un bureau d'études qualifié, assurance décennale du poseur"]},
+{id:"chauff_dec", mode:"I", group:"Réseaux et grands volumes", code:"IND-BA-117", title:"Chauffage décentralisé performant", desc:"Tubes ou panneaux radiants, aérothermes et générateurs d'air chaud à condensation.", calc:calcChDec,
+fields:[{id:"kw", lab:"Puissance utile totale", unit:"kW", def:150},
+{id:"type", lab:"Type d'appareil", type:"select", opts:[["rad","Tubes ou panneaux radiants"],["nonmod","Aérothermes ou générateurs à condensation non modulants"],["mod","Aérothermes ou générateurs à condensation modulants"]], def:"mod"},
+{id:"regime", lab:"Régime d'occupation", type:"select", opts:OPT_REGIME, def:"2x8"}],
+conds:["Étude préalable des besoins et de la puissance utile", "Densité de puissance de 400 W/m² maximum", "Efficacité saisonnière conforme à la fiche selon l'appareil"]},
+{id:"mesure", mode:"I", group:"Mesure et autres équipements", code:"IND-UT-134", cofrac:true, title:"Mesurage d'indicateurs de performance énergétique", desc:"Compteurs et système de suivi des consommations par usage.", etude:"Volume chiffré avec le délégataire selon les usages mesurés.",
+conds:["Système de mesurage conforme à la fiche", "Indicateurs de performance suivis"]},
+{id:"presse", mode:"I", group:"Mesure et autres équipements", code:"IND-UT-129", cofrac:true, title:"Presse à injecter toute électrique ou hybride", desc:"Remplacement d'une presse hydraulique.", etude:"Volume chiffré avec le délégataire selon la force de fermeture.",
+conds:["Presse à injecter toute électrique ou hybride neuve"]}
+];
+var CONFLICTS = [
+["pac_ae","pac_ee","Pour une même PAC, BAT-TH-163 et BAT-TH-164 ne se cumulent pas."],
+["relance","gtb","BAT-TH-109 et BAT-TH-116 ne se cumulent pas sur le même chauffage."],
+["intermit","gtb","BAT-TH-108 et BAT-TH-116 ne se cumulent pas sur le même chauffage."],
+["intermit","relance","BAT-TH-108 et BAT-TH-109 ne se cumulent pas sur le même chauffage."],
+["vev_t","motovar","Un même moteur ne reçoit pas à la fois un variateur et un moto-variateur."],
+["recup_cond","pac_ae","Le récupérateur de condensation est exclu si la PAC couvre 40 % ou plus de la nouvelle chaufferie."],
+["recup_cond","pac_ee","Le récupérateur de condensation est exclu si la PAC couvre 40 % ou plus de la nouvelle chaufferie."],
+["pac_ae","geo","Pour une même PAC, BAT-TH-162 ne se cumule pas avec BAT-TH-163."],
+["pac_ee","geo","Pour une même PAC, BAT-TH-162 ne se cumule pas avec BAT-TH-164."]
+];
+var QUESTIONS = [
+{mode:"T", q:"Des meubles frigorifiques de vente ouverts ?", w:["portes","portes_neg"]},
+{mode:"T", q:"Un groupe de froid ou une climatisation centralisée ?", w:["bp_t","cond_he","recup_froid","freecool_t"]},
+{mode:"T", q:"Des moteurs de plus de 5 kW sans variateur (pompes, ventilation) ?", w:["vev_t","motovar"]},
+{mode:"T", q:"Un chauffage collectif à eau chaude, jamais équilibré ?", w:["equilibrage","relance"]},
+{mode:"T", q:"Une ventilation ancienne ou absente ?", w:["vmc_sf","vmc_df"]},
+{mode:"T", q:"Des locaux de plus de 5 m de hauteur, chauffés ?", w:["destrat_t"]},
+{mode:"T", q:"Des combles, murs, planchers ou toit-terrasse non isolés ?", w:["en101","en102","en103","en107"]},
+{mode:"T", q:"Une chaudière à remplacer, ou un réseau de chaleur à proximité ?", w:["pac_ae","reseau","biomasse"]},
+{mode:"T", q:"Une chaudière collective sans récupérateur de condensation ?", w:["recup_cond"]},
+{mode:"I", q:"Des moteurs sans variateur, ou anciens ?", w:["vev","ie4"]},
+{mode:"I", q:"Un compresseur d'air (chaleur à récupérer, mise en veille, séquenceur) ?", w:["recup_air","veille"]},
+{mode:"I", q:"Un groupe froid industriel ?", w:["hp_flot","bp_flot","cond_i"]},
+{mode:"I", q:"Des tuyauteries ou cuves chaudes ou froides non isolées ?", w:["isol"]},
+{mode:"I", q:"Un hall de plus de 5 m de hauteur, chauffé ?", w:["destrat_i","chauff_dec"]},
+{mode:"I", q:"Une chaudière vapeur ?", w:["economiseur","bruleur"]},
+{mode:"I", q:"De la chaleur rejetée (fours, compresseurs, groupes froids) ?", w:["fatale","recup_air"]}
+];
+var SUGGEST = [
+{mode:"T", if:["pac_ae","pac_ee","pac_aa","reseau","biomasse","recup_cond"], add:["equilibrage","relance"], msg:"Chauffage modifié : l'équilibrage et la régulation sont de petits chantiers qui s'ajoutent au volume."},
+{mode:"T", if:["en101","en102","en103","en107","fenetres"], add:["en101","en102","en103","en107"], msg:"Enveloppe : les autres parois non isolées ajoutent chacune leur volume."},
+{mode:"T", if:["portes"], add:["portes_neg","cond_he","bp_t"], msg:"Froid commercial : couvercles de surgelés, condensation et régulation du groupe."},
+{mode:"T", if:["portes_neg","recup_froid","cond_he","bp_t"], add:["portes","cond_he","bp_t"], msg:"Autour du groupe froid : portes de meubles et régulation de pression."},
+{mode:"T", if:["vev_t","vmc_sf","vmc_df","freecool_t"], add:["vev_t","vmc_sf","vmc_df"], msg:"Moteurs et ventilation : variateurs et ventilation performante se cumulent sur des équipements différents."},
+{mode:"I", if:["vev","recup_air","veille"], add:["ie4","veille","recup_air","vev"], msg:"Moteurs et air comprimé : chaque équipement a sa fiche."},
+{mode:"I", if:["hp_flot"], add:["bp_flot","cond_i"], msg:"Groupe froid : la basse pression flottante et la condensation s'ajoutent à la haute pression."},
+{mode:"I", if:["bp_flot","cond_i"], add:["hp_flot","bp_flot"], msg:"Groupe froid : les deux régulations de pression se cumulent."},
+{mode:"I", if:["economiseur","bruleur"], add:["economiseur","bruleur","autres_chaud"], msg:"Chaudière vapeur : économiseur, brûleur et traitement d'eau."},
+{mode:"I", if:["isol"], add:["destrat_i","chauff_dec"], msg:"Bâtiment industriel : chauffage des halls et déstratification."}
+];
+var state = {
+mode: "T",
+site: {nom:"", secteur:"bureaux", zone:"H1", energie:"comb", signe:"non"},
+price: 7.5, budget: "", filter: "",
+works: {}
+};
+var WBYID = {};
+WORKS.forEach(function(w){
+WBYID[w.id] = w;
+var v = {};
+(w.fields || []).forEach(function(f){ v[f.id] = f.def; });
+state.works[w.id] = {on: !!w.on, v: v, c: (w.conds || []).map(function(){ return false; })};
+});
+var nf0 = new Intl.NumberFormat("fr-FR", {maximumFractionDigits: 0});
+var nf1 = new Intl.NumberFormat("fr-FR", {maximumFractionDigits: 1});
+function eur(n){ return nf0.format(Math.round(n / 10) * 10) + " €"; }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function norm(s){ return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+function $(id){ return document.getElementById(id); }
+function isOn(id){ return state.works[id] && state.works[id].on; }
+function optHTML(opts, sel){
+return opts.map(function(o){ return '<option value="' + o[0] + '"' + (String(o[0]) === String(sel) ? " selected" : "") + ">" + esc(o[1]) + "</option>"; }).join("");
+}
+function buildSite(){
+var h = '<label class="fld"><span class="lab">Entreprise (pour le récapitulatif)</span><input class="solo" id="s-nom" type="text" placeholder="ex. SARL Dupont" value="' + esc(state.site.nom) + '"></label>';
+if (state.mode === "T") {
+h += '<label class="fld"><span class="lab">Activité du bâtiment</span><select class="solo" id="s-secteur">' + optHTML(SECTEURS, state.site.secteur) + '</select></label>';
+h += '<label class="fld"><span class="lab">Chauffage actuel</span><select class="solo" id="s-energie">' + optHTML([["comb","Gaz, fioul ou autre combustible"],["elec","Électricité"]], state.site.energie) + '</select></label>';
+}
+h += '<label class="fld"><span class="lab">Zone climatique</span><select class="solo" id="s-zone">' + optHTML(ZONES, state.site.zone) + '</select><small>Se vérifie par commune sur le catalogue officiel.</small></label>';
+h += '<label class="fld"><span class="lab">Devis déjà signé pour ces travaux ?</span><select class="solo" id="s-signe">' + optHTML([["non","Non, aucun devis signé"],["oui","Oui, au moins un devis signé"]], state.site.signe) + '</select></label>';
+$("siteFields").innerHTML = h;
+}
+function buildQuestions(){
+var h = "";
+QUESTIONS.filter(function(q){ return q.mode === state.mode; }).forEach(function(q, i){
+var on = q.w.every(function(id){ return isOn(id); });
+h += '<li><span>' + esc(q.q) + '</span><button type="button" class="qbtn" data-q="' + QUESTIONS.indexOf(q) + '" aria-pressed="' + on + '">' + (on ? "Ajouté" : "Oui, concerné") + "</button></li>";
+});
+$("qlist").innerHTML = h;
+}
+function fieldHTML(w, f){
+var id = "f-" + w.id + "-" + f.id, val = state.works[w.id].v[f.id];
+if (f.type === "check") {
+return '<label class="chk" for="' + id + '"><input type="checkbox" id="' + id + '" data-w="' + w.id + '" data-f="' + f.id + '"' + (val ? " checked" : "") + '><span>' + esc(f.lab) + '</span></label>';
+}
+if (f.type === "select") {
+return '<label class="fld" for="' + id + '"><span class="lab">' + esc(f.lab) + '</span><select class="solo" id="' + id + '" data-w="' + w.id + '" data-f="' + f.id + '">' + optHTML(f.opts, val) + '</select></label>';
+}
+return '<label class="fld" for="' + id + '"><span class="lab">' + esc(f.lab) + '</span><span class="inp"><input id="' + id + '" type="number" inputmode="decimal" min="0" step="any" value="' + esc(val) + '" data-w="' + w.id + '" data-f="' + f.id + '"><span class="unit">' + esc(f.unit) + '</span></span></label>';
+}
+function condsHTML(w){
+if (!w.conds || !w.conds.length) return "";
+var st = state.works[w.id].c;
+return '<div class="conds"><div class="conds-t">Conditions à valider avec le client</div>' + w.conds.map(function(c, i){
+var id = "c-" + w.id + "-" + i;
+return '<label class="chk" for="' + id + '"><input type="checkbox" id="' + id + '" data-w="' + w.id + '" data-c="' + i + '"' + (st[i] ? " checked" : "") + '><span>' + esc(c) + "</span></label>";
+}).join("") + "</div>";
+}
+var CATALOGUE = "https://www.ecologie.gouv.fr/politiques-publiques/operations-standardisees-deconomies-denergie";
+function ficheCodes(code){
+var parts = code.split("/").map(function(s){ return s.trim(); });
+var m = parts[0].match(/^([A-Z]+-[A-Z]+-)\d+$/), pre = m ? m[1] : "";
+return parts.map(function(p, i){ return i === 0 || /^[A-Z]/.test(p) ? p : pre + p; });
+}
+function ficheHTML(w){
+var links = ficheCodes(w.code).map(function(c){
+var q = encodeURIComponent(c + " fiche opération standardisée d'économies d'énergie ecologie.gouv.fr");
+return '<a href="https://duckduckgo.com/?q=' + q + '" target="_blank" rel="noopener">' + esc(c) + "</a>";
+}).join(", ");
+return '<p class="fiche">Fiche officielle en vigueur : ' + links + ' · <a href="' + CATALOGUE + '" target="_blank" rel="noopener">catalogue du ministère</a></p>';
+}
+function buildWorks(){
+var list = WORKS.filter(function(w){ return w.mode === state.mode; });
+var html = "", lastGroup = "";
+list.forEach(function(w){
+if (w.group !== lastGroup) {
+if (lastGroup) html += "</div></div>";
+html += '<div class="grp"><div class="group-title">' + esc(w.group) + '</div><div class="works">';
+lastGroup = w.group;
+}
+var on = state.works[w.id].on;
+html += '<div class="wk' + (on ? " on" : "") + '" id="wk-' + w.id + '" data-s="' + esc(norm(w.title + " " + w.code + " " + w.desc)) + '">' +
+'<label class="wk-head"><input type="checkbox" data-on="' + w.id + '"' + (on ? " checked" : "") + '><span class="box"></span>' +
+'<span class="wk-txt"><span class="wk-title"><span>' + esc(w.title) + '</span><span class="code">' + esc(w.code) + '</span>' + (w.cofrac ? '<span class="cof">Contrôle COFRAC</span>' : "") + '</span>' +
+'<span class="wk-desc">' + esc(w.desc) + '</span></span></label>' +
+'<div class="wk-body"' + (on ? "" : " hidden") + ">" +
+(w.etude ? '<p class="etude">' + esc(w.etude) + "</p>" : '<div class="fields">' + w.fields.map(function(f){ return fieldHTML(w, f); }).join("") + "</div>") +
+condsHTML(w) + ficheHTML(w) + "</div></div>";
+});
+if (lastGroup) html += "</div></div>";
+$("works").innerHTML = html;
+applyFilter();
+}
+function applyFilter(){
+var q = norm(state.filter).trim();
+document.querySelectorAll("#works .wk").forEach(function(el){
+var id = el.id.slice(3);
+el.hidden = !!q && el.dataset.s.indexOf(q) < 0 && !isOn(id);
+});
+document.querySelectorAll("#works .grp").forEach(function(g){
+g.hidden = !g.querySelector(".wk:not([hidden])");
+});
+}
+function activeLines(){
+var lines = [];
+WORKS.forEach(function(w){
+if (w.mode !== state.mode || !state.works[w.id].on) return;
+var c = state.works[w.id].c, done = c.filter(Boolean).length, total = c.length;
+var ok = total === 0 || done === total;
+if (w.etude) { lines.push({id:w.id, title:w.title, code:w.code, etude:true, k:0, notes:[], ok:ok, done:done, total:total}); return; }
+var r = w.calc(state.works[w.id].v, state.site);
+lines.push({id:w.id, title:w.title, code:w.code, etude:false, k:r.k || 0, notes:r.notes, ok:ok, done:done, total:total});
+});
+return lines;
+}
+function lineEuro(l){ return l.k / 1000 * state.price; }
+function activeConflicts(){
+var out = [], seen = {};
+CONFLICTS.forEach(function(c){
+if (isOn(c[0]) && isOn(c[1]) && WBYID[c[0]].mode === state.mode && !seen[c[2]]) { seen[c[2]] = 1; out.push(c[2]); }
+});
+return out;
+}
+function render(){
+var lines = activeLines();
+var t = computeTotals(lines, state.price);
+var calcLines = lines.filter(function(l){ return !l.etude; });
+var maxK = Math.max.apply(null, [1].concat(calcLines.map(function(l){ return l.k; })));
+$("resBig").textContent = eur(t.eur);
+$("mbarVal").textContent = eur(t.eur);
+$("resSub").textContent = lines.length ? "Fourchette " + eur(t.low) + " à " + eur(t.high) + " · " + nf1.format(t.mwhc) + " MWh cumac" : "";
+var okN = calcLines.filter(function(l){ return l.ok; }).length;
+$("resOk").innerHTML = calcLines.length ? "Conditions validées avec le client : <b>" + okN + " sur " + calcLines.length + "</b> travaux, soit <b>" + eur(t.eurOk) + "</b>." : "";
+$("priceOut").textContent = nf1.format(state.price) + " €";
+var al = "";
+if (state.site.signe === "oui") al += '<div class="alert"><b>Devis déjà signé.</b> L\'accord du délégataire doit précéder la signature. Vérifier la date d\'engagement de chaque opération avant de promettre une prime.</div>';
+activeConflicts().forEach(function(m){ al += '<div class="alert warn"><b>Cumul à vérifier.</b> ' + esc(m) + "</div>"; });
+calcLines.filter(function(l){ return l.k === 0; }).forEach(function(l){ al += '<div class="alert warn"><b>Mesure à renseigner.</b> ' + esc(l.title) + " : une quantité est à zéro ou hors plage.</div>"; });
+$("alerts").innerHTML = al;
+var h = "";
+if (!lines.length) h = '<p class="empty">Cochez au moins un projet pour voir la prime estimée.</p>';
+function status(l){
+if (!l.total) return '<span class="st ok">Aucune condition listée</span>';
+return l.ok ? '<span class="st ok">Conditions validées</span>' : '<span class="st warn">À valider ' + l.done + "/" + l.total + "</span>";
+}
+calcLines.forEach(function(l){
+h += '<div><div class="ln-top"><span>' + esc(l.title) + '</span><b>' + eur(lineEuro(l)) + '</b></div>' +
+'<div class="bar"><i style="width:' + Math.max(2, l.k / maxK * 100).toFixed(1) + '%"></i></div>' +
+'<div class="ln-note">' + status(l) + nf1.format(l.k / 1000) + " MWh cumac · " + esc(l.code) + (l.notes.length ? " · " + esc(l.notes.join(" ")) : "") + "</div></div>";
+});
+lines.filter(function(l){ return l.etude; }).forEach(function(l){
+h += '<div class="ln-etude"><b>' + esc(l.title) + '</b><br><span class="ln-note" style="color:inherit">' + status(l) + 'Éligible, volume à chiffrer · ' + esc(l.code) + "</span></div>";
+});
+$("lines").innerHTML = h;
+var sh = "", n = 0;
+SUGGEST.forEach(function(s){
+if (s.mode !== state.mode || n >= 4) return;
+if (!s.if.some(isOn)) return;
+var todo = s.add.filter(function(id){ return !isOn(id); });
+if (!todo.length) return;
+n++;
+sh += '<div class="sug">' + esc(s.msg) + "<br>" + todo.map(function(id){ return '<button type="button" class="qbtn" data-add="' + id + '">+ ' + esc(WBYID[id].code + " " + WBYID[id].title) + "</button>"; }).join("") + "</div>";
+});
+$("sugs").hidden = !n;
+$("sugs").innerHTML = n ? "<h3>À ajouter à l'enveloppe</h3>" + sh : "";
+var b = num(state.budget), cov = $("cover");
+if (b > 0 && t.eur > 0) {
+var pct = Math.min(100, t.eur / b * 100);
+cov.hidden = false;
+cov.innerHTML = "<b>" + nf0.format(Math.round(pct)) + " % du budget</b> couvert par la prime. Reste à charge estimé : <b>" + eur(Math.max(0, b - t.eur)) + "</b> HT, hors autres aides.";
+} else { cov.hidden = true; }
+}
+function recapText(){
+var lines = activeLines(), t = computeTotals(lines, state.price);
+var who = state.site.nom.trim() || "votre site";
+var out = ["Estimation CEE pour " + who + " (" + (state.mode === "T" ? "bâtiment tertiaire" : "site industriel") + ", zone " + state.site.zone + ")", ""];
+lines.forEach(function(l){
+var st = l.total ? (l.ok ? "conditions validées" : "conditions à valider " + l.done + "/" + l.total) : "";
+out.push("- " + l.title + " (" + l.code + ") : " + (l.etude ? "éligible, à chiffrer" : nf1.format(l.k / 1000) + " MWh cumac, environ " + eur(lineEuro(l))) + (st ? " [" + st + "]" : ""));
+});
+out.push("", "Total : " + nf1.format(t.mwhc) + " MWh cumac, prime estimée " + eur(t.eur) + " (fourchette " + eur(t.low) + " à " + eur(t.high) + ") sur la base de " + nf1.format(state.price) + " € le MWh cumac. Dont conditions validées : " + eur(t.eurOk) + ".");
+activeConflicts().forEach(function(m){ out.push("Cumul à vérifier : " + m); });
+if (state.site.signe === "oui") out.push("Attention : un devis est déjà signé, la prime doit être confirmée avec le délégataire.");
+out.push("Important : accepter l'offre du délégataire CEE avant de signer le devis. Estimation indicative, prime définitive fixée à l'engagement.");
+out.push("Particule Énergie, 06 32 87 05 22");
+return out.join("\n");
+}
+function setWork(id, on){
+state.works[id].on = on;
+var card = $("wk-" + id);
+if (card) { card.classList.toggle("on", on); card.querySelector(".wk-body").hidden = !on; card.querySelector("[data-on]").checked = on; }
+}
+function setMode(m){
+state.mode = m;
+$("tabT").setAttribute("aria-selected", m === "T");
+$("tabI").setAttribute("aria-selected", m === "I");
+buildSite(); buildQuestions(); buildWorks(); render();
+}
+document.querySelectorAll(".tabs button").forEach(function(b){ b.addEventListener("click", function(){ setMode(b.dataset.mode); }); });
+$("siteFields").addEventListener("input", function(e){
+var id = e.target.id; if (!id) return;
+state.site[id.slice(2)] = e.target.value; render();
+});
+$("works").addEventListener("change", function(e){
+var el = e.target;
+if (el.dataset.on) { setWork(el.dataset.on, el.checked); applyFilter(); buildQuestions(); render(); return; }
+if (el.dataset.c !== undefined) { state.works[el.dataset.w].c[+el.dataset.c] = el.checked; render(); return; }
+if (el.dataset.w) { state.works[el.dataset.w].v[el.dataset.f] = el.type === "checkbox" ? el.checked : el.value; render(); }
+});
+$("works").addEventListener("input", function(e){
+var el = e.target;
+if (el.dataset.w && el.type === "number") { state.works[el.dataset.w].v[el.dataset.f] = el.value; render(); }
+});
+$("qlist").addEventListener("click", function(e){
+var b = e.target.closest("[data-q]"); if (!b) return;
+var q = QUESTIONS[+b.dataset.q], on = !q.w.every(isOn);
+q.w.forEach(function(id){ setWork(id, on); });
+applyFilter(); buildQuestions(); render();
+});
+$("sugs").addEventListener("click", function(e){
+var b = e.target.closest("[data-add]"); if (!b) return;
+setWork(b.dataset.add, true); applyFilter(); buildQuestions(); render();
+});
+$("q").addEventListener("input", function(e){ state.filter = e.target.value; applyFilter(); });
+$("price").addEventListener("input", function(e){ state.price = parseFloat(e.target.value); render(); });
+$("budget").addEventListener("input", function(e){ state.budget = e.target.value; render(); });
+$("mbarBtn").addEventListener("click", function(){ $("resultat").scrollIntoView({behavior:"smooth", block:"start"}); });
+$("copyBtn").addEventListener("click", function(){
+var txt = recapText(), box = $("recapBox"), btn = $("copyBtn");
+function fallback(){ box.hidden = false; box.value = txt; box.focus(); box.select(); btn.textContent = "Sélectionné : copiez avec Ctrl+C"; }
+try {
+navigator.clipboard.writeText(txt).then(function(){ btn.textContent = "Récapitulatif copié"; box.hidden = true; }, fallback);
+} catch (err) { fallback(); }
+});
+buildSite(); buildQuestions(); buildWorks(); render();
+</script>
+</body></html>
