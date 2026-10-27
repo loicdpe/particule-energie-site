@@ -158,6 +158,22 @@ select.solo, input.solo { border: 1px solid var(--rule); background: var(--surfa
 .nope b { color: var(--bad); }
 .foot { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted); max-width: 900px; }
 .foot b { color: var(--ink); }
+.btn.alt { background: transparent; color: var(--green); border: 1px solid var(--green); margin-top: 8px; }
+.report { margin-top: 36px; }
+.rpt-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px; }
+.rpt-bar .btn { width: auto; }
+.rpt-bar .btn.alt { margin-top: 0; }
+a.btn { display: inline-block; text-decoration: none; text-align: center; }
+.rpt-msg { font-size: 13.5px; color: var(--green); min-height: 20px; }
+.rpt-hint { font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
+.rpt { background: #FFFFFF; color: #222222; border: 1px solid var(--rule); padding: 24px max(16px, 4vw); overflow-x: auto; }
+@media print {
+.wrap > :not(#report) { display: none !important; }
+.mbar, .rpt-bar, .rpt-hint, .rpt-msg { display: none !important; }
+body { background: #FFFFFF; padding: 0; }
+.report { margin: 0; }
+.rpt { border: 0; padding: 0; }
+}
 .mbar { display: none; }
 @media (max-width: 900px) {
 .layout { grid-template-columns: minmax(0, 1fr); }
@@ -229,13 +245,15 @@ body { padding-bottom: 90px; }
 </div>
 <div class="cover" id="cover" hidden></div>
 <div>
-<button class="btn" id="copyBtn" type="button">Copier le récapitulatif</button>
+<button class="btn" id="reportBtn" type="button">Créer le rapport à envoyer</button>
+<button class="btn alt" id="copyBtn" type="button">Copier le récapitulatif (texte)</button>
 <textarea id="recapBox" hidden readonly aria-label="Récapitulatif à copier"></textarea>
 </div>
 <p class="small">Fourchette établie de 80 % à 115 % de la valeur retenue, selon l'offre du délégataire.</p>
 </div>
 </aside>
 </div>
+<section class="report" id="report" hidden></section>
 <div class="info">
 <section>
 <div class="sec-head"><h2>Comment la prime est versée</h2></div>
@@ -632,7 +650,7 @@ var SUGGEST = [
 ];
 var state = {
 mode: "T",
-site: {nom:"", secteur:"bureaux", zone:"H1", energie:"comb", signe:"non"},
+site: {nom:"", email:"", secteur:"bureaux", zone:"H1", energie:"comb", signe:"non"},
 price: 7.5, budget: "", filter: "",
 works: {}
 };
@@ -655,6 +673,7 @@ return opts.map(function(o){ return '<option value="' + o[0] + '"' + (String(o[0
 }
 function buildSite(){
 var h = '<label class="fld"><span class="lab">Entreprise (pour le récapitulatif)</span><input class="solo" id="s-nom" type="text" placeholder="ex. SARL Dupont" value="' + esc(state.site.nom) + '"></label>';
+h += '<label class="fld"><span class="lab">Email du client (facultatif)</span><input class="solo" id="s-email" type="email" inputmode="email" placeholder="contact@entreprise.fr" value="' + esc(state.site.email) + '"></label>';
 if (state.mode === "T") {
 h += '<label class="fld"><span class="lab">Activité du bâtiment</span><select class="solo" id="s-secteur">' + optHTML(SECTEURS, state.site.secteur) + '</select></label>';
 h += '<label class="fld"><span class="lab">Chauffage actuel</span><select class="solo" id="s-energie">' + optHTML([["comb","Gaz, fioul ou autre combustible"],["elec","Électricité"]], state.site.energie) + '</select></label>';
@@ -770,6 +789,7 @@ if (state.site.signe === "oui") al += '<div class="alert"><b>Devis déjà signé
 activeConflicts().forEach(function(m){ al += '<div class="alert warn"><b>Cumul à vérifier.</b> ' + esc(m) + "</div>"; });
 calcLines.filter(function(l){ return l.k === 0; }).forEach(function(l){ al += '<div class="alert warn"><b>Mesure à renseigner.</b> ' + esc(l.title) + " : une quantité est à zéro ou hors plage.</div>"; });
 $("alerts").innerHTML = al;
+if (!$("report").hidden) refreshReport();
 var h = "";
 if (!lines.length) h = '<p class="empty">Cochez au moins un projet pour voir la prime estimée.</p>';
 function status(l){
@@ -864,6 +884,143 @@ function fallback(){ box.hidden = false; box.value = txt; box.focus(); box.selec
 try {
 navigator.clipboard.writeText(txt).then(function(){ btn.textContent = "Récapitulatif copié"; box.hidden = true; }, fallback);
 } catch (err) { fallback(); }
+});
+function fmtDate(){ return new Date().toLocaleDateString("fr-FR", {day:"numeric", month:"long", year:"numeric"}); }
+function reportData(){
+var lines = activeLines(), t = computeTotals(lines, state.price);
+var todo = [];
+lines.forEach(function(l){
+var w = WBYID[l.id], c = state.works[l.id].c, miss = [];
+(w.conds || []).forEach(function(txt, i){ if (!c[i]) miss.push(txt); });
+if (miss.length) todo.push({title:l.title, code:l.code, items:miss});
+});
+return {
+lines:lines, t:t, todo:todo,
+calc:lines.filter(function(l){ return !l.etude; }),
+etude:lines.filter(function(l){ return l.etude; }),
+cofrac:lines.filter(function(l){ return WBYID[l.id].cofrac; }).map(function(l){ return l.code; }),
+conflicts:activeConflicts(),
+who:state.site.nom.trim() || "votre site",
+mode:state.mode === "T" ? "Bâtiment tertiaire" : "Site industriel",
+zone:state.site.zone, date:fmtDate(), signe:state.site.signe === "oui"
+};
+}
+var STEPS = [
+"Nous validons ensemble les points à vérifier de ce rapport.",
+"Vous retenez un délégataire CEE et acceptez son offre avant de signer les devis.",
+"Les travaux sont réalisés par des professionnels, qualifiés RGE lorsque la fiche l'exige.",
+"Le dossier (devis, facture, preuve de réalisation) est transmis, puis la prime est versée."
+];
+var RPT_NOTE = "Estimation indicative établie sur les barèmes des fiches d'opérations standardisées consultés en octobre 2026. Le montant définitif dépend de la fiche en vigueur à la date d'engagement, de la zone climatique, des quantités réellement installées et de l'offre du délégataire.";
+function rptStatus(l){ return l.total ? (l.ok ? "conditions validées" : "à valider " + l.done + "/" + l.total) : ""; }
+function reportHTML(d){
+var h = "<div style='font-family:Arial,Helvetica,sans-serif;color:#222222;max-width:680px;line-height:1.5;font-size:14px'>";
+h += "<div style='font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#1D6F42;font-weight:bold'>Particule Énergie</div>";
+h += "<h2 style='margin:6px 0 2px;font-family:Georgia,serif;font-size:24px;color:#0D1F15;font-weight:normal'>Estimation de vos primes CEE</h2>";
+h += "<div style='color:#666666;margin-bottom:16px'>" + esc(d.who) + " · " + esc(d.mode) + " · zone " + esc(d.zone) + " · " + esc(d.date) + "</div>";
+h += "<table style='border-collapse:collapse;width:100%;margin-bottom:16px'><tr><td style='background:#E3EEE7;padding:14px 16px'>" +
+"<div style='font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#1D6F42;font-weight:bold'>Prime CEE estimée</div>" +
+"<div style='font-family:Georgia,serif;font-size:32px;color:#0D1F15'>" + eur(d.t.eur) + "</div>" +
+"<div style='color:#444444'>Fourchette " + eur(d.t.low) + " à " + eur(d.t.high) + " · " + nf1.format(d.t.mwhc) + " MWh cumac</div>" +
+(d.calc.length ? "<div style='color:#444444'>Dont conditions déjà validées : <b>" + eur(d.t.eurOk) + "</b></div>" : "") + "</td></tr></table>";
+if (d.calc.length) {
+h += "<table style='border-collapse:collapse;width:100%;margin-bottom:12px'><tr>" +
+"<th align='left' style='padding:6px;border-bottom:2px solid #1D6F42;font-size:12px;color:#1D6F42'>Travaux</th>" +
+"<th align='right' style='padding:6px;border-bottom:2px solid #1D6F42;font-size:12px;color:#1D6F42'>MWh cumac</th>" +
+"<th align='right' style='padding:6px;border-bottom:2px solid #1D6F42;font-size:12px;color:#1D6F42'>Prime estimée</th></tr>";
+d.calc.forEach(function(l){
+var st = rptStatus(l);
+h += "<tr><td style='padding:8px 6px;border-bottom:1px solid #DDDDDD'>" + esc(l.title) + "<br><span style='color:#777777;font-size:12px'>" + esc(l.code) + (st ? " · " + esc(st) : "") + "</span></td>" +
+"<td align='right' style='padding:8px 6px;border-bottom:1px solid #DDDDDD;white-space:nowrap'>" + nf1.format(l.k / 1000) + "</td>" +
+"<td align='right' style='padding:8px 6px;border-bottom:1px solid #DDDDDD;white-space:nowrap'><b>" + eur(lineEuro(l)) + "</b></td></tr>";
+});
+h += "</table>";
+}
+if (d.etude.length) {
+h += "<p style='margin:0 0 12px'><b>Éligibles, à chiffrer avec le délégataire :</b> " + d.etude.map(function(l){ return esc(l.title) + " (" + esc(l.code) + ")"; }).join(", ") + ".</p>";
+}
+if (d.signe) h += "<p style='margin:0 0 12px;background:#F6E1DA;padding:8px 10px'><b>Devis déjà signé.</b> La prime doit être confirmée avec le délégataire avant toute promesse.</p>";
+d.conflicts.forEach(function(m){ h += "<p style='margin:0 0 12px;background:#FBEBD6;padding:8px 10px'><b>Cumul à vérifier.</b> " + esc(m) + "</p>"; });
+if (d.todo.length) {
+h += "<h3 style='margin:18px 0 6px;font-family:Georgia,serif;font-size:17px;color:#0D1F15;font-weight:normal'>Points à vérifier avant engagement</h3>";
+d.todo.forEach(function(x){
+h += "<div style='margin:0 0 8px'><b>" + esc(x.title) + "</b> <span style='color:#777777;font-size:12px'>" + esc(x.code) + "</span><ul style='margin:2px 0 0;padding-left:20px'>" +
+x.items.map(function(i){ return "<li>" + esc(i) + "</li>"; }).join("") + "</ul></div>";
+});
+}
+if (d.cofrac.length) h += "<p style='margin:8px 0 0;color:#444444'>Ces opérations peuvent faire l'objet d'un contrôle sur site : " + d.cofrac.map(esc).join(", ") + ".</p>";
+h += "<h3 style='margin:18px 0 6px;font-family:Georgia,serif;font-size:17px;color:#0D1F15;font-weight:normal'>Les prochaines étapes</h3><ol style='margin:0;padding-left:20px'>" +
+STEPS.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("") + "</ol>";
+h += "<p style='margin:10px 0 0;background:#FBEBD6;padding:8px 10px'><b>Important :</b> acceptez l'offre du délégataire avant de signer un devis. Après la signature, la prime n'est plus garantie.</p>";
+h += "<p style='margin:16px 0 0;font-size:12px;color:#777777'>" + esc(RPT_NOTE) + " Valeur retenue : " + nf1.format(state.price) + " € le MWh cumac.</p>";
+h += "<p style='margin:12px 0 0'><b>Particule Énergie</b>, Loïc Ortiz<br>06 32 87 05 22 · particule-energie.fr</p>";
+return h + "</div>";
+}
+function reportText(d, short){
+var o = ["Estimation de vos primes CEE", d.who + " · " + d.mode + " · zone " + d.zone + " · " + d.date, ""];
+o.push("Prime CEE estimée : " + eur(d.t.eur) + " (fourchette " + eur(d.t.low) + " à " + eur(d.t.high) + ", " + nf1.format(d.t.mwhc) + " MWh cumac)");
+if (d.calc.length) o.push("Dont conditions déjà validées : " + eur(d.t.eurOk));
+o.push("");
+d.calc.forEach(function(l){ var st = rptStatus(l); o.push("- " + l.title + " (" + l.code + ") : " + eur(lineEuro(l)) + (st && !short ? " [" + st + "]" : "")); });
+if (d.etude.length) o.push("- Éligibles, à chiffrer : " + d.etude.map(function(l){ return l.title + " (" + l.code + ")"; }).join(", "));
+d.conflicts.forEach(function(m){ o.push("Cumul à vérifier : " + m); });
+if (d.signe) o.push("Devis déjà signé : prime à confirmer avec le délégataire.");
+if (!short && d.todo.length) {
+o.push("", "Points à vérifier avant engagement :");
+d.todo.forEach(function(x){ o.push(x.title + " (" + x.code + ")"); x.items.forEach(function(i){ o.push("  * " + i); }); });
+}
+o.push("", "Prochaines étapes :");
+STEPS.forEach(function(x, i){ o.push((i + 1) + ". " + x); });
+o.push("", "Important : acceptez l'offre du délégataire avant de signer un devis.");
+if (!short) o.push(RPT_NOTE + " Valeur retenue : " + nf1.format(state.price) + " € le MWh cumac.");
+o.push("", "Particule Énergie, Loïc Ortiz", "06 32 87 05 22 · particule-energie.fr");
+return o.join("\n");
+}
+function mailtoHref(d){
+var subject = "Estimation CEE : " + d.who;
+var body = reportText(d, false);
+if (encodeURIComponent(body).length > 1800) body = reportText(d, true);
+return "mailto:" + state.site.email.trim() + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+}
+function refreshReport(){
+var d = reportData(), box = $("report");
+if (!d.lines.length) {
+box.innerHTML = '<div class="sec-head"><h2>Rapport à envoyer</h2><span class="line"></span></div><p class="empty">Cochez au moins un projet pour créer le rapport.</p>';
+return;
+}
+var msg = $("rptMsg") ? $("rptMsg").textContent : "";
+box.innerHTML = '<div class="sec-head"><h2>Rapport à envoyer</h2><span class="line"></span></div>' +
+'<div class="rpt-bar"><button class="btn" type="button" id="rptCopy">Copier le rapport</button>' +
+'<a class="btn alt" id="rptMail" href="' + esc(mailtoHref(d)) + '">Ouvrir dans ma messagerie</a>' +
+'<button class="btn alt" type="button" id="rptPrint">Imprimer ou enregistrer en PDF</button>' +
+'<button class="btn alt" type="button" id="rptClose">Fermer</button></div>' +
+'<div class="rpt-msg" id="rptMsg" role="status">' + esc(msg) + '</div>' +
+'<p class="rpt-hint">« Copier le rapport » garde la mise en forme : collez-le dans votre message. Le lien « messagerie » pré-remplit une version texte, avec l\'adresse du client si vous l\'avez saisie. L\'impression et le PDF fonctionnent depuis le site.</p>' +
+'<div class="rpt" id="rptDoc">' + reportHTML(d) + '</div>';
+}
+function copyReport(){
+var d = reportData(), html = reportHTML(d), txt = reportText(d, false), msg = $("rptMsg");
+function ok(){ msg.textContent = "Rapport copié : collez-le dans votre message."; }
+function fb(){
+try {
+var r = document.createRange(); r.selectNodeContents($("rptDoc"));
+var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+if (document.execCommand("copy")) { ok(); return; }
+} catch (e) {}
+msg.textContent = "Le rapport est sélectionné : copiez-le avec Ctrl+C ou Cmd+C.";
+}
+try {
+if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+navigator.clipboard.write([new ClipboardItem({"text/html": new Blob([html], {type:"text/html"}), "text/plain": new Blob([txt], {type:"text/plain"})})]).then(ok, fb);
+} else { fb(); }
+} catch (e) { fb(); }
+}
+$("reportBtn").addEventListener("click", function(){ $("report").hidden = false; refreshReport(); $("report").scrollIntoView({behavior:"smooth", block:"start"}); });
+$("report").addEventListener("click", function(e){
+var t = e.target.closest("button, a"); if (!t) return;
+if (t.id === "rptCopy") copyReport();
+else if (t.id === "rptClose") $("report").hidden = true;
+else if (t.id === "rptPrint") { try { window.print(); } catch (err) { $("rptMsg").textContent = "L'impression n'est pas disponible ici : utilisez le site ou copiez le rapport."; } }
 });
 buildSite(); buildQuestions(); buildWorks(); render();
 </script>
