@@ -107,6 +107,8 @@ select.solo, input.solo { border: 1px solid var(--rule); background: var(--surfa
 .chk { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; grid-column: 1 / -1; }
 .chk input { margin-top: 4px; accent-color: var(--green); width: 16px; height: 16px; flex: none; }
 .etude { font-size: 13.5px; color: var(--orange-ink); }
+.rappel { font-size: 14px; background: var(--warn-soft); color: var(--text); padding: 10px 12px; margin-bottom: 12px; }
+.rappel b { color: var(--orange-ink); }
 .fiche { font-size: 13px; color: var(--muted); }
 .fiche a { color: var(--green); font-weight: 600; }
 .conds { background: var(--rule-soft); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
@@ -200,6 +202,7 @@ body { padding-bottom: 90px; }
 </section>
 <section>
 <div class="sec-head"><h2>Vos projets de travaux</h2><span class="line"></span><span class="chip">Exemple pré-rempli, à adapter</span></div>
+<p class="rappel"><b>À retenir.</b> Listez toutes les fiches du chantier avant l'accord du délégataire : en ajouter une après coup est souvent impossible.</p>
 <div class="tools"><input class="solo" id="q" type="search" placeholder="Chercher un travail ou une fiche (ex. variateur, BAT-TH-125)" aria-label="Chercher un travail ou une fiche"></div>
 <div id="works"></div>
 </section>
@@ -267,8 +270,6 @@ en103: {bureaux:.6,commerces:.6,enseignement:.6,sante:1.2,hotel:.7,sport:.6,autr
 en107: {bureaux:.6,commerces:.6,enseignement:.6,sante:1.3,hotel:.7,sport:.6,autres:.6},
 pac:   {bureaux:1.2,commerces:.9,enseignement:.8,sante:1.1,hotel:.7,sport:.7,autres:.7},
 froid: {bureaux:13800,commerces:26200,enseignement:34000,sante:21800,hotel:21800,sport:17100,autres:13800},
-relance:{bureaux:69,commerces:55,enseignement:43,sante:53,hotel:82,sport:43,autres:43},
-cond:  {chauf:{bureaux:1.2,commerces:.9,enseignement:.8,sante:1.0,hotel:1.4,sport:.8,autres:.8}, ecs:{bureaux:1.1,commerces:.8,enseignement:.7,sante:1.1,hotel:1.6,sport:.7,autres:.7}},
 res400:{bureaux:[500,520],commerces:[390,440],enseignement:[320,370],sante:[400,530],hotel:[550,690],sport:[240,260],autres:[240,260]},
 resgt: {bureaux:[380,400],commerces:[300,340],enseignement:[250,290],sante:[310,410],hotel:[420,530],sport:[250,270],autres:[250,270]}
 };
@@ -280,8 +281,6 @@ var EN103 = {H1:5200,H2:4200,H3:2800};
 var EN107 = {elec:{H1:1800,H2:1500,H3:1000}, comb:{H1:2800,H2:2300,H3:1500}};
 var GTB = {zone:{H1:1.1,H2:.9,H3:.6}, chauf:{A:360,B:240}, ecs:{A:15,B:7}};
 var FROID_ZONE = {H1:.63,H2:.59,H3:.5};
-var EQUIL = {H1:120,H2:100,H3:67};
-var CONDENS_M2 = {chauf:{H1:150,H2:130,H3:80}, ecs:{H1:190,H2:160,H3:120}};
 var VEV_T = {chauf:9600, vent:11400, refr:3900, clim:990, autres:990};
 var MOTOVAR_T = {chauf:13700, vent:16300, refr:8000, clim:2000, autres:2000};
 var VMC_SF = {
@@ -344,12 +343,6 @@ if (v.ecs) k += GTB.ecs[v.cls] * z * S;
 var notes = [];
 if (site.secteur !== "bureaux") notes.push("Forfait bureaux utilisé, à affiner selon le secteur.");
 return {k:k, notes:notes};
-}
-function calcRelance(v, site){ return {k: ZC[site.zone] * fAct(FACT.relance, site.secteur) * num(v.surf), notes:["Valable pour les opérations engagées jusqu'au 30 juin 2028."]}; }
-function calcEquil(v, site){ return {k: EQUIL[site.zone] * num(v.surf), notes:[]}; }
-function calcRecupCond(v, site){
-var u = v.usage === "ecs" ? "ecs" : "chauf";
-return {k: CONDENS_M2[u][site.zone] * fAct(FACT.cond[u], site.secteur) * num(v.surf), notes:["Surface chauffée de 10 000 m² maximum. Exclu si la PAC couvre 40 % ou plus de la chaufferie."]};
 }
 function calcReseau(v, site){
 var tab = v.puiss === "gt400" ? FACT.resgt : FACT.res400;
@@ -438,6 +431,8 @@ fields:[{id:"surf", lab:"Surface de toiture isolée", unit:"m²", def:300}],
 conds:["Toiture plate, pente de 5 % maximum", "Isolation posée sur la terrasse, R d'au moins 4,5 m².K/W", "Bâtiment tertiaire de plus de 2 ans"]},
 {id:"fenetres", mode:"T", group:"Enveloppe du bâtiment", code:"BAT-EN-104", title:"Fenêtres à vitrage isolant", desc:"Remplacement complet de simples vitrages, Uw de 1,5 W/m².K maximum.", etude:"Volume chiffré avec le délégataire sur la surface de menuiseries.",
 conds:["Menuiseries existantes à simple vitrage, remplacement complet", "Uw de 1,5 W/m².K maximum (1,8 pour les doubles fenêtres)"]},
+{id:"en112", mode:"T", group:"Enveloppe du bâtiment", code:"BAT-EN-112", title:"Revêtement réflectif en toiture", desc:"Revêtement clair appliqué en toiture pour limiter les apports solaires.", etude:"Volume chiffré avec le délégataire selon la surface de toiture.",
+conds:["Bâtiment tertiaire existant, toiture concernée mesurée", "Caractéristiques du revêtement justifiées par la fiche technique du fabricant"]},
 {id:"pac_ae", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-163", cofrac:true, title:"Pompe à chaleur air/eau", desc:"Chauffage seul, ou chauffage et eau chaude. Note de dimensionnement obligatoire.", on:true, calc:function(v,s){return calcPac(v,s,"ae");},
 fields:[{id:"surf", lab:"Surface chauffée par la PAC", unit:"m²", def:1200},
 {id:"etas", lab:"Efficacité saisonnière (Etas)", type:"select", opts:OPT_ETAS, def:"b"},
@@ -462,29 +457,19 @@ conds:["Bâtiment jamais raccordé à un réseau de chaleur", "Réseau en servic
 fields:[{id:"q", lab:"Chaleur nette utile produite par an", unit:"kWh/an", def:300000},
 {id:"puiss", lab:"Puissance de la chaudière", type:"select", opts:[["lt500","Moins de 500 kW"],["gt500","Plus de 500 kW"]], def:"lt500"}],
 conds:["Étude de dimensionnement préalable fournissant la chaleur utile", "Production de chaleur inférieure à 12 GWh par an", "Régulateur de classe IV minimum, silo de 225 litres ou ballon tampon"]},
-{id:"recup_cond", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-110", title:"Récupérateur de chaleur à condensation", desc:"Équipement sur une chaudière collective existante au combustible.", calc:calcRecupCond,
-fields:[{id:"surf", lab:"Surface chauffée", unit:"m²", def:1500},
-{id:"usage", lab:"Usage de la chaudière", type:"select", opts:[["chauf","Chauffage seul"],["ecs","Chauffage et eau chaude"]], def:"chauf"}],
-conds:["Chauffage collectif au combustible existant, surface de 10 000 m² maximum", "Pas de PAC couvrant 40 % ou plus de la nouvelle chaufferie", "Preuve de réalisation mentionnant le récupérateur à condensation"]},
 {id:"destrat_t", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-142", cofrac:true, title:"Déstratification d'air", desc:"Brassage de l'air chaud accumulé sous le plafond d'un grand volume.", calc:calcDestratTert,
 fields:[{id:"kw", lab:"Puissance de chauffage du local", unit:"kW", def:120},
 {id:"type", lab:"Type de chauffage du local", type:"select", opts:[["conv","Convectif (aérothermes, air chaud)"],["rad","Radiatif (tubes, panneaux)"]], def:"conv"}],
 conds:["Hauteur sous plafond d'au moins 5 m, local clos", "Hors entrepôt, réserve et stockage, consigne d'au moins 15 °C", "Note de dimensionnement et calepinage, brasseurs plafonniers exclus"]},
 {id:"geo", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-TH-162", cofrac:true, title:"Système géothermique", desc:"Géothermie avec bonification chauffage tertiaire possible.", etude:"Volume chiffré avec le délégataire après étude de dimensionnement.",
 conds:["Étude de dimensionnement préalable", "Pas de cumul avec BAT-TH-163 ou 164 pour la même PAC"]},
-{id:"relance", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-TH-109", title:"Optimiseur de relance du chauffage collectif", desc:"Régulation auto-adaptative qui optimise l'arrêt et le redémarrage du chauffage.", calc:calcRelance,
-fields:[{id:"surf", lab:"Surface chauffée", unit:"m²", def:1200}],
-conds:["Chauffage collectif, optimiseur auto-adaptatif conforme à la norme NF EN 12098-1", "Pas de GTB (BAT-TH-116) ni de programmateur (BAT-TH-108) sur le même chauffage"]},
-{id:"equilibrage", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-SE-103", title:"Équilibrage hydraulique du chauffage", desc:"Réglage des vannes d'équilibrage d'un chauffage collectif à eau chaude.", calc:calcEquil,
-fields:[{id:"surf", lab:"Surface chauffée", unit:"m²", def:1200}],
-conds:["Chauffage collectif à eau chaude", "Plan hydraulique et fiche d'équilibrage de chaque vanne", "Écart de température de 2 °C maximum entre pièces après réglage"]},
-{id:"gtb", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-TH-116", cofrac:true, title:"Gestion technique du bâtiment (GTB)", desc:"Pilotage centralisé du chauffage, bâtiment de plus de 2 ans.", on:true, calc:calcGtb,
+{id:"cpe", mode:"T", group:"Chauffage et production de chaleur", code:"BAT-SE-104", title:"Contrat de performance énergétique (chauffage)", desc:"Contrat de services avec engagement de résultat sur les consommations de chauffage.", etude:"Volume chiffré avec le délégataire selon le contrat.",
+conds:["Contrat de performance énergétique avec engagement de résultat sur le chauffage"]},
+{id:"gtb", mode:"T", group:"Régulation du chauffage", code:"BAT-TH-116", cofrac:true, title:"Gestion technique du bâtiment (GTB)", desc:"Pilotage centralisé du chauffage, bâtiment de plus de 2 ans.", on:true, calc:calcGtb,
 fields:[{id:"surf", lab:"Surface pilotée", unit:"m²", def:1200},
 {id:"cls", lab:"Classe de régulation visée", type:"select", opts:[["A","Classe A"],["B","Classe B"]], def:"B"},
 {id:"ecs", lab:"Pilote aussi l'eau chaude sanitaire", type:"check", def:true}],
 conds:["Bâtiment tertiaire de plus de 2 ans", "GTB existante au niveau C ou moins, ou absente", "Régulation de classe A ou B (NF EN ISO 52120-1) pour le chauffage", "Travaux engagés avant le 1er janvier 2030"]},
-{id:"intermit", mode:"T", group:"Régulation et petits travaux de chauffage", code:"BAT-TH-108", title:"Thermostat programmable (programmation d'intermittence)", desc:"Programmateur sur un chauffage existant, pour les petites surfaces.", etude:"Volume au m² chiffré avec le délégataire. Non cumulable avec BAT-TH-109 et 116.",
-conds:["Surface chauffée de 10 000 m² maximum", "Équipement conforme à la norme EN 12098-5"]},
 {id:"vev_t", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-112", title:"Variateur de vitesse sur moteur", desc:"Variateur sur un moteur asynchrone de pompe, ventilateur ou groupe froid.", calc:calcVevT,
 fields:[{id:"app", lab:"Application du moteur", type:"select", opts:OPT_APP_T, def:"chauf"},
 {id:"kw", lab:"Puissance nominale (plaque signalétique)", unit:"kW", def:15}],
@@ -503,8 +488,6 @@ fields:[{id:"surf", lab:"Surface ventilée", unit:"m²", def:600},
 {id:"type", lab:"Type de ventilation", type:"select", opts:OPT_VMC, def:"presence"},
 {id:"usage", lab:"Usage des locaux", type:"select", opts:[["bureaux","Bureaux"],["enseignement","Enseignement"],["hotel","Hôtellerie, restauration"],["sport","Établissements sportifs"],["autres","Autres locaux"]], def:"bureaux"}],
 conds:["Échangeur d'efficacité de 75 % minimum", "Caisson de 0,35 W/(m³/h) maximum", "Pose par un professionnel"]},
-{id:"ventilo", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-143", title:"Ventilo-convecteurs haute performance", desc:"Remplacement par des appareils de classe A Eurovent.", etude:"Volume chiffré avec le délégataire, par surface chauffée et rafraîchie.",
-conds:["Appareils de classe énergétique A Eurovent", "Remplacement d'anciens ventilo-convecteurs justifié"]},
 {id:"freecool_t", mode:"T", group:"Moteurs, ventilation et climatisation", code:"BAT-TH-156", title:"Freecooling par eau de refroidissement", desc:"Refroidissement gratuit en hiver à la place du groupe froid.", calc:calcFreecoolT,
 fields:[{id:"kw", lab:"Puissance de freecooling", unit:"kW", def:100},
 {id:"consigne", lab:"Consigne du réseau d'eau", type:"select", opts:[["a","15 à 18 °C"],["b","18 à 20 °C"]], def:"a"},
@@ -530,7 +513,7 @@ conds:["Étude préalable par un professionnel (conseiller en énergie ou bureau
 fields:[{id:"kw", lab:"Puissance thermique récupérée", unit:"kW", def:20},
 {id:"usage", lab:"Usage de la chaleur", type:"select", opts:[["chauf","Chauffage ou procédé"],["ecs","Eau chaude sanitaire"]], def:"chauf"}],
 conds:["Groupe à compression mécanique, évaporation à 18 °C maximum", "Étude de dimensionnement préalable", "Puissance récupérée en kW thermiques indiquée par le professionnel"]},
-{id:"hp_t", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-134", title:"Haute pression flottante sur groupe froid", desc:"Régulation de la pression de condensation selon la température extérieure.", etude:"Barème en cours de vérification : volume chiffré avec le délégataire.",
+{id:"hp_t", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-134 / 135", title:"Haute pression flottante sur groupe froid", desc:"Régulation de la pression de condensation selon la température extérieure.", etude:"Barème en cours de vérification : volume chiffré avec le délégataire.",
 conds:["Étude préalable par un professionnel", "France métropolitaine"]},
 {id:"meuble_perf", mode:"T", group:"Froid commercial et data center", code:"BAT-EQ-134", title:"Meuble frigorifique de vente performant", desc:"Meuble neuf à groupe froid intégré.", etude:"Volume chiffré avec le délégataire selon le meuble.",
 conds:["Meuble de vente avec groupe de production de froid intégré", "Performance justifiée par la fiche technique du fabricant"]},
@@ -540,6 +523,8 @@ conds:["Installation au CO2 (R744), étude de dimensionnement"]},
 conds:["Data center existant", "Confinement complet des allées"]},
 {id:"eaux_grises", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-154", title:"Récupération de chaleur sur eaux grises", desc:"Échangeur sur les eaux de douches d'un hôtel, d'un sport ou d'un salon de coiffure.", etude:"Barème par chambre ou par douche à confirmer : volume chiffré avec le délégataire.",
 conds:["Efficacité nominale de 35 % minimum, mesurée par un organisme accrédité", "Hôtel, établissement sportif, santé, camping, salon de coiffure ou piscine"]},
+{id:"reseau_froid", mode:"T", group:"Froid commercial et data center", code:"BAT-TH-159", title:"Raccordement à un réseau de froid", desc:"Premier raccordement d'un bâtiment à un réseau de froid urbain.", etude:"Volume chiffré avec le délégataire selon la puissance souscrite.",
+conds:["Bâtiment jamais raccordé à un réseau de froid"]},
 /* ---------- INDUSTRIE ---------- */
 {id:"vev", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-102", cofrac:true, title:"Variateur électronique de vitesse sur moteur", desc:"Variateur sur un moteur asynchrone de pompe, ventilateur ou compresseur.", on:true, calc:calcVev,
 fields:[{id:"app", lab:"Application du moteur", type:"select", opts:[["pompage","Pompage"],["ventilation","Ventilation"],["aircomp","Compresseur d'air"],["froid","Compresseur frigorifique"],["autres","Autre application"]], def:"pompage"},
@@ -560,7 +545,7 @@ fields:[{id:"kw", lab:"Puissance de l'échangeur (ou du compresseur si sans éch
 conds:["Chaleur utilisée sur le site", "Échangeur et sa puissance thermique mentionnés dans la preuve", "Système interne de régénération de sécheur exclu"]},
 {id:"sequenceur", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-124", title:"Séquenceur de centrale d'air comprimé", desc:"Pilotage électronique de plusieurs compresseurs.", etude:"Volume chiffré avec le délégataire selon la puissance des compresseurs.",
 conds:["Centrale de plusieurs compresseurs existante"]},
-{id:"autres_moteurs", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-114 / 127 / 133", title:"Moto-variateur synchrone, transmission performante, pilotage à récupération d'énergie", desc:"Trois fiches moteurs : moto-variateur synchrone, transmission performante, système de pilotage avec récupération d'énergie.", etude:"Volume chiffré avec le délégataire selon l'équipement.",
+{id:"moto_ind", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-114", title:"Moto-variateur synchrone à aimants permanents", desc:"Moteur synchrone à aimants permanents associé à son variateur.", etude:"Volume chiffré avec le délégataire selon la puissance.",
 conds:["Équipement remplacé ou installé par un professionnel, fiche technique fabricant"]},
 {id:"compresseur_bp", mode:"I", group:"Moteurs et air comprimé", code:"IND-UT-120 / 122", title:"Compresseur basse pression et sécheur à adsorption", desc:"Compresseur d'air basse pression à vis ou centrifuge, sécheur d'air comprimé à adsorption.", etude:"Volume chiffré avec le délégataire selon la puissance.",
 conds:["Équipement neuf ou en remplacement, fiche technique fabricant"]},
@@ -614,12 +599,7 @@ conds:["Presse à injecter toute électrique ou hybride neuve"]}
 ];
 var CONFLICTS = [
 ["pac_ae","pac_ee","Pour une même PAC, BAT-TH-163 et BAT-TH-164 ne se cumulent pas."],
-["relance","gtb","BAT-TH-109 et BAT-TH-116 ne se cumulent pas sur le même chauffage."],
-["intermit","gtb","BAT-TH-108 et BAT-TH-116 ne se cumulent pas sur le même chauffage."],
-["intermit","relance","BAT-TH-108 et BAT-TH-109 ne se cumulent pas sur le même chauffage."],
 ["vev_t","motovar","Un même moteur ne reçoit pas à la fois un variateur et un moto-variateur."],
-["recup_cond","pac_ae","Le récupérateur de condensation est exclu si la PAC couvre 40 % ou plus de la nouvelle chaufferie."],
-["recup_cond","pac_ee","Le récupérateur de condensation est exclu si la PAC couvre 40 % ou plus de la nouvelle chaufferie."],
 ["pac_ae","geo","Pour une même PAC, BAT-TH-162 ne se cumule pas avec BAT-TH-163."],
 ["pac_ee","geo","Pour une même PAC, BAT-TH-162 ne se cumule pas avec BAT-TH-164."]
 ];
@@ -627,12 +607,10 @@ var QUESTIONS = [
 {mode:"T", q:"Des meubles frigorifiques de vente ouverts ?", w:["portes","portes_neg"]},
 {mode:"T", q:"Un groupe de froid ou une climatisation centralisée ?", w:["bp_t","cond_he","recup_froid","freecool_t"]},
 {mode:"T", q:"Des moteurs de plus de 5 kW sans variateur (pompes, ventilation) ?", w:["vev_t","motovar"]},
-{mode:"T", q:"Un chauffage collectif à eau chaude, jamais équilibré ?", w:["equilibrage","relance"]},
 {mode:"T", q:"Une ventilation ancienne ou absente ?", w:["vmc_sf","vmc_df"]},
 {mode:"T", q:"Des locaux de plus de 5 m de hauteur, chauffés ?", w:["destrat_t"]},
 {mode:"T", q:"Des combles, murs, planchers ou toit-terrasse non isolés ?", w:["en101","en102","en103","en107"]},
 {mode:"T", q:"Une chaudière à remplacer, ou un réseau de chaleur à proximité ?", w:["pac_ae","reseau","biomasse"]},
-{mode:"T", q:"Une chaudière collective sans récupérateur de condensation ?", w:["recup_cond"]},
 {mode:"I", q:"Des moteurs sans variateur, ou anciens ?", w:["vev","ie4"]},
 {mode:"I", q:"Un compresseur d'air (chaleur à récupérer, mise en veille, séquenceur) ?", w:["recup_air","veille"]},
 {mode:"I", q:"Un groupe froid industriel ?", w:["hp_flot","bp_flot","cond_i"]},
@@ -642,7 +620,6 @@ var QUESTIONS = [
 {mode:"I", q:"De la chaleur rejetée (fours, compresseurs, groupes froids) ?", w:["fatale","recup_air"]}
 ];
 var SUGGEST = [
-{mode:"T", if:["pac_ae","pac_ee","pac_aa","reseau","biomasse","recup_cond"], add:["equilibrage","relance"], msg:"Chauffage modifié : l'équilibrage et la régulation sont de petits chantiers qui s'ajoutent au volume."},
 {mode:"T", if:["en101","en102","en103","en107","fenetres"], add:["en101","en102","en103","en107"], msg:"Enveloppe : les autres parois non isolées ajoutent chacune leur volume."},
 {mode:"T", if:["portes"], add:["portes_neg","cond_he","bp_t"], msg:"Froid commercial : couvercles de surgelés, condensation et régulation du groupe."},
 {mode:"T", if:["portes_neg","recup_froid","cond_he","bp_t"], add:["portes","cond_he","bp_t"], msg:"Autour du groupe froid : portes de meubles et régulation de pression."},
