@@ -722,13 +722,18 @@ return '<a href="https://duckduckgo.com/?q=' + q + '" target="_blank" rel="noope
 return '<p class="fiche">Fiche officielle en vigueur : ' + links + ' · <a href="' + CATALOGUE + '" target="_blank" rel="noopener">catalogue du ministère</a></p>';
 }
 function buildWorks(){
-var list = WORKS.filter(function(w){ return w.mode === state.mode; });
+var all = WORKS.filter(function(w){ return w.mode === state.mode; });
+var SELG = "Retenus pour la simulation : décochez ce qui ne convient pas";
+var sel = all.filter(function(w){ return state.works[w.id].on; }).map(function(w){ return {w:w, g:SELG}; });
+var rest = all.filter(function(w){ return !state.works[w.id].on; }).map(function(w){ return {w:w, g:w.group}; });
+var list = sel.concat(rest);
 var html = "", lastGroup = "";
-list.forEach(function(w){
-if (w.group !== lastGroup) {
+list.forEach(function(it){
+var w = it.w;
+if (it.g !== lastGroup) {
 if (lastGroup) html += "</div></div>";
-html += '<div class="grp"><div class="group-title">' + esc(w.group) + '</div><div class="works">';
-lastGroup = w.group;
+html += '<div class="grp"><div class="group-title">' + esc(it.g) + '</div><div class="works">';
+lastGroup = it.g;
 }
 var on = state.works[w.id].on;
 html += '<div class="wk' + (on ? " on" : "") + '" id="wk-' + w.id + '" data-s="' + esc(norm(w.title + " " + w.code + " " + w.desc)) + '">' +
@@ -868,11 +873,11 @@ $("qlist").addEventListener("click", function(e){
 var b = e.target.closest("[data-q]"); if (!b) return;
 var q = QUESTIONS[+b.dataset.q], on = !q.w.every(isOn);
 q.w.forEach(function(id){ setWork(id, on); });
-applyFilter(); buildQuestions(); render();
+buildWorks(); buildQuestions(); render();
 });
 $("sugs").addEventListener("click", function(e){
 var b = e.target.closest("[data-add]"); if (!b) return;
-setWork(b.dataset.add, true); applyFilter(); buildQuestions(); render();
+setWork(b.dataset.add, true); buildWorks(); buildQuestions(); render();
 });
 $("q").addEventListener("input", function(e){ state.filter = e.target.value; applyFilter(); });
 $("price").addEventListener("input", function(e){ state.price = parseFloat(e.target.value); render(); });
@@ -992,11 +997,12 @@ var msg = $("rptMsg") ? $("rptMsg").textContent : "";
 box.innerHTML = '<div class="sec-head"><h2>Rapport à envoyer</h2><span class="line"></span></div>' +
 '<div class="rpt-bar"><button class="btn" type="button" id="rptCopy">Copier le rapport</button>' +
 '<a class="btn alt" id="rptMail" href="' + esc(mailtoHref(d)) + '">Ouvrir dans ma messagerie</a>' +
-'<button class="btn alt" type="button" id="rptPrint">Imprimer ou enregistrer en PDF</button>' +
+'<button class="btn alt" type="button" id="rptPdf">Télécharger le PDF</button>' +
 '<button class="btn alt" type="button" id="rptClose">Fermer</button></div>' +
 '<div class="rpt-msg" id="rptMsg" role="status">' + esc(msg) + '</div>' +
-'<p class="rpt-hint">« Copier le rapport » garde la mise en forme : collez-le dans votre message. Le lien « messagerie » pré-remplit une version texte, avec l\'adresse du client si vous l\'avez saisie. L\'impression et le PDF fonctionnent depuis le site.</p>' +
+'<p class="rpt-hint">« Copier le rapport » garde la mise en forme : collez-le dans votre message. Le lien « messagerie » pré-remplit une version texte, avec l\'adresse du client si vous l\'avez saisie. Le bouton PDF fonctionne depuis le site : sur iPhone, il ouvre le partage (« Enregistrer dans Fichiers », Mail, WhatsApp).</p>' +
 '<div class="rpt" id="rptDoc">' + reportHTML(d) + '</div>';
+schedulePdf();
 }
 function copyReport(){
 var d = reportData(), html = reportHTML(d), txt = reportText(d, false), msg = $("rptMsg");
@@ -1015,12 +1021,96 @@ navigator.clipboard.write([new ClipboardItem({"text/html": new Blob([html], {typ
 } else { fb(); }
 } catch (e) { fb(); }
 }
+var PDF_LIBS = ["https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js", "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"];
+var libsP = null, pdfCache = {key:"", blob:null}, pdfTimer = null;
+function loadScript(src){ return new Promise(function(res, rej){ var el = document.createElement("script"); el.src = src; el.onload = res; el.onerror = function(){ rej(new Error("load")); }; document.head.appendChild(el); }); }
+function loadLibs(){
+if (window.html2canvas && window.jspdf) return Promise.resolve();
+if (!libsP) libsP = PDF_LIBS.reduce(function(p, u){ return p.then(function(){ return loadScript(u); }); }, Promise.resolve()).catch(function(e){ libsP = null; throw e; });
+return libsP;
+}
+function setMsg(t){ var m = $("rptMsg"); if (m) m.textContent = t; }
+function pdfKey(d){ return reportText(d, false); }
+function pdfName(d){
+var slug = norm(d.who).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "site";
+return "Estimation-CEE-" + slug + "-" + new Date().toISOString().slice(0, 10) + ".pdf";
+}
+function makePdf(d){
+return loadLibs().then(function(){
+var host = document.createElement("div");
+host.style.cssText = "position:fixed;left:-10000px;top:0;width:680px;background:#FFFFFF;";
+host.innerHTML = reportHTML(d);
+document.body.appendChild(host);
+var top0 = host.getBoundingClientRect().top, total = host.offsetHeight, cuts = [];
+host.querySelectorAll("tr, li, p, table, ul, ol, div").forEach(function(el){ cuts.push(el.getBoundingClientRect().bottom - top0); });
+return window.html2canvas(host, {scale:2, backgroundColor:"#FFFFFF", logging:false}).then(function(canvas){
+host.parentNode.removeChild(host);
+var doc = new window.jspdf.jsPDF({unit:"mm", format:"a4", orientation:"portrait"});
+var m = 12, cw = 186, mmPerPx = cw / 680, pageH = (297 - 2 * m) / mmPerPx, k = canvas.width / 680, y = 0, first = true;
+while (y < total - 1) {
+var limit = y + pageH, end = limit;
+if (limit >= total) end = total;
+else {
+var best = 0;
+cuts.forEach(function(c){ if (c > y + pageH * 0.4 && c <= limit && c > best) best = c; });
+if (best) end = best;
+}
+var sy = Math.round(y * k), sh = Math.min(Math.round((end - y) * k), canvas.height - sy);
+if (sh <= 0) break;
+var tmp = document.createElement("canvas"); tmp.width = canvas.width; tmp.height = sh;
+var ctx = tmp.getContext("2d"); ctx.fillStyle = "#FFFFFF"; ctx.fillRect(0, 0, tmp.width, sh);
+ctx.drawImage(canvas, 0, sy, canvas.width, sh, 0, 0, canvas.width, sh);
+if (!first) doc.addPage();
+doc.addImage(tmp.toDataURL("image/jpeg", 0.92), "JPEG", m, m, cw, sh / k * mmPerPx);
+first = false; y = end;
+}
+return doc.output("blob");
+});
+});
+}
+function buildPdfNow(){
+if ($("report").hidden) return;
+var d = reportData(); if (!d.lines.length) return;
+var key = pdfKey(d);
+if (pdfCache.key === key && pdfCache.blob) return;
+makePdf(d).then(function(blob){ pdfCache = {key:key, blob:blob}; }).catch(function(){});
+}
+function schedulePdf(){ clearTimeout(pdfTimer); pdfTimer = setTimeout(buildPdfNow, 700); }
+function isMobile(){ return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); }
+function saveLink(blob, name){
+var url = URL.createObjectURL(blob), a = document.createElement("a");
+a.href = url; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+setTimeout(function(){ URL.revokeObjectURL(url); }, 60000);
+setMsg("Téléchargement du PDF lancé. Si rien ne se passe, ouvrez l'outil depuis le site particule-energie.fr.");
+}
+function deliverPdf(blob, name){
+var file = null;
+try { file = new File([blob], name, {type:"application/pdf"}); } catch (e) {}
+if (isMobile() && file && navigator.share && navigator.canShare && navigator.canShare({files:[file]})) {
+navigator.share({files:[file], title:name}).then(function(){ setMsg("PDF partagé."); }, function(err){
+if (err && err.name === "AbortError") setMsg("Partage annulé.");
+else if (err && err.name === "NotAllowedError") setMsg("PDF prêt : touchez encore « Télécharger le PDF » pour l'enregistrer ou l'envoyer.");
+else saveLink(blob, name);
+});
+return;
+}
+saveLink(blob, name);
+}
+function downloadPdf(){
+var d = reportData(); if (!d.lines.length) return;
+var key = pdfKey(d), name = pdfName(d);
+if (pdfCache.blob && pdfCache.key === key) { deliverPdf(pdfCache.blob, name); return; }
+setMsg("Préparation du PDF…");
+makePdf(d).then(function(blob){ pdfCache = {key:key, blob:blob}; deliverPdf(blob, name); }, function(){
+setMsg("Le PDF n'a pas pu être créé (connexion requise). Utilisez « Copier le rapport ».");
+});
+}
 $("reportBtn").addEventListener("click", function(){ $("report").hidden = false; refreshReport(); $("report").scrollIntoView({behavior:"smooth", block:"start"}); });
 $("report").addEventListener("click", function(e){
 var t = e.target.closest("button, a"); if (!t) return;
 if (t.id === "rptCopy") copyReport();
 else if (t.id === "rptClose") $("report").hidden = true;
-else if (t.id === "rptPrint") { try { window.print(); } catch (err) { $("rptMsg").textContent = "L'impression n'est pas disponible ici : utilisez le site ou copiez le rapport."; } }
+else if (t.id === "rptPdf") downloadPdf();
 });
 buildSite(); buildQuestions(); buildWorks(); render();
 </script>
