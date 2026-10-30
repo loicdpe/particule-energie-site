@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://particule-energie.fr/">
-<title>Particule Énergie — Étude énergétique & Audit conseil à Grenoble</title>
-<meta name="description" content="Cabinet indépendant d'étude énergétique à Grenoble. Audit conseil dès 600€ TTC, accompagnement complet des dossiers MaPrimeRénov', CEE et Éco-PTZ. Simulateur DPE gratuit pour démarrer.">
+<title>Particule Énergie — Étude énergétique de conseil à Grenoble</title>
+<meta name="description" content="Cabinet indépendant d'étude énergétique à Grenoble. Étude énergétique de conseil dès 600 € TTC, validation de devis de pompe à chaleur. Simulateur DPE gratuit pour démarrer.">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://particule-energie.fr/">
 <meta property="og:site_name" content="Particule Énergie">
-<meta property="og:title" content="Particule Énergie — Étude énergétique & Audit conseil à Grenoble">
-<meta property="og:description" content="Cabinet indépendant d'étude énergétique à Grenoble. Audit conseil dès 600€ TTC, accompagnement complet des dossiers d'aides. Simulateur DPE gratuit pour démarrer.">
+<meta property="og:title" content="Particule Énergie — Étude énergétique de conseil à Grenoble">
+<meta property="og:description" content="Cabinet indépendant d'étude énergétique à Grenoble. Étude énergétique de conseil dès 600 € TTC, validation de devis de pompe à chaleur. Simulateur DPE gratuit pour démarrer.">
 <meta property="og:image" content="https://particule-energie.fr/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -47,10 +47,26 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .nav-links a:hover{color:rgba(255,255,255,0.7)}
 .nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap}
 .nav-cta:hover{background:#D4880A}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-tel{font-size:13px;color:#5DCAA5;text-decoration:none;white-space:nowrap}
+.nav-tel:hover{color:#fff}
+.tel-ico{display:none}
+.hero-pro{display:inline-block;margin-bottom:1.25rem;font-size:12px;color:#fff;background:rgba(93,202,165,0.14);border:0.5px solid rgba(93,202,165,0.45);border-radius:999px;padding:6px 14px;text-decoration:none}
+.hero-pro:hover{background:rgba(93,202,165,0.25)}
+.about-me{background:#fff;padding:2.5rem 2rem;border-bottom:0.5px solid #e0ddd6}
+.about-me-inner{max-width:700px;margin:0 auto;display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap}
+.about-me-photo{width:112px;height:112px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#F2EFE6}
+.about-me-txt{flex:1;min-width:240px}
+.about-me-links{display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:1rem;font-size:13px}
+.about-me-links a{color:#1D6F42;text-decoration:none;font-weight:500}
 @media(max-width:640px){
   .nav{padding:.75rem 1rem}
   .nav-links a:not([href="/blog/"]){display:none}
   .nav-links{gap:0}
+  .nav-right{gap:10px}
+  .tel-num{display:none}
+  .tel-ico{display:inline;font-size:18px}
+  .nav-cta{padding:8px 12px}
 }
 /* HERO */
 .hero{background:#0D1F15;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
@@ -295,7 +311,10 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
     <a href="#contact">À propos</a>
     <a href="/blog/">Actualités & Réglementation</a>
   </div>
-  <a href="#simulateur" class="nav-cta" onclick="showSim()">Estimer mon DPE</a>
+  <div class="nav-right">
+    <a href="tel:+33632870522" class="nav-tel" aria-label="Appeler Particule Énergie"><span class="tel-num">06 32 87 05 22</span><span class="tel-ico">📞</span></a>
+    <a href="#simulateur" class="nav-cta" onclick="showSim()">Estimer mon DPE</a>
+  </div>
 </nav>
 <!-- PAGE ACCUEIL -->
 <div id="page-home" class="page active">
@@ -308,6 +327,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <circle cx="41" cy="41" r="3.8" fill="#5DCAA5"/>
       <circle cx="41" cy="14" r="3.2" fill="#EF9F27"/>
     </svg>
+    <a href="/installateurs-rge.html" class="hero-pro">🔧 Installateur RGE ? Faites valider vos devis PAC — 249 € HT →</a>
     <div class="hero-eyebrow">Étude énergétique — Grenoble · Isère · Rhône-Alpes</div>
     <svg class="hero-logo" width="100" height="100" viewBox="0 0 82 82" fill="none" aria-hidden="true">
       <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
@@ -325,7 +345,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
     </svg>
     <h1 class="hero-title">Votre étude énergétique,<br>réalisée par un <span>expert indépendant</span> à Grenoble.</h1>
     <div class="hero-slogan">Votre énergie, notre expertise</div>
-    <p class="hero-sub">Audit conseil dès 600€ TTC — rapport détaillé en 5 jours, dossiers d'aides pris en charge. Pas d'affiliation fabricant, pas de vente de travaux.</p>
+    <p class="hero-sub">Étude énergétique de conseil dès 600 € TTC — rapport détaillé en 5 jours ouvrés, avec le chiffrage des aides mobilisables. Pas d'affiliation fabricant, pas de vente de travaux.</p>
     <div class="hero-actions">
       <a href="/proprietaires.html" class="btn-primary">Réserver mon étude énergétique</a>
       <button class="btn-ghost" onclick="document.getElementById('simulateur').scrollIntoView({behavior:'smooth'})">Ou estimer mon DPE gratuitement</button>
@@ -347,16 +367,31 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <div class="number-label">pour connaître votre classe DPE<br>gratuitement, sans engagement</div>
     </div>
   </div>
+  <!-- VOTRE INTERLOCUTEUR -->
+  <div class="about-me">
+    <div class="about-me-inner">
+      <img class="about-me-photo" src="/img/loic-ortiz.jpg" alt="Loïc Ortiz, auditeur énergétique à Grenoble" width="112" height="112" loading="lazy">
+      <div class="about-me-txt">
+        <div class="section-tag">Votre interlocuteur</div>
+        <div style="font-size:20px;font-style:italic;font-family:Georgia,serif;color:#1a1a1a;margin-bottom:.5rem">Loïc Ortiz, auditeur énergétique à Grenoble</div>
+        <p class="section-body" style="margin:0">Plus de 22 ans dans le chauffage et l'énergie, titre « Technicien en rénovation énergétique » (RNCP40282), études calculées avec la méthode 3CL. Vous travaillez directement avec la personne qui réalise votre étude, pas avec un commercial.</p>
+        <div class="about-me-links">
+          <a href="tel:+33632870522">📞 06 32 87 05 22</a>
+          <a href="mailto:contact@particule-energie.fr">✉️ contact@particule-energie.fr</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- NOS PRESTATIONS -->
   <div id="prestations" style="background:#F2EFE6;padding:4rem 2rem;border-top:0.5px solid #e0ddd6;border-bottom:0.5px solid #e0ddd6">
     <div style="max-width:700px;margin:0 auto">
       <div class="section-tag">Nos prestations</div>
       <h2 class="section-title">Une étude <span>sur mesure</span>,<br>pas un rapport générique</h2>
-      <p class="section-body" style="margin-bottom:2rem">Un expert indépendant de 22 ans d'expérience secteur, aucune affiliation fabricant. Nos conseils sont dans votre seul intérêt.</p>
+      <p class="section-body" style="margin-bottom:2rem">Aucune affiliation fabricant, aucune vente de travaux : mes conseils sont dans votre seul intérêt.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#ddd9ce;border-radius:10px;overflow:hidden">
         <div style="background:#fff;padding:1.75rem">
           <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#1D6F42;margin-bottom:.5rem">Offre 01</div>
-          <div style="font-size:18px;font-style:italic;font-family:Georgia,serif;color:#1a1a1a;margin-bottom:.5rem">Audit Conseil</div>
+          <div style="font-size:18px;font-style:italic;font-family:Georgia,serif;color:#1a1a1a;margin-bottom:.5rem">Étude énergétique de conseil</div>
           <div style="font-size:26px;font-family:Georgia,serif;color:#1D6F42;margin-bottom:.75rem">600 – 800 € <span style="font-size:14px;color:#999">TTC</span></div>
           <ul style="font-size:13px;color:#666;line-height:1.8;margin:0 0 1.25rem;padding-left:1.1rem">
             <li>Étude thermique complète — méthode 3CL</li>
@@ -366,18 +401,18 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
           <a href="/proprietaires.html" style="font-size:13px;color:#1D6F42;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px">En savoir plus <i class="ti ti-arrow-right"></i></a>
         </div>
         <div style="background:#fff;padding:1.75rem">
-          <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E8700A;margin-bottom:.5rem">Offre 02 — la plus complète</div>
-          <div style="font-size:18px;font-style:italic;font-family:Georgia,serif;color:#1a1a1a;margin-bottom:.5rem">Accompagnement</div>
-          <div style="font-size:26px;font-family:Georgia,serif;color:#1D6F42;margin-bottom:.75rem">900 – 1 150 € <span style="font-size:14px;color:#999">TTC</span></div>
+          <div style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E8700A;margin-bottom:.5rem">Offre 02 — vous avez déjà un devis PAC</div>
+          <div style="font-size:18px;font-style:italic;font-family:Georgia,serif;color:#1a1a1a;margin-bottom:.5rem">Validation de devis PAC</div>
+          <div style="font-size:26px;font-family:Georgia,serif;color:#1D6F42;margin-bottom:.75rem">299 € <span style="font-size:14px;color:#999">TTC</span></div>
           <ul style="font-size:13px;color:#666;line-height:1.8;margin:0 0 1.25rem;padding-left:1.1rem">
-            <li>Tout le contenu de l'Audit Conseil</li>
-            <li>Montage des dossiers MaPrimeRénov', CEE, Éco-PTZ</li>
-            <li>Suivi administratif complet</li>
+            <li>Calcul réel des déperditions de votre logement (3CL)</li>
+            <li>Puissance nécessaire à la température de base de votre secteur</li>
+            <li>Une note claire : votre devis est-il bien dimensionné ?</li>
           </ul>
-          <a href="/proprietaires.html" style="font-size:13px;color:#1D6F42;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px">En savoir plus <i class="ti ti-arrow-right"></i></a>
+          <a href="mailto:contact@particule-energie.fr?subject=Validation%20de%20devis%20PAC" style="font-size:13px;color:#1D6F42;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:5px">Me contacter <i class="ti ti-arrow-right"></i></a>
         </div>
       </div>
-      <div style="margin-top:1.5rem;font-size:12px;color:#999">Déplacement inclus en zone Grenoble. Vous êtes un installateur RGE ? <a href="/installateurs-rge.html" style="color:#1D6F42">Découvrez nos offres partenaires →</a></div>
+      <div style="margin-top:1.5rem;font-size:12px;color:#999">Déplacement inclus en zone Grenoble. Étude de conseil indépendante : elle ne remplace pas l'audit réglementaire exigé pour le parcours accompagné MaPrimeRénov'. Vous êtes un installateur RGE ? <a href="/installateurs-rge.html" style="color:#1D6F42">Découvrez l'offre partenaires →</a></div>
     </div>
   </div>
   <!-- ORIENTATION B2B / B2C -->
@@ -394,8 +429,8 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <a href="/installateurs-rge.html" style="display:block;border:0.5px solid #e0ddd6;border-radius:10px;padding:1.25rem 1.5rem;text-decoration:none;transition:border-color .2s;background:#FAFAF7" onmouseover="this.style.borderColor='#1D6F42'" onmouseout="this.style.borderColor='#e0ddd6'">
           <div style="font-size:20px;margin-bottom:.5rem">🔧</div>
           <div style="font-size:15px;font-weight:500;color:#1a1a1a;margin-bottom:.3rem;font-family:Georgia,serif;font-style:italic">Installateur RGE</div>
-          <div style="font-size:12px;color:#888;line-height:1.5">Vous posez les équipements et cherchez un partenaire pour l'étude énergétique et les dossiers d'aides.</div>
-          <div style="font-size:12px;color:#1D6F42;margin-top:.75rem">Devenir partenaire →</div>
+          <div style="font-size:12px;color:#888;line-height:1.5">Vous posez les équipements et cherchez un appui technique pour valider vos devis PAC et rassurer vos clients.</div>
+          <div style="font-size:12px;color:#1D6F42;margin-top:.75rem">Découvrir l'offre →</div>
         </a>
       </div>
     </div>
@@ -405,7 +440,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
     <div class="section">
       <div class="section-tag">Comment ça marche</div>
       <h2 class="section-title">De l'estimation<br>à la <span>rénovation</span></h2>
-      <p class="section-body">Un accompagnement simple et transparent, de la première estimation jusqu'à la mise en relation avec des installateurs certifiés RGE.</p>
+      <p class="section-body">Un parcours simple et transparent, de la première estimation jusqu'à votre étude énergétique.</p>
       <div class="steps">
         <div class="step-item">
           <div class="step-num">01</div>
@@ -418,14 +453,14 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
           <div class="step-num">02</div>
           <div>
             <div class="step-title">Découvrez vos aides</div>
-            <div class="step-desc">MaPrimeRénov', CEE, Éco-PTZ, TVA réduite — votre profil de revenus détermine le montant exact auquel vous avez droit.</div>
+            <div class="step-desc">MaPrimeRénov', CEE, Éco-PTZ, TVA réduite — selon vos revenus et vos travaux, le simulateur estime les aides auxquelles vous pouvez prétendre.</div>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num">03</div>
           <div>
-            <div class="step-title">Recevez des devis d'installateurs RGE</div>
-            <div class="step-desc">Des professionnels certifiés de la région grenobloise vous contactent sous 48h. Gratuit, sans engagement.</div>
+            <div class="step-title">Échangeons sur votre projet</div>
+            <div class="step-desc">Je vous rappelle sous 48h pour parler de votre projet et voir si une étude énergétique vous est utile. Gratuit, sans engagement.</div>
           </div>
         </div>
       </div>
@@ -459,7 +494,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
           <div class="aide-desc">Au lieu de 20% — sur l'ensemble des travaux réalisés par un artisan RGE</div>
         </div>
       </div>
-      <div style="margin-top:1rem;font-size:11px;color:#bbb">Aides vérifiées — juin 2026 · Source : <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
+      <div style="margin-top:1rem;font-size:11px;color:#bbb">Montants maximums indicatifs, selon vos revenus et vos travaux · Source : <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
     </div>
   </div>
   <!-- SIMULATEUR APERÇU -->
@@ -554,6 +589,8 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
       <span class="footer-copy">© 2026 Particule Énergie — Grenoble · Isère</span>
     </div>
     <div class="footer-links">
+      <a href="tel:+33632870522" style="color:rgba(255,255,255,0.4);text-decoration:none">06 32 87 05 22</a>
+      <a href="mailto:contact@particule-energie.fr" style="color:rgba(255,255,255,0.4);text-decoration:none">contact@particule-energie.fr</a>
       <a href="/mentions-legales.html" style="color:rgba(255,255,255,0.25);text-decoration:none">Mentions légales</a>
       <a href="/politique-confidentialite.html" style="color:rgba(255,255,255,0.25);text-decoration:none">Confidentialité</a>
       <a href="https://www.instagram.com/particulenergie/" target="_blank" rel="noopener noreferrer me" style="color:rgba(255,255,255,0.25);text-decoration:none">Instagram</a>
@@ -848,21 +885,21 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         <span>Estimations indicatives. Ne pas commencer les travaux avant l'accord de l'ANAH. Un audit énergétique réglementaire reste nécessaire.</span>
       </div>
       <div class="lead-box" id="lead-form-box">
-        <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin:0 0 4px"><i class="ti ti-tool" style="color:#E8700A;margin-right:5px"></i>Obtenez des devis d'installateurs RGE</p>
-        <p style="font-size:12px;color:#666;margin:0 0 .875rem">Des professionnels certifiés de votre région vous accompagnent pour améliorer votre classe DPE et monter vos dossiers d'aides.</p>
+        <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin:0 0 4px"><i class="ti ti-tool" style="color:#E8700A;margin-right:5px"></i>Être recontacté gratuitement</p>
+        <p style="font-size:12px;color:#666;margin:0 0 .875rem">Je vous rappelle pour discuter de votre résultat, de vos aides et de votre projet de travaux. Gratuit, sans engagement.</p>
         <div class="lfield"><label>Nom *</label><input type="text" id="lp" placeholder="ex : Dupont"/></div>
         <div class="lfield"><label>Email *</label><input type="email" id="le" placeholder="ex : marie@email.com"/></div>
         <div class="lfield"><label>Téléphone</label><input type="tel" id="lt2" placeholder="ex : 06 12 34 56 78"/></div>
         <div class="error-box" id="err-box"><i class="ti ti-alert-circle"></i><span id="err-txt">Erreur</span></div>
-        <button class="blead" id="btn-lead" onclick="submitLead()"><i class="ti ti-send"></i>Recevoir des devis gratuits</button>
-        <p class="privacy"><i class="ti ti-lock" style="font-size:12px"></i>Vos coordonnées sont transmises à des professionnels RGE de votre région uniquement.</p>
+        <button class="blead" id="btn-lead" onclick="submitLead()"><i class="ti ti-send"></i>Être recontacté gratuitement</button>
+        <p class="privacy"><i class="ti ti-lock" style="font-size:12px"></i>Vos coordonnées servent uniquement à vous recontacter. <a href="/politique-confidentialite.html" style="color:inherit">Politique de confidentialité</a></p>
       </div>
       <div class="success-box" id="success-box" style="display:none">
         <i class="ti ti-circle-check"></i>
         <div style="font-size:17px;font-weight:500;color:#085041;margin-bottom:6px">Votre demande a bien été envoyée !</div>
-        <div style="font-size:13px;color:#0F6E56">Un installateur RGE de votre région vous contactera sous 24–48h.</div>
+        <div style="font-size:13px;color:#0F6E56">Je vous recontacte personnellement sous 24–48h.</div>
       </div>
-      <div class="maj-note">Aides vérifiées — juin 2026 · <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
+      <div class="maj-note">Montants maximums indicatifs, selon vos revenus et vos travaux · <a href="https://france-renov.gouv.fr" target="_blank" style="color:#1D6F42">france-renov.gouv.fr</a></div>
       <div style="display:flex;gap:10px;margin-top:1.25rem">
         <button onclick="modifierReponses()" style="flex:1;background:#f5f5f0;color:#1a1a1a;border:0.5px solid #ccc;border-radius:8px;padding:11px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><i class="ti ti-pencil"></i>Modifier mes réponses</button>
         <button onclick="nouveauDPE()" style="flex:1;background:#fff;color:#1D6F42;border:1.5px solid #1D6F42;border-radius:8px;padding:11px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><i class="ti ti-refresh"></i>Nouveau DPE</button>
@@ -1061,7 +1098,7 @@ async function submitLead(){
     document.getElementById('lead-form-box').style.display='none';
     document.getElementById('success-box').style.display='block';
   }catch(e){
-    btn.disabled=false;btn.innerHTML='<i class="ti ti-send"></i>Recevoir des devis gratuits';
+    btn.disabled=false;btn.innerHTML='<i class="ti ti-send"></i>Être recontacté gratuitement';
     errTxt.textContent="Erreur de connexion. Vérifiez votre connexion et réessayez.";
     errBox.style.display='flex';
   }
@@ -1132,7 +1169,7 @@ function refuseCookies(){
       <div class="hero-ap-inner">
         <div class="ap-eyebrow">À propos</div>
         <h1 style="font-size:30px;font-weight:400;color:#fff;font-family:Georgia,serif;font-style:italic;line-height:1.2;margin-bottom:.75rem">Décrypter la rénovation<br>énergétique, c'est notre <span style="color:#5DCAA5;font-style:normal">métier</span>.</h1>
-        <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:480px">Particule Énergie accompagne les propriétaires de la région grenobloise dans leurs projets de rénovation énergétique — de l'estimation DPE jusqu'à la mise en relation avec des installateurs certifiés RGE.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.75;max-width:480px">Particule Énergie accompagne les propriétaires de la région grenobloise dans leurs projets de rénovation énergétique — de l'estimation DPE jusqu'à votre étude énergétique et vos choix de travaux.</p>
       </div>
     </div>
     <div style="height:0.5px;background:#e0ddd6"></div>
