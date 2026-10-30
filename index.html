@@ -53,6 +53,28 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
 .nav-tel{font-size:13px;color:#5DCAA5;text-decoration:none;white-space:nowrap}
 .nav-tel:hover{color:#fff}
 .tel-ico{display:none}
+.rappel{background:#F2EFE6;padding:4rem 2rem;border-bottom:0.5px solid #e0ddd6;scroll-margin-top:70px}
+.rappel-inner{max-width:700px;margin:0 auto}
+.rappel-card{background:#fff;border:0.5px solid #ddd9ce;border-radius:12px;padding:1.75rem;margin-top:1.75rem}
+.rappel-choix{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem}
+.rappel-choix label{display:flex;gap:8px;align-items:flex-start;border:1px solid #ddd9ce;border-radius:8px;padding:12px 14px;cursor:pointer;font-size:13px;color:#1a1a1a;line-height:1.4}
+.rappel-choix input{width:16px;height:16px;flex:none;margin:3px 0 0;padding:0;accent-color:#1D6F42}
+.rappel-choix span{text-align:left}
+.rappel-choix label:has(input:checked){border-color:#1D6F42;background:#F1F8F4}
+.rappel-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.rappel-f{display:flex;flex-direction:column;gap:5px;font-size:12px;color:#666}
+.rappel-f input,.rappel-f select,.rappel-f textarea{font:inherit;font-size:14px;color:#1a1a1a;border:1px solid #d6d2c6;border-radius:8px;padding:10px 12px;background:#fff;width:100%;box-sizing:border-box}
+.rappel-f input:focus,.rappel-f select:focus,.rappel-f textarea:focus{outline:2px solid #1D6F42;outline-offset:0;border-color:#1D6F42}
+.rappel-full{grid-column:1/-1}
+.rappel-btn{margin-top:1.25rem;background:#EF9F27;color:#fff;border:none;border-radius:8px;padding:13px 22px;font-size:14px;font-weight:500;cursor:pointer}
+.rappel-btn:hover{background:#D4880A}
+.rappel-btn:disabled{opacity:.6;cursor:default}
+.rappel-note{margin-top:.875rem;font-size:11px;color:#888;line-height:1.5}
+.rappel-note a{color:#1D6F42}
+.rappel-err{display:none;margin-top:.875rem;font-size:13px;color:#A32D2D;background:#FCEBEB;border-radius:8px;padding:10px 12px}
+.rappel-ok{display:none;text-align:center;padding:1.5rem 0}
+.rappel-hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+@media(max-width:600px){.rappel{padding:3rem 1rem}.rappel-choix,.rappel-grid{grid-template-columns:1fr}}
 .hero-pro{display:inline-block;margin-bottom:1.25rem;font-size:12px;color:#fff;background:rgba(93,202,165,0.14);border:0.5px solid rgba(93,202,165,0.45);border-radius:999px;padding:6px 14px;text-decoration:none}
 .hero-pro:hover{background:rgba(93,202,165,0.25)}
 .about-me{background:#fff;padding:2.5rem 2rem;border-bottom:0.5px solid #e0ddd6}
@@ -350,7 +372,7 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
     <div class="hero-slogan">Votre énergie, notre expertise</div>
     <p class="hero-sub">Étude énergétique de conseil dès 600 € TTC — rapport détaillé en 5 jours ouvrés, avec le chiffrage des aides mobilisables. Pas d'affiliation fabricant, pas de vente de travaux.</p>
     <div class="hero-actions">
-      <a href="/proprietaires.html" class="btn-primary">Réserver mon étude énergétique</a>
+      <a href="#rappel" class="btn-primary">Être rappelé ou prendre rendez-vous</a>
       <button class="btn-ghost" onclick="document.getElementById('simulateur').scrollIntoView({behavior:'smooth'})">Ou estimer mon DPE gratuitement</button>
     </div>
     <div class="hero-note">Indépendant · Sans affiliation fabricant · Zone H1 — Isère, Savoie, Drôme</div>
@@ -435,6 +457,54 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
           <div style="font-size:12px;color:#888;line-height:1.5">Vous posez les équipements et cherchez un appui technique pour valider vos devis PAC et rassurer vos clients.</div>
           <div style="font-size:12px;color:#1D6F42;margin-top:.75rem">Découvrir l'offre →</div>
         </a>
+      </div>
+    </div>
+  </div>
+  <!-- ÊTRE RAPPELÉ / PRENDRE RENDEZ-VOUS -->
+  <div id="rappel" class="rappel">
+    <div class="rappel-inner">
+      <div class="section-tag">Parlons de votre projet</div>
+      <h2 class="section-title">Être rappelé <span>ou prendre rendez-vous</span></h2>
+      <p class="section-body" style="margin:0">Laissez-moi vos coordonnées : je vous rappelle sous 24 à 48 h ouvrées, sans engagement. Vous pouvez aussi m'appeler directement au <a href="tel:+33632870522" style="color:#1D6F42;font-weight:500">06 32 87 05 22</a>.</p>
+      <div class="rappel-card">
+        <form id="rappel-form" name="rappel" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="rappel">
+          <p class="rappel-hp"><label>Ne pas remplir : <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="rappel-choix" role="radiogroup" aria-label="Votre demande">
+            <label><input type="radio" name="demande" value="Être rappelé" checked><span><strong>Être rappelé</strong><br>Un appel de 10 à 15 min pour faire le point.</span></label>
+            <label><input type="radio" name="demande" value="Prendre rendez-vous"><span><strong>Prendre rendez-vous</strong><br>Visite sur place ou visio, à convenir ensemble.</span></label>
+          </div>
+          <div class="rappel-grid">
+            <label class="rappel-f">Nom *<input type="text" name="nom" autocomplete="name" required></label>
+            <label class="rappel-f">Téléphone *<input type="tel" name="telephone" autocomplete="tel" inputmode="tel" required></label>
+            <label class="rappel-f">Email (facultatif)<input type="email" name="email" autocomplete="email"></label>
+            <label class="rappel-f">Vous êtes
+              <select name="profil">
+                <option>Particulier, propriétaire</option>
+                <option>Installateur / artisan RGE</option>
+                <option>Autre professionnel</option>
+              </select>
+            </label>
+            <label class="rappel-f">Moment idéal pour vous joindre
+              <select name="creneau">
+                <option>Dès que possible</option>
+                <option>Le matin</option>
+                <option>L'après-midi</option>
+                <option>Après 18 h</option>
+              </select>
+            </label>
+            <label class="rappel-f">Commune du projet (facultatif)<input type="text" name="commune" autocomplete="address-level2"></label>
+            <label class="rappel-f rappel-full">Votre projet en une phrase (facultatif)<textarea name="message" rows="3" placeholder="ex : devis de pompe à chaleur à valider, isolation des combles, étude avant travaux…"></textarea></label>
+          </div>
+          <div class="rappel-err" id="rappel-err" role="alert"></div>
+          <button type="submit" class="rappel-btn" id="rappel-btn">Envoyer ma demande</button>
+          <p class="rappel-note">Vos coordonnées servent uniquement à vous recontacter et ne sont transmises à personne. <a href="/politique-confidentialite.html">Politique de confidentialité</a></p>
+        </form>
+        <div class="rappel-ok" id="rappel-ok" role="status">
+          <div style="font-size:22px;margin-bottom:.5rem">✅</div>
+          <div style="font-size:17px;font-weight:500;color:#085041;margin-bottom:6px">Merci, votre demande est bien envoyée !</div>
+          <div style="font-size:13px;color:#0F6E56">Je vous recontacte sous 24 à 48 h ouvrées. Pour une urgence : 06 32 87 05 22.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1106,6 +1176,30 @@ async function submitLead(){
     errBox.style.display='flex';
   }
 }
+</script>
+<script>
+// Formulaire « Être rappelé / prendre rendez-vous » (Netlify Forms)
+(function(){
+  var f=document.getElementById('rappel-form'); if(!f) return;
+  var err=document.getElementById('rappel-err'), btn=document.getElementById('rappel-btn');
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); err.style.display='none';
+    var nom=f.nom.value.trim(), tel=f.telephone.value.trim(), mail=f.email.value.trim();
+    var digits=tel.replace(/\D/g,'');
+    if(!nom||!tel){err.textContent='Merci de renseigner votre nom et votre téléphone.';err.style.display='block';return;}
+    if(digits.length<9){err.textContent='Le numéro de téléphone semble incomplet.';err.style.display='block';return;}
+    if(mail&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){err.textContent='Adresse email invalide.';err.style.display='block';return;}
+    btn.disabled=true; btn.textContent='Envoi en cours…';
+    var body=new URLSearchParams(new FormData(f)).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+      .then(function(r){ if(!r.ok) throw new Error('http '+r.status);
+        f.style.display='none'; document.getElementById('rappel-ok').style.display='block';
+        try{ if(typeof gtag==='function') gtag('event','generate_lead',{form_name:'rappel'}); }catch(_){}
+      })
+      .catch(function(){ btn.disabled=false; btn.textContent='Envoyer ma demande';
+        err.innerHTML='L\'envoi a échoué. Réessayez, ou appelez-moi au <a href="tel:+33632870522">06 32 87 05 22</a>.'; err.style.display='block'; });
+  });
+})();
 </script>
 <script>
 // Gestion consentement cookies
