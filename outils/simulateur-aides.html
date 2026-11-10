@@ -3,7 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Aides PE · Simulateur interne</title>
+<title>Simulateur d'aides MaPrimeRénov' et CEE 2026 — Particule Énergie</title>
+<meta name="description" content="Simulateur gratuit : estimez vos aides MaPrimeRénov&#x27; et CEE (pompe à chaleur, isolation, rénovation d&#x27;ampleur) selon votre foyer, votre zone climatique et vos travaux. Estimation indicative.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://particule-energie.fr/outils/simulateur-aides.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://particule-energie.fr/outils/simulateur-aides.html">
+<meta property="og:title" content="Simulateur d&#x27;aides MaPrimeRénov&#x27; et CEE 2026 — Particule Énergie">
+<meta property="og:description" content="Simulateur gratuit : estimez vos aides MaPrimeRénov&#x27; et CEE (pompe à chaleur, isolation, rénovation d&#x27;ampleur) selon votre foyer, votre zone climatique et vos travaux. Estimation indicative.">
+<meta property="og:image" content="https://particule-energie.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://particule-energie.fr/og-image.png">
 
 <!-- PWA iOS — nom et icône VOLONTAIREMENT différents de la PWA "Particule Énergie" (site public / DPE) -->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +49,9 @@
     --rust:#C1543D;
   }
   *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  .pe-pro [data-pro]{display:inline-block !important;}
+  .pe-pro nav button[data-pro]{display:block !important;}
   html,body{margin:0;padding:0;}
   body{
     background:var(--graphite-950);
@@ -330,17 +346,17 @@
       <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
       <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
     </svg>
-    <h1>Particule <span>Énergie</span> · Simulateur</h1>
+    <h1>Particule <span>Énergie</span> · Simulateur d'aides</h1>
   </div>
-  <div class="tag">V1 · outil interne</div>
+  <div class="tag">Simulateur gratuit</div>
 </header>
 
 <div class="layout">
   <nav>
     <button class="nav-btn active" data-panel="simulation">Simulation</button>
-    <button class="nav-btn" data-panel="produits">Base produits</button>
+    <button class="nav-btn" data-panel="produits" data-pro hidden>Base produits</button>
     <button class="nav-btn" data-panel="bareme">Barèmes</button>
-    <button class="nav-btn" data-panel="historique">Historique</button>
+    <button class="nav-btn" data-panel="historique" data-pro hidden>Historique</button>
   </nav>
 
   <main>
@@ -354,7 +370,7 @@
         <div>
           <div class="card">
             <div class="field">
-              <label>Nom du projet / client</label>
+              <label>Nom du projet (facultatif)</label>
               <input type="text" id="simNom" placeholder="Ex : Dupont — Voiron">
             </div>
             <div class="row-2">
@@ -529,7 +545,7 @@
       <div class="banner" style="max-width:620px;">À partir du 01/09/2026, le Coup de Pouce est réservé aux modèles de PAC figurant sur la liste officielle des modèles agréés "qualité et résilience industrielle" (décret n°2026-413). Vérifie la liste ADEME avant de l'appliquer à un dossier client.</div>
 
       <div class="section-label">Rénovation d'ampleur — plafonds de dépenses HT selon le gain de classes DPE (€)</div>
-      <div class="banner">⚠️ Les taux de prise en charge ci-dessous sont indicatifs — les sources publiques divergent sur ce point début 2026. À vérifier sur francerenov.gouv.fr avant tout usage client.</div>
+      <div class="banner">⚠️ Les taux de prise en charge ci-dessous sont indicatifs — les sources publiques divergent sur ce point début 2026. À vérifier sur france-renov.gouv.fr avant toute décision.</div>
       <table>
         <thead><tr><th>Gain de classes</th><th>Plafond HT</th></tr></thead>
         <tbody id="ampleurPlafondsBody"></tbody>
@@ -561,6 +577,15 @@
   </main>
 </div>
 
+<div style="max-width:900px;margin:0 auto;padding:1.5rem 1.25rem 2.5rem;font-size:13px;line-height:1.7;color:var(--paper-dim)">
+  <p style="margin:0 0 .75rem">Estimation indicative, hors Île-de-France : les montants définitifs dépendent de votre dossier et des conditions en vigueur. Une étude énergétique permet de savoir précisément quels travaux engager et à quelles aides vous pouvez prétendre.</p>
+  <p style="margin:0"><a href="/proprietaires.html" style="color:var(--vert-clair)">Étude énergétique dès 400 € TTC</a> · <a href="/installateurs-rge.html" style="color:var(--vert-clair)">Validation de devis PAC</a> · <a href="mailto:contact@particule-energie.fr?subject=Simulateur%20d%27aides" style="color:var(--vert-clair)">contact@particule-energie.fr</a> · <a href="/" style="color:var(--vert-clair)">Retour au site</a></p>
+</div>
+
+<script>
+try{var _q=new URLSearchParams(location.search);if(_q.get('pro')==='1'){localStorage.setItem('pe-pro','1');}
+if(localStorage.getItem('pe-pro')==='1'){document.documentElement.classList.add('pe-pro');document.querySelectorAll('[data-pro]').forEach(function(b){b.hidden=false;});}}catch(e){}
+</script>
 <script>
 const GESTES = [
   "Isolation combles/toiture",
@@ -759,7 +784,7 @@ function calculerAmpleur(){
     <div class="line"><span>Plafond d'écrêtement (${tauxEcr}% du TTC)</span><span class="val">${plafondEcretement.toLocaleString('fr-FR')} €</span></div>
     <div class="line total"><span>MaPrimeRénov' estimée</span><span class="val">${total.toLocaleString('fr-FR')} €</span></div>
     <div class="banner" style="margin-top:12px;margin-bottom:0;">CEE déjà intégrée dans ce montant — pas de calcul CEE séparé pour ce parcours.${ecretee ? '<br>⚠️ Aide écrêtée : le plafond d\'écrêtement est plus bas que l\'aide brute calculée.' : ''}${note ? '<br>'+note : ''}</div>
-    <button class="ghost" style="margin-top:12px;" onclick="enregistrerSimulation('${cat}', ${total})">Enregistrer dans l'historique</button>
+    <button class="ghost" data-pro hidden style="margin-top:12px;" onclick="enregistrerSimulation('${cat}', ${total})">Enregistrer dans l'historique</button>
   `;
 
   window._lastSim = {nom, zone:'-', dept:'-', personnes, revenu, parcours:'ampleur', dpe, gain, gestesIsolation, montantHT, montantTTC, geste:"Rénovation d'ampleur", cat, total, unite:''};
@@ -837,7 +862,7 @@ function calculerGeste(){
     <div class="line total"><span>Total (hors postes €/m²)</span><span class="val">${totalFlat.toLocaleString('fr-FR')} €</span></div>
     ${hasSurfacique ? `<div class="banner" style="margin-top:10px;margin-bottom:0;">Les postes en €/m² doivent être multipliés par la surface réelle des travaux pour s'ajouter au total.</div>` : ''}
     ${notes.length ? `<div class="banner" style="margin-top:10px;margin-bottom:0;">${notes.join('<br>')}</div>` : ''}
-    <button class="ghost" style="margin-top:12px;" onclick="enregistrerSimulation('${cat}', ${totalFlat})">Enregistrer dans l'historique</button>
+    <button class="ghost" data-pro hidden style="margin-top:12px;" onclick="enregistrerSimulation('${cat}', ${totalFlat})">Enregistrer dans l'historique</button>
   `;
 
   window._lastSim = {nom, zone, dept, personnes, revenu, parcours:'geste', geste: gestesSelected.join(', '), chaudiereFossile, coupDePouce, cat, total: totalFlat, unite:''};
