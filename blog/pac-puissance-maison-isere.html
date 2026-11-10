@@ -128,7 +128,7 @@ footer span{font-size:12px;color:rgba(255,255,255,0.2)}
       "name": "Comment calcule-t-on la puissance d'une pompe à chaleur ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "On calcule d'abord les déperditions du logement (en W/K, par exemple avec la méthode 3CL), puis la puissance nécessaire à la température de base du secteur, avec une consigne de 19 °C. La pompe à chaleur retenue doit restituer, à cette température de base, 70 à 100 % de cette puissance (référence NF DTU 65.16)."
+        "text": "On calcule d'abord les déperditions du logement (en W/K, selon la norme NF EN 12831 à laquelle renvoie le DTU 65.16), puis la puissance nécessaire à la température de base du secteur. La pompe à chaleur retenue doit restituer, à cette température de base, 80 à 100 % de cette puissance pour une PAC à variation de puissance, et 70 à 100 % pour une PAC tout ou rien (NF DTU 65.16)."
       }
     },
     {
@@ -144,7 +144,7 @@ footer span{font-size:12px;color:rgba(255,255,255,0.2)}
       "name": "Une pompe à chaleur surdimensionnée est-elle un problème ?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Oui. Au-delà de 100 % des déperditions, la pompe à chaleur fonctionne en cycles courts, ce qui l'use plus vite et dégrade son rendement. À l'inverse, sous 70 %, l'appoint électrique est sollicité souvent et la facture augmente."
+        "text": "Oui. Au-delà de 100 % des déperditions, la pompe à chaleur fonctionne en cycles courts, ce qui l'use plus vite et dégrade son rendement. À l'inverse, sous la plage visée (80 % pour la plupart des PAC à variation de puissance), l'appoint électrique est sollicité souvent et la facture augmente. Le contrôle des primes CEE juge une PAC air/eau manifestement surdimensionnée au-delà de 130 %."
       }
     },
     {
@@ -204,7 +204,7 @@ footer span{font-size:12px;color:rgba(255,255,255,0.2)}
 
   <div class="article-body">
 
-    <p><strong>La bonne puissance de pompe à chaleur ne dépend pas de la surface de la maison.</strong> Elle dépend de ce dont le logement a besoin le jour le plus froid de votre secteur : ses déperditions à la température de base. La règle de référence (NF DTU 65.16) est simple : la pompe à chaleur doit restituer, à cette température, <strong>70 à 100 % de ces déperditions</strong>. Moins, l'appoint électrique tourne trop. Plus, la machine s'use et consomme davantage.</p>
+    <p><strong>La bonne puissance de pompe à chaleur ne dépend pas de la surface de la maison.</strong> Elle dépend de ce dont le logement a besoin le jour le plus froid de votre secteur : ses déperditions à la température de base. La règle de référence (NF DTU 65.16) : à cette température, la pompe à chaleur doit restituer <strong>80 à 100 % de ces déperditions</strong> pour une PAC à variation de puissance, c'est-à-dire la plupart des modèles actuels (70 à 100 % pour une PAC tout ou rien). Moins, l'appoint électrique tourne trop. Plus, la machine s'use et consomme davantage.</p>
 
     <div class="highlight-box">
       <p><strong>Un exemple en Isère :</strong> pour une maison de 1980 de 95 m² (300 m d'altitude), le besoin est de <strong>9,9 kW</strong> avant travaux et de <strong>5,2 kW</strong> après rénovation de l'enveloppe. Même surface, puissance divisée par deux.</p>
@@ -217,22 +217,24 @@ footer span{font-size:12px;color:rgba(255,255,255,0.2)}
     <h2>Les trois données qui fixent la puissance</h2>
 
     <h3>1. Les déperditions du logement</h3>
-    <p>Elles s'expriment en <strong>W/K</strong> : la puissance perdue par degré d'écart entre l'intérieur et l'extérieur. Elles se calculent poste par poste (murs, toiture, plancher, menuiseries, ventilation), par exemple avec la méthode 3CL. C'est le cœur d'une étude thermique.</p>
+    <p>Elles s'expriment en <strong>W/K</strong> : la puissance perdue par degré d'écart entre l'intérieur et l'extérieur. Elles se calculent poste par poste (murs, toiture, plancher, menuiseries, ventilation), selon la norme NF EN 12831 à laquelle renvoie le DTU 65.16. C'est le cœur d'une étude thermique.</p>
 
     <h3>2. La température de base</h3>
     <p>C'est la température extérieure de référence pour dimensionner le chauffage. Elle dépend de la zone climatique et surtout de l'<strong>altitude</strong> : plus la commune est haute, plus elle est basse. Pour une commune d'Isère à 300 m (zone H1c), elle est de <strong>−11 °C</strong>. Pour comprendre ce que la zone H1 change pour une PAC, lisez notre article sur la <a href="/blog/pac-air-eau-zone-h1.html">PAC air/eau en zone H1</a>.</p>
 
     <h3>3. La température de consigne</h3>
-    <p>Le calcul conventionnel (3CL) retient <strong>19 °C</strong> dans toutes les pièces chauffées. On le garde pour comparer les logements entre eux, même si vous chauffez à 20 ou 21 °C chez vous.</p>
+    <p>Le calcul conventionnel du DPE (3CL) retient <strong>19 °C</strong> dans toutes les pièces chauffées, ce qui permet de comparer les logements entre eux, même si vous chauffez à 20 ou 21 °C chez vous. Un calcul selon la NF EN 12831 peut retenir des consignes pièce par pièce.</p>
 
-    <h2>La règle des 70 à 100 %</h2>
+    <h2>La règle du DTU : 80 à 100 % des déperditions</h2>
 
-    <p>Une fois les déperditions à la température de base connues, on compare la puissance <em>restituée par la pompe à chaleur à cette même température</em> :</p>
+    <p>Une fois les déperditions à la température de base connues, on compare la puissance <em>restituée par la pompe à chaleur à cette même température</em> aux plages du NF DTU 65.16 :</p>
     <ul>
-      <li><strong>Sous 70 %</strong> : la pompe à chaleur ne suffit pas par grand froid, l'appoint électrique (résistance) s'enclenche souvent et la facture grimpe.</li>
-      <li><strong>Entre 70 et 100 %</strong> : la plage visée. La machine travaille longtemps à puissance modérée, avec un bon rendement.</li>
-      <li><strong>Au-delà de 100 %</strong> : la machine démarre et s'arrête en permanence (cycles courts), ce qui l'use plus vite et dégrade son rendement.</li>
+      <li><strong>PAC à variation de puissance (inverter)</strong> : <strong>80 à 100 %</strong> des déperditions. Les locaux à forte inertie peuvent descendre à 70 %.</li>
+      <li><strong>PAC tout ou rien</strong> : <strong>70 à 100 %</strong>.</li>
+      <li><strong>PAC et appoint ensemble</strong> : au moins <strong>120 %</strong> des déperditions.</li>
     </ul>
+    <p>Sous la plage visée, la pompe à chaleur ne suffit pas par grand froid : l'appoint électrique (résistance) s'enclenche souvent et la facture grimpe. Au-delà de 100 %, la machine démarre et s'arrête en permanence (cycles courts), ce qui l'use plus vite et dégrade son rendement.</p>
+    <p>Le contrôle des primes CEE est plus tolérant : une pompe à chaleur air/eau y est jugée « manifestement » sous-dimensionnée sous <strong>60 %</strong> des déperditions, et surdimensionnée au-delà de <strong>130 %</strong>. Ce sont des seuils de rejet, pas des objectifs : viser la plage du DTU évite d'être près de ces limites.</p>
 
     <div class="warning-box">
       <p><strong>Le piège de la puissance nominale.</strong> La puissance affichée sur la plaquette commerciale est mesurée dans des conditions favorables (air à +7 °C). Ce qui compte, c'est la puissance restituée <strong>à la température de base</strong>, à lire sur la fiche technique du fabricant, et à la température de départ d'eau réelle de vos radiateurs. Sur un même modèle, 35 °C de départ restituent plus de puissance que 45 °C : dans un cas étudié, 8,3 kW contre 7,8 kW.</p>
@@ -240,7 +242,7 @@ footer span{font-size:12px;color:rgba(255,255,255,0.2)}
 
     <h2>Exemple chiffré : la même maison, avant et après travaux</h2>
 
-    <p>Exemple tiré d'une étude récente, anonymisée : maison de plain-pied de 1980, 95 m² habitables, Isère à 300 m d'altitude, murs en parpaings creux de 20 cm non isolés. Les murs concentrent à eux seuls 44 % des déperditions.</p>
+    <p>Exemple tiré d'une étude récente, anonymisée (déperditions calculées en 3CL) : maison de plain-pied de 1980, 95 m² habitables, Isère à 300 m d'altitude, murs en parpaings creux de 20 cm non isolés. Les murs concentrent à eux seuls 44 % des déperditions.</p>
 
     <table class="aides-table">
       <thead><tr><th>Situation</th><th>Déperditions</th><th>Puissance à couvrir à −11 °C</th><th>PAC retenue</th><th>Part des déperditions</th></tr></thead>
@@ -266,7 +268,7 @@ footer span{font-size:12px;color:rgba(255,255,255,0.2)}
 
     <h2>Dimensionnement et aides</h2>
 
-    <p>Pour les primes CEE sur une pompe à chaleur air/eau (fiche BAR-TH-171), le dimensionnement n'est pas qu'une bonne pratique : l'arrêté du 17 novembre 2020 modifié prévoit une <strong>note de dimensionnement</strong> comparant la puissance de la machine aux déperditions calculées à la température de base. Pour estimer les aides auxquelles vous avez droit, essayez le <a href="/outils/simulateur-aides.html">simulateur d'aides MaPrimeRénov' et CEE</a>. Les conditions de la bonification Coup de pouce sont détaillées dans notre article sur les <a href="/blog/pac-agreees-septembre-2026.html">PAC agréées au 1er septembre 2026</a>.</p>
+    <p>Pour les primes CEE sur une pompe à chaleur air/eau (fiche BAR-TH-171), le dimensionnement n'est pas qu'une bonne pratique : le professionnel doit établir une <strong>note de dimensionnement</strong> comparant la puissance de la machine aux déperditions calculées à la température de base, et la remettre au bénéficiaire (à l'engagement, puis mise à jour si besoin à l'achèvement des travaux). Sans cette note, le contrôle CEE est jugé non satisfaisant. Pour estimer les aides auxquelles vous avez droit, essayez le <a href="/outils/simulateur-aides.html">simulateur d'aides MaPrimeRénov' et CEE</a>. Les conditions de la bonification Coup de pouce sont détaillées dans notre article sur les <a href="/blog/pac-agreees-septembre-2026.html">PAC agréées au 1er septembre 2026</a>.</p>
 
     <div class="cta-box">
       <div class="cta-box-title">Votre devis de PAC est-il <span>bien dimensionné ?</span></div>
@@ -277,15 +279,15 @@ footer span{font-size:12px;color:rgba(255,255,255,0.2)}
 
     <h2>Questions fréquentes</h2>
     <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Quelle puissance de pompe à chaleur faut-il pour 100 m² ?</summary><p style="margin:.75rem 0 0">Il n'existe pas de réponse fiable sans calcul. Deux maisons de 100 m² peuvent avoir des besoins très différents selon leur isolation : dans l'exemple de cet article (maison de 1980, 95 m², Isère), la puissance à couvrir est de 9,9 kW avant travaux et de 5,2 kW après rénovation. La bonne puissance se déduit des déperditions du logement à la température de base, pas de sa surface.</p></details>
-    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Comment calcule-t-on la puissance d'une pompe à chaleur ?</summary><p style="margin:.75rem 0 0">On calcule d'abord les déperditions du logement (en W/K, par exemple avec la méthode 3CL), puis la puissance nécessaire à la température de base du secteur, avec une consigne de 19 °C. La pompe à chaleur retenue doit restituer, à cette température de base, 70 à 100 % de cette puissance (référence NF DTU 65.16).</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Comment calcule-t-on la puissance d'une pompe à chaleur ?</summary><p style="margin:.75rem 0 0">On calcule d'abord les déperditions du logement (en W/K, selon la norme NF EN 12831 à laquelle renvoie le DTU 65.16), puis la puissance nécessaire à la température de base du secteur. La pompe à chaleur retenue doit restituer, à cette température de base, 80 à 100 % de cette puissance pour une PAC à variation de puissance, et 70 à 100 % pour une PAC tout ou rien (NF DTU 65.16).</p></details>
     <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Qu'est-ce que la température de base ?</summary><p style="margin:.75rem 0 0">C'est la température extérieure de référence retenue pour dimensionner le chauffage. Elle dépend de la zone climatique et de l'altitude : plus la commune est haute, plus elle est basse. Dans l'exemple de cet article, une commune d'Isère à 300 m d'altitude (zone H1c) a une température de base de −11 °C.</p></details>
-    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Une pompe à chaleur surdimensionnée est-elle un problème ?</summary><p style="margin:.75rem 0 0">Oui. Au-delà de 100 % des déperditions, la pompe à chaleur fonctionne en cycles courts, ce qui l'use plus vite et dégrade son rendement. À l'inverse, sous 70 %, l'appoint électrique est sollicité souvent et la facture augmente.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Une pompe à chaleur surdimensionnée est-elle un problème ?</summary><p style="margin:.75rem 0 0">Oui. Au-delà de 100 % des déperditions, la pompe à chaleur fonctionne en cycles courts, ce qui l'use plus vite et dégrade son rendement. À l'inverse, sous la plage visée (80 % pour la plupart des PAC à variation de puissance), l'appoint électrique est sollicité souvent et la facture augmente. Le contrôle des primes CEE juge une PAC air/eau manifestement surdimensionnée au-delà de 130 %.</p></details>
     <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Faut-il isoler avant de choisir la puissance de la pompe à chaleur ?</summary><p style="margin:.75rem 0 0">Si des travaux d'isolation sont prévus, il faut en tenir compte avant de dimensionner. Dans l'exemple de cet article, rénover l'enveloppe fait passer le besoin de 9,9 à 5,2 kW : une pompe à chaleur de 9 kW serait alors trop puissante pour la maison rénovée.</p></details>
 
   </div>
 
   <div class="article-footer">
-    Article rédigé par Loïc Ortiz, fondateur de Particule Énergie (Grenoble). Article d'information : il ne remplace pas une étude personnalisée de votre logement. Références : NF DTU 65.16, arrêté du 17 novembre 2020 modifié, fiche CEE BAR-TH-171.
+    Article rédigé par Loïc Ortiz, fondateur de Particule Énergie (Grenoble). Article d'information : il ne remplace pas une étude personnalisée de votre logement. Références : NF DTU 65.16, NF EN 12831, fiche CEE BAR-TH-171, arrêté du 28 septembre 2021 (contrôles CEE).
   </div>
 
 </div>
