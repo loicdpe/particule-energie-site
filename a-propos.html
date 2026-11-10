@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>À propos — Loïc Ortiz, Particule Énergie à Grenoble</title>
+<meta name="description" content="Qui est derrière Particule Énergie ? Loïc Ortiz, 22 ans dans le chauffage et l&#x27;énergie, technicien en rénovation énergétique à Grenoble : études énergétiques indépendantes, sans vente de travaux.">
+<meta property="og:title" content="À propos — Loïc Ortiz, Particule Énergie à Grenoble">
+<meta property="og:description" content="Qui est derrière Particule Énergie ? Loïc Ortiz, 22 ans dans le chauffage et l&#x27;énergie, technicien en rénovation énergétique à Grenoble : études énergétiques indépendantes, sans vente de travaux.">
+<meta property="og:url" content="https://particule-energie.fr/a-propos.html">
+<meta property="og:type" content="profile">
+<meta property="og:image" content="https://particule-energie.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://particule-energie.fr/a-propos.html">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.accent-bar{height:3px;background:linear-gradient(90deg,#1D6F42,#5DCAA5,#E8700A)}
+
+.article-wrap{max-width:680px;margin:0 auto;padding:3rem 2rem 5rem}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#1D6F42;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{opacity:.7}
+.article-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.article-date{font-size:12px;color:#aaa}
+.article-tag-pill{font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px}
+.article-title{font-size:34px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.2;margin-bottom:1rem}
+.article-byline{font-size:13px;color:#aaa;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #e0ddd6}
+
+.article-body{font-size:15px;color:#333;line-height:1.8}
+.article-body p{margin-bottom:1.25rem}
+.article-body h2{font-size:20px;font-weight:500;color:#1a1a1a;font-family:Georgia,serif;font-style:italic;margin:2.5rem 0 1rem;padding-top:1rem;border-top:0.5px solid #e0ddd6}
+.article-body h3{font-size:16px;font-weight:500;color:#1D6F42;margin:1.75rem 0 .75rem}
+.article-body strong{font-weight:500;color:#1a1a1a}
+.article-body ul{margin:1rem 0 1.25rem 1.5rem}
+.article-body ul li{margin-bottom:.5rem;color:#555}
+.article-body a{color:#1D6F42;text-decoration:underline;text-underline-offset:3px}
+
+.highlight-box{background:#E1F5EE;border-left:3px solid #1D6F42;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.highlight-box p{margin:0;font-size:14px;color:#085041;line-height:1.7}
+.highlight-box strong{color:#0F6E56}
+
+.warning-box{background:#FEF3E2;border-left:3px solid #E8700A;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.warning-box p{margin:0;font-size:14px;color:#7A3A00;line-height:1.7}
+.warning-box strong{color:#5C2A00}
+
+.aides-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:14px}
+.aides-table th{background:#0D1F15;color:#fff;padding:10px 14px;text-align:left;font-weight:500}
+.aides-table td{padding:10px 14px;border-bottom:0.5px solid #e0ddd6;color:#333}
+.aides-table tr:nth-child(even) td{background:#F5F5F0}
+.aides-table .montant{color:#1D6F42;font-weight:500}
+
+.cta-box{background:#0D1F15;border-radius:12px;padding:2rem;margin:3rem 0;text-align:center}
+.cta-box-title{font-size:20px;font-weight:400;font-style:italic;color:#fff;font-family:Georgia,serif;margin-bottom:.5rem}
+.cta-box-title span{color:#5DCAA5;font-style:normal}
+.cta-box-sub{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+.cta-box-btn{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:12px 28px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+.cta-box-btn:hover{background:#D4880A}
+
+.article-footer{border-top:0.5px solid #e0ddd6;padding-top:1.5rem;margin-top:2rem;font-size:12px;color:#bbb;font-style:italic}
+
+footer{background:#0D1F15;padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer span{font-size:12px;color:rgba(255,255,255,0.2)}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  .article-title{font-size:26px}
+  .article-wrap{padding:2rem 1.25rem 4rem}
+  .aides-table{font-size:12px}
+  .aides-table th,.aides-table td{padding:8px 10px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "À propos — Loïc Ortiz, Particule Énergie à Grenoble",
+  "url": "https://particule-energie.fr/a-propos.html",
+  "inLanguage": "fr",
+  "description": "Qui est derrière Particule Énergie ? Loïc Ortiz, 22 ans dans le chauffage et l'énergie, technicien en rénovation énergétique à Grenoble : études énergétiques indépendantes, sans vente de travaux.",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://particule-energie.fr/a-propos.html#loic-ortiz",
+    "name": "Loïc Ortiz",
+    "jobTitle": "Conseiller en rénovation énergétique, technicien en rénovation énergétique",
+    "image": "https://particule-energie.fr/img/loic-ortiz.jpg",
+    "url": "https://particule-energie.fr/a-propos.html",
+    "email": "contact@particule-energie.fr",
+    "telephone": "+33632870522",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Grenoble",
+      "addressRegion": "Auvergne-Rhône-Alpes",
+      "addressCountry": "FR"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Particule Énergie",
+      "url": "https://particule-energie.fr/"
+    },
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Technicien en rénovation énergétique",
+      "identifier": "RNCP40282"
+    },
+    "knowsAbout": [
+      "Rénovation énergétique",
+      "Dimensionnement de pompe à chaleur",
+      "Calcul des déperditions thermiques",
+      "MaPrimeRénov'",
+      "Certificats d'économies d'énergie",
+      "DPE"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/lo%C3%AFc-ortiz-540b20124",
+      "https://www.instagram.com/particulenergie/"
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Particule Énergie",
+  "url": "https://particule-energie.fr/",
+  "image": "https://particule-energie.fr/og-image.png",
+  "telephone": "+33632870522",
+  "email": "contact@particule-energie.fr",
+  "founder": {
+    "@id": "https://particule-energie.fr/a-propos.html#loic-ortiz"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Grenoble",
+    "addressRegion": "Auvergne-Rhône-Alpes",
+    "addressCountry": "FR"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qui est derrière Particule Énergie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Particule Énergie est le cabinet de Loïc Ortiz, conseiller en rénovation énergétique basé à Grenoble. Il compte plus de 22 ans d'expérience dans le chauffage et l'énergie, est titulaire du titre « Technicien en rénovation énergétique » (RNCP40282) et réalise lui-même chaque étude."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Particule Énergie est-elle une entreprise RGE ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Particule Énergie est un cabinet d'étude indépendant : il ne réalise ni travaux ni installation et n'est pas qualifié RGE. Ses études sont des études énergétiques de conseil, qui ne remplacent pas l'audit énergétique réglementaire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Particule Énergie vend-elle des travaux ou du matériel ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Particule Énergie n'a aucune affiliation fabricant et ne vend ni travaux ni matériel : les conseils sont donnés dans le seul intérêt du propriétaire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Où intervient Particule Énergie ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Particule Énergie est basée à Grenoble et intervient en Isère, en Savoie, en Haute-Savoie et dans la Drôme. Le déplacement est inclus en zone Grenoble."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/">Simulateur</a>
+    <a href="/#aides">Aides</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  <a href="/" class="nav-cta">Estimer mon DPE</a>
+</nav>
+<div class="accent-bar"></div>
+
+<!-- À PROPOS -->
+<div class="article-wrap">
+
+  <a href="/" class="back-link">
+    <i class="ti ti-arrow-left"></i> Retour à l'accueil
+  </a>
+
+  <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-bottom:1.5rem">
+    <img src="/img/loic-ortiz.jpg" alt="Loïc Ortiz, conseiller en rénovation énergétique à Grenoble" width="120" height="120" style="width:120px;height:120px;border-radius:50%;object-fit:cover;background:#F2EFE6;flex-shrink:0">
+    <div style="flex:1;min-width:240px">
+      <div class="article-meta" style="margin-bottom:.5rem"><span class="article-tag-pill">À propos</span></div>
+      <h1 class="article-title" style="margin-bottom:.25rem">Loïc Ortiz, conseiller en rénovation énergétique à Grenoble</h1>
+      <p style="font-size:13px;color:#888">Fondateur de Particule Énergie · Grenoble, Isère</p>
+    </div>
+  </div>
+
+  <div class="article-body">
+
+    <p><strong>Je suis Loïc Ortiz, et je réalise moi-même chaque étude de Particule Énergie.</strong> Mon métier : dire à un propriétaire, avec des chiffres, quels travaux ont un vrai effet sur sa facture et son confort, et si le devis qu'on lui propose est bien dimensionné. Je ne vends ni travaux ni matériel.</p>
+
+    <h2>Mon parcours</h2>
+
+    <ul>
+      <li><strong>Plus de 22 ans dans le chauffage et l'énergie</strong>, aux côtés des fabricants et des équipes de terrain. Je connais les contraintes d'un chantier, les délais d'approvisionnement et la réalité d'une mise en service de pompe à chaleur en zone H1.</li>
+      <li><strong>Titre « Technicien en rénovation énergétique »</strong> (RNCP40282).</li>
+      <li><strong>Outils professionnels de calcul thermique</strong> : méthode 3CL du DPE et calcul des déperditions selon la norme NF EN 12831.</li>
+    </ul>
+
+    <h2>Ce que je fais</h2>
+
+    <ul>
+      <li><strong><a href="/proprietaires.html">Étude énergétique de conseil</a>, dès 400 € TTC</strong> : étude thermique complète, rapport détaillé remis en 5 jours ouvrés, scénarios de travaux priorisés et estimation des aides mobilisables.</li>
+      <li><strong><a href="/proprietaires.html#offres">Validation de devis de pompe à chaleur</a>, 299 € TTC</strong> : calcul réel des déperditions, puissance nécessaire à la température de base de votre secteur, et une note claire.</li>
+      <li><strong>Pour les installateurs</strong> : <a href="/installateurs-rge.html">validation du dimensionnement</a> de leurs devis de pompe à chaleur.</li>
+      <li><strong>Outils gratuits</strong> : le <a href="/">simulateur DPE</a> et le <a href="/outils/simulateur-aides.html">simulateur d'aides MaPrimeRénov' et CEE</a>.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>Ce que je ne fais pas, et pourquoi c'est important.</strong> Particule Énergie ne réalise ni travaux ni installation et n'est pas une entreprise RGE. Mes études sont des études énergétiques de conseil : elles ne remplacent pas l'audit énergétique réglementaire. C'est ce qui garantit que mes conseils ne dépendent d'aucune vente.</p>
+    </div>
+
+    <h2>Ma façon de travailler</h2>
+
+    <ul>
+      <li><strong>Transparence</strong> : des chiffres sourcés, expliqués sans jargon. Vous comprenez ce que vous signez.</li>
+      <li><strong>Indépendance</strong> : aucune affiliation fabricant, aucune vente de travaux.</li>
+      <li><strong>Proximité</strong> : basé à Grenoble, je connais les artisans locaux et les contraintes de la zone climatique H1 (altitude, grand froid).</li>
+    </ul>
+
+    <p>Pour comprendre comment je raisonne, lisez par exemple l'article <a href="/blog/pac-puissance-maison-isere.html">Quelle puissance de pompe à chaleur pour une maison en Isère ?</a></p>
+
+    <h2>Zone d'intervention</h2>
+
+    <p>Grenoble et son agglomération, Isère, Savoie, Haute-Savoie et Drôme. Le déplacement est inclus en zone Grenoble.</p>
+
+    <div class="cta-box">
+      <div class="cta-box-title">Un projet de rénovation ou un <span>devis de PAC à vérifier ?</span></div>
+      <p class="cta-box-sub">Décrivez-moi votre logement par email, je vous réponds sous 24 h avec une proposition claire et un devis sans engagement.</p>
+      <a href="mailto:contact@particule-energie.fr?subject=Demande%20de%20contact" class="cta-box-btn" style="text-decoration:none">Me contacter</a>
+      <p class="cta-box-sub" style="margin:1rem 0 0">Ou appelez-moi au <a href="tel:+33632870522" style="color:#5DCAA5">06 32 87 05 22</a> · <a href="https://www.linkedin.com/in/lo%C3%AFc-ortiz-540b20124" style="color:#5DCAA5" rel="me noopener noreferrer" target="_blank">LinkedIn</a></p>
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Qui est derrière Particule Énergie ?</summary><p style="margin:.75rem 0 0">Particule Énergie est le cabinet de Loïc Ortiz, conseiller en rénovation énergétique basé à Grenoble. Il compte plus de 22 ans d'expérience dans le chauffage et l'énergie, est titulaire du titre « Technicien en rénovation énergétique » (RNCP40282) et réalise lui-même chaque étude.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Particule Énergie est-elle une entreprise RGE ?</summary><p style="margin:.75rem 0 0">Non. Particule Énergie est un cabinet d'étude indépendant : il ne réalise ni travaux ni installation et n'est pas qualifié RGE. Ses études sont des études énergétiques de conseil, qui ne remplacent pas l'audit énergétique réglementaire.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Particule Énergie vend-elle des travaux ou du matériel ?</summary><p style="margin:.75rem 0 0">Non. Particule Énergie n'a aucune affiliation fabricant et ne vend ni travaux ni matériel : les conseils sont donnés dans le seul intérêt du propriétaire.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Où intervient Particule Énergie ?</summary><p style="margin:.75rem 0 0">Particule Énergie est basée à Grenoble et intervient en Isère, en Savoie, en Haute-Savoie et dans la Drôme. Le déplacement est inclus en zone Grenoble.</p></details>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Particule Énergie — Grenoble · Isère</span>
+  <div style="display:flex;gap:1.5rem">
+    <a href="/mentions-legales.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">Mentions légales</a>
+    <a href="/politique-confidentialite.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">RGPD</a>
+    <span style="font-size:12px;color:rgba(255,255,255,0.2)">particule-energie.fr</span>
+  </div>
+</footer>
+
+</body>
+</html>
