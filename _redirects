@@ -1,3 +1,22 @@
-
+# Consolide le SEO : force la version .html (canonique) plutot que l'URL "propre" servie par defaut par Netlify
+# Le "!" force la priorite de cette regle sur la reecriture automatique de Netlify
+/proprietaires                       /proprietaires.html                   301!
+/installateurs-rge                   /installateurs-rge.html               301!
+/carnet-information-logement         /carnet-information-logement.html     301!
+/mentions-legales                    /mentions-legales.html                301!
+/politique-confidentialite           /politique-confidentialite.html       301!
+/blog/maprimerenov-septembre-2026    /blog/maprimerenov-septembre-2026.html    301!
+/blog/pac-agreees-septembre-2026     /blog/pac-agreees-septembre-2026.html     301!
+/blog/canicule-logement-2026         /blog/canicule-logement-2026.html         301!
+/blog/pac-air-eau-zone-h1            /blog/pac-air-eau-zone-h1.html             301!
+/blog/audit-energetique-2026         /blog/audit-energetique-2026.html         301!
+/blog/cee-2026                       /blog/cee-2026.html                       301!
+/carte                               /carte.html                           301!
+/outils/simulateur-cee-entreprises   /outils/simulateur-cee-entreprises.html   301!
+/outils/simulateur-aides                /outils/simulateur-aides.html         301!
+/blog/pac-puissance-maison-isere      /blog/pac-puissance-maison-isere.html   301!
+/a-propos                            /a-propos.html                        301!
+/blog/choisir-installateur-rge-isere      /blog/choisir-installateur-rge-isere.html   301!
 /blog/pac-projet-decide-agrement-fin-2026      /blog/pac-projet-decide-agrement-fin-2026.html   301!
+/aides-renovation-energetique      /aides-renovation-energetique.html   301!
 /mur-mur-grenoble      /mur-mur-grenoble.html   301!
