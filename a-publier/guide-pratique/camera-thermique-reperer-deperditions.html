@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Caméra thermique : repérer les déperditions</title>
+<meta name="description" content="Conditions de mesure, ponts thermiques, fuites d&#x27;air, pièges d&#x27;interprétation : ce qu&#x27;une caméra thermique montre vraiment dans un logement, et ce qu&#x27;elle ne dit pas.">
+<meta property="og:title" content="Caméra thermique : repérer les déperditions de chaleur chez soi">
+<meta property="og:description" content="Ponts thermiques, isolant manquant, fuites d&#x27;air : comment utiliser une caméra thermique chez soi et éviter les erreurs d&#x27;interprétation.">
+<meta property="og:url" content="https://particule-energie.fr/guide-pratique/camera-thermique-reperer-deperditions.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://particule-energie.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://particule-energie.fr/guide-pratique/camera-thermique-reperer-deperditions.html">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.accent-bar{height:3px;background:linear-gradient(90deg,#1D6F42,#5DCAA5,#E8700A)}
+
+.article-wrap{max-width:680px;margin:0 auto;padding:3rem 2rem 5rem}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#1D6F42;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{opacity:.7}
+.article-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.article-date{font-size:12px;color:#aaa}
+.article-tag-pill{font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px}
+.article-title{font-size:34px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.2;margin-bottom:1rem}
+.article-byline{font-size:13px;color:#aaa;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #e0ddd6}
+
+.article-body{font-size:15px;color:#333;line-height:1.8}
+.article-body p{margin-bottom:1.25rem}
+.article-body h2{font-size:20px;font-weight:500;color:#1a1a1a;font-family:Georgia,serif;font-style:italic;margin:2.5rem 0 1rem;padding-top:1rem;border-top:0.5px solid #e0ddd6}
+.article-body h3{font-size:16px;font-weight:500;color:#1D6F42;margin:1.75rem 0 .75rem}
+.article-body strong{font-weight:500;color:#1a1a1a}
+.article-body ul{margin:1rem 0 1.25rem 1.5rem}
+.article-body ul li{margin-bottom:.5rem;color:#555}
+.article-body ol{margin:1rem 0 1.25rem 1.5rem}
+.article-body ol li{margin-bottom:.5rem;color:#555}
+
+.article-body a{color:#1D6F42;text-decoration:underline;text-underline-offset:3px}
+
+.highlight-box{background:#E1F5EE;border-left:3px solid #1D6F42;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.highlight-box p{margin:0;font-size:14px;color:#085041;line-height:1.7}
+.highlight-box strong{color:#0F6E56}
+
+.warning-box{background:#FEF3E2;border-left:3px solid #E8700A;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.warning-box p{margin:0;font-size:14px;color:#7A3A00;line-height:1.7}
+.warning-box strong{color:#5C2A00}
+
+.aides-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:14px}
+.aides-table th{background:#0D1F15;color:#fff;padding:10px 14px;text-align:left;font-weight:500}
+.aides-table td{padding:10px 14px;border-bottom:0.5px solid #e0ddd6;color:#333}
+.aides-table tr:nth-child(even) td{background:#F5F5F0}
+.aides-table .montant{color:#1D6F42;font-weight:500}
+
+.cta-box{background:#0D1F15;border-radius:12px;padding:2rem;margin:3rem 0;text-align:center}
+.cta-box-title{font-size:20px;font-weight:400;font-style:italic;color:#fff;font-family:Georgia,serif;margin-bottom:.5rem}
+.cta-box-title span{color:#5DCAA5;font-style:normal}
+.cta-box-sub{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+.cta-box-btn{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:12px 28px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+.cta-box-btn:hover{background:#D4880A}
+
+.article-footer{border-top:0.5px solid #e0ddd6;padding-top:1.5rem;margin-top:2rem;font-size:12px;color:#bbb;font-style:italic}
+
+footer{background:#0D1F15;padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer span{font-size:12px;color:rgba(255,255,255,0.2)}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  .article-title{font-size:26px}
+  .article-wrap{padding:2rem 1.25rem 4rem}
+  .aides-table{font-size:12px}
+  .aides-table th,.aides-table td{padding:8px 10px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Caméra thermique : repérer les déperditions de chaleur chez soi",
+  "name": "Caméra thermique : repérer les déperditions de chaleur chez soi",
+  "description": "Conditions de mesure, ponts thermiques, fuites d'air, pièges d'interprétation : ce qu'une caméra thermique montre vraiment dans un logement, et ce qu'elle ne dit pas.",
+  "inLanguage": "fr",
+  "mainEntityOfPage": "https://particule-energie.fr/guide-pratique/camera-thermique-reperer-deperditions.html",
+  "url": "https://particule-energie.fr/guide-pratique/camera-thermique-reperer-deperditions.html",
+  "image": "https://particule-energie.fr/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Loïc Ortiz",
+    "url": "https://particule-energie.fr/a-propos.html",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Particule Énergie"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Particule Énergie",
+    "url": "https://particule-energie.fr/"
+  },
+  "datePublished": "{{DATE_ISO}}",
+  "dateModified": "{{DATE_ISO}}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Une caméra thermique permet-elle de connaître le DPE ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Elle montre des différences de température de surface, pas la performance globale du logement. Le DPE repose sur une méthode de calcul réglementaire appliquée par un diagnostiqueur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quand faire une thermographie chez soi ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Quand l'écart de température entre l'intérieur et l'extérieur est net, souvent au moins 10 °C, de préférence tôt le matin ou en soirée, sans soleil direct sur la façade, et avec le chauffage en marche depuis plusieurs heures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Une caméra thermique de smartphone est-elle fiable ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elle suffit pour repérer des anomalies évidentes (pont thermique, absence d'isolant, fuite d'air), à condition de bien l'utiliser. Les mesures de température absolues restent approximatives, surtout sur le verre et les surfaces brillantes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Voit-elle à travers les murs ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Elle ne voit que la température de la surface. Une anomalie visible traduit un phénomène situé derrière, qu'il faut ensuite interpréter."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/blog/">Blog</a>
+    <a href="/guide-pratique/">Guide pratique</a>
+  </div>
+  <a href="/#sim" class="nav-cta">Estimer mon DPE</a>
+</nav>
+<div class="accent-bar"></div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <a href="/guide-pratique/" class="back-link">
+    <i class="ti ti-arrow-left"></i> Retour au guide pratique
+  </a>
+
+  <div class="article-meta">
+    <span class="article-date">{{DATE_FR}}</span>
+    <span class="article-tag-pill">Guide pratique</span><span class="article-tag-pill">Isolation</span>
+  </div>
+
+  <h1 class="article-title">Caméra thermique : repérer les déperditions de chaleur chez soi</h1>
+
+  <p class="article-byline">Par <a href="/a-propos.html" style="color:inherit">Loïc Ortiz</a> — Particule Énergie, Grenoble · Lecture : 5 min</p>
+
+  <div class="article-body">
+
+    <p>La caméra thermique est l'outil qui fascine : elle transforme les pertes de chaleur en image colorée. Bien utilisée, elle aide à <strong>repérer</strong> des défauts d'isolation, des ponts thermiques ou des fuites d'air. Mal utilisée, elle donne des images spectaculaires mais trompeuses. Voici comment en tirer quelque chose.</p>
+
+    <div class="highlight-box">
+      <p><strong>À retenir :</strong> une caméra thermique montre des écarts de température de surface. Elle localise un défaut, elle ne le chiffre pas et ne remplace ni un test d'étanchéité à l'air ni une étude du logement.</p>
+    </div>
+
+    <h2>Ce que la caméra permet de repérer</h2>
+    <ul>
+      <li><strong>Un isolant absent, tassé ou mal posé</strong> dans un mur ou un plafond (zones plus froides vues de l'intérieur en hiver).</li>
+      <li><strong>Les ponts thermiques :</strong> angles, jonctions mur-plancher, linteaux, tableaux de fenêtres.</li>
+      <li><strong>Les fuites d'air :</strong> passages froids autour des ouvrants, coffres de volets, prises (voir le <a href="/guide-pratique/fuites-air-reperer-reduire.html">guide sur les fuites d'air</a>).</li>
+      <li><strong>Un défaut de chauffage :</strong> radiateur qui ne chauffe pas en entier, plancher chauffant irrégulier, tuyau de chauffage dans un mur.</li>
+    </ul>
+
+    <h2>Les bonnes conditions de mesure</h2>
+    <ol>
+      <li><strong>Un écart net entre l'intérieur et l'extérieur</strong>, souvent au moins 10 °C, donc plutôt en hiver.</li>
+      <li><strong>Pas de soleil direct</strong> sur la façade les heures précédentes : tôt le matin ou en soirée.</li>
+      <li><strong>Chauffage en marche depuis plusieurs heures</strong>, pour que les parois soient en régime.</li>
+      <li><strong>Plutôt depuis l'intérieur</strong> pour un particulier : c'est plus simple et moins sensible au vent et à la pluie.</li>
+      <li><strong>Comparez</strong> avec une zone saine du même mur plutôt que de lire une température isolée.</li>
+    </ol>
+
+    <h2>Les pièges d'interprétation</h2>
+    <ul>
+      <li><strong>Les surfaces brillantes ou vitrées</strong> reflètent les objets chauds ou froids alentour : l'image trompe.</li>
+      <li><strong>Un meuble, un rideau, un radiateur</strong> modifient la température de la paroi sans rapport avec l'isolation.</li>
+      <li><strong>Une zone froide n'est pas forcément un défaut grave :</strong> un angle est naturellement un peu plus froid.</li>
+      <li><strong>Les couleurs sont relatives :</strong> la palette s'adapte à l'image ; regardez l'échelle de température, pas la couleur.</li>
+    </ul>
+
+    <h2>Modèle externe ou adaptateur de smartphone ?</h2>
+    <p>Les adaptateurs pour smartphone sont bon marché et suffisent pour une première lecture. Plus la résolution de l'image est élevée, plus il est facile de distinguer un défaut d'un reflet. Pour un usage ponctuel, la location ou une prestation de thermographie est souvent plus raisonnable qu'un achat.</p>
+
+    <!-- AFFILIATION : emplacement réservé. À activer quand le compte Partenaires Amazon est ouvert :
+         insérer ici « Notre sélection » (1 à 3 produits : caméra thermique pour smartphone, caméra thermique autonome d'entrée de gamme)
+         et la mention « En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises. »
+         Liens avec rel="sponsored noopener". -->
+
+    <h2>Que faire de ce que vous voyez</h2>
+    <p>Notez les zones repérées, prenez une photo normale à côté de l'image thermique et regardez si le défaut est cohérent avec ce que vous savez du logement (période de construction, isolation connue). Pour les fuites d'air simples, quelques joints suffisent. Pour un défaut d'isolation étendu ou un pont thermique important, il faut en chiffrer l'impact et hiérarchiser les travaux : c'est l'objet d'une <strong>étude énergétique du logement</strong>.</p>
+
+    <div class="cta-box">
+      <div class="cta-box-title">Des défauts repérés, que faire ? <span>Hiérarchisons les travaux</span></div>
+      <p class="cta-box-sub">L'étude énergétique de conseil de Particule Énergie, dès 400 € TTC, classe les travaux selon leur efficacité, leur coût et les aides mobilisables.</p>
+      <a href="/#sim" class="cta-box-btn">Estimer mon DPE gratuitement</a>
+      <a href="/#rappel" class="cta-box-btn" style="background:transparent;border:1px solid #5DCAA5;color:#5DCAA5;margin-left:.5rem">Être rappelé ou prendre rendez-vous</a>
+      <p class="cta-box-sub" style="margin:1rem 0 0">Une question sur votre logement ? Écrivez-moi à <a href="mailto:contact@particule-energie.fr?subject=Cam%C3%A9ra%20thermique" style="color:#5DCAA5">contact@particule-energie.fr</a> ou appelez le <a href="tel:+33632870522" style="color:#5DCAA5">06 32 87 05 22</a>.</p>
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Une caméra thermique permet-elle de connaître le DPE ?</summary><p style="margin:.75rem 0 0">Non. Elle montre des différences de température de surface, pas la performance globale du logement. Le DPE repose sur une méthode de calcul réglementaire appliquée par un diagnostiqueur.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Quand faire une thermographie chez soi ?</summary><p style="margin:.75rem 0 0">Quand l'écart de température entre l'intérieur et l'extérieur est net, souvent au moins 10 °C, de préférence tôt le matin ou en soirée, sans soleil direct sur la façade, et avec le chauffage en marche depuis plusieurs heures.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Une caméra thermique de smartphone est-elle fiable ?</summary><p style="margin:.75rem 0 0">Elle suffit pour repérer des anomalies évidentes (pont thermique, absence d'isolant, fuite d'air), à condition de bien l'utiliser. Les mesures de température absolues restent approximatives, surtout sur le verre et les surfaces brillantes.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Voit-elle à travers les murs ?</summary><p style="margin:.75rem 0 0">Non. Elle ne voit que la température de la surface. Une anomalie visible traduit un phénomène situé derrière, qu'il faut ensuite interpréter.</p></details>
+
+  </div>
+
+  <nav class="lire-aussi" aria-label="À lire aussi" style="margin:2.5rem 0 1.5rem;padding:1.25rem 1.5rem;background:#F2EFE6;border-radius:10px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.5rem">À lire aussi</div><ul style="list-style:none;padding:0;margin:0;font-size:15px;line-height:1.5"><li style="margin:.4rem 0"><a href="/guide-pratique/fuites-air-reperer-reduire.html" style="color:#1D6F42">Fuites d'air : comment les repérer et les réduire</a></li><li style="margin:.4rem 0"><a href="/guide-pratique/hygrometre-mesurer-humidite-logement.html" style="color:#1D6F42">Hygromètre : comment mesurer l'humidité chez soi</a></li><li style="margin:.4rem 0"><a href="/guide-pratique/" style="color:#1D6F42">Tous les guides pratiques</a></li></ul></nav>
+
+  <div class="article-footer">
+    Article rédigé par Loïc Ortiz, fondateur de Particule Énergie (Grenoble). Article d'information : l'interprétation d'une image thermique demande de l'expérience. Informations vérifiées le {{VERIF_FR}}.
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Particule Énergie — Grenoble · Isère</span>
+  <div style="display:flex;gap:1.5rem">
+    <a href="/mentions-legales.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">Mentions légales</a>
+    <a href="/politique-confidentialite.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">RGPD</a>
+    <span style="font-size:12px;color:rgba(255,255,255,0.2)">particule-energie.fr</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Thermomètre à sonde : température de départ du chauffage</title>
+<meta name="description" content="Départ, retour, courbe de chauffe : comment mesurer la température de l&#x27;eau du chauffage avec une sonde, ce que les valeurs révèlent et quand appeler l&#x27;installateur.">
+<meta property="og:title" content="Thermomètre à sonde : mesurer la température de départ de son chauffage">
+<meta property="og:description" content="Mesurer la température de départ et de retour du chauffage avec une sonde de contact, interpréter les valeurs et repérer un réglage trop haut.">
+<meta property="og:url" content="https://particule-energie.fr/guide-pratique/thermometre-sonde-temperature-depart-chauffage.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://particule-energie.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://particule-energie.fr/guide-pratique/thermometre-sonde-temperature-depart-chauffage.html">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.accent-bar{height:3px;background:linear-gradient(90deg,#1D6F42,#5DCAA5,#E8700A)}
+
+.article-wrap{max-width:680px;margin:0 auto;padding:3rem 2rem 5rem}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#1D6F42;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{opacity:.7}
+.article-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.article-date{font-size:12px;color:#aaa}
+.article-tag-pill{font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px}
+.article-title{font-size:34px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.2;margin-bottom:1rem}
+.article-byline{font-size:13px;color:#aaa;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #e0ddd6}
+
+.article-body{font-size:15px;color:#333;line-height:1.8}
+.article-body p{margin-bottom:1.25rem}
+.article-body h2{font-size:20px;font-weight:500;color:#1a1a1a;font-family:Georgia,serif;font-style:italic;margin:2.5rem 0 1rem;padding-top:1rem;border-top:0.5px solid #e0ddd6}
+.article-body h3{font-size:16px;font-weight:500;color:#1D6F42;margin:1.75rem 0 .75rem}
+.article-body strong{font-weight:500;color:#1a1a1a}
+.article-body ul{margin:1rem 0 1.25rem 1.5rem}
+.article-body ul li{margin-bottom:.5rem;color:#555}
+.article-body ol{margin:1rem 0 1.25rem 1.5rem}
+.article-body ol li{margin-bottom:.5rem;color:#555}
+
+.article-body a{color:#1D6F42;text-decoration:underline;text-underline-offset:3px}
+
+.highlight-box{background:#E1F5EE;border-left:3px solid #1D6F42;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.highlight-box p{margin:0;font-size:14px;color:#085041;line-height:1.7}
+.highlight-box strong{color:#0F6E56}
+
+.warning-box{background:#FEF3E2;border-left:3px solid #E8700A;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.warning-box p{margin:0;font-size:14px;color:#7A3A00;line-height:1.7}
+.warning-box strong{color:#5C2A00}
+
+.aides-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:14px}
+.aides-table th{background:#0D1F15;color:#fff;padding:10px 14px;text-align:left;font-weight:500}
+.aides-table td{padding:10px 14px;border-bottom:0.5px solid #e0ddd6;color:#333}
+.aides-table tr:nth-child(even) td{background:#F5F5F0}
+.aides-table .montant{color:#1D6F42;font-weight:500}
+
+.cta-box{background:#0D1F15;border-radius:12px;padding:2rem;margin:3rem 0;text-align:center}
+.cta-box-title{font-size:20px;font-weight:400;font-style:italic;color:#fff;font-family:Georgia,serif;margin-bottom:.5rem}
+.cta-box-title span{color:#5DCAA5;font-style:normal}
+.cta-box-sub{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+.cta-box-btn{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:12px 28px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+.cta-box-btn:hover{background:#D4880A}
+
+.article-footer{border-top:0.5px solid #e0ddd6;padding-top:1.5rem;margin-top:2rem;font-size:12px;color:#bbb;font-style:italic}
+
+footer{background:#0D1F15;padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer span{font-size:12px;color:rgba(255,255,255,0.2)}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  .article-title{font-size:26px}
+  .article-wrap{padding:2rem 1.25rem 4rem}
+  .aides-table{font-size:12px}
+  .aides-table th,.aides-table td{padding:8px 10px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Thermomètre à sonde : mesurer la température de départ de son chauffage",
+  "name": "Thermomètre à sonde : mesurer la température de départ de son chauffage",
+  "description": "Départ, retour, courbe de chauffe : comment mesurer la température de l'eau du chauffage avec une sonde, ce que les valeurs révèlent et quand appeler l'installateur.",
+  "inLanguage": "fr",
+  "mainEntityOfPage": "https://particule-energie.fr/guide-pratique/thermometre-sonde-temperature-depart-chauffage.html",
+  "url": "https://particule-energie.fr/guide-pratique/thermometre-sonde-temperature-depart-chauffage.html",
+  "image": "https://particule-energie.fr/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Loïc Ortiz",
+    "url": "https://particule-energie.fr/a-propos.html",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Particule Énergie"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Particule Énergie",
+    "url": "https://particule-energie.fr/"
+  },
+  "datePublished": "{{DATE_ISO}}",
+  "dateModified": "{{DATE_ISO}}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "À quoi sert la température de départ ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est la température de l'eau qui quitte la chaudière ou la pompe à chaleur vers les radiateurs ou le plancher chauffant. Plus elle est basse, mieux fonctionnent en général une pompe à chaleur ou une chaudière à condensation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment mesurer la température de départ sans ouvrir le circuit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En plaquant une sonde de contact sur le tuyau de départ, après avoir nettoyé la surface, puis en recouvrant la sonde d'un isolant pour éviter l'influence de l'air ambiant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Un thermomètre infrarouge suffit-il ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est peu fiable sur un tuyau de cuivre brillant, qui réfléchit le rayonnement. Une sonde de contact bien isolée donne une mesure plus juste."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il intervenir sur le réglage soi-même ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Relever des températures ne présente pas de risque. Modifier la courbe de chauffe ou la consigne d'une chaudière ou d'une pompe à chaleur est mieux fait avec l'installateur, surtout sous garantie."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/blog/">Blog</a>
+    <a href="/guide-pratique/">Guide pratique</a>
+  </div>
+  <a href="/#sim" class="nav-cta">Estimer mon DPE</a>
+</nav>
+<div class="accent-bar"></div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <a href="/guide-pratique/" class="back-link">
+    <i class="ti ti-arrow-left"></i> Retour au guide pratique
+  </a>
+
+  <div class="article-meta">
+    <span class="article-date">{{DATE_FR}}</span>
+    <span class="article-tag-pill">Guide pratique</span><span class="article-tag-pill">Chauffage</span>
+  </div>
+
+  <h1 class="article-title">Thermomètre à sonde : mesurer la température de départ de son chauffage</h1>
+
+  <p class="article-byline">Par <a href="/a-propos.html" style="color:inherit">Loïc Ortiz</a> — Particule Énergie, Grenoble · Lecture : 5 min</p>
+
+  <div class="article-body">
+
+    <p>Le confort et le rendement d'un chauffage dépendent beaucoup de la <strong>température de l'eau</strong> qui circule dans les radiateurs. Or elle se mesure rarement. Un thermomètre à sonde, peu coûteux, permet de relever les températures de <strong>départ</strong> et de <strong>retour</strong> et de vérifier que le réglage est cohérent avec le logement.</p>
+
+    <div class="highlight-box">
+      <p><strong>À retenir :</strong> plus la température de départ est basse tout en maintenant le confort, plus le système est efficace. Un réglage trop haut est fréquent, en particulier après un changement de chaudière ou de pompe à chaleur.</p>
+    </div>
+
+    <h2>Départ, retour : de quoi parle-t-on ?</h2>
+    <ul>
+      <li><strong>Départ :</strong> l'eau chaude qui sort de la chaudière ou de la pompe à chaleur.</li>
+      <li><strong>Retour :</strong> l'eau refroidie qui revient après avoir cédé sa chaleur aux émetteurs.</li>
+      <li><strong>Écart départ-retour :</strong> il indique comment la chaleur est cédée. Un écart presque nul peut traduire un débit trop fort ou un système mal équilibré.</li>
+    </ul>
+
+    <h2>Pourquoi cela compte</h2>
+    <p>Une chaudière à condensation et surtout une pompe à chaleur fonctionnent mieux avec une eau moins chaude. Un système réglé plus haut que nécessaire consomme davantage sans apporter plus de confort. Connaître la température réelle est la première étape pour en discuter avec votre installateur, par exemple pour ajuster la courbe de chauffe.</p>
+
+    <h2>Comment mesurer</h2>
+    <ol>
+      <li><strong>Choisissez les points :</strong> tuyau de départ et tuyau de retour, au plus près de la chaudière ou de la pompe à chaleur.</li>
+      <li><strong>Nettoyez</strong> le tuyau à l'endroit du contact : le circuit peut être très chaud, attention aux brûlures.</li>
+      <li><strong>Plaquez la sonde</strong> à plat sur le tuyau et recouvrez-la d'un isolant (mousse, manchon de tuyau) pour limiter l'influence de l'air.</li>
+      <li><strong>Attendez</strong> que la valeur se stabilise, puis notez-la avec la température extérieure et l'heure.</li>
+      <li><strong>Répétez</strong> par temps froid et par temps doux : la température de départ varie avec la météo si la régulation fonctionne.</li>
+    </ol>
+
+    <div class="warning-box">
+      <p><strong>Sécurité :</strong> ne démontez rien et n'ouvrez pas le circuit. Les tuyaux peuvent être brûlants. Une mesure de contact à l'extérieur du tuyau suffit.</p>
+    </div>
+
+    <h2>Ce que vous pouvez en tirer</h2>
+    <ul>
+      <li><strong>Un départ élevé alors que le logement est chaud :</strong> réglage probablement trop haut, à voir avec l'installateur.</li>
+      <li><strong>Un départ qui ne varie pas avec la météo :</strong> régulation absente ou mal réglée.</li>
+      <li><strong>Un retour presque aussi chaud que le départ :</strong> débit trop élevé, circuit déséquilibré ou émetteurs sous-dimensionnés.</li>
+      <li><strong>Une pièce qui reste froide malgré un départ élevé :</strong> radiateur mal alimenté ou purge nécessaire.</li>
+    </ul>
+
+    <!-- AFFILIATION : emplacement réservé. À activer quand le compte Partenaires Amazon est ouvert :
+         insérer ici « Notre sélection » (2 produits : thermomètre à sonde de contact, thermomètre à sonde filaire avec mémoire min/max)
+         et la mention « En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises. »
+         Liens avec rel="sponsored noopener". -->
+
+    <h2>Les limites de la mesure</h2>
+    <p>Une température de surface sur le tuyau est une approximation de la température de l'eau, d'autant plus fidèle que la sonde est bien isolée. Pour savoir si le réglage est adapté, il faut aussi connaître les émetteurs (radiateurs, plancher chauffant), l'isolation et les besoins de chauffage du logement. C'est ce que regarde une <strong>étude énergétique</strong>, notamment avant de remplacer un système de chauffage. Voir aussi le <a href="/guide-pratique/thermometre-thermostat-connecte-piloter-chauffage.html">guide sur le thermomètre et le thermostat connecté</a>.</p>
+
+    <div class="cta-box">
+      <div class="cta-box-title">Un projet de pompe à chaleur ou un chauffage mal réglé ? <span>Vérifions la cohérence</span></div>
+      <p class="cta-box-sub">L'étude énergétique de conseil de Particule Énergie, dès 400 € TTC, et la validation de devis PAC à 299 € TTC permettent de contrôler le dimensionnement et le réglage.</p>
+      <a href="/#sim" class="cta-box-btn">Estimer mon DPE gratuitement</a>
+      <a href="/#rappel" class="cta-box-btn" style="background:transparent;border:1px solid #5DCAA5;color:#5DCAA5;margin-left:.5rem">Être rappelé ou prendre rendez-vous</a>
+      <p class="cta-box-sub" style="margin:1rem 0 0">Une question sur votre logement ? Écrivez-moi à <a href="mailto:contact@particule-energie.fr?subject=Temp%C3%A9rature%20de%20d%C3%A9part" style="color:#5DCAA5">contact@particule-energie.fr</a> ou appelez le <a href="tel:+33632870522" style="color:#5DCAA5">06 32 87 05 22</a>.</p>
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">À quoi sert la température de départ ?</summary><p style="margin:.75rem 0 0">C'est la température de l'eau qui quitte la chaudière ou la pompe à chaleur vers les radiateurs ou le plancher chauffant. Plus elle est basse, mieux fonctionnent en général une pompe à chaleur ou une chaudière à condensation.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Comment mesurer la température de départ sans ouvrir le circuit ?</summary><p style="margin:.75rem 0 0">En plaquant une sonde de contact sur le tuyau de départ, après avoir nettoyé la surface, puis en recouvrant la sonde d'un isolant pour éviter l'influence de l'air ambiant.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Un thermomètre infrarouge suffit-il ?</summary><p style="margin:.75rem 0 0">C'est peu fiable sur un tuyau de cuivre brillant, qui réfléchit le rayonnement. Une sonde de contact bien isolée donne une mesure plus juste.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Faut-il intervenir sur le réglage soi-même ?</summary><p style="margin:.75rem 0 0">Relever des températures ne présente pas de risque. Modifier la courbe de chauffe ou la consigne d'une chaudière ou d'une pompe à chaleur est mieux fait avec l'installateur, surtout sous garantie.</p></details>
+
+  </div>
+
+  <nav class="lire-aussi" aria-label="À lire aussi" style="margin:2.5rem 0 1.5rem;padding:1.25rem 1.5rem;background:#F2EFE6;border-radius:10px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.5rem">À lire aussi</div><ul style="list-style:none;padding:0;margin:0;font-size:15px;line-height:1.5"><li style="margin:.4rem 0"><a href="/guide-pratique/thermometre-thermostat-connecte-piloter-chauffage.html" style="color:#1D6F42">Thermomètre ou thermostat connecté : mieux piloter son chauffage</a></li><li style="margin:.4rem 0"><a href="/guide-pratique/hygrometre-mesurer-humidite-logement.html" style="color:#1D6F42">Hygromètre : comment mesurer l'humidité chez soi</a></li><li style="margin:.4rem 0"><a href="/guide-pratique/" style="color:#1D6F42">Tous les guides pratiques</a></li></ul></nav>
+
+  <div class="article-footer">
+    Article rédigé par Loïc Ortiz, fondateur de Particule Énergie (Grenoble). Article d'information : le réglage d'une chaudière ou d'une pompe à chaleur relève de l'installateur. Informations vérifiées le {{VERIF_FR}}.
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Particule Énergie — Grenoble · Isère</span>
+  <div style="display:flex;gap:1.5rem">
+    <a href="/mentions-legales.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">Mentions légales</a>
+    <a href="/politique-confidentialite.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">RGPD</a>
+    <span style="font-size:12px;color:rgba(255,255,255,0.2)">particule-energie.fr</span>
+  </div>
+</footer>
+
+</body>
+</html>

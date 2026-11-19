@@ -12,3 +12,5 @@ puis met à jour sitemap, _redirects, llms.txt, cartes du blog / du guide, liens
 - 04/12 : guides fuites-air-reperer-reduire + thermometre-thermostat-connecte-piloter-chauffage
 - 11/12 : guide domotique-suivi-consommation-distance
 Reste à publier = fichiers de a-publier/ absents de main. `manifest_guides.json` / `manifest_blog.json` listent titres et dates.
+- 18/12 : guides camera-thermique-reperer-deperditions + thermometre-sonde-temperature-depart-chauffage
+- 25/12 : guide camera-endoscopique-inspecter-combles-gaines

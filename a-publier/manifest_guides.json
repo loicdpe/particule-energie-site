@@ -43,5 +43,32 @@
   "hub_desc": "Linky, prises connectées, thermostat : voir, mesurer puis piloter sa consommation.",
   "verifier": "Linky/espace client Enedis, offres fournisseurs",
   "publication_prevue": "2026-12-11"
+ },
+ {
+  "slug": "guide-pratique/camera-thermique-reperer-deperditions.html",
+  "type": "guide",
+  "title": "Caméra thermique : repérer les déperditions de chaleur chez soi",
+  "hub_row_observe": "Murs froids, suspicion de défaut d'isolation",
+  "hub_desc": "Repérer ponts thermiques, défauts d'isolation et fuites d'air avec une caméra thermique.",
+  "verifier": "conditions de thermographie (écart mini ?), limites ; chercher une source officielle (ADEME / CSTB)",
+  "publication_prevue": "2026-12-18"
+ },
+ {
+  "slug": "guide-pratique/thermometre-sonde-temperature-depart-chauffage.html",
+  "type": "guide",
+  "title": "Thermomètre à sonde : mesurer la température de départ de son chauffage",
+  "hub_row_observe": "Chauffage mal réglé, projet de pompe à chaleur",
+  "hub_desc": "Mesurer départ et retour du chauffage avec une sonde de contact pour vérifier le réglage.",
+  "verifier": "notions départ/retour et conseils de mesure (ADEME ou fabricant)",
+  "publication_prevue": "2026-12-18"
+ },
+ {
+  "slug": "guide-pratique/camera-endoscopique-inspecter-combles-gaines.html",
+  "type": "guide",
+  "title": "Caméra endoscopique : inspecter combles, gaines et cloisons sans démolir",
+  "hub_row_observe": "Doute sur l'isolant ou l'humidité derrière un mur",
+  "hub_desc": "Inspecter combles, gaines et cloisons avec une caméra endoscopique, en sécurité.",
+  "verifier": "cohérence sécurité (électrique, gaz, perçage)",
+  "publication_prevue": "2026-12-25"
  }
 ]
