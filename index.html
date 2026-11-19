@@ -759,7 +759,8 @@ input:focus,select:focus{border-color:#5DCAA5;box-shadow:0 0 0 3px rgba(93,202,1
         </a>
       </div>
     </div>
-    <!-- FOOTER -->
+  </div>
+  <!-- FOOTER -->
   <footer class="footer" id="contact">
     <div class="footer-left">
       <svg width="24" height="24" viewBox="0 0 82 82" fill="none" aria-hidden="true">
@@ -1286,6 +1287,9 @@ async function submitLead(){
     errBox.style.display='flex';
   }
 }
+// Lien direct vers le simulateur : https://particule-energie.fr/#sim
+if(location.hash==='#sim'){showSim();}
+window.addEventListener('hashchange',function(){if(location.hash==='#sim')showSim();});
 </script>
 <script>
 // Formulaire « Être rappelé / prendre rendez-vous » (Netlify Forms)
