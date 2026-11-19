@@ -14,6 +14,11 @@ Contact : contact@particule-energie.fr · 06 32 87 05 22
 - [Aides à la rénovation énergétique en 2026 : ce qui est encore valable](https://particule-energie.fr/aides-renovation-energetique.html): MaPrimeRénov', CEE, éco-PTZ, TVA 5,5 %, mise à jour mensuelle
 - [Simulateur d'aides MaPrimeRénov' et CEE](https://particule-energie.fr/outils/simulateur-aides.html): estimation indicative des aides
 
+## Guide pratique
+- [Guide pratique : mesurer, comprendre et améliorer le confort de son logement](https://particule-energie.fr/guide-pratique/): humidité, consommation, courants d'air
+- [Hygromètre : comment mesurer l'humidité chez soi](https://particule-energie.fr/guide-pratique/hygrometre-mesurer-humidite-logement.html)
+- [Wattmètre : traquer les appareils qui consomment trop](https://particule-energie.fr/guide-pratique/wattmetre-mesurer-consommation-appareils.html)
+
 ## Articles
 - [Vendre un logement classé F ou G à Grenoble : audit, DPE 2027 et prix](https://particule-energie.fr/blog/vendre-logement-dpe-f-g-grenoble.html)
 - [Prime CEE pour une entreprise en 2026 : ce qui est encore financé, ce qui ne l'est plus](https://particule-energie.fr/blog/prime-cee-entreprise-2026.html)
