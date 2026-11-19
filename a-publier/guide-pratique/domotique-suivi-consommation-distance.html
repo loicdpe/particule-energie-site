@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Domotique : suivre sa consommation à distance</title>
+<meta name="description" content="Linky, prises connectées, thermostat, plateforme domotique : ce qui aide vraiment à réduire sa facture, par où commencer et quelles sont les limites.">
+<meta property="og:title" content="Domotique et suivi à distance de sa consommation : par où commencer ?">
+<meta property="og:description" content="Voir, mesurer puis piloter : comment suivre sa consommation à distance avec Linky, prises connectées et thermostat, sans se tromper d&#x27;outil.">
+<meta property="og:url" content="https://particule-energie.fr/guide-pratique/domotique-suivi-consommation-distance.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://particule-energie.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://particule-energie.fr/guide-pratique/domotique-suivi-consommation-distance.html">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.accent-bar{height:3px;background:linear-gradient(90deg,#1D6F42,#5DCAA5,#E8700A)}
+
+.article-wrap{max-width:680px;margin:0 auto;padding:3rem 2rem 5rem}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#1D6F42;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{opacity:.7}
+.article-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.article-date{font-size:12px;color:#aaa}
+.article-tag-pill{font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px}
+.article-title{font-size:34px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.2;margin-bottom:1rem}
+.article-byline{font-size:13px;color:#aaa;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #e0ddd6}
+
+.article-body{font-size:15px;color:#333;line-height:1.8}
+.article-body p{margin-bottom:1.25rem}
+.article-body h2{font-size:20px;font-weight:500;color:#1a1a1a;font-family:Georgia,serif;font-style:italic;margin:2.5rem 0 1rem;padding-top:1rem;border-top:0.5px solid #e0ddd6}
+.article-body h3{font-size:16px;font-weight:500;color:#1D6F42;margin:1.75rem 0 .75rem}
+.article-body strong{font-weight:500;color:#1a1a1a}
+.article-body ul{margin:1rem 0 1.25rem 1.5rem}
+.article-body ul li{margin-bottom:.5rem;color:#555}
+.article-body ol{margin:1rem 0 1.25rem 1.5rem}
+.article-body ol li{margin-bottom:.5rem;color:#555}
+
+.article-body a{color:#1D6F42;text-decoration:underline;text-underline-offset:3px}
+
+.highlight-box{background:#E1F5EE;border-left:3px solid #1D6F42;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.highlight-box p{margin:0;font-size:14px;color:#085041;line-height:1.7}
+.highlight-box strong{color:#0F6E56}
+
+.warning-box{background:#FEF3E2;border-left:3px solid #E8700A;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.warning-box p{margin:0;font-size:14px;color:#7A3A00;line-height:1.7}
+.warning-box strong{color:#5C2A00}
+
+.aides-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:14px}
+.aides-table th{background:#0D1F15;color:#fff;padding:10px 14px;text-align:left;font-weight:500}
+.aides-table td{padding:10px 14px;border-bottom:0.5px solid #e0ddd6;color:#333}
+.aides-table tr:nth-child(even) td{background:#F5F5F0}
+.aides-table .montant{color:#1D6F42;font-weight:500}
+
+.cta-box{background:#0D1F15;border-radius:12px;padding:2rem;margin:3rem 0;text-align:center}
+.cta-box-title{font-size:20px;font-weight:400;font-style:italic;color:#fff;font-family:Georgia,serif;margin-bottom:.5rem}
+.cta-box-title span{color:#5DCAA5;font-style:normal}
+.cta-box-sub{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+.cta-box-btn{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:12px 28px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+.cta-box-btn:hover{background:#D4880A}
+
+.article-footer{border-top:0.5px solid #e0ddd6;padding-top:1.5rem;margin-top:2rem;font-size:12px;color:#bbb;font-style:italic}
+
+footer{background:#0D1F15;padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer span{font-size:12px;color:rgba(255,255,255,0.2)}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  .article-title{font-size:26px}
+  .article-wrap{padding:2rem 1.25rem 4rem}
+  .aides-table{font-size:12px}
+  .aides-table th,.aides-table td{padding:8px 10px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Domotique et suivi à distance de sa consommation : par où commencer ?",
+  "name": "Domotique et suivi à distance de sa consommation : par où commencer ?",
+  "description": "Linky, prises connectées, thermostat, plateforme domotique : ce qui aide vraiment à réduire sa facture, par où commencer et quelles sont les limites.",
+  "inLanguage": "fr",
+  "mainEntityOfPage": "https://particule-energie.fr/guide-pratique/domotique-suivi-consommation-distance.html",
+  "url": "https://particule-energie.fr/guide-pratique/domotique-suivi-consommation-distance.html",
+  "image": "https://particule-energie.fr/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Loïc Ortiz",
+    "url": "https://particule-energie.fr/a-propos.html",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Particule Énergie"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Particule Énergie",
+    "url": "https://particule-energie.fr/"
+  },
+  "datePublished": "{{DATE_ISO}}",
+  "dateModified": "{{DATE_ISO}}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment suivre gratuitement sa consommation d'électricité ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Avec un compteur Linky, vous pouvez consulter votre consommation dans votre espace client Enedis ou celui de votre fournisseur. Le suivi à la demi-heure nécessite en général de donner votre accord dans votre espace client."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Une prise connectée fait-elle économiser de l'argent ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elle mesure la consommation de l'appareil branché et permet de couper ou de programmer cet appareil, par exemple pour supprimer les veilles inutiles. L'économie dépend des appareils concernés : mesurez avant d'acheter en nombre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "La domotique réduit-elle la facture de chauffage ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elle aide à programmer et à éviter de chauffer inutilement, mais elle ne compense ni une mauvaise isolation ni un système mal réglé. Voir le guide sur le thermostat connecté."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il une solution complexe type Home Assistant ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Pour la plupart des foyers, l'espace client du fournisseur, quelques prises connectées et éventuellement un thermostat suffisent. Les plateformes ouvertes s'adressent à ceux qui aiment bricoler."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/blog/">Blog</a>
+    <a href="/guide-pratique/">Guide pratique</a>
+  </div>
+  <a href="/#sim" class="nav-cta">Estimer mon DPE</a>
+</nav>
+<div class="accent-bar"></div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <a href="/guide-pratique/" class="back-link">
+    <i class="ti ti-arrow-left"></i> Retour au guide pratique
+  </a>
+
+  <div class="article-meta">
+    <span class="article-date">{{DATE_FR}}</span>
+    <span class="article-tag-pill">Guide pratique</span><span class="article-tag-pill">Électricité</span>
+  </div>
+
+  <h1 class="article-title">Domotique et suivi à distance de sa consommation : par où commencer ?</h1>
+
+  <p class="article-byline">Par <a href="/a-propos.html" style="color:inherit">Loïc Ortiz</a> — Particule Énergie, Grenoble · Lecture : 5 min</p>
+
+  <div class="article-body">
+
+    <p>Piloter son logement depuis un téléphone séduit, mais « domotique » recouvre des choses très différentes : un simple suivi de consommation gratuit, des prises connectées à quelques euros, ou une installation complète. Pour réduire une facture, tout n'a pas le même intérêt. Ce guide classe les solutions de la plus simple à la plus avancée, avec ce qu'elles apportent et ce qu'elles ne remplacent pas.</p>
+
+    <div class="highlight-box">
+      <p><strong>À retenir :</strong> commencez par <strong>voir</strong> (suivi de consommation, gratuit avec un compteur Linky), puis <strong>mesurer</strong> (prises connectées, wattmètre), et seulement ensuite <strong>piloter</strong> (programmation, thermostat). Une application ne remplace ni l'isolation ni un bon réglage du chauffage.</p>
+    </div>
+
+    <h2>Niveau 1 : voir sa consommation, gratuitement</h2>
+    <p>Si vous avez un compteur Linky, votre consommation est accessible dans votre espace client Enedis, qui est neutre quel que soit le fournisseur, et dans l'espace ou l'application de votre fournisseur. Les données sont disponibles au jour le jour, et à la demi-heure si vous en donnez l'accord dans votre espace client. C'est le premier réflexe : repérer les pics, comparer les mois, détecter une consommation anormale la nuit ou en vacances.</p>
+
+    <h2>Niveau 2 : mesurer appareil par appareil</h2>
+    <p>Les prises connectées mesurent la consommation de l'appareil branché dessus et permettent de le couper à distance ou de le programmer, par exemple pour supprimer des veilles ou décaler certains usages. Elles jouent le rôle d'un <a href="/guide-pratique/wattmetre-mesurer-consommation-appareils.html">wattmètre</a> en permanence. Mesurez d'abord les appareils suspects (congélateur ancien, chauffage d'appoint, décodeur, console) avant d'en équiper toute la maison.</p>
+
+    <h2>Niveau 3 : piloter le chauffage</h2>
+    <p>Le chauffage pèse souvent le plus lourd. Les têtes thermostatiques connectées et le thermostat connecté permettent de programmer des plages horaires et des températures par pièce, et d'éviter de chauffer un logement vide. Les repères de température et la compatibilité des produits sont détaillés dans le <a href="/guide-pratique/thermometre-thermostat-connecte-piloter-chauffage.html">guide sur le thermostat connecté</a>.</p>
+
+    <h2>Niveau 4 : une plateforme domotique complète</h2>
+    <p>Des plateformes ouvertes, comme Home Assistant, permettent de récupérer les données de Linky (avec un module branché sur la prise de télé-information du compteur) et d'automatiser des scénarios. C'est puissant, mais cela demande du temps et un minimum de compétences : à réserver à ceux qui aiment cela.</p>
+
+    <h2>Ce qu'il faut garder en tête</h2>
+    <ul>
+      <li><strong>L'information n'économise rien en soi :</strong> c'est ce que vous en faites qui compte. Fixez-vous un objectif et regardez-le régulièrement.</li>
+      <li><strong>Les objets connectés consomment aussi,</strong> même peu : évitez d'en multiplier sans mesurer l'intérêt.</li>
+      <li><strong>Dépendance au réseau :</strong> si le Wi-Fi tombe, vérifiez que le chauffage et les appareils essentiels continuent de fonctionner normalement.</li>
+      <li><strong>Compatibilité :</strong> mélanger plusieurs marques et protocoles complique l'ensemble. Privilégiez des produits qui fonctionnent ensemble.</li>
+      <li><strong>Vos données :</strong> relisez ce que l'application collecte et partage avant d'accepter.</li>
+    </ul>
+
+    <!-- AFFILIATION : emplacement réservé. À activer quand le compte Partenaires Amazon est ouvert :
+         insérer ici « Notre sélection » (3 produits : prise connectée avec mesure, tête thermostatique connectée, module de télé-information Linky)
+         et la mention « En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises. »
+         Liens avec rel="sponsored noopener". -->
+
+    <h2>Quand la domotique ne suffit plus</h2>
+    <p>Si votre consommation reste élevée après avoir coupé les veilles et programmé le chauffage, le problème vient du logement : isolation, étanchéité, système de chauffage ou de production d'eau chaude. Ces postes ne se règlent pas avec une application. Une <strong>étude énergétique du logement</strong> les analyse dans leur ensemble et hiérarchise les travaux.</p>
+
+    <div class="cta-box">
+      <div class="cta-box-title">Facture élevée malgré les outils connectés ? <span>Regardons le logement</span></div>
+      <p class="cta-box-sub">L'étude énergétique de conseil de Particule Énergie, dès 400 € TTC, hiérarchise les travaux, les gains et les aides mobilisables.</p>
+      <a href="/#sim" class="cta-box-btn">Estimer mon DPE gratuitement</a>
+      <a href="/#rappel" class="cta-box-btn" style="background:transparent;border:1px solid #5DCAA5;color:#5DCAA5;margin-left:.5rem">Être rappelé ou prendre rendez-vous</a>
+      <p class="cta-box-sub" style="margin:1rem 0 0">Une question sur votre logement ? Écrivez-moi à <a href="mailto:contact@particule-energie.fr?subject=Domotique%20et%20consommation" style="color:#5DCAA5">contact@particule-energie.fr</a> ou appelez le <a href="tel:+33632870522" style="color:#5DCAA5">06 32 87 05 22</a>.</p>
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Comment suivre gratuitement sa consommation d'électricité ?</summary><p style="margin:.75rem 0 0">Avec un compteur Linky, vous pouvez consulter votre consommation dans votre espace client Enedis ou celui de votre fournisseur. Le suivi à la demi-heure nécessite en général de donner votre accord dans votre espace client.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Une prise connectée fait-elle économiser de l'argent ?</summary><p style="margin:.75rem 0 0">Elle mesure la consommation de l'appareil branché et permet de couper ou de programmer cet appareil, par exemple pour supprimer les veilles inutiles. L'économie dépend des appareils concernés : mesurez avant d'acheter en nombre.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">La domotique réduit-elle la facture de chauffage ?</summary><p style="margin:.75rem 0 0">Elle aide à programmer et à éviter de chauffer inutilement, mais elle ne compense ni une mauvaise isolation ni un système mal réglé. Voir le guide sur le thermostat connecté.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Faut-il une solution complexe type Home Assistant ?</summary><p style="margin:.75rem 0 0">Non. Pour la plupart des foyers, l'espace client du fournisseur, quelques prises connectées et éventuellement un thermostat suffisent. Les plateformes ouvertes s'adressent à ceux qui aiment bricoler.</p></details>
+
+  </div>
+
+  <nav class="lire-aussi" aria-label="À lire aussi" style="margin:2.5rem 0 1.5rem;padding:1.25rem 1.5rem;background:#F2EFE6;border-radius:10px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.5rem">À lire aussi</div><ul style="list-style:none;padding:0;margin:0;font-size:15px;line-height:1.5"><li style="margin:.4rem 0"><a href="/guide-pratique/wattmetre-mesurer-consommation-appareils.html" style="color:#1D6F42">Wattmètre : traquer les appareils qui consomment trop</a></li><li style="margin:.4rem 0"><a href="/guide-pratique/thermometre-thermostat-connecte-piloter-chauffage.html" style="color:#1D6F42">Thermomètre ou thermostat connecté : mieux piloter son chauffage</a></li><li style="margin:.4rem 0"><a href="/guide-pratique/detecteurs-fumee-monoxyde-fuite-eau.html" style="color:#1D6F42">Détecteurs de fumée, de monoxyde de carbone et de fuite d'eau</a></li><li style="margin:.4rem 0"><a href="/guide-pratique/" style="color:#1D6F42">Tous les guides pratiques</a></li></ul></nav>
+
+  <div class="article-footer">
+    Article rédigé par Loïc Ortiz, fondateur de Particule Énergie (Grenoble). Article d'information : les offres et fonctions varient selon les fournisseurs et les marques. Informations vérifiées le {{VERIF_FR}}. Références : <a href="https://particulier.edf.fr/fr/accueil/economies-energie/comprendre-reduire-consommation-electrique-gaz.html" style="color:inherit">EDF, suivi conso</a> · <a href="https://www.totalenergies.fr/particuliers/electricite/compteur-linky/linky-suivi-conso" style="color:inherit">TotalEnergies, suivi avec Linky</a> · <a href="https://ekwateur.fr/blog/ma-consommation-d-energie/domotique-facture-d-energie/" style="color:inherit">Ekwateur, domotique et facture</a> · <a href="https://particuliers.engie.fr/electricite/conseils-electricite/conseils-linky/linky-home-assistant.html" style="color:inherit">Engie, Linky et Home Assistant</a>.
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Particule Énergie — Grenoble · Isère</span>
+  <div style="display:flex;gap:1.5rem">
+    <a href="/mentions-legales.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">Mentions légales</a>
+    <a href="/politique-confidentialite.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">RGPD</a>
+    <span style="font-size:12px;color:rgba(255,255,255,0.2)">particule-energie.fr</span>
+  </div>
+</footer>
+
+</body>
+</html>

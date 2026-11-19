@@ -1,0 +1,47 @@
+[
+ {
+  "slug": "guide-pratique/detecteurs-fumee-monoxyde-fuite-eau.html",
+  "type": "guide",
+  "title": "Détecteurs de fumée, de monoxyde de carbone et de fuite d'eau : lequel installer ?",
+  "hub_row_observe": "Sécurité : fumée, monoxyde de carbone, fuite d'eau",
+  "hub_desc": "Détecteurs de fumée, de monoxyde de carbone et de fuite d'eau : ce qui est obligatoire, où les poser.",
+  "verifier": "DAAF obligatoire depuis 2015 ; CO toujours non obligatoire ? (proposition de loi) ; normes",
+  "publication_prevue": "2026-11-27"
+ },
+ {
+  "slug": "guide-pratique/deshumidificateur-choisir-utiliser.html",
+  "type": "guide",
+  "title": "Déshumidificateur : lequel choisir et quand l'utiliser ?",
+  "hub_row_observe": "Humidité persistante : choisir un déshumidificateur",
+  "hub_desc": "Compresseur ou adsorption, capacité, hygrostat : bien choisir et bien utiliser un déshumidificateur.",
+  "verifier": "repères de capacité et conso (Labo Maison, Selectra)",
+  "publication_prevue": "2026-11-27"
+ },
+ {
+  "slug": "guide-pratique/fuites-air-reperer-reduire.html",
+  "type": "guide",
+  "title": "Fuites d'air : comment les repérer et les réduire soi-même",
+  "hub_row_observe": "Courants d'air, pièces difficiles à chauffer",
+  "hub_desc": "Repérer les fuites d'air avec le test de l'encens et les réduire avec des joints, sans boucher la ventilation.",
+  "verifier": "aucun chiffre ; vérifier cohérence sécurité",
+  "publication_prevue": "2026-12-04"
+ },
+ {
+  "slug": "guide-pratique/thermometre-thermostat-connecte-piloter-chauffage.html",
+  "type": "guide",
+  "title": "Thermomètre ou thermostat connecté : mieux piloter son chauffage",
+  "hub_row_observe": "Pièces inégalement chauffées, réglages confus",
+  "hub_desc": "Températures par pièce, thermomètre puis thermostat connecté : mieux piloter son chauffage.",
+  "verifier": "températures ADEME et -1°C = 7 %",
+  "publication_prevue": "2026-12-04"
+ },
+ {
+  "slug": "guide-pratique/domotique-suivi-consommation-distance.html",
+  "type": "guide",
+  "title": "Domotique et suivi à distance de sa consommation : par où commencer ?",
+  "hub_row_observe": "Suivi à distance de ses consommations, domotique",
+  "hub_desc": "Linky, prises connectées, thermostat : voir, mesurer puis piloter sa consommation.",
+  "verifier": "Linky/espace client Enedis, offres fournisseurs",
+  "publication_prevue": "2026-12-11"
+ }
+]
