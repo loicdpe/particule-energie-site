@@ -13,6 +13,8 @@ Contact : contact@particule-energie.fr · 06 32 87 05 22
 - [Mur Mur à Grenoble : aide à la rénovation des maisons](https://particule-energie.fr/mur-mur-grenoble.html): conditions, primes, parcours et démarches
 - [Aides à la rénovation énergétique en 2026 : ce qui est encore valable](https://particule-energie.fr/aides-renovation-energetique.html): MaPrimeRénov', CEE, éco-PTZ, TVA 5,5 %, mise à jour mensuelle
 - [Simulateur d'aides MaPrimeRénov' et CEE](https://particule-energie.fr/outils/simulateur-aides.html): estimation indicative des aides
+- [Simulateur CEE entreprises](https://particule-energie.fr/outils/simulateur-cee-entreprises.html): estimer la prime CEE d'une entreprise
+- [Carnet d'Information du Logement (CIL)](https://particule-energie.fr/carnet-information-logement.html): présentation du carnet numérique du logement
 
 ## Guide pratique
 - [Guide pratique : mesurer, comprendre et améliorer le confort de son logement](https://particule-energie.fr/guide-pratique/): humidité, consommation, courants d'air
@@ -27,8 +29,11 @@ Contact : contact@particule-energie.fr · 06 32 87 05 22
 - [Mon projet de pompe à chaleur est décidé : que vérifier avant la fin 2026 ?](https://particule-energie.fr/blog/pac-projet-decide-agrement-fin-2026.html)
 - [Comment choisir un installateur RGE pour une pompe à chaleur ou une isolation en Isère ?](https://particule-energie.fr/blog/choisir-installateur-rge-isere.html)
 - [Quelle puissance de pompe à chaleur pour une maison en Isère ?](https://particule-energie.fr/blog/pac-puissance-maison-isere.html)
+- [Cette pompe à chaleur est-elle agréée ? Outil de vérification pour le Coup de pouce CEE](https://particule-energie.fr/blog/pac-agreees-outil.html)
 - [PAC air/eau en zone H1](https://particule-energie.fr/blog/pac-air-eau-zone-h1.html)
 - [PAC agréées au 1er septembre 2026](https://particule-energie.fr/blog/pac-agreees-septembre-2026.html)
 - [MaPrimeRénov' : ce qui change au 1er septembre 2026](https://particule-energie.fr/blog/maprimerenov-septembre-2026.html)
+- [Interclima 2026 : ce que le salon change pour la rénovation](https://particule-energie.fr/blog/interclima-2026.html)
+- [Canicule et logement : ce qui va changer d'ici 10 ans](https://particule-energie.fr/blog/canicule-logement-2026.html)
 - [CEE 2026 : Coup de pouce Chauffage](https://particule-energie.fr/blog/cee-2026.html)
 - [Audit énergétique obligatoire 2026 en Isère](https://particule-energie.fr/blog/audit-energetique-2026.html)
