@@ -20,6 +20,8 @@ Contact : contact@particule-energie.fr · 06 32 87 05 22
 - [Guide pratique : mesurer, comprendre et améliorer le confort de son logement](https://particule-energie.fr/guide-pratique/): humidité, consommation, courants d'air
 - [Hygromètre : comment mesurer l'humidité chez soi](https://particule-energie.fr/guide-pratique/hygrometre-mesurer-humidite-logement.html)
 - [Wattmètre : traquer les appareils qui consomment trop](https://particule-energie.fr/guide-pratique/wattmetre-mesurer-consommation-appareils.html)
+- [Détecteurs de fumée, de monoxyde de carbone et de fuite d'eau : lequel installer ?](https://particule-energie.fr/guide-pratique/detecteurs-fumee-monoxyde-fuite-eau.html)
+- [Déshumidificateur : lequel choisir et quand l'utiliser ?](https://particule-energie.fr/guide-pratique/deshumidificateur-choisir-utiliser.html)
 
 ## Articles
 - [Pourquoi les fabricants changent leurs gammes de pompes à chaleur](https://particule-energie.fr/blog/pourquoi-pac-changent-de-gamme-propane-agrement.html)
