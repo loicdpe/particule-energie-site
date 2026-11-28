@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Puissance électrique d'une PAC : intensité, compteur et appoint</title>
+<meta name="description" content="Une PAC de 9 kW appelle environ 3,5 à 4,5 kW d'électricité par grand froid. Intensité, puissance souscrite, appoint, monophasé ou triphasé : le calcul.">
+<meta property="og:title" content="Quelle puissance électrique pour une pompe à chaleur ? Intensité, compteur et appoint">
+<meta property="og:description" content="Puissance absorbée, intensité en ampères, puissance souscrite et appoint électrique : comment savoir si votre compteur suffira pour votre pompe à chaleur.">
+<meta property="og:url" content="https://particule-energie.fr/blog/puissance-electrique-pompe-a-chaleur.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://particule-energie.fr/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://particule-energie.fr/blog/puissance-electrique-pompe-a-chaleur.html">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#FAFAF7;color:#1a1a1a}
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#0D1F15;border-bottom:0.5px solid rgba(255,255,255,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-txt{display:flex;flex-direction:column}
+.nav-logo-name{font-size:15px;font-weight:400;color:#5DCAA5;font-family:Georgia,serif;font-style:italic;line-height:1}
+.nav-logo-name span{color:#EF9F27;font-style:normal;font-weight:500}
+.nav-logo-slogan{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:2px}
+.nav-links{display:flex;gap:2rem;font-size:13px;color:rgba(255,255,255,0.4)}
+.nav-links a{color:inherit;text-decoration:none}
+.nav-links a:hover{color:rgba(255,255,255,0.7)}
+.nav-cta{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;cursor:pointer;text-decoration:none;display:inline-block}
+.accent-bar{height:3px;background:linear-gradient(90deg,#1D6F42,#5DCAA5,#E8700A)}
+
+.article-wrap{max-width:680px;margin:0 auto;padding:3rem 2rem 5rem}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#1D6F42;text-decoration:none;margin-bottom:2rem}
+.back-link:hover{opacity:.7}
+.article-meta{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
+.article-date{font-size:12px;color:#aaa}
+.article-tag-pill{font-size:11px;background:#E1F5EE;color:#085041;border-radius:4px;padding:2px 8px}
+.article-title{font-size:34px;font-weight:400;font-style:italic;color:#1a1a1a;font-family:Georgia,serif;line-height:1.2;margin-bottom:1rem}
+.article-byline{font-size:13px;color:#aaa;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #e0ddd6}
+
+.article-body{font-size:15px;color:#333;line-height:1.8}
+.article-body p{margin-bottom:1.25rem}
+.article-body h2{font-size:20px;font-weight:500;color:#1a1a1a;font-family:Georgia,serif;font-style:italic;margin:2.5rem 0 1rem;padding-top:1rem;border-top:0.5px solid #e0ddd6}
+.article-body h3{font-size:16px;font-weight:500;color:#1D6F42;margin:1.75rem 0 .75rem}
+.article-body strong{font-weight:500;color:#1a1a1a}
+.article-body ul{margin:1rem 0 1.25rem 1.5rem}
+.article-body ul li{margin-bottom:.5rem;color:#555}
+.article-body a{color:#1D6F42;text-decoration:underline;text-underline-offset:3px}
+
+.highlight-box{background:#E1F5EE;border-left:3px solid #1D6F42;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.highlight-box p{margin:0;font-size:14px;color:#085041;line-height:1.7}
+.highlight-box strong{color:#0F6E56}
+
+.warning-box{background:#FEF3E2;border-left:3px solid #E8700A;border-radius:0 8px 8px 0;padding:1.25rem 1.5rem;margin:2rem 0}
+.warning-box p{margin:0;font-size:14px;color:#7A3A00;line-height:1.7}
+.warning-box strong{color:#5C2A00}
+
+.aides-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:14px}
+.aides-table th{background:#0D1F15;color:#fff;padding:10px 14px;text-align:left;font-weight:500}
+.aides-table td{padding:10px 14px;border-bottom:0.5px solid #e0ddd6;color:#333}
+.aides-table tr:nth-child(even) td{background:#F5F5F0}
+.aides-table .montant{color:#1D6F42;font-weight:500}
+
+.cta-box{background:#0D1F15;border-radius:12px;padding:2rem;margin:3rem 0;text-align:center}
+.cta-box-title{font-size:20px;font-weight:400;font-style:italic;color:#fff;font-family:Georgia,serif;margin-bottom:.5rem}
+.cta-box-title span{color:#5DCAA5;font-style:normal}
+.cta-box-sub{font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:1.25rem}
+.cta-box-btn{background:#EF9F27;color:#fff;border:none;border-radius:6px;padding:12px 28px;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
+.cta-box-btn:hover{background:#D4880A}
+
+.article-footer{border-top:0.5px solid #e0ddd6;padding-top:1.5rem;margin-top:2rem;font-size:12px;color:#bbb;font-style:italic}
+
+footer{background:#0D1F15;padding:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer span{font-size:12px;color:rgba(255,255,255,0.2)}
+
+@media(max-width:600px){
+  .nav-links{display:none}
+  .article-title{font-size:26px}
+  .article-wrap{padding:2rem 1.25rem 4rem}
+  .aides-table{font-size:12px}
+  .aides-table th,.aides-table td{padding:8px 10px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Quelle puissance électrique pour une pompe à chaleur ? Intensité, compteur et appoint",
+  "description": "Une PAC de 9 kW appelle environ 3,5 à 4,5 kW d'électricité par grand froid. Intensité, puissance souscrite, appoint, monophasé ou triphasé : le calcul.",
+  "datePublished": "2026-11-28",
+  "dateModified": "2026-11-28",
+  "inLanguage": "fr",
+  "mainEntityOfPage": "https://particule-energie.fr/blog/puissance-electrique-pompe-a-chaleur.html",
+  "image": "https://particule-energie.fr/og-image.png",
+  "author": {
+    "@type": "Person",
+    "name": "Loïc Ortiz",
+    "url": "https://particule-energie.fr/a-propos.html",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Particule Énergie"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Particule Énergie",
+    "url": "https://particule-energie.fr/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quelle puissance électrique consomme une pompe à chaleur de 8 kW ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les 8 kW sont une puissance de chauffage restituée, pas une puissance électrique. L'électricité absorbée se calcule en divisant par le COP : environ 2 kW par temps doux (COP de 4) et environ 3,2 kW par grand froid (COP de 2,5, eau vers 45 °C). Ce sont des ordres de grandeur ; la fiche technique du fabricant donne la puissance absorbée à chaque température."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle puissance souscrite faut-il pour une pompe à chaleur ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elle dépend de la puissance absorbée par la pompe à chaleur, de l'appoint électrique éventuel et des autres usages possibles en même temps (cuisson, ballon, recharge d'un véhicule). À titre de repère, 9 kVA en monophasé correspondent à environ 39 A, et 12 kVA à environ 52 A. Il faut comparer ces valeurs à l'intensité maximale que l'installateur doit vous communiquer, appoint compris."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Une pompe à chaleur est-elle monophasée ou triphasée ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cela dépend du modèle et de sa puissance. Beaucoup de pompes à chaleur de puissance moyenne existent en monophasé et en triphasé ; les plus puissantes sont souvent triphasées. La fiche technique du fabricant indique la tension d'alimentation, l'intensité maximale et le calibre de protection conseillé : c'est à elle qu'il faut se fier, et à votre installation électrique actuelle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'appoint électrique d'une pompe à chaleur est-il obligatoire ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il n'est pas obligatoire en soi, mais beaucoup d'installations en prévoient un, souvent intégré à la machine. D'après le NF DTU 65.16, la pompe à chaleur et son appoint ensemble doivent couvrir au moins 120 % des déperditions à la température de base. Son enclenchement augmente l'intensité appelée et la facture ; il faut donc savoir à quelle température il démarre et quelle puissance il peut atteindre."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 82 82" fill="none" aria-hidden="true">
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.3" fill="none" opacity="0.88"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.75" transform="rotate(60 41 41)"/>
+      <ellipse cx="41" cy="41" rx="27" ry="10.5" stroke="#5DCAA5" stroke-width="1.1" fill="none" opacity="0.7" transform="rotate(120 41 41)"/>
+      <circle cx="41" cy="41" r="3.8" fill="#5DCAA5" opacity="0.88"/>
+      <circle cx="41" cy="14" r="3.2" fill="#EF9F27" opacity="0.95"/>
+    </svg>
+    <div class="nav-logo-txt">
+      <div class="nav-logo-name">Particule <span>Énergie</span></div>
+      <div class="nav-logo-slogan">Votre énergie, notre expertise</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/blog/">Blog</a>
+    <a href="/guide-pratique/">Guide pratique</a>
+  </div>
+  <a href="/" class="nav-cta">Estimer mon DPE</a>
+</nav>
+<div class="accent-bar"></div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <a href="/blog/" class="back-link">
+    <i class="ti ti-arrow-left"></i> Retour au blog
+  </a>
+
+  <div class="article-meta">
+    <span class="article-date">28 novembre 2026</span>
+    <span class="article-tag-pill">PAC · Électricité</span>
+    <span class="article-tag-pill">Isère</span>
+  </div>
+
+  <h1 class="article-title">Quelle puissance électrique pour une pompe à chaleur ? Intensité, compteur et appoint</h1>
+
+  <p class="article-byline">Par <a href="/a-propos.html" style="color:inherit">Loïc Ortiz</a> — Particule Énergie, Grenoble · Lecture : 6 min</p>
+
+  <div class="article-body">
+
+    <p><strong>Une pompe à chaleur ne consomme pas autant d'électricité qu'elle restitue de chaleur : il faut diviser par le COP.</strong> Une machine qui restitue 9 kW de chauffage appelle environ 3,6 kW d'électricité par grand froid (COP de 2,5, eau de chauffage vers 45 °C), soit environ 16 ampères en monophasé, et bien moins par temps doux. Le point qui pose problème n'est pas la machine seule, mais le cumul avec l'<strong>appoint électrique</strong> et les autres usages de la maison : c'est lui qui décide si votre puissance souscrite suffit.</p>
+
+    <div class="highlight-box">
+      <p><strong>La formule à retenir :</strong> puissance électrique absorbée = puissance de chauffage restituée ÷ COP. Et en monophasé, intensité (A) ≈ puissance (W) ÷ 230.</p>
+    </div>
+
+    <h2>Puissance de chauffage, puissance électrique, puissance souscrite : trois choses différentes</h2>
+
+    <ul>
+      <li><strong>La puissance de chauffage (ou thermique)</strong> est la chaleur restituée à la maison, en kW. C'est celle que l'on compare aux déperditions : voir <a href="/blog/pac-puissance-maison-isere.html">quelle puissance de pompe à chaleur pour une maison en Isère</a>.</li>
+      <li><strong>La puissance électrique absorbée</strong> est ce que la machine tire du réseau pour produire cette chaleur. Elle est plus faible, grâce au COP.</li>
+      <li><strong>La puissance souscrite</strong> (en kVA) est ce que votre contrat et votre compteur autorisent à appeler en même temps pour toute la maison. Si l'ensemble dépasse, le disjoncteur peut déclencher.</li>
+    </ul>
+
+    <h2>Le COP change avec le froid</h2>
+
+    <p>Le COP mesure combien de kWh de chaleur la machine produit pour 1 kWh d'électricité. Il est élevé par temps doux et baisse quand il fait froid. Pour le calcul du DPE, la valeur par défaut d'une pompe à chaleur air/eau installée depuis 2017 est de <strong>2,8</strong> avec des radiateurs (autres émetteurs) et de <strong>3,2</strong> avec un plancher chauffant, en zones H1 et H2 (guide DPE – Audit et Recommandations, mars 2025). C'est un rendement moyen sur la saison.
+
+    Le jour le plus froid, le rendement est inférieur : on retient ici, à −11 °C, un COP d'environ <strong>2,5</strong> avec une eau de chauffage vers 45 °C. C'est un ordre de grandeur, à remplacer par la valeur de la fiche technique du fabricant pour votre modèle et votre température de départ d'eau. Avec une eau à 55 °C (radiateurs anciens), comptez plutôt 2 à 2,2 : pour 9 kW restitués, environ 4,1 à 4,5 kW absorbés, soit 18 à 20 A.</p>
+
+    <h2>Quelle puissance électrique selon la pompe à chaleur ?</h2>
+
+    <p>Voici la puissance absorbée par une pompe à chaleur, <strong>appoint non compris</strong>, selon la chaleur qu'elle restitue à −11 °C (COP de 2,5) et l'intensité correspondante en monophasé 230 V :</p>
+
+    <table class="aides-table">
+      <thead><tr><th>Chaleur restituée à −11 °C</th><th>Puissance électrique absorbée</th><th>Intensité en monophasé</th></tr></thead>
+      <tbody>
+        <tr><td>5 kW</td><td class="montant">2,0 kW</td><td class="montant">≈ 9 A</td></tr>
+        <tr><td>7 kW</td><td class="montant">2,8 kW</td><td class="montant">≈ 12 A</td></tr>
+        <tr><td>9 kW</td><td class="montant">3,6 kW</td><td class="montant">≈ 16 A</td></tr>
+        <tr><td>12 kW</td><td class="montant">4,8 kW</td><td class="montant">≈ 21 A</td></tr>
+        </tbody>
+    </table>
+
+    <p>Par temps doux, ces valeurs sont nettement plus basses (COP de 3,5 à 4). Elles sont à lire comme des ordres de grandeur : la fiche du fabricant donne la puissance absorbée et l'intensité maximale réelles de chaque modèle.</p>
+
+    <h2>L'appoint électrique : ce qui fait déclencher le disjoncteur</h2>
+
+    <p>Beaucoup de pompes à chaleur air/eau embarquent une résistance d'appoint de 3 à 6 kW (par exemple 2 + 4 kW sur un modèle étudié récemment). Elle s'enclenche quand la machine ne suffit plus, donc par grand froid, au pire moment. Prenons une PAC qui restitue 9 kW (3,6 kW absorbés) avec un appoint de 6 kW :</p>
+
+    <table class="aides-table">
+      <thead><tr><th>Poste</th><th>Puissance</th><th>Intensité (monophasé)</th></tr></thead>
+      <tbody>
+        <tr><td>Pompe à chaleur (9 kW restitués)</td><td>3,6 kW</td><td>≈ 16 A</td></tr>
+        <tr><td>Appoint électrique</td><td>6 kW</td><td>≈ 26 A</td></tr>
+        <tr><td><strong>Total chauffage</strong></td><td class="montant">9,6 kW</td><td class="montant">≈ 42 A</td></tr>
+      </tbody>
+    </table>
+
+    <p>Or 9 kVA en monophasé correspondent à environ <strong>39 A</strong> (et 12 kVA à environ 52 A). Dans ce cas, le chauffage seul dépasse 9 kVA, sans compter le ballon, la plaque de cuisson ou une borne de recharge de véhicule. Dans la pratique, la pompe à chaleur et l'appoint ne tournent pas toujours à pleine puissance ensemble, mais un installateur sérieux raisonne sur le pire cas et vous dit si l'appoint est limité ou si un changement de puissance souscrite est nécessaire.</p>
+
+    <div class="warning-box">
+      <p><strong>Surdimensionner coûte aussi côté compteur.</strong> Dans notre exemple de maison de 1980, une PAC de 9 kW au lieu de 5 kW une fois la maison rénovée, c'est environ 1,6 kW de plus à appeler en pointe (3,6 kW contre 2,0 kW). Une machine trop puissante peut ainsi vous obliger à relever votre puissance souscrite, et se payer chaque mois dans l'abonnement.</p>
+    </div>
+
+    <h2>Monophasé ou triphasé ?</h2>
+
+    <p>C'est la fiche technique du fabricant qui tranche : tension d'alimentation, intensité maximale, calibre du disjoncteur conseillé. Beaucoup de modèles de puissance moyenne existent dans les deux versions, les plus puissants sont souvent triphasés. Côté réseau, la puissance souscrite en monophasé est en principe limitée à 12 kVA (hors situations existantes particulières) : au-delà, il faut passer en triphasé. Si votre logement est en monophasé et que le modèle choisi demande du triphasé, le changement est un chantier à chiffrer avant de signer le devis, pas après.</p>
+
+    <h2>Combien d'électricité sur l'année ?</h2>
+
+    <p>Sur une saison, on divise la chaleur dont la maison a besoin par le COP moyen (SCOP). Exemple : une maison qui a besoin de <strong>15 000 kWh de chauffage par an</strong>, avec un SCOP de 3,2 (plancher chauffant), consomme environ <strong>4 700 kWh d'électricité</strong> ; avec un SCOP de 2,8 (radiateurs), environ <strong>5 400 kWh</strong>. Multipliez par le prix du kWh de votre contrat pour obtenir la facture de chauffage. C'est le besoin du logement (donc son isolation) qui pèse le plus : un logement mieux isolé consomme moins, avec la même machine.</p>
+
+    <h2>Les 5 questions à poser à votre installateur</h2>
+
+    <ul>
+      <li>Quelle est la <strong>puissance électrique absorbée maximale</strong> de la machine, appoint non compris ?</li>
+      <li>Quelle est l'<strong>intensité maximale</strong> et le calibre de protection conseillé ?</li>
+      <li>Quelle est la puissance de l'<strong>appoint</strong>, à quelle température s'enclenche-t-il, peut-il être limité ?</li>
+      <li>Mon installation est-elle en <strong>monophasé ou triphasé</strong>, et le modèle choisi est-il compatible ?</li>
+      <li>Ma <strong>puissance souscrite</strong> actuelle suffira-t-elle, avec la pompe à chaleur, l'appoint et mes autres usages en même temps ?</li>
+    </ul>
+
+    <p>Si on vous répond « ne vous inquiétez pas, ça passe », demandez les chiffres par écrit.</p>
+
+    <div class="cta-box">
+      <div class="cta-box-title">Votre devis de PAC est-il <span>bien dimensionné ?</span></div>
+      <p class="cta-box-sub">Calcul réel des déperditions de votre logement, puissance nécessaire à la température de base de votre secteur, et une note claire. 299 € TTC.</p>
+      <a href="mailto:contact@particule-energie.fr?subject=Validation%20de%20devis%20PAC" class="cta-box-btn">Faire valider mon devis</a>
+      <a href="/#rappel" class="cta-box-btn" style="background:transparent;border:1px solid #5DCAA5;color:#5DCAA5;margin-left:.5rem">Prendre rendez-vous</a>
+      <p class="cta-box-sub" style="margin:1rem 0 0">Une question ? Appelez-moi au <a href="tel:+33632870522" style="color:#5DCAA5">06 32 87 05 22</a>, ou découvrez l'<a href="/proprietaires.html" style="color:#5DCAA5">étude énergétique dès 400 € TTC</a>.</p>
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Quelle puissance électrique consomme une pompe à chaleur de 8 kW ?</summary><p style="margin:.75rem 0 0">Les 8 kW sont une puissance de chauffage restituée, pas une puissance électrique. L'électricité absorbée se calcule en divisant par le COP : environ 2 kW par temps doux (COP de 4) et environ 3,2 kW par grand froid (COP de 2,5, eau vers 45 °C). Ce sont des ordres de grandeur ; la fiche technique du fabricant donne la puissance absorbée à chaque température.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Quelle puissance souscrite faut-il pour une pompe à chaleur ?</summary><p style="margin:.75rem 0 0">Elle dépend de la puissance absorbée par la pompe à chaleur, de l'appoint électrique éventuel et des autres usages possibles en même temps (cuisson, ballon, recharge d'un véhicule). À titre de repère, 9 kVA en monophasé correspondent à environ 39 A, et 12 kVA à environ 52 A. Il faut comparer ces valeurs à l'intensité maximale que l'installateur doit vous communiquer, appoint compris.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">Une pompe à chaleur est-elle monophasée ou triphasée ?</summary><p style="margin:.75rem 0 0">Cela dépend du modèle et de sa puissance. Beaucoup de pompes à chaleur de puissance moyenne existent en monophasé et en triphasé ; les plus puissantes sont souvent triphasées. La fiche technique du fabricant indique la tension d'alimentation, l'intensité maximale et le calibre de protection conseillé : c'est à elle qu'il faut se fier, et à votre installation électrique actuelle.</p></details>
+    <details style="border-bottom:0.5px solid #e0ddd6;padding:1rem 0"><summary style="cursor:pointer;font-weight:500;color:#1a1a1a;line-height:1.5">L'appoint électrique d'une pompe à chaleur est-il obligatoire ?</summary><p style="margin:.75rem 0 0">Il n'est pas obligatoire en soi, mais beaucoup d'installations en prévoient un, souvent intégré à la machine. D'après le NF DTU 65.16, la pompe à chaleur et son appoint ensemble doivent couvrir au moins 120 % des déperditions à la température de base. Son enclenchement augmente l'intensité appelée et la facture ; il faut donc savoir à quelle température il démarre et quelle puissance il peut atteindre.</p></details>
+
+  </div>
+
+  <nav class="lire-aussi" aria-label="À lire aussi" style="margin:2.5rem 0 1.5rem;padding:1.25rem 1.5rem;background:#F2EFE6;border-radius:10px"><div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.5rem">À lire aussi</div><ul style="list-style:none;padding:0;margin:0;font-size:15px;line-height:1.5"><li style="margin:.4rem 0"><a href="/blog/pac-puissance-maison-isere.html" style="color:#1D6F42">Quelle puissance de pompe à chaleur pour une maison en Isère ?</a></li><li style="margin:.4rem 0"><a href="/blog/pac-air-eau-zone-h1.html" style="color:#1D6F42">PAC air/eau en zone H1 : ce que le froid change vraiment</a></li><li style="margin:.4rem 0"><a href="/blog/pac-agreees-outil.html" style="color:#1D6F42">Cette pompe à chaleur est-elle agréée ?</a></li><li style="margin:.4rem 0"><a href="/blog/choisir-installateur-rge-isere.html" style="color:#1D6F42">Comment choisir un installateur RGE pour une pompe à chaleur ou une isolation en Isère ?</a></li><li style="margin:.4rem 0"><a href="/blog/" style="color:#1D6F42">Tous les articles</a></li></ul></nav>
+
+    <div class="article-footer">
+    Article rédigé par Loïc Ortiz, fondateur de Particule Énergie (Grenoble). Article d'information : les valeurs chiffrées sont des ordres de grandeur (COP de 2,5 à −11 °C avec une eau vers 45 °C, 230 V monophasé) et ne remplacent ni la fiche technique du fabricant ni l'avis d'un électricien. Références : NF DTU 65.16, guide DPE – Audit et Recommandations (mars 2025), procédure Enedis-NMO-RAC_010E (juillet 2025).
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Particule Énergie — Grenoble · Isère</span>
+  <div style="display:flex;gap:1.5rem">
+    <a href="/mentions-legales.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">Mentions légales</a>
+    <a href="/politique-confidentialite.html" style="font-size:12px;color:rgba(255,255,255,0.2);text-decoration:none">RGPD</a>
+    <span style="font-size:12px;color:rgba(255,255,255,0.2)">particule-energie.fr</span>
+  </div>
+</footer>
+
+</body>
+</html>
